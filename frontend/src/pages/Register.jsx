@@ -41,21 +41,21 @@ const Register = () => {
                 suratUrl = data.path;
             }
 
-            // 2. Request Pendaftaran lewat Edge Function 
-            // (Karena auth.users butuh Service Role, kita panggil API kita)
-            const { error } = await supabase.from('users').insert([{
-                name: formData.nama,
-                email: formData.email,
-                password: formData.password, // Sementara plain (Bagusnya Bcrypt di Backend)
-                whatsapp: formData.whatsapp,
-                jabatan: formData.jabatan,
-                opd_id: formData.opd_id,
-                surat_tugas_url: suratUrl,
-                status_approval: 0, // Pending
-                role: 3 // Default Operator OPD
-            }]);
+            // 2. Request Pendaftaran lewat Edge Function API
+            const { data: regRes, error: regError } = await supabase.functions.invoke('api', {
+                body: {
+                    action: 'register',
+                    name: formData.nama,
+                    email: formData.email,
+                    password: formData.password,
+                    whatsapp: formData.whatsapp,
+                    jabatan: formData.jabatan,
+                    opd_id: formData.opd_id,
+                    surat_tugas_url: suratUrl
+                }
+            });
 
-            if (error) throw error;
+            if (regError || !regRes.success) throw new Error(regError?.message || regRes.message);
 
             toast.custom((t) => (
                 <div className={`${t.visible ? 'animate-enter' : 'animate-leave'} max-w-md w-full bg-white shadow-2xl rounded-[2rem] pointer-events-auto flex ring-1 ring-black ring-opacity-5 p-6`}>

@@ -12,10 +12,13 @@ serve(async (req) => {
   }
 
   try {
-    const supabaseClient = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? Deno.env.get('SUPABASE_ANON_KEY') ?? ''
-    )
+    const supabaseUrl = Deno.env.get('SUPABASE_URL') ?? ''
+    const adminKey = Deno.env.get('ADMIN_SERVICE_KEY') ?? Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+    
+    console.log("DB URL Check:", !!supabaseUrl)
+    console.log("Admin Key Check:", !!adminKey)
+
+    const supabaseClient = createClient(supabaseUrl, adminKey)
 
     const body = await req.json()
     const { action } = body
@@ -23,26 +26,34 @@ serve(async (req) => {
     // --- LOGIKA LOGIN ---
     if (action === 'login') {
       const { email, password } = body
-      
       const { data: user, error } = await supabaseClient
         .from('users')
-        .select('*, opds(*)')
+        .select('*')
         .eq('email', email)
         .single()
 
       if (error || !user) {
-        return new Response(JSON.stringify({ success: false, message: 'Email tidak ditemukan di Supabase' }), {
+        return new Response(JSON.stringify({ success: false, message: 'Email tidak ditemukan' }), {
           status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         })
       }
+      return new Response(JSON.stringify({ success: true, user: user }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
 
-      // Bypass password check untuk demo agar user bisa masuk ke Dashboard
-      // Nantinya, di sini Anda bisa tambahkan verifikasi password yang lebih kompleks
-      return new Response(JSON.stringify({ 
-        success: true, 
-        token: 'sb_token_' + Math.random(),
-        user: user 
-      }), {
+    // --- LOGIKA REGISTER (BARU) ---
+    if (action === 'register') {
+      const { name, email, password, whatsapp, jabatan, opd_id, surat_tugas_url } = body
+      
+      const { data, error } = await supabaseClient.from('users').insert([{
+         name, email, password, whatsapp, jabatan, opd_id, surat_tugas_url,
+         role: 3, status_approval: 0 // Default: Operator OPD, Status: Pending
+      }]).select().single()
+
+      if (error) throw error
+
+      return new Response(JSON.stringify({ success: true, user: data }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
