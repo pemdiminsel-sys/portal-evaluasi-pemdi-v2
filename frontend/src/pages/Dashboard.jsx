@@ -8,6 +8,13 @@ import Settings from './Settings';
 import DashboardPimpinan from './DashboardPimpinan';
 import UserManagement from './UserManagement';
 import Verifikasi from './Verifikasi';
+import CatatanPerbaikan from './CatatanPerbaikan';
+import RekapVerifikasi from './RekapVerifikasi';
+import PenilaianDokumen from './PenilaianDokumen';
+import PenilaianInterviu from './PenilaianInterviu';
+import PenilaianVisitasi from './PenilaianVisitasi';
+import BeritaAcara from './BeritaAcara';
+import RekapNilai from './RekapNilai';
 import ComingSoon from './ComingSoon';
 import { 
   Bell, 
@@ -212,13 +219,13 @@ const Dashboard = () => {
           <Route path="/riwayat" element={<ComingSoon title="Riwayat Penilaian" />} />
           <Route path="/rekomendasi" element={<ComingSoon title="Rekomendasi Perbaikan" />} />
           <Route path="/profil" element={<ComingSoon title="Profil Instansi" />} />
-          <Route path="/catatan" element={<ComingSoon title="Catatan Perbaikan" />} />
-          <Route path="/rekap-verifikasi" element={<ComingSoon title="Rekapitulasi Verifikasi" />} />
-          <Route path="/penilaian-dokumen" element={<ComingSoon title="Penilaian Dokumen" />} />
-          <Route path="/penilaian-interviu" element={<ComingSoon title="Penilaian Interviu" />} />
-          <Route path="/penilaian-visitasi" element={<ComingSoon title="Penilaian Visitasi" />} />
-          <Route path="/berita-acara" element={<ComingSoon title="Berita Acara Evaluasi" />} />
-          <Route path="/rekap-nilai" element={<ComingSoon title="Rekapitulasi Nilai Akhir" />} />
+          <Route path="/catatan" element={<CatatanPerbaikan />} />
+          <Route path="/rekap-verifikasi" element={<RekapVerifikasi />} />
+          <Route path="/penilaian-dokumen" element={<PenilaianDokumen />} />
+          <Route path="/penilaian-interviu" element={<PenilaianInterviu />} />
+          <Route path="/penilaian-visitasi" element={<PenilaianVisitasi />} />
+          <Route path="/berita-acara" element={<BeritaAcara />} />
+          <Route path="/rekap-nilai" element={<RekapNilai />} />
           <Route path="/monitoring" element={<ComingSoon title="Monitoring Progres" />} />
           <Route path="/generate-laporan" element={<ComingSoon title="Generate Laporan" />} />
           <Route path="/notifikasi" element={<ComingSoon title="Pusat Notifikasi" />} />
