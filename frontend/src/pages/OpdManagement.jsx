@@ -7,6 +7,10 @@ const OpdManagement = () => {
     const [opds, setOpds] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
+    
+    // Modal State
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [editForm, setEditForm] = useState(null);
 
     useEffect(() => {
         fetchOpds();
@@ -35,6 +39,37 @@ const OpdManagement = () => {
         opd.nama.toLowerCase().includes(searchTerm.toLowerCase()) || 
         opd.singkatan?.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    const handleDelete = async (id, nama) => {
+        if (window.confirm(`PERINGATAN: Yakin ingin menghapus OPD "${nama}"? Data yang dihapus tidak dapat dikembalikan.`)) {
+            try {
+                const { error } = await supabase.from('opds').delete().eq('id', id);
+                if (error) throw error;
+                toast.success('OPD berhasil dihapus');
+                fetchOpds();
+            } catch (err) {
+                toast.error('Gagal menghapus OPD');
+            }
+        }
+    };
+
+    const handleSaveEdit = async () => {
+        try {
+            const { error } = await supabase.from('opds').update({
+                nama: editForm.nama,
+                singkatan: editForm.singkatan,
+                tugas: editForm.tugas,
+                kelompok: editForm.kelompok
+            }).eq('id', editForm.id);
+            
+            if (error) throw error;
+            toast.success('Perubahan berhasil disimpan');
+            setIsEditModalOpen(false);
+            fetchOpds();
+        } catch (err) {
+            toast.error('Gagal menyimpan perubahan');
+        }
+    };
 
     if (loading) return (
         <div className="h-full flex flex-col items-center justify-center gap-4">
@@ -105,10 +140,13 @@ const OpdManagement = () => {
                                     </div>
 
                                     <div className="flex gap-2 mt-8 relative z-10">
-                                        <button className="flex-1 py-3 bg-slate-50 text-slate-400 hover:bg-indigo-600 hover:text-white font-black rounded-xl transition-all text-[10px] uppercase tracking-widest flex items-center justify-center gap-2">
+                                        <button onClick={() => {
+                                            setEditForm(opd);
+                                            setIsEditModalOpen(true);
+                                        }} className="flex-1 py-3 bg-slate-50 text-slate-400 hover:bg-indigo-600 hover:text-white font-black rounded-xl transition-all text-[10px] uppercase tracking-widest flex items-center justify-center gap-2">
                                             <Edit2 size={12} /> Edit
                                         </button>
-                                        <button className="p-3 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all">
+                                        <button onClick={() => handleDelete(opd.id, opd.nama)} className="p-3 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all">
                                             <Trash2 size={14} />
                                         </button>
                                     </div>
@@ -123,6 +161,44 @@ const OpdManagement = () => {
                 <div className="py-20 text-center bg-slate-50 rounded-[3rem] border-2 border-dashed border-slate-200">
                     <Building2 size={48} className="mx-auto text-slate-200 mb-4" />
                     <p className="text-slate-400 font-bold text-lg">Data OPD tidak ditemukan.</p>
+                </div>
+            )}
+
+            {/* Edit Modal */}
+            {isEditModalOpen && editForm && (
+                <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl flex flex-col gap-6">
+                        <div className="flex justify-between items-center">
+                            <h2 className="text-2xl font-black text-slate-800 tracking-tighter">Edit OPD</h2>
+                            <button onClick={() => setIsEditModalOpen(false)} className="text-slate-400 hover:text-red-500 font-black">X</button>
+                        </div>
+                        
+                        <div className="space-y-4">
+                            <div>
+                                <label className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1 block">Nama Instansi</label>
+                                <input type="text" value={editForm.nama} onChange={(e) => setEditForm({...editForm, nama: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 rounded-xl font-bold" />
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1 block">Singkatan</label>
+                                    <input type="text" value={editForm.singkatan || ''} onChange={(e) => setEditForm({...editForm, singkatan: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 rounded-xl font-bold" />
+                                </div>
+                                <div>
+                                    <label className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1 block">Kelompok</label>
+                                    <input type="text" value={editForm.kelompok || ''} onChange={(e) => setEditForm({...editForm, kelompok: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 rounded-xl font-bold" />
+                                </div>
+                            </div>
+                            <div>
+                                <label className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1 block">Tugas Utama</label>
+                                <input type="text" value={editForm.tugas || ''} onChange={(e) => setEditForm({...editForm, tugas: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 rounded-xl font-bold" />
+                            </div>
+                        </div>
+
+                        <div className="flex gap-4 mt-4">
+                            <button onClick={() => setIsEditModalOpen(false)} className="flex-1 py-4 bg-slate-100 text-slate-500 font-black rounded-xl hover:bg-slate-200">Batal</button>
+                            <button onClick={handleSaveEdit} className="flex-1 py-4 bg-indigo-600 text-white font-black rounded-xl shadow-lg hover:bg-indigo-700">Simpan</button>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>
