@@ -20,6 +20,8 @@ const useAuthStore = create((set) => ({
       });
       
       if (error) throw error;
+
+      const { user, token } = data;
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       
