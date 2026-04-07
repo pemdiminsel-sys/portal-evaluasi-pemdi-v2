@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { CalendarDays, Plus, Edit2, Trash2, X, Loader2, Save, CheckCircle2, Clock, Lock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import api from '../services/api';
+import { supabase } from '../services/supabase';
 import { toast } from 'react-hot-toast';
 
 const statusConfig = {
@@ -24,15 +25,22 @@ const ManajemenPeriode = () => {
 
   const fetchPeriodes = async () => {
     try {
-      const res = await api.get('/periode');
-      const formatted = res.data.map(p => ({
+      const { data, error } = await supabase
+        .from('periodes')
+        .select('*')
+        .order('tahun', { ascending: false });
+
+      if (error) throw error;
+
+      const formatted = data.map(p => ({
         ...p,
-        mulai: p.start_date.split('T')[0],
-        selesai: p.end_date.split('T')[0]
+        mulai: p.start_date,
+        selesai: p.end_date
       }));
       setPeriodes(formatted);
     } catch (err) {
       toast.error('Gagal mengambil data periode');
+      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -63,10 +71,17 @@ const ManajemenPeriode = () => {
       };
 
       if (current) {
-        await api.put(`/periode/${current.id}`, payload);
+        const { error } = await supabase
+          .from('periodes')
+          .update(payload)
+          .eq('id', current.id);
+        if (error) throw error;
         toast.success('Periode berhasil diperbarui');
       } else {
-        await api.post('/periode', payload);
+        const { error } = await supabase
+          .from('periodes')
+          .insert([payload]);
+        if (error) throw error;
         toast.success('Periode berhasil ditambahkan');
       }
       fetchPeriodes();
@@ -82,11 +97,16 @@ const ManajemenPeriode = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Yakin ingin menghapus periode ini?')) return;
     try {
-      await api.delete(`/periode/${id}`);
+      const { error } = await supabase
+        .from('periodes')
+        .delete()
+        .eq('id', id);
+      if (error) throw error;
       toast.success('Periode berhasil dihapus');
       fetchPeriodes();
     } catch (err) {
       toast.error('Gagal menghapus periode');
+      console.error(err);
     }
   };
 

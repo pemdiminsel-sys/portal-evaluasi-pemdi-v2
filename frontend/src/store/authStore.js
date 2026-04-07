@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import api from '../services/api';
+import { supabase } from '../services/supabase';
 
 const useAuthStore = create((set) => ({
   user: JSON.parse(localStorage.getItem('user')) || null,
@@ -10,13 +11,15 @@ const useAuthStore = create((set) => ({
   login: async (email, password) => {
     set({ isLoading: true });
     try {
-      const response = await api.post('/login', {
-        email,
-        password,
-        device_name: 'browser',
+      const { data, error } = await supabase.functions.invoke('api', {
+        body: { 
+          action: 'login',
+          email, 
+          password 
+        }
       });
       
-      const { user, token } = response.data;
+      if (error) throw error;
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       
