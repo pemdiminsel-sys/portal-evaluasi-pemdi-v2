@@ -68,13 +68,11 @@ const Sidebar = () => {
 
   return (
     <div className="w-72 bg-white border-r border-slate-100 flex flex-col h-full shadow-sm">
-      <div className="p-8 flex items-center gap-3">
-        <div className="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-red-100">
-          <ShieldCheck className="text-white w-6 h-6" />
-        </div>
+      <div className="p-6 flex items-center gap-3 border-b border-slate-100">
+        <img src="/logo-minsel.png" alt="Logo Minsel" className="w-10 h-auto" />
         <div className="flex flex-col">
-          <span className="font-bold text-slate-800 leading-tight">Portal SPBE</span>
-          <span className="text-[10px] font-bold text-red-500 uppercase tracking-widest">Version 2.0</span>
+          <span className="font-black text-slate-800 leading-tight text-sm">Portal SPBE</span>
+          <span className="text-[10px] font-bold text-red-500 uppercase tracking-widest">Minahasa Selatan</span>
         </div>
       </div>
 
