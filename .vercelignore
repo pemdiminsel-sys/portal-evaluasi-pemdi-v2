@@ -1,10 +1,30 @@
+# Folder Besar (Wajib Diabaikan)
 backend/vendor
-backend/storage
-backend/tests
+backend/storage/logs
+backend/storage/framework/cache
+backend/storage/framework/sessions
+backend/storage/framework/views
 backend/node_modules
 frontend/node_modules
+
+# File Proyek yang Tidak Dibutuhkan di Cloud
+backend/tests
+backend/docs
+backend/database/factories
+backend/database/seeders
+backend/README.md
+frontend/README.md
+VERCEL_DEPLOYMENT.md
+DEPLOYMENT.md
+SISTEM_BEKERJA.MD
 .git
 .github
+.vscode
+.antigravity
 *.log
+
+# Folder Temp
 tmp/
 temp/
+docs/
+tests/
