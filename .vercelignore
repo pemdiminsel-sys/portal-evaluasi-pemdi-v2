@@ -1,0 +1,10 @@
+backend/vendor
+backend/storage
+backend/tests
+backend/node_modules
+frontend/node_modules
+.git
+.github
+*.log
+tmp/
+temp/
