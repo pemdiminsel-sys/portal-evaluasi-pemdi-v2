@@ -75,7 +75,7 @@ const DashboardOverview = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800 tracking-tight">Selamat Datang, {user?.name.split(' ')[0]} 👋</h1>
+          <h1 className="text-3xl font-bold text-slate-800 tracking-tight">Selamat Datang, {user?.name?.split(' ')[0] || 'User'} 👋</h1>
           <p className="text-slate-500 font-medium mt-1">Berikut adalah ringkasan evaluasi SPBE hari ini.</p>
         </div>
         <div className="flex items-center gap-4">

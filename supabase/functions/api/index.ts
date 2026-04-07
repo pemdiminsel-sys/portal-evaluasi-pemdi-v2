@@ -31,7 +31,7 @@ serve(async (req) => {
     // --- LOGIN ---
     if (action === 'login') {
       const { email, password } = body
-      const { data: user, error } = await supabaseClient.from('users').select('*').eq('email', email).single()
+      const { data: user, error } = await supabaseClient.from('users').select('*, opds(*)').eq('email', email).single()
 
       if (error || !user) {
         return new Response(JSON.stringify({ success: false, message: 'Login Gagal: Email tidak terdaftar di sistem.' }), {
