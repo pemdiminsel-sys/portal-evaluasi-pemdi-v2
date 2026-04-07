@@ -69,12 +69,12 @@ const Sidebar = () => {
   return (
     <div className="w-72 bg-white border-r border-slate-100 flex flex-col h-full shadow-sm">
       <div className="p-8 flex items-center gap-3">
-        <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-100">
+        <div className="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center shadow-lg shadow-red-100">
           <ShieldCheck className="text-white w-6 h-6" />
         </div>
         <div className="flex flex-col">
           <span className="font-bold text-slate-800 leading-tight">Portal SPBE</span>
-          <span className="text-[10px] font-bold text-indigo-500 uppercase tracking-widest">Version 2.0</span>
+          <span className="text-[10px] font-bold text-red-500 uppercase tracking-widest">Version 2.0</span>
         </div>
       </div>
 
@@ -85,11 +85,11 @@ const Sidebar = () => {
             to={item.path}
             className={`flex items-center gap-3 px-4 py-3.5 rounded-2xl transition-all group font-medium ${
               location.pathname === item.path
-                ? 'bg-indigo-50 text-indigo-600'
+                ? 'bg-red-50 text-red-600'
                 : 'text-slate-500 hover:bg-slate-50 hover:text-slate-800'
             }`}
           >
-            <item.icon size={20} className={location.pathname === item.path ? 'text-indigo-600' : 'text-slate-400 group-hover:text-slate-600'} />
+            <item.icon size={20} className={location.pathname === item.path ? 'text-red-600' : 'text-slate-400 group-hover:text-slate-600'} />
             <span className="text-sm">{item.title}</span>
             {location.pathname === item.path && <ChevronRight size={14} className="ml-auto opacity-50" />}
           </Link>
@@ -100,7 +100,7 @@ const Sidebar = () => {
         <div className="bg-slate-50 rounded-2xl p-5 mb-4 border border-slate-100 shadow-sm">
           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">Login Sebagai:</p>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-indigo-100 border-2 border-white flex items-center justify-center text-indigo-600 font-bold shadow-sm">
+            <div className="w-10 h-10 rounded-full bg-red-100 border-2 border-white flex items-center justify-center text-red-600 font-bold shadow-sm">
               {user?.name?.[0].toUpperCase()}
             </div>
             <div className="flex flex-col min-w-0">

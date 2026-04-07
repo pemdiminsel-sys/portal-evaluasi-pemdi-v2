@@ -8,6 +8,7 @@ import Settings from './Settings';
 import DashboardPimpinan from './DashboardPimpinan';
 import UserManagement from './UserManagement';
 import Verifikasi from './Verifikasi';
+import ComingSoon from './ComingSoon';
 import { 
   Bell, 
   Search, 
@@ -201,6 +202,32 @@ const Dashboard = () => {
           <Route path="/verifikasi" element={<Verifikasi />} />
           <Route path="/statistik" element={<HasilPenilaian />} />
           <Route path="/settings" element={<Settings />} />
+
+          {/* Placeholder untuk Modul yang Belum Diimplementasi */}
+          <Route path="/indikator" element={<ComingSoon title="Manajemen Indikator" />} />
+          <Route path="/aspek" element={<ComingSoon title="Manajemen Aspek" />} />
+          <Route path="/periode" element={<ComingSoon title="Manajemen Periode" />} />
+          <Route path="/backup" element={<ComingSoon title="Backup Database" />} />
+          <Route path="/logs" element={<ComingSoon title="Log Aktivitas" />} />
+          <Route path="/riwayat" element={<ComingSoon title="Riwayat Penilaian" />} />
+          <Route path="/rekomendasi" element={<ComingSoon title="Rekomendasi Perbaikan" />} />
+          <Route path="/profil" element={<ComingSoon title="Profil Instansi" />} />
+          <Route path="/catatan" element={<ComingSoon title="Catatan Perbaikan" />} />
+          <Route path="/rekap-verifikasi" element={<ComingSoon title="Rekapitulasi Verifikasi" />} />
+          <Route path="/penilaian-dokumen" element={<ComingSoon title="Penilaian Dokumen" />} />
+          <Route path="/penilaian-interviu" element={<ComingSoon title="Penilaian Interviu" />} />
+          <Route path="/penilaian-visitasi" element={<ComingSoon title="Penilaian Visitasi" />} />
+          <Route path="/berita-acara" element={<ComingSoon title="Berita Acara Evaluasi" />} />
+          <Route path="/rekap-nilai" element={<ComingSoon title="Rekapitulasi Nilai Akhir" />} />
+          <Route path="/monitoring" element={<ComingSoon title="Monitoring Progres" />} />
+          <Route path="/generate-laporan" element={<ComingSoon title="Generate Laporan" />} />
+          <Route path="/notifikasi" element={<ComingSoon title="Pusat Notifikasi" />} />
+          <Route path="/export" element={<ComingSoon title="Ekspor Data Excel" />} />
+          <Route path="/indeks-pemdi" element={<ComingSoon title="Laporan Indeks Pemdi" />} />
+          <Route path="/ranking" element={<ComingSoon title="Ranking OPD Klasemen" />} />
+          <Route path="/rekomendasi-strategis" element={<ComingSoon title="Rekomendasi Strategis Pimpinan" />} />
+          <Route path="/arsip" element={<ComingSoon title="Arsip Pencapaian" />} />
+
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </main>
