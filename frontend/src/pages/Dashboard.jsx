@@ -20,6 +20,9 @@ import ManajemenAspek from './ManajemenAspek';
 import ManajemenPeriode from './ManajemenPeriode';
 import BackupDatabase from './BackupDatabase';
 import LogAktivitas from './LogAktivitas';
+import RiwayatPenilaian from './RiwayatPenilaian';
+import Rekomendasi from './Rekomendasi';
+import ProfilOPD from './ProfilOPD';
 import ComingSoon from './ComingSoon';
 import { 
   Bell, 
@@ -221,9 +224,9 @@ const Dashboard = () => {
           <Route path="/periode" element={<ManajemenPeriode />} />
           <Route path="/backup" element={<BackupDatabase />} />
           <Route path="/logs" element={<LogAktivitas />} />
-          <Route path="/riwayat" element={<ComingSoon title="Riwayat Penilaian" />} />
-          <Route path="/rekomendasi" element={<ComingSoon title="Rekomendasi Perbaikan" />} />
-          <Route path="/profil" element={<ComingSoon title="Profil Instansi" />} />
+          <Route path="/riwayat" element={<RiwayatPenilaian />} />
+          <Route path="/rekomendasi" element={<Rekomendasi />} />
+          <Route path="/profil" element={<ProfilOPD />} />
           <Route path="/catatan" element={<CatatanPerbaikan />} />
           <Route path="/rekap-verifikasi" element={<RekapVerifikasi />} />
           <Route path="/penilaian-dokumen" element={<PenilaianDokumen />} />
