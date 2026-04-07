@@ -15,6 +15,11 @@ import PenilaianInterviu from './PenilaianInterviu';
 import PenilaianVisitasi from './PenilaianVisitasi';
 import BeritaAcara from './BeritaAcara';
 import RekapNilai from './RekapNilai';
+import ManajemenIndikator from './ManajemenIndikator';
+import ManajemenAspek from './ManajemenAspek';
+import ManajemenPeriode from './ManajemenPeriode';
+import BackupDatabase from './BackupDatabase';
+import LogAktivitas from './LogAktivitas';
 import ComingSoon from './ComingSoon';
 import { 
   Bell, 
@@ -211,11 +216,11 @@ const Dashboard = () => {
           <Route path="/settings" element={<Settings />} />
 
           {/* Placeholder untuk Modul yang Belum Diimplementasi */}
-          <Route path="/indikator" element={<ComingSoon title="Manajemen Indikator" />} />
-          <Route path="/aspek" element={<ComingSoon title="Manajemen Aspek" />} />
-          <Route path="/periode" element={<ComingSoon title="Manajemen Periode" />} />
-          <Route path="/backup" element={<ComingSoon title="Backup Database" />} />
-          <Route path="/logs" element={<ComingSoon title="Log Aktivitas" />} />
+          <Route path="/indikator" element={<ManajemenIndikator />} />
+          <Route path="/aspek" element={<ManajemenAspek />} />
+          <Route path="/periode" element={<ManajemenPeriode />} />
+          <Route path="/backup" element={<BackupDatabase />} />
+          <Route path="/logs" element={<LogAktivitas />} />
           <Route path="/riwayat" element={<ComingSoon title="Riwayat Penilaian" />} />
           <Route path="/rekomendasi" element={<ComingSoon title="Rekomendasi Perbaikan" />} />
           <Route path="/profil" element={<ComingSoon title="Profil Instansi" />} />

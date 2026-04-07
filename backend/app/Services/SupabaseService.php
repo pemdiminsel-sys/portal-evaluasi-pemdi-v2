@@ -80,6 +80,26 @@ class SupabaseService
                 return count($response->json());
             }
 
+            public function insert($data)
+            {
+                $response = Http::withHeaders(array_merge($this->headers, [
+                    'Content-Type' => 'application/json',
+                    'Prefer'       => 'return=representation',
+                ]))->post("{$this->url}/{$this->table}", $data);
+
+                return $response->json();
+            }
+
+            public function update($data)
+            {
+                $response = Http::withHeaders(array_merge($this->headers, [
+                    'Content-Type' => 'application/json',
+                    'Prefer'       => 'return=representation',
+                ]))->patch("{$this->url}/{$this->table}", $data, $this->query);
+
+                return $response->json();
+            }
+
             public function upsert($data)
             {
                 $response = Http::withHeaders(array_merge($this->headers, [

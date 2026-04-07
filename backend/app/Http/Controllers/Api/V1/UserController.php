@@ -56,6 +56,44 @@ class UserController extends Controller
         }
     }
 
+    public function update($id, Request $request, SupabaseService $supabase)
+    {
+        $validated = $request->validate([
+            'name'     => 'sometimes|string|max:255',
+            'email'    => 'sometimes|email',
+            'password' => 'nullable|string|min:6',
+            'role'     => 'sometimes|integer',
+            'opd_id'   => 'nullable',
+        ]);
+
+        try {
+            $payload = [
+                'name'       => $validated['name'] ?? null,
+                'email'      => $validated['email'] ?? null,
+                'role'       => $validated['role'] ?? null,
+                'opd_id'     => $validated['opd_id'] ?? null,
+                'updated_at' => now(),
+            ];
+
+            // Hanya update password jika diisi
+            if (!empty($validated['password'])) {
+                $payload['password'] = Hash::make($validated['password']);
+            }
+
+            // Hapus kolom null agar tidak menimpa data yang tidak dikirim
+            $payload = array_filter($payload, fn($v) => !is_null($v));
+
+            $supabase->from('users')->where('id', $id)->update($payload);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'User berhasil diperbarui!'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
     public function destroy($id, SupabaseService $supabase)
     {
         try {

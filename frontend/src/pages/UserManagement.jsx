@@ -18,6 +18,7 @@ const UserManagement = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
+    const [currentUser, setCurrentUser] = useState(null);
     const [form, setForm] = useState({ name: '', email: '', password: '', role: 2, opd_id: '' });
     const [opds, setOpds] = useState([]);
 
@@ -48,15 +49,32 @@ const UserManagement = () => {
         }
     };
 
-    const handleCreate = async (e) => {
+    const handleOpenModal = (user = null) => {
+        if (user) {
+            setCurrentUser(user);
+            setForm({ name: user.name, email: user.email, password: '', role: user.role, opd_id: user.opd_id || '' });
+        } else {
+            setCurrentUser(null);
+            setForm({ name: '', email: '', password: '', role: 2, opd_id: '' });
+        }
+        setShowModal(true);
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await api.post('/users', form);
+            if (currentUser) {
+                // If editing, don't update password if empty
+                const payload = { ...form };
+                if (!payload.password) delete payload.password;
+                await api.put(`/users/${currentUser.id}`, payload);
+            } else {
+                await api.post('/users', form);
+            }
             setShowModal(false);
             fetchData();
-            setForm({ name: '', email: '', password: '', role: 2, opd_id: '' });
         } catch (err) {
-            alert('Gagal menambah user');
+            alert('Gagal menyimpan user');
         }
     };
 
@@ -83,7 +101,7 @@ const UserManagement = () => {
                     <p className="text-slate-500 font-bold mt-1">Kelola hak akses dan akun pengguna SPBE V2</p>
                 </div>
                 <button 
-                    onClick={() => setShowModal(true)}
+                    onClick={() => handleOpenModal()}
                     className="bg-red-600 text-white font-black px-6 py-4 rounded-2xl shadow-xl shadow-red-100 flex items-center gap-2 hover:scale-105 active:scale-95 transition-all"
                 >
                     <UserPlus size={20} /> Tambah User Baru
@@ -128,13 +146,21 @@ const UserManagement = () => {
                                         {user.opds?.nama || '-'}
                                     </div>
                                 </td>
-                                <td className="px-8 py-6">
-                                    <button 
-                                        onClick={() => handleDelete(user.id)}
-                                        className="p-3 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all"
-                                    >
-                                        <Trash2 size={18} />
-                                    </button>
+                                <td className="px-8 py-6 text-right">
+                                    <div className="flex items-center justify-end gap-2">
+                                        <button 
+                                            onClick={() => handleOpenModal(user)}
+                                            className="p-3 text-slate-300 hover:text-indigo-500 hover:bg-indigo-50 rounded-xl transition-all"
+                                        >
+                                            <Edit2 size={18} />
+                                        </button>
+                                        <button 
+                                            onClick={() => handleDelete(user.id)}
+                                            className="p-3 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all"
+                                        >
+                                            <Trash2 size={18} />
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         ))}
@@ -147,11 +173,11 @@ const UserManagement = () => {
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
                     <div className="bg-white w-full max-w-md rounded-[3rem] shadow-2xl p-10 space-y-8 animate-in zoom-in-95 duration-200">
                         <div>
-                            <h2 className="text-2xl font-black text-slate-800 tracking-tight">Tambah User Baru</h2>
+                            <h2 className="text-2xl font-black text-slate-800 tracking-tight">{currentUser ? 'Edit User' : 'Tambah User Baru'}</h2>
                             <p className="text-slate-500 font-bold text-sm mt-1">Daftarkan akun ke Cloud Supabase</p>
                         </div>
 
-                        <form onSubmit={handleCreate} className="space-y-5">
+                        <form onSubmit={handleSubmit} className="space-y-5">
                             <div className="space-y-2">
                                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Nama Lengkap</label>
                                 <input 
@@ -177,11 +203,11 @@ const UserManagement = () => {
 
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Password</label>
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Password {currentUser && '(Kosongi jika tetap)'}</label>
                                     <input 
                                         type="password"
                                         className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:ring-4 focus:ring-red-100 outline-none font-bold"
-                                        required
+                                        required={!currentUser}
                                         value={form.password}
                                         onChange={e => setForm({...form, password: e.target.value})}
                                     />
@@ -226,7 +252,7 @@ const UserManagement = () => {
                                     type="submit"
                                     className="flex-1 bg-red-600 text-white font-black py-4 rounded-2xl shadow-xl shadow-red-100"
                                 >
-                                    Simpan User
+                                    {currentUser ? 'Simpan Perubahan' : 'Simpan User'}
                                 </button>
                             </div>
                         </form>

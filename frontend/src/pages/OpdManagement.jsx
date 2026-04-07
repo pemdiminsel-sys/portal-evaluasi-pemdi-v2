@@ -22,7 +22,8 @@ const OpdManagement = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentOpd, setCurrentOpd] = useState(null);
-    const [formData, setFormData] = useState({ nama: '', singkatan: '', alamat: '' });
+    const [indikators, setIndikators] = useState([]);
+    const [formData, setFormData] = useState({ nama: '', singkatan: '', alamat: '', indikator_ids: [] });
     const [saving, setSaving] = useState(false);
     const [toast, setToast] = useState(null);
 
@@ -32,8 +33,12 @@ const OpdManagement = () => {
 
     const fetchOpds = async () => {
         try {
-            const res = await api.get('/opd');
-            setOpds(res.data.data);
+            const [oRes, iRes] = await Promise.all([
+                api.get('/opd'),
+                api.get('/indikator')
+            ]);
+            setOpds(oRes.data.data);
+            setIndikators(iRes.data.data || []);
         } catch (error) {
             console.error(error);
         } finally {
@@ -44,12 +49,26 @@ const OpdManagement = () => {
     const handleOpenModal = (opd = null) => {
         if (opd) {
             setCurrentOpd(opd);
-            setFormData({ nama: opd.nama, singkatan: opd.singkatan, alamat: opd.alamat });
+            setFormData({ 
+                nama: opd.nama, 
+                singkatan: opd.singkatan, 
+                alamat: opd.alamat, 
+                // Assuming backend eventually maps it, mocking for now if undefined
+                indikator_ids: opd.indikators ? opd.indikators.map(i => i.id) : [] 
+            });
         } else {
             setCurrentOpd(null);
-            setFormData({ nama: '', singkatan: '', alamat: '' });
+            setFormData({ nama: '', singkatan: '', alamat: '', indikator_ids: [] });
         }
         setIsModalOpen(true);
+    };
+
+    const handleToggleIndikator = (id) => {
+        setFormData(prev => {
+            const arr = prev.indikator_ids;
+            if (arr.includes(id)) return { ...prev, indikator_ids: arr.filter(i => i !== id) };
+            return { ...prev, indikator_ids: [...arr, id] };
+        });
     };
 
     const handleSubmit = async (e) => {
@@ -93,24 +112,24 @@ const OpdManagement = () => {
         opd.singkatan?.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    if (loading) return <div className="h-full flex items-center justify-center"><Loader2 className="animate-spin text-indigo-600" size={32} /></div>;
+    if (loading) return <div className="h-full flex items-center justify-center"><Loader2 className="animate-spin text-red-600" size={32} /></div>;
 
     return (
-        <div className="p-10 space-y-10 overflow-y-auto h-full max-w-7xl mx-auto">
+        <div className="p-10 space-y-10 overflow-y-auto h-full max-w-7xl mx-auto scrollbar-hide">
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="flex items-center gap-4">
-                    <div className="p-3 bg-indigo-600 text-white rounded-2xl shadow-lg shadow-indigo-100">
+                    <div className="p-3 bg-red-600 text-white rounded-2xl shadow-lg shadow-red-100">
                         <Users size={24} />
                     </div>
                     <div>
                         <h1 className="text-3xl font-bold text-slate-800 tracking-tight">Manajemen OPD</h1>
-                        <p className="text-slate-500 font-medium">Kelola daftar Organisasi Perangkat Daerah peserta evaluasi.</p>
+                        <p className="text-slate-500 font-medium">Kelola daftar OPD dan delegasi indikator yang dipertanggungjawabkan.</p>
                     </div>
                 </div>
                 <button 
                     onClick={() => handleOpenModal()}
-                    className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-3.5 rounded-2xl shadow-xl shadow-indigo-100 transition-all flex items-center gap-2 group active:scale-95"
+                    className="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3.5 rounded-2xl shadow-xl shadow-red-100 transition-all flex items-center gap-2 group active:scale-95"
                 >
                     <Plus size={20} className="group-hover:rotate-90 transition-transform" />
                     Tambah OPD Baru
@@ -126,7 +145,7 @@ const OpdManagement = () => {
                         placeholder="Cari berdasarkan nama atau singkatan..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full bg-slate-50 border-none outline-none pl-12 pr-4 py-3 rounded-xl font-medium text-slate-700 placeholder:text-slate-400 focus:ring-2 focus:ring-indigo-100"
+                        className="w-full bg-slate-50 border-none outline-none pl-12 pr-4 py-3 rounded-xl font-medium text-slate-700 placeholder:text-slate-400 focus:ring-2 focus:ring-red-100"
                     />
                 </div>
             </div>
@@ -147,7 +166,7 @@ const OpdManagement = () => {
                                 <tr key={opd.id} className="group hover:bg-slate-50/30 transition-colors">
                                     <td className="px-8 py-6">
                                         <div className="flex items-start gap-4">
-                                            <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600 font-black text-xs">
+                                            <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center text-red-600 font-black text-xs">
                                                 {opd.singkatan || opd.nama.substring(0, 2).toUpperCase()}
                                             </div>
                                             <div className="space-y-1">
@@ -174,7 +193,7 @@ const OpdManagement = () => {
                                         <div className="flex items-center justify-end gap-2">
                                             <button 
                                                 onClick={() => handleOpenModal(opd)}
-                                                className="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all"
+                                                className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
                                             >
                                                 <Edit2 size={18} />
                                             </button>
@@ -201,10 +220,10 @@ const OpdManagement = () => {
                             initial={{ scale: 0.9, opacity: 0, y: 20 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                            className="bg-white w-full max-w-lg rounded-[3rem] shadow-2xl overflow-hidden p-8"
+                            className="bg-white w-full max-w-2xl rounded-[3rem] shadow-2xl overflow-hidden p-8 max-h-[90vh] overflow-y-auto scrollbar-hide"
                         >
                             <div className="flex items-center justify-between mb-8">
-                                <h3 className="text-2xl font-bold text-slate-800">{currentOpd ? 'Edit OPD' : 'Tambah OPD Baru'}</h3>
+                                <h3 className="text-2xl font-bold text-slate-800">{currentOpd ? 'Edit OPD & Delegasi' : 'Tambah OPD Baru'}</h3>
                                 <button onClick={() => setIsModalOpen(false)} className="text-slate-400 hover:text-slate-600"><X size={24} /></button>
                             </div>
 
@@ -219,7 +238,7 @@ const OpdManagement = () => {
                                             placeholder="Contoh: Dinas Kesehatan"
                                             value={formData.nama}
                                             onChange={(e) => setFormData({...formData, nama: e.target.value})}
-                                            className="w-full bg-slate-50 border border-slate-100 pl-12 pr-4 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 font-medium"
+                                            className="w-full bg-slate-50 border border-slate-100 pl-12 pr-4 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500 font-medium"
                                         />
                                     </div>
                                 </div>
@@ -231,7 +250,7 @@ const OpdManagement = () => {
                                         placeholder="Contoh: DINKES"
                                         value={formData.singkatan}
                                         onChange={(e) => setFormData({...formData, singkatan: e.target.value})}
-                                        className="w-full bg-slate-50 border border-slate-100 px-6 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 font-medium"
+                                        className="w-full bg-slate-50 border border-slate-100 px-6 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500 font-medium"
                                     />
                                 </div>
 
@@ -241,17 +260,41 @@ const OpdManagement = () => {
                                         placeholder="Alamat lengkap..."
                                         value={formData.alamat}
                                         onChange={(e) => setFormData({...formData, alamat: e.target.value})}
-                                        className="w-full bg-slate-50 border border-slate-100 px-6 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-500 font-medium h-24 resize-none"
+                                        className="w-full bg-slate-50 border border-slate-100 px-6 py-4 rounded-2xl outline-none focus:ring-2 focus:ring-red-100 focus:border-red-500 font-medium h-24 resize-none"
                                     />
+                                </div>
+
+                                <div className="space-y-4 pt-4 border-t border-slate-100">
+                                    <label className="text-sm font-black text-slate-800 flex items-center gap-2">
+                                        <CheckCircle2 className="text-red-600" size={18} /> Pendelegasian Indikator
+                                    </label>
+                                    <p className="text-xs text-slate-500 font-bold mb-4">Centang indikator SPBE mana saja yang menjadi wilayah tanggung jawab instansi ini untuk diunggah buktinya.</p>
+                                    
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-60 overflow-y-auto pr-2 scrollbar-hide">
+                                        {indikators.map(ind => (
+                                            <label key={ind.id} className={`flex items-start gap-3 p-3 rounded-xl border cursor-pointer hover:bg-slate-50 transition-all ${formData.indikator_ids.includes(ind.id) ? 'bg-red-50/50 border-red-200' : 'bg-white border-slate-100'}`}>
+                                                <input 
+                                                    type="checkbox" 
+                                                    className="w-4 h-4 mt-1 accent-red-600"
+                                                    checked={formData.indikator_ids.includes(ind.id)}
+                                                    onChange={() => handleToggleIndikator(ind.id)}
+                                                />
+                                                <div className="flex-1">
+                                                    <p className="text-xs font-black text-slate-800 leading-tight">{ind.kode}</p>
+                                                    <p className="text-[10px] text-slate-500 line-clamp-2 leading-snug">{ind.nama}</p>
+                                                </div>
+                                            </label>
+                                        ))}
+                                    </div>
                                 </div>
 
                                 <button 
                                     disabled={saving}
                                     type="submit" 
-                                    className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 rounded-2xl shadow-xl shadow-indigo-100 transition-all flex items-center justify-center gap-2"
+                                    className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 rounded-2xl shadow-xl shadow-red-100 transition-all flex items-center justify-center gap-2 mt-4"
                                 >
                                     {saving ? <Loader2 size={20} className="animate-spin" /> : <Plus size={20} />}
-                                    {currentOpd ? 'Simpan Perubahan' : 'Tambah Instansi'}
+                                    {currentOpd ? 'Simpan Perubahan OPD' : 'Tambah Instansi'}
                                 </button>
                             </form>
                         </motion.div>
