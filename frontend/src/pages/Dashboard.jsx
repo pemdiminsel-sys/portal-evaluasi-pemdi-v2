@@ -16,6 +16,7 @@ import MonitoringProgres from './MonitoringProgres';
 import RankingKlasemen from './RankingKlasemen';
 import ExportData from './ExportData';
 import LogActivity from './LogActivity';
+import SmtpSettings from './SmtpSettings';
 
 import { 
   Bell, Search, TrendingUp, Users, FileText, 
@@ -136,6 +137,7 @@ const Dashboard = () => {
           <Route path="indikator" element={<ManajemenIndikator />} />
           <Route path="aspek" element={<ManajemenAspek />} />
           <Route path="periode" element={<ManajemenPeriode />} />
+          <Route path="smtp" element={<SmtpSettings />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </main>

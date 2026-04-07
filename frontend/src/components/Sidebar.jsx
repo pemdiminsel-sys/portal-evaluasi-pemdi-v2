@@ -3,7 +3,7 @@ import {
   LayoutDashboard, FileText, CheckCircle, Users, Settings, LogOut, BarChart3, ChevronRight,
   ShieldCheck, Building2, ListChecks, Layers, CalendarDays, Database, Activity, History,
   Edit2, MapPin, FileSignature, PieChart, Printer, Bell, Download, TrendingUp, Trophy, Target, Archive,
-  Key, ShieldAlert
+  Key, ShieldAlert, Mail
 } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 
@@ -48,6 +48,7 @@ const Sidebar = () => {
     { title: 'Ekspor Data', icon: Download, path: '/dashboard/export', roles: [1, 2, 5] },
 
     // Pemeliharaan (Role: 1)
+    { title: 'Pengaturan SMTP', icon: Mail, path: '/dashboard/smtp', roles: [1] },
     { title: 'Backup & Logs', icon: Database, path: '/dashboard/logs', roles: [1] },
   ];
 
