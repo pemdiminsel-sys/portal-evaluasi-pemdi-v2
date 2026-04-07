@@ -51,8 +51,8 @@ const Sidebar = () => {
     { title: 'Backup & Logs', icon: Database, path: '/dashboard/logs', roles: [1] },
   ];
 
-  // Logic filter menu berdasarkan role user
-  const navItems = allNavItems.filter(item => item.roles.includes(user?.role));
+  // Logic filter menu berdasarkan role user. Pastikan casting ke Number agar persis sama dengan id roles.
+  const navItems = allNavItems.filter(item => item.roles.includes(Number(user?.role)));
 
   const roleNames = {
     1: 'Super Admin',
