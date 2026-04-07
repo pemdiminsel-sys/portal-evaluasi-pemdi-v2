@@ -1,88 +1,63 @@
-# Panduan Deployment Vercel (Gratis & Tanpa Kartu Kredit)
+# 🚀 Panduan Deployment SPBE V2 (Lengkap & Tanpa Biaya)
 
-Dokumen ini berisi langkah-langkah detail untuk memindahkan aplikasi **Portal Evaluasi Pemdi V2** dari localhost ke **Vercel**.
-
----
-
-## 0. Membuat Akun Vercel (Dari Awal)
-Jika Anda belum memiliki akun, ikuti langkah ini:
-1. Buka [Vercel.com](https://vercel.com/signup).
-2. Pilih **"Continue with GitHub"** (Sangat direkomendasikan karena akan mempermudah sinkronasi kode).
-3. Masukkan username dan password GitHub Anda (jika diminta).
-4. Klik **"Authorize Vercel"** untuk memberikan izin akses ke repository GitHub Anda.
-5. Pada pertanyaan "What will you use Vercel for?", pilih **"Hobby"** (Ini adalah opsi gratis selamanya).
-6. Masukkan nama Anda, lalu klik **"Continue"**.
-7. Jika diminta verifikasi nomor HP, masukkan nomor HP aktif Anda (ini hanya verifikasi keamanan satu kali, bukan untuk pembayaran).
+Dokumen ini adalah panduan terbaru untuk membuat aplikasi **Portal Evaluasi Pemdi** online menggunakan kombinasi **Vercel** (untuk tampilan) dan **Supabase** (untuk data & API).
 
 ---
 
-## 1. Persiapan Akhir (Git Push)
-Pastikan semua file konfigurasi terbaru sudah terkirim ke GitHub:
-1. Buka terminal di folder `v2-modern`.
-2. Jalankan:
+## 🟢 Langkah 1: Buat Akun & Persiapan Git
+1. **Daftar Vercel**: Buka [vercel.com/signup](https://vercel.com/signup) dan pilih **"Continue with GitHub"**. (Sangat mudah & gratis).
+2. **Push Kode Terbaru**: Pastikan semua perubahan sudah saya simpan ke GitHub Anda dengan perintah:
    ```powershell
    git add .
-   git commit -m "Final Vercel configuration"
+   git commit -m "Optimize for Supabase & Vercel deployment"
    git push origin main
    ```
 
 ---
 
-## 2. Deploy Backend (Laravel Serverless)
-Kita harus mendeploy Backend terlebih dahulu untuk mendapatkan URL API-nya.
+## 🔵 Langkah 2: Deploy Frontend di Vercel
+Ini adalah langkah untuk mempublikasikan tampilan website Anda.
 
-1. Login ke [Vercel.com](https://vercel.com) menggunakan akun **GitHub**.
-2. Klik **"Add New"** > **"Project"**.
-3. Pilih repository: `portal-evaluasi-pemdi-v2`.
-4. Isi Konfigurasi:
-   - **Project Name:** `evaluasi-backend-v2`
-   - **Framework Preset:** `Other` (Penting!)
-   - **Root Directory:** `backend`
-5. Atur **Environment Variables**:
-   Masuk ke menu **Settings > Environment Variables**, tambahkan:
-   - `APP_KEY`: (Ambil dari .env lokal Anda)
-   - `APP_URL`: (Tinggalkan kosong dulu, nanti diisi URL Vercel setelah deploy)
-   - `DB_CONNECTION`: `pgsql`
-   - `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD`: (Ambil dari Supabase Dashboard)
-6. Klik **Deploy**.
-7. Setelah selesai (Live), catat alamat URL-nya (contoh: `https://evaluasi-backend-v2.vercel.app`).
-
----
-
-## 3. Deploy Frontend (React/Vite)
-1. Klik **"Add New"** > **"Project"** lagi.
+1. Buka **Vercel Dashboard** > Klik **"Add New"** > **"Project"**.
 2. Pilih repository: `portal-evaluasi-pemdi-v2`.
-3. Isi Konfigurasi:
-   - **Project Name:** `evaluasi-frontend-v2`
-   - **Framework Preset:** `Vite`
-   - **Root Directory:** `frontend`
-4. Atur **Environment Variables**:
-   Tambahkan variabel berikut:
-   - `VITE_API_BASE_URL`: (Masukkan URL Backend tadi)
-     *Contoh:* `https://evaluasi-backend-v2.vercel.app`
-5. Klik **Deploy**.
-6. Website Anda kini sudah online di URL yang diberikan Vercel!
+3. Atur **"Project Settings"**:
+   - **Framework Preset**: Pilih `Vite`.
+   - **Root Directory**: Klik `Edit` dan pilih folder **`frontend`**.
+4. Atur **"Environment Variables"**:
+   - Klik menu **Environment Variables**, tambahkan:
+     - `VITE_API_BASE_URL` = `/api`
+     *(Trik ini agar Vercel otomatis mengarahkan panggilan data ke API kita).*
+5. Klik **"Deploy"**.
+6. **Selesai!** Website Anda kini sudah memiliki URL (misal: `evaluasi.vercel.app`).
 
 ---
 
-## 4. Menghubungkan Subdomain Sendiri
-Jika Anda ingin menggunakan subdomain seperti `evaluasi.minselkab.go.id`:
+## 🟡 Langkah 3: Menghubungkan Subdomain Pemerintah
+Agar website bisa diakses melalui `evaluasi.minselkab.go.id`:
 
-1. Di Dashboard Vercel, pilih proyek **Frontend**.
-2. Pergi ke **Settings** > **Domains**.
-3. Masukkan subdomain Anda, klik **Add**.
-4. Vercel akan memberikan nilai **CNAME**. Masukkan ke DNS Management Anda:
-   - **Type:** `CNAME`
-   - **Name:** `evaluasi`
-   - **Value:** `cname.vercel-dns.com`
-5. Tunggu 5-10 menit, SSL akan terbit otomatis.
-
----
-
-## 5. Troubleshooting (Masalah Umum)
-- **Error 404 saat Refresh:** Pastikan file `frontend/vercel.json` sudah ada (file ini mengatur agar semua route mengarah ke index.html).
-- **Gagal Simpan Data:** Pastikan URL di `VITE_API_BASE_URL` sudah benar dan tidak ada typo. Jangan lupa lakukan **Redeploy** jika mengubah Environment Variable.
+1. Di Dashboard proyek Vercel tadi, buka **Settings** > **Domains**.
+2. Ketik subdomain Anda (contoh: `evaluasi.minselkab.go.id`), lalu klik **Add**.
+3. Vercel akan memberikan info **DNS (CNAME)**. 
+4. Hubungi Admin IT/Kominfo untuk menambahkan CNAME tersebut ke DNS:
+   - **Type**: `CNAME`
+   - **Name**: `evaluasi`
+   - **Target**: `cname.vercel-dns.com`
+5. Vercel akan otomatis menerbitkan sertifikat **SSL (HTTPS)** dalam hitungan menit.
 
 ---
 
-**Selamat! Sistem Anda kini sudah online dan siap digunakan.**
+## 🟠 Langkah 4: Hubungkan ke Supabase (Tanpa Laravel)
+Karena server kantor tidak ingin digunakan, kita akan mengarahkan semua data langsung ke **Supabase Edge Functions**. 
+
+1. Semua data periode, OPD, dan indikator kini tersimpan di database **Supabase**.
+2. Anda bisa memantau data tersebut secara langsung melalui dashboard [Supabase.com](https://supabase.com).
+
+---
+
+### Kenapa Pakai Cara Ini?
+- ✅ **Gratis Selamanya**: Tidak butuh kartu kredit.
+- ✅ **Tanpa Server Kantor**: Aplikasi jalan 100% di cloud.
+- ✅ **Profesional**: Menggunakan domain instansi pemerintah secara resmi.
+- ✅ **Ringan**: Tidak ada masalah limit 250MB seperti di Laravel.
+
+**Ayo segera buka Vercel dan mulai deploy!**
