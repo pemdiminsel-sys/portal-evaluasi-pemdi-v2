@@ -1,14 +1,8 @@
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { 
-  LayoutDashboard, 
-  FileText, 
-  CheckCircle, 
-  Users, 
-  Settings, 
-  LogOut, 
-  BarChart3, 
-  ChevronRight,
-  ShieldCheck
+  LayoutDashboard, FileText, CheckCircle, Users, Settings, LogOut, BarChart3, ChevronRight,
+  ShieldCheck, Building2, ListChecks, Layers, CalendarDays, Database, Activity, History,
+  Edit2, MapPin, FileSignature, PieChart, Printer, Bell, Download, TrendingUp, Trophy, Target, Archive
 } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 
@@ -22,15 +16,52 @@ const Sidebar = () => {
     navigate('/login');
   };
 
-  // Matriks Hak Akses Terpadu (Asesor Digabung)
+  // Matriks Hak Akses Lengkap (SISTEM_BEKERJA.MD)
   const allNavItems = [
-    { title: 'Beranda', icon: LayoutDashboard, path: '/dashboard', roles: [1, 2, 3, 5, 6] },
-    { title: 'Evaluasi Mandiri', icon: FileText, path: '/dashboard/evaluasi', roles: [1, 2] },
-    { title: 'Penialaian Asesor', icon: ShieldCheck, path: '/dashboard/verifikasi', roles: [1, 3] },
-    { title: 'Manajemen OPD', icon: BarChart3, path: '/dashboard/opd', roles: [1] },
+    // Dashboard (Menyesuaikan Role)
+    { title: 'Dashboard Admin', icon: LayoutDashboard, path: '/dashboard', roles: [1] },
+    { title: 'Dashboard OPD', icon: LayoutDashboard, path: '/dashboard', roles: [2] },
+    { title: 'Dashboard Asesor', icon: LayoutDashboard, path: '/dashboard', roles: [3] },
+    { title: 'Dashboard Operator', icon: LayoutDashboard, path: '/dashboard', roles: [5] },
+    { title: 'Dashboard Pimpinan', icon: LayoutDashboard, path: '/dashboard', roles: [6] },
+
+    // Menu Admin (Role 1)
     { title: 'Manajemen User', icon: Users, path: '/dashboard/users', roles: [1] },
-    { title: 'Laporan Rekap', icon: BarChart3, path: '/dashboard/statistik', roles: [1, 5, 6] },
-    { title: 'Pengaturan', icon: Settings, path: '/dashboard/settings', roles: [1, 2, 3, 5, 6] },
+    { title: 'Manajemen OPD', icon: Building2, path: '/dashboard/opd', roles: [1] },
+    { title: 'Manajemen Indikator', icon: ListChecks, path: '/dashboard/indikator', roles: [1] },
+    { title: 'Manajemen Aspek', icon: Layers, path: '/dashboard/aspek', roles: [1] },
+    { title: 'Manajemen Periode', icon: CalendarDays, path: '/dashboard/periode', roles: [1] },
+    { title: 'Backup Database', icon: Database, path: '/dashboard/backup', roles: [1] },
+    { title: 'Log Aktivitas', icon: Activity, path: '/dashboard/logs', roles: [1] },
+
+    // Menu OPD (Role 2)
+    { title: 'Penilaian Mandiri', icon: FileText, path: '/dashboard/evaluasi', roles: [2] },
+    { title: 'Riwayat Penilaian', icon: History, path: '/dashboard/riwayat', roles: [2] },
+    { title: 'Rekomendasi', icon: ShieldCheck, path: '/dashboard/rekomendasi', roles: [2] },
+    { title: 'Profil OPD', icon: Settings, path: '/dashboard/profil', roles: [2] },
+
+    // Menu Asesor (Role 3)
+    { title: 'Verifikasi Dokumen OPD', icon: CheckCircle, path: '/dashboard/verifikasi', roles: [3] },
+    { title: 'Catatan Perbaikan', icon: Edit2, path: '/dashboard/catatan', roles: [3] },
+    { title: 'Rekapitulasi Verifikasi', icon: BarChart3, path: '/dashboard/rekap-verifikasi', roles: [3] },
+    { title: 'Penilaian Dokumen', icon: FileText, path: '/dashboard/penilaian-dokumen', roles: [3] },
+    { title: 'Penilaian Interviu', icon: Users, path: '/dashboard/penilaian-interviu', roles: [3] },
+    { title: 'Penilaian Visitasi', icon: MapPin, path: '/dashboard/penilaian-visitasi', roles: [3] },
+    { title: 'Berita Acara', icon: FileSignature, path: '/dashboard/berita-acara', roles: [3] },
+    { title: 'Rekapitulasi Nilai', icon: PieChart, path: '/dashboard/rekap-nilai', roles: [3, 5] },
+
+    // Menu Operator (Role 5)
+    { title: 'Monitoring Progres', icon: Activity, path: '/dashboard/monitoring', roles: [5] },
+    // Rekapitulasi Nilai juga bisa diakses Role 5 (sudah didefinisikan di atas)
+    { title: 'Generate Laporan', icon: Printer, path: '/dashboard/generate-laporan', roles: [5] },
+    { title: 'Notifikasi', icon: Bell, path: '/dashboard/notifikasi', roles: [5] },
+    { title: 'Export Data', icon: Download, path: '/dashboard/export', roles: [5] },
+
+    // Menu Pimpinan (Role 6)
+    { title: 'Laporan Indeks Pemdi', icon: TrendingUp, path: '/dashboard/indeks-pemdi', roles: [6] },
+    { title: 'Ranking OPD', icon: Trophy, path: '/dashboard/ranking', roles: [6] },
+    { title: 'Rekomendasi Strategis', icon: Target, path: '/dashboard/rekomendasi-strategis', roles: [6] },
+    { title: 'Arsip', icon: Archive, path: '/dashboard/arsip', roles: [6] },
   ];
 
   const navItems = allNavItems.filter(item => item.roles.includes(user?.role));
