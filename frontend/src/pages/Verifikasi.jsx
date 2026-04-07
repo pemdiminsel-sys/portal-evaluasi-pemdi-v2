@@ -12,7 +12,7 @@ const VerifikasiAsesor = () => {
 
     const fetchOpds = async () => {
         try {
-            const res = await api.get('/opds');
+            const res = await api.get('/opd');
             setOpds(res.data.data);
         } catch (err) { console.error(err); }
         finally { setLoading(false); }

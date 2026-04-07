@@ -37,7 +37,7 @@ const UserManagement = () => {
         try {
             const [uRes, oRes] = await Promise.all([
                 api.get('/users'),
-                api.get('/opds')
+                api.get('/opd')
             ]);
             setUsers(uRes.data.data);
             setOpds(oRes.data.data);
