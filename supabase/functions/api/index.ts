@@ -7,7 +7,6 @@ const corsHeaders = {
 }
 
 serve(async (req) => {
-  // 1. Handle CORS preflight
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
   }
@@ -15,31 +14,16 @@ serve(async (req) => {
   try {
     const supabaseClient = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_ANON_KEY') ?? ''
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? Deno.env.get('SUPABASE_ANON_KEY') ?? ''
     )
 
-    const url = new URL(req.url)
-    const path = url.pathname.replace('/api/', '')
+    const body = await req.json()
+    const { action } = body
 
-    // --- ROUTING API ---
-
-    // A. Endpoint: Cek Periode (GET)
-    if (path === 'periode' && req.method === 'GET') {
-      const { data, error } = await supabaseClient
-        .from('periodes')
-        .select('*')
-        .order('tahun', { ascending: false })
+    // --- LOGIKA LOGIN ---
+    if (action === 'login') {
+      const { email, password } = body
       
-      return new Response(JSON.stringify(data || []), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-      })
-    }
-
-    // B. Endpoint: Login (POST)
-    if (path === 'login' && req.method === 'POST') {
-      const { email, password } = await req.json()
-      
-      // Catatan: Ini contoh login simpel ke tabel users Anda
       const { data: user, error } = await supabaseClient
         .from('users')
         .select('*, opds(*)')
@@ -47,22 +31,23 @@ serve(async (req) => {
         .single()
 
       if (error || !user) {
-        return new Response(JSON.stringify({ success: false, message: 'Email tidak ditemukan' }), {
+        return new Response(JSON.stringify({ success: false, message: 'Email tidak ditemukan di Supabase' }), {
           status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         })
       }
 
-      // Untuk sementara, kita pakai token dummy agar user bisa masuk ke Dashboard
+      // Bypass password check untuk demo agar user bisa masuk ke Dashboard
+      // Nantinya, di sini Anda bisa tambahkan verifikasi password yang lebih kompleks
       return new Response(JSON.stringify({ 
         success: true, 
-        token: 'supabase_token_' + Math.random(),
+        token: 'sb_token_' + Math.random(),
         user: user 
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
-    return new Response(JSON.stringify({ message: "Endpoint not found" }), {
+    return new Response(JSON.stringify({ message: "Action not found" }), {
       status: 404, headers: corsHeaders
     })
 
