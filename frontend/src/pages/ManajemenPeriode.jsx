@@ -87,7 +87,7 @@ const ManajemenPeriode = () => {
       fetchPeriodes();
       setIsModalOpen(false);
     } catch (err) {
-      toast.error('Gagal menyimpan periode');
+      toast.error(`Gagal menyimpan: ${err.message || 'Cek koneksi'}`);
       console.error(err);
     } finally {
       setSaving(false);
