@@ -2,8 +2,18 @@ import { create } from 'zustand';
 import api from '../services/api';
 import { supabase } from '../services/supabase';
 
+const getSafeUser = () => {
+  try {
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
+  } catch (e) {
+    localStorage.removeItem('user');
+    return null;
+  }
+};
+
 const useAuthStore = create((set) => ({
-  user: JSON.parse(localStorage.getItem('user')) || null,
+  user: getSafeUser(),
   token: localStorage.getItem('token') || null,
   isAuthenticated: !!localStorage.getItem('token'),
   isLoading: false,
