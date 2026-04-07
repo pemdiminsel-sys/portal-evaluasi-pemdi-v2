@@ -64,10 +64,10 @@ const DashboardOverview = () => {
   );
 
   const stats = [
-    { title: 'Total OPD terdaftar', value: data?.stats.total_opd || 0, icon: Users, change: 'Aktif', isUp: true, color: 'indigo' },
-    { title: 'Indikator Evaluasi', value: '47', icon: Target, change: 'Standard', isUp: true, color: 'blue' },
-    { title: 'Dokumen Bukti', value: data?.stats.total_evidence || 0, icon: FileText, change: 'Terunggah', isUp: true, color: 'violet' },
-    { title: 'Rata-rata Indeks', value: (data?.stats.avg_score || 0).toFixed(2), icon: TrendingUp, change: 'Live', isUp: true, color: 'emerald' },
+    { title: 'Total OPD terdaftar', value: data?.stats?.total_opd || 0, icon: Users, change: 'Aktif', isUp: true, color: 'indigo' },
+    { title: 'Indikator Evaluasi', value: '20', icon: Target, change: 'Standard', isUp: true, color: 'blue' },
+    { title: 'Dokumen Bukti', value: data?.stats?.total_evidence || 0, icon: FileText, change: 'Terunggah', isUp: true, color: 'violet' },
+    { title: 'Rata-rata Indeks', value: (data?.stats?.avg_score || 0).toFixed(2), icon: TrendingUp, change: 'Live', isUp: true, color: 'emerald' },
   ];
 
   return (
@@ -131,7 +131,7 @@ const DashboardOverview = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
-                {data?.recent.map((item, idx) => (
+                {(data?.recent || []).map((item, idx) => (
                   <tr key={idx} className="group hover:bg-slate-50/50 transition-colors cursor-pointer">
                     <td className="px-8 py-5">
                       <span className="text-sm font-bold text-slate-700 group-hover:text-indigo-600 transition-colors">{item.opd_nama}</span>
@@ -154,9 +154,9 @@ const DashboardOverview = () => {
                     </td>
                   </tr>
                 ))}
-                {data?.recent.length === 0 && (
+                {(!data?.recent || data.recent.length === 0) && (
                    <tr>
-                     <td colSpan="4" className="py-20 text-center text-slate-400 font-medium italic italic">Belum ada aktivitas evaluasi.</td>
+                     <td colSpan="4" className="py-20 text-center text-slate-400 font-medium italic">Belum ada aktivitas evaluasi.</td>
                    </tr>
                 )}
               </tbody>
@@ -178,9 +178,9 @@ const DashboardOverview = () => {
                 <div className="flex items-end justify-between mb-4">
                     <div className="flex flex-col items-start leading-none">
                         <span className="text-[10px] font-bold text-indigo-200 uppercase tracking-widest mb-1">Capaian Saat Ini</span>
-                        <span className="text-3xl font-bold text-white tracking-widest">{(data?.stats.avg_score || 0).toFixed(2)}</span>
+                        <span className="text-3xl font-bold text-white tracking-widest">{(data?.stats?.avg_score || 0).toFixed(2)}</span>
                     </div>
-                    <div className="bg-emerald-400 text-white text-[10px] font-bold px-2 py-1 rounded-sm mb-1 uppercase">+15%</div>
+                    <div className="bg-emerald-400 text-white text-[10px] font-bold px-2 py-1 rounded-sm mb-1 uppercase">+0%</div>
                 </div>
                 <div className="w-full h-3 bg-white/20 rounded-full overflow-hidden">
                     <div className="h-full bg-emerald-400 w-3/4 rounded-full shadow-[0_0_15px_rgba(52,211,153,0.5)]"></div>

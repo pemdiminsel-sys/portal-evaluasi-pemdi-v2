@@ -133,7 +133,7 @@ const ManajemenPeriode = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {periodes.map(periode => {
-            const cfg = statusConfig[periode.status];
+            const cfg = statusConfig[periode.status] || statusConfig.draft;
             const Icon = cfg.icon;
             return (
               <div key={periode.id} className={`bg-white p-8 rounded-[2.5rem] border shadow-sm hover:shadow-md transition-all relative overflow-hidden ${periode.status === 'berjalan' ? 'border-emerald-200 ring-2 ring-emerald-100' : 'border-slate-100'}`}>
