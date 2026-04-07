@@ -1,21 +1,5 @@
 import { useState, useEffect } from 'react';
-import { 
-  Radar, 
-  RadarChart, 
-  PolarGrid, 
-  PolarAngleAxis, 
-  PolarRadiusAxis, 
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip as ChartTooltip,
-  Cell,
-  AreaChart,
-  Area,
-  CartesianGrid
-} from 'recharts';
+// Recharts removed to prevent React 19 DefaultProps Crash
 import { 
   Trophy, 
   TrendingUp, 
@@ -151,23 +135,18 @@ const DashboardPimpinan = () => {
                              </div>
                         </div>
                     </div>
-                    <div className="h-[350px] w-full">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <RadarChart cx="50%" cy="50%" outerRadius="80%" data={stats.aspectScores}>
-                                <PolarGrid stroke="#fecaca" />
-                                <PolarAngleAxis dataKey="name" tick={{fontSize: 10, fontWeight: 900, fill: '#64748b'}} />
-                                <PolarRadiusAxis angle={30} domain={[0, 5]} hide />
-                                <Radar
-                                    name="Capaian"
-                                    dataKey="value"
-                                    stroke="#dc2626"
-                                    strokeWidth={3}
-                                    fill="#dc2626"
-                                    fillOpacity={0.1}
-                                />
-                                <ChartTooltip contentStyle={{borderRadius: '24px', border: 'none', boxShadow: '0 20px 25px -5px rgb(0 0 0 / 0.1)', padding: '15px'}} />
-                            </RadarChart>
-                        </ResponsiveContainer>
+                    <div className="h-[350px] w-full flex flex-col justify-center space-y-4">
+                        {stats.aspectScores.map((aspect, idx) => (
+                           <div key={idx} className="w-full">
+                               <div className="flex justify-between text-xs font-black text-slate-500 mb-1">
+                                  <span>{aspect.name}</span>
+                                  <span className="text-red-500">{aspect.value.toFixed(1)} / 5.0</span>
+                               </div>
+                               <div className="w-full bg-slate-100 rounded-full h-3">
+                                  <div className="bg-red-500 h-3 rounded-full" style={{ width: `${(aspect.value / 5) * 100}%` }}></div>
+                               </div>
+                           </div>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -185,24 +164,14 @@ const DashboardPimpinan = () => {
                             <p className="text-xs font-black text-red-600 uppercase tracking-widest">Komparasi 2023 - 2026</p>
                          </div>
                     </div>
-                    <div className="h-[300px] w-full">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <AreaChart data={stats.trendData}>
-                                <defs>
-                                    <linearGradient id="colorScore" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="5%" stopColor="#dc2626" stopOpacity={0.2}/>
-                                    <stop offset="95%" stopColor="#dc2626" stopOpacity={0}/>
-                                    </linearGradient>
-                                </defs>
-                                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#fff1f2" />
-                                <XAxis dataKey="year" axisLine={false} tickLine={false} tick={{fontSize: 12, fontWeight: 900, fill: '#94a3b8'}} />
-                                <YAxis domain={[0, 5]} hide />
-                                <ChartTooltip 
-                                    contentStyle={{borderRadius: '20px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'}}
-                                />
-                                <Area type="monotone" dataKey="score" stroke="#dc2626" strokeWidth={5} fillOpacity={1} fill="url(#colorScore)" />
-                            </AreaChart>
-                        </ResponsiveContainer>
+                    <div className="h-[300px] w-full flex items-end gap-2 pt-10 border-b-2 border-slate-100 pb-2">
+                        {stats.trendData.map((data, idx) => (
+                           <div key={idx} className="flex-1 flex flex-col items-center justify-end h-full gap-2 relative group">
+                               <span className="opacity-0 group-hover:opacity-100 absolute -top-8 font-black text-red-600 bg-red-100 px-3 py-1 rounded-full text-xs transition-opacity">{Number(data.score).toFixed(2)}</span>
+                               <div className="w-full bg-red-600/20 group-hover:bg-red-600 transition-colors rounded-t-2xl" style={{ height: `${(Number(data.score) / 5) * 100}%` }}></div>
+                               <span className="text-xs font-black text-slate-400">{data.year}</span>
+                           </div>
+                        ))}
                     </div>
                  </div>
 
