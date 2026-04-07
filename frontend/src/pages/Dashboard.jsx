@@ -7,6 +7,7 @@ import HasilPenilaian from './HasilPenilaian';
 import Settings from './Settings';
 import DashboardPimpinan from './DashboardPimpinan';
 import UserManagement from './UserManagement';
+import Verifikasi from './Verifikasi';
 import { 
   Bell, 
   Search, 
@@ -197,6 +198,7 @@ const Dashboard = () => {
           <Route path="/hasil" element={<HasilPenilaian />} />
           <Route path="/opd" element={<OpdManagement />} />
           <Route path="/users" element={<UserManagement />} />
+          <Route path="/verifikasi" element={<Verifikasi />} />
           <Route path="/statistik" element={<HasilPenilaian />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />

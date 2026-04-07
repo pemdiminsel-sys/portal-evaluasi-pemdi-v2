@@ -22,15 +22,19 @@ const Sidebar = () => {
     navigate('/login');
   };
 
-  const navItems = [
-    { title: 'Beranda', icon: LayoutDashboard, path: '/dashboard' },
-    { title: 'Evaluasi SPBE', icon: FileText, path: '/dashboard/evaluasi' },
-    { title: 'Hasil Penilaian', icon: CheckCircle, path: '/dashboard/hasil' },
-    { title: 'Manajemen OPD', icon: BarChart3, path: '/dashboard/opd' },
-    { title: 'Manajemen User', icon: Users, path: '/dashboard/users' },
-    { title: 'Statistik', icon: BarChart3, path: '/dashboard/statistik' },
-    { title: 'Pengaturan', icon: Settings, path: '/dashboard/settings' },
+  // Matriks Hak Akses (SISTEM_BEKERJA.MD Bab 6.5)
+  const allNavItems = [
+    { title: 'Beranda', icon: LayoutDashboard, path: '/dashboard', roles: [1, 2, 3, 4, 5, 6] },
+    { title: 'Evaluasi Mandiri', icon: FileText, path: '/dashboard/evaluasi', roles: [1, 2] },
+    { title: 'Verifikasi Dokumen', icon: ShieldCheck, path: '/dashboard/verifikasi', roles: [1, 3] },
+    { title: 'Interviu & Visitasi', icon: CheckCircle, path: '/dashboard/visitasi', roles: [1, 4] },
+    { title: 'Manajemen OPD', icon: BarChart3, path: '/dashboard/opd', roles: [1] },
+    { title: 'Manajemen User', icon: Users, path: '/dashboard/users', roles: [1] },
+    { title: 'Laporan Rekap', icon: BarChart3, path: '/dashboard/statistik', roles: [1, 5, 6] },
+    { title: 'Pengaturan', icon: Settings, path: '/dashboard/settings', roles: [1, 2, 3, 4, 5, 6] },
   ];
+
+  const navItems = allNavItems.filter(item => item.roles.includes(user?.role));
 
   return (
     <div className="w-72 bg-white border-r border-slate-100 flex flex-col h-full shadow-sm">
