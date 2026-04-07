@@ -41,11 +41,11 @@ const DashboardPimpinan = () => {
 
     const fetchStats = async () => {
         try {
-            const res = await api.get('/penilaian'); 
-            const data = res.data.data;
+            const res = await api.post('/', { action: 'dashboard-summary' }); 
+            const data = res.data?.data?.ranking || [];
             
             const totalScore = data.reduce((acc, curr) => acc + (curr.nilai_akhir || 0), 0);
-            const globalAvg = totalScore / (data.length || 1);
+            const globalAvg = data.length > 0 ? (totalScore / data.length) : 0;
 
             setStats({
                 globalIndex: globalAvg.toFixed(2),
@@ -68,13 +68,30 @@ const DashboardPimpinan = () => {
                 ]
             });
         } catch (error) {
-            console.error(error);
+            console.error('Failed to fetch pimpinan stats', error);
+            // Fallback mock data to prevent white screen
+            setStats({
+                globalIndex: "0.00",
+                predicate: "BELUM ADA DATA",
+                ranking: [],
+                aspectScores: [],
+                trendData: []
+            });
         } finally {
             setLoading(false);
         }
     };
 
+    // Safety timeout to prevent infinite loading
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            if (loading) setLoading(false);
+        }, 3000);
+        return () => clearTimeout(timer);
+    }, [loading]);
+
     if (loading) return <div className="h-full flex items-center justify-center bg-red-50/20"><Loader2 className="animate-spin text-red-600" size={32} /></div>;
+    if (!stats) return null;
 
     const getMaturityColor = (score) => {
         if (score >= 4) return 'bg-emerald-500';
