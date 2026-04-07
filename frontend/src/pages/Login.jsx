@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Mail, Lock, ChevronRight, AlertCircle, Loader2 } from 'lucide-react';
 import useAuthStore from '../store/authStore';
@@ -137,6 +137,12 @@ const Login = () => {
                 </>
               )}
             </button>
+
+            <div className="pt-6 text-center">
+              <p className="text-slate-500 font-bold text-sm">
+                Belum memiliki akun PIC? <Link to="/register" className="text-red-600 hover:text-red-700 underline decoration-red-200 underline-offset-4 decoration-2 transition-colors">Daftar Sekarang</Link>
+              </p>
+            </div>
           </form>
 
           <p className="text-center text-xs text-slate-400 mt-12 font-bold tracking-widest uppercase">
