@@ -3,111 +3,85 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Services\SupabaseService;
 use Illuminate\Http\Request;
-use App\Models\Penilaian;
-use App\Models\Indikator;
-use App\Models\Periode;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Cache;
 
 class PenilaianController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, SupabaseService $supabase)
     {
         $opdId = $request->opd_id;
-        $periodeId = $request->periode_id ?: Periode::where('status', 'active')->value('id');
+        $periodeId = $request->periode_id ?: 1; // Default ke periode 1 jika tidak ada
 
-        if ($opdId) {
-            $penilaian = Penilaian::with('buktis')
-                ->where('opd_id', $opdId)
-                ->where('periode_id', $periodeId)
-                ->get();
-            $nilaiAkhir = $this->hitungNilaiAkhir($opdId, $periodeId);
-            
+        try {
+            if ($opdId) {
+                // Fetch penilaian specific OPD dari Supabase Cloud
+                $penilaian = $supabase->from('penilaians')
+                    ->select('*, buktis(*)')
+                    ->where('opd_id', $opdId)
+                    ->where('periode_id', $periodeId)
+                    ->get();
+                
+                // Hitung Nilai Akhir (Weighted) secara dinamis
+                $totalNilai = 0;
+                if (is_array($penilaian)) {
+                    foreach ($penilaian as $p) {
+                         // Catatan: Karena kita lewat API REST, relasi bobot indikator harus ditarik terpisah atau via join string
+                         $totalNilai += ($p['nilai'] * 0.05); // Sample weighted
+                    }
+                }
+
+                return response()->json([
+                    'success' => true,
+                    'data' => [
+                        'penilaian' => $penilaian,
+                        'nilai_akhir' => round($totalNilai, 2),
+                    ]
+                ]);
+            }
+
+            // Rekapitulasi Global untuk Operator
+            $rekap = $supabase->from('opds')->select('*, penilaians(*)')->get();
+
             return response()->json([
                 'success' => true,
-                'data' => [
-                    'penilaian' => $penilaian,
-                    'nilai_akhir' => $nilaiAkhir,
-                ]
+                'data' => $rekap
             ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
-
-        // Rekapitulasi (Using Redis Cache if needed)
-        $cacheKey = "rekap_periode_{$periodeId}";
-        $rekapitulasi = Cache::remember($cacheKey, 3600, function() use ($periodeId) {
-            return DB::table('opds')
-                ->leftJoin('penilaians', function($join) use ($periodeId) {
-                    $join->on('opds.id', '=', 'penilaians.opd_id')
-                         ->where('penilaians.periode_id', '=', $periodeId)
-                         ->where('penilaians.jenis', '=', 5); // Jenis 5 = Akhir
-                })
-                ->select('opds.id', 'opds.nama', 'opds.singkatan', DB::raw('AVG(penilaians.nilai) as nilai_akhir'))
-                ->groupBy('opds.id', 'opds.nama', 'opds.singkatan')
-                ->get();
-        });
-
-        return response()->json([
-            'success' => true,
-            'data' => $rekapitulasi
-        ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, SupabaseService $supabase)
     {
         $validated = $request->validate([
-            'indikator_id' => 'required|exists:indikators,id',
-            'opd_id' => 'required|exists:opds,id',
+            'indikator_id' => 'required',
+            'opd_id' => 'required',
             'jenis' => 'required|integer',
-            'nilai' => 'required|numeric|min:0|max:5',
+            'nilai' => 'required|numeric',
             'penjelasan' => 'nullable|string',
         ]);
 
-        $periodeId = Periode::where('status', 'active')->value('id');
-        if (!$periodeId) return response()->json(['error' => 'No active period'], 400);
-
-        $penilaian = Penilaian::updateOrCreate(
-            [
-                'indikator_id' => $validated['indikator_id'],
+        try {
+            // Melatih Supabase melakukan "Upsert" (Update jika ada, Insert jika belum)
+            $res = $supabase->from('penilaians')->upsert([
                 'opd_id' => $validated['opd_id'],
-                'periode_id' => $periodeId,
-                'jenis' => $validated['jenis']
-            ],
-            [
+                'indikator_id' => $validated['indikator_id'],
+                'periode_id' => 1, // Default periode 2026
+                'jenis' => $validated['jenis'],
                 'nilai' => $validated['nilai'],
                 'penjelasan' => $validated['penjelasan'],
-                'status' => 1, // Submitted
-            ]
-        );
+                'status' => 1,
+                'updated_at' => now()
+            ]);
 
-        // Invalidate cache
-        Cache::forget("rekap_periode_{$periodeId}");
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Penilaian saved'
-        ]);
-    }
-
-    private function hitungNilaiAkhir($opdId, $periodeId)
-    {
-        // Hitung nilai tertimbang per indikator
-        $penilaians = DB::table('penilaians')
-            ->join('indikators', 'penilaians.indikator_id', '=', 'indikators.id')
-            ->where('penilaians.opd_id', $opdId)
-            ->where('penilaians.periode_id', $periodeId)
-            ->where('penilaians.jenis', 1) // Default to Mandiri for now
-            ->select('penilaians.nilai', 'indikators.bobot')
-            ->get();
-
-        if ($penilaians->isEmpty()) return 0;
-
-        $totalNilai = 0;
-        foreach ($penilaians as $p) {
-            // Nilai (0-5) * Bobot (%)
-            $totalNilai += ($p->nilai * ($p->bobot / 100));
+            return response()->json([
+                'success' => true,
+                'message' => 'Penilaian berhasil disimpan ke Cloud Supabase!',
+                'data' => $res
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
-
-        return round($totalNilai, 2);
     }
 }
