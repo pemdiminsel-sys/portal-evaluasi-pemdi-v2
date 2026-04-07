@@ -32,10 +32,10 @@ const ManajemenPeriode = () => {
 
       if (error) throw error;
 
-      const formatted = data.map(p => ({
+      const formatted = (data || []).map(p => ({
         ...p,
-        mulai: p.start_date,
-        selesai: p.end_date
+        mulai: p.start_date || '',
+        selesai: p.end_date || ''
       }));
       setPeriodes(formatted);
     } catch (err) {
