@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->integer('tahun')->index();
             $table->string('nama', 100);
-            $table->timestamp('tanggal_mulai')->nullable();
-            $table->timestamp('tanggal_selesai')->nullable();
-            $table->enum('status', ['active', 'inactive', 'closed'])->default('inactive')->index();
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->string('status')->default('draft')->index(); // Bab 1.3
             $table->timestamps();
         });
     }

@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('kode', 10)->unique();
             $table->string('nama', 200);
-            $table->text('deskripsi')->nullable();
+            $table->text('penjelasan')->nullable();
             $table->foreignId('aspek_id')->constrained('aspeks');
+            $table->integer('bobot')->default(0);
             $table->integer('urutan');
             $table->text('kriteria_1')->nullable();
             $table->text('kriteria_2')->nullable();

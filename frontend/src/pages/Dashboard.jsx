@@ -1,5 +1,11 @@
+import { useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
+import Evaluasi from './Evaluasi';
+import OpdManagement from './OpdManagement';
+import HasilPenilaian from './HasilPenilaian';
+import Settings from './Settings';
+import DashboardPimpinan from './DashboardPimpinan';
 import { 
   Bell, 
   Search, 
@@ -11,29 +17,46 @@ import {
   ArrowDownRight,
   MoreVertical,
   CalendarDays,
-  Target
+  Target,
+  Loader2
 } from 'lucide-react';
 import useAuthStore from '../store/authStore';
+import api from '../services/api';
 
 const DashboardOverview = () => {
   const { user } = useAuthStore();
-  
-  const stats = [
-    { title: 'Total OPD terdaftar', value: '34', icon: Users, change: '+12%', isUp: true, color: 'indigo' },
-    { title: 'Indikator Evaluasi', value: '47', icon: Target, change: 'Standard', isUp: true, color: 'blue' },
-    { title: 'Dokumen Bukti', value: '182', icon: FileText, change: '+24%', isUp: true, color: 'violet' },
-    { title: 'Menunggu Review', value: '5', icon: Clock, change: '-2', isUp: false, color: 'amber' },
-  ];
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const recentEvaluations = [
-    { opd: 'Dinas Komunikasi & Informatika', date: '7 Apr 2026', status: 'Selesai', score: '3.82', color: 'bg-green-500' },
-    { opd: 'Dinas Kesehatan', date: '6 Apr 2026', status: 'Verifikasi', score: '3.42', color: 'bg-indigo-500' },
-    { opd: 'Dinas Pendidikan', date: '6 Apr 2026', status: 'Drafting', score: '2.95', color: 'bg-amber-500' },
-    { opd: 'Badan Kepegawaian Daerah', date: '5 Apr 2026', status: 'Selesai', score: '3.12', color: 'bg-green-500' },
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const res = await api.get('/dashboard-summary');
+        setData(res.data.data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchStats();
+  }, []);
+
+  if (loading) return (
+    <div className="h-full flex items-center justify-center">
+        <Loader2 className="animate-spin text-indigo-600" size={32} />
+    </div>
+  );
+
+  const stats = [
+    { title: 'Total OPD terdaftar', value: data?.stats.total_opd || 0, icon: Users, change: 'Aktif', isUp: true, color: 'indigo' },
+    { title: 'Indikator Evaluasi', value: '47', icon: Target, change: 'Standard', isUp: true, color: 'blue' },
+    { title: 'Dokumen Bukti', value: data?.stats.total_evidence || 0, icon: FileText, change: 'Terunggah', isUp: true, color: 'violet' },
+    { title: 'Rata-rata Indeks', value: (data?.stats.avg_score || 0).toFixed(2), icon: TrendingUp, change: 'Live', isUp: true, color: 'emerald' },
   ];
 
   return (
-    <div className="p-10 space-y-10 overflow-y-auto h-full">
+    <div className="p-10 space-y-10 overflow-y-auto h-full scrollbar-hide">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -93,29 +116,34 @@ const DashboardOverview = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
-                {recentEvaluations.map((item, idx) => (
+                {data?.recent.map((item, idx) => (
                   <tr key={idx} className="group hover:bg-slate-50/50 transition-colors cursor-pointer">
                     <td className="px-8 py-5">
-                      <span className="text-sm font-bold text-slate-700 group-hover:text-indigo-600 transition-colors">{item.opd}</span>
+                      <span className="text-sm font-bold text-slate-700 group-hover:text-indigo-600 transition-colors">{item.opd_nama}</span>
                     </td>
                     <td className="px-8 py-5 text-sm font-medium text-slate-500">
                       <div className="flex items-center gap-1.5 font-bold">
                         <CalendarDays size={14} className="text-slate-300" />
-                        {item.date}
+                        {new Date(item.updated_at).toLocaleDateString()}
                       </div>
                     </td>
                     <td className="px-8 py-5">
                       <div className="flex justify-center">
-                        <span className={`px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-wider ${item.color}`}>
-                          {item.status}
+                        <span className="px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-wider bg-emerald-500">
+                          SELESAI
                         </span>
                       </div>
                     </td>
                     <td className="px-8 py-5 text-right">
-                      <span className="text-sm font-bold text-slate-800 tracking-tight">{item.score}</span>
+                      <span className="text-sm font-bold text-slate-800 tracking-tight">{item.nilai.toFixed(2)}</span>
                     </td>
                   </tr>
                 ))}
+                {data?.recent.length === 0 && (
+                   <tr>
+                     <td colSpan="4" className="py-20 text-center text-slate-400 font-medium italic italic">Belum ada aktivitas evaluasi.</td>
+                   </tr>
+                )}
               </tbody>
             </table>
           </div>
@@ -135,7 +163,7 @@ const DashboardOverview = () => {
                 <div className="flex items-end justify-between mb-4">
                     <div className="flex flex-col items-start leading-none">
                         <span className="text-[10px] font-bold text-indigo-200 uppercase tracking-widest mb-1">Capaian Saat Ini</span>
-                        <span className="text-3xl font-bold text-white tracking-widest">3.12</span>
+                        <span className="text-3xl font-bold text-white tracking-widest">{(data?.stats.avg_score || 0).toFixed(2)}</span>
                     </div>
                     <div className="bg-emerald-400 text-white text-[10px] font-bold px-2 py-1 rounded-sm mb-1 uppercase">+15%</div>
                 </div>
@@ -156,13 +184,19 @@ const DashboardOverview = () => {
 };
 
 const Dashboard = () => {
+  const { user } = useAuthStore();
+
   return (
     <div className="flex h-screen bg-slate-50 font-sans">
       <Sidebar />
       <main className="flex-1 overflow-hidden">
         <Routes>
-          <Route path="/" element={<DashboardOverview />} />
-          <Route path="/evaluasi" element={<div className="p-10 font-bold text-2xl text-slate-800">Halaman Evaluasi SPBE</div>} />
+          <Route path="/" element={user?.role === 6 ? <DashboardPimpinan /> : <DashboardOverview />} />
+          <Route path="/evaluasi" element={<Evaluasi />} />
+          <Route path="/hasil" element={<HasilPenilaian />} />
+          <Route path="/opd" element={<OpdManagement />} />
+          <Route path="/statistik" element={<HasilPenilaian />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </main>

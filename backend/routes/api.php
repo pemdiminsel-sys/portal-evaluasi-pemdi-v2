@@ -7,9 +7,11 @@ use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\PenilaianController;
 
 Route::prefix('v1')->group(function () {
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
 
     Route::middleware('auth:sanctum')->group(function () {
+        Route::get('/dashboard-summary', [\App\Http\Controllers\Api\V1\DashboardController::class, 'index']);
+        
         Route::get('/user', function (Request $request) {
             return $request->user();
         });
@@ -17,5 +19,12 @@ Route::prefix('v1')->group(function () {
         
         Route::get('/penilaian', [PenilaianController::class, 'index']);
         Route::post('/penilaian', [PenilaianController::class, 'store']);
+
+        Route::apiResource('opd', \App\Http\Controllers\Api\V1\OpdController::class);
+        Route::get('/indikator', [\App\Http\Controllers\Api\V1\IndikatorController::class, 'index']);
+
+        Route::post('/bukti', [\App\Http\Controllers\Api\V1\BuktiController::class, 'store']);
+        Route::delete('/bukti/{id}', [\App\Http\Controllers\Api\V1\BuktiController::class, 'destroy']);
+        Route::post('/change-password', [AuthController::class, 'changePassword']);
     });
 });

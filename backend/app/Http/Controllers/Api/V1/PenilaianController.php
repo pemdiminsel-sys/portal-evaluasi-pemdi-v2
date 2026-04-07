@@ -18,7 +18,10 @@ class PenilaianController extends Controller
         $periodeId = $request->periode_id ?: Periode::where('status', 'active')->value('id');
 
         if ($opdId) {
-            $penilaian = Penilaian::where('opd_id', $opdId)->where('periode_id', $periodeId)->get();
+            $penilaian = Penilaian::with('buktis')
+                ->where('opd_id', $opdId)
+                ->where('periode_id', $periodeId)
+                ->get();
             $nilaiAkhir = $this->hitungNilaiAkhir($opdId, $periodeId);
             
             return response()->json([
@@ -88,9 +91,23 @@ class PenilaianController extends Controller
 
     private function hitungNilaiAkhir($opdId, $periodeId)
     {
-        return Penilaian::where('opd_id', $opdId)
-            ->where('periode_id', $periodeId)
-            ->where('jenis', 5)
-            ->avg('nilai') ?: 0;
+        // Hitung nilai tertimbang per indikator
+        $penilaians = DB::table('penilaians')
+            ->join('indikators', 'penilaians.indikator_id', '=', 'indikators.id')
+            ->where('penilaians.opd_id', $opdId)
+            ->where('penilaians.periode_id', $periodeId)
+            ->where('penilaians.jenis', 1) // Default to Mandiri for now
+            ->select('penilaians.nilai', 'indikators.bobot')
+            ->get();
+
+        if ($penilaians->isEmpty()) return 0;
+
+        $totalNilai = 0;
+        foreach ($penilaians as $p) {
+            // Nilai (0-5) * Bobot (%)
+            $totalNilai += ($p->nilai * ($p->bobot / 100));
+        }
+
+        return round($totalNilai, 2);
     }
 }
