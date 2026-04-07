@@ -26,7 +26,8 @@ const Sidebar = () => {
     { title: 'Beranda', icon: LayoutDashboard, path: '/dashboard' },
     { title: 'Evaluasi SPBE', icon: FileText, path: '/dashboard/evaluasi' },
     { title: 'Hasil Penilaian', icon: CheckCircle, path: '/dashboard/hasil' },
-    { title: 'Manajemen OPD', icon: Users, path: '/dashboard/opd' },
+    { title: 'Manajemen OPD', icon: BarChart3, path: '/dashboard/opd' },
+    { title: 'Manajemen User', icon: Users, path: '/dashboard/users' },
     { title: 'Statistik', icon: BarChart3, path: '/dashboard/statistik' },
     { title: 'Pengaturan', icon: Settings, path: '/dashboard/settings' },
   ];

@@ -26,6 +26,10 @@ Route::prefix('v1')->group(function () {
 
         Route::post('/bukti', [\App\Http\Controllers\Api\V1\BuktiController::class, 'store']);
         Route::delete('/bukti/{id}', [\App\Http\Controllers\Api\V1\BuktiController::class, 'destroy']);
+        Route::get('/users', [\App\Http\Controllers\Api\V1\UserController::class, 'index']);
+        Route::post('/users', [\App\Http\Controllers\Api\V1\UserController::class, 'store']);
+        Route::delete('/users/{id}', [\App\Http\Controllers\Api\V1\UserController::class, 'destroy']);
+        
         Route::post('/change-password', [AuthController::class, 'changePassword']);
     });
 });
