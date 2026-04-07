@@ -22,7 +22,7 @@
   "env": {
     "APP_ENV": "production",
     "APP_DEBUG": "false",
-    "APP_URL": "https://portal-evaluasi-backend.vercel.app",
+    "APP_URL": "PRODUKSI_URL_BACKEND_ANDA",
     "DB_CONNECTION": "pgsql",
     "SESSION_DRIVER": "database",
     "CACHE_STORE": "database"
