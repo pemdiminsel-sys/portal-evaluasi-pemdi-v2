@@ -30,16 +30,15 @@ Langkah awal untuk menyimpan kode Anda di cloud dan sebagai syarat deployment Cl
 
 Supabase bertugas sebagai database pusat yang dapat diakses secara online.
 
-1.  **Buat Proyek Baru** di [Supabase Dashboard](https://supabase.com/dashboard):
-    *   Isi **Name**, **Database Password**, dan pilih **Region** terdekat (Singapore).
-2.  **Dapatkan Kredensial Database**:
-    *   Pergi ke **Project Settings** > **Database**.
-    *   Cari bagian **Connection String** > **URI**.
-    *   Kredensial yang dibutuhkan untuk `.env`:
-        *   **Host**: `aws-0-ap-southeast-1.pooler.supabase.com`
-        *   **Port**: `6543` (untuk pgbouncer/pooling)
-        *   **User**: `postgres.[YOUR_PROJECT_ID]`
-        *   **Password**: [Password yang Anda buat saat setup]
+1.  **Buka Dashboard Proyek** di [Supabase](https://supabase.com/dashboard).
+2.  **Cara Cepat (Tombol Connect)**:
+    *   Klik tombol **"Connect"** di bagian **kanan atas** dashboard.
+    *   Pilih tab **"Transaction Pooler"** atau **"Direct Connection"**.
+    *   Pilih **"URI"** untuk mendapatkan format connection string lengkap, atau catat Host, Port, User dari sana.
+3.  **Cara Melalui Pengaturan (Project Settings)**:
+    *   Klik ikon **Gear (Project Settings)** di bagian **paling bawah sidebar kiri**.
+    *   Pilih menu **"Database"** di kolom navigasi tengah.
+    *   Gulir ke bawah ke bagian **"Connection Info"** (untuk Host, Port, User) atau **"Connection String"** (untuk URI).
 3.  **Update `.env` Backend**:
     Buka `backend/.env` dan sesuaikan nilainya:
     ```env
