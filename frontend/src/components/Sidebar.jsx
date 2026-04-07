@@ -101,7 +101,7 @@ const Sidebar = () => {
           <p className="text-[9px] font-black text-red-400 uppercase tracking-[0.3em] mb-4">Credentials</p>
           <div className="flex items-center gap-3 relative z-10">
             <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center text-white font-black text-xl italic shadow-inner">
-               {user?.name?.[0].toUpperCase()}
+               {(user?.name?.[0] || 'U').toUpperCase()}
             </div>
             <div className="flex flex-col min-w-0">
               <span className="text-sm font-black text-white truncate drop-shadow-md">{user?.name}</span>
