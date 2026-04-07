@@ -15,67 +15,58 @@ serve(async (req) => {
     const supabaseUrl = Deno.env.get('SUPABASE_URL') ?? ''
     const adminKey = Deno.env.get('ADMIN_SERVICE_KEY') ?? Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     
-    // Inisialisasi client sekali di sini
     const supabaseClient = createClient(supabaseUrl, adminKey)
 
     const body = await req.json()
     const { action } = body
 
-    // --- DIAGNOSTIC PING ---
+    // --- PING ---
     if (action === 'ping') {
       const { data, error } = await supabaseClient.from('users').select('count', { count: 'exact', head: true })
-      return new Response(JSON.stringify({ 
-        success: !error, 
-        count: data, 
-        error: error?.message,
-        env_check: { url: !!supabaseUrl, key: !!adminKey }
-      }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      return new Response(JSON.stringify({ success: !error, count: data, error: error?.message, env: { url: !!supabaseUrl, key: !!adminKey } }), {
+        status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
-    // --- LOGIKA LOGIN ---
+    // --- LOGIN ---
     if (action === 'login') {
       const { email, password } = body
-      const { data: user, error } = await supabaseClient
-        .from('users')
-        .select('*')
-        .eq('email', email)
-        .single()
+      const { data: user, error } = await supabaseClient.from('users').select('*').eq('email', email).single()
 
       if (error || !user) {
-        return new Response(JSON.stringify({ success: false, message: 'Email tidak ditemukan' }), {
-          status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        return new Response(JSON.stringify({ success: false, message: 'Login Gagal: Email tidak terdaftar di sistem.' }), {
+          status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         })
       }
       return new Response(JSON.stringify({ success: true, user: user }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
-    // --- LOGIKA REGISTER ---
+    // --- REGISTER ---
     if (action === 'register') {
       const { name, email, password, whatsapp, jabatan, opd_id, surat_tugas_url } = body
-      
       const { data, error } = await supabaseClient.from('users').insert([{
-         name, email, password, whatsapp, jabatan, opd_id, surat_tugas_url,
-         role: 3, status_approval: 0
+         name, email, password, whatsapp, jabatan, opd_id, surat_tugas_url, role: 3, status_approval: 0
       }]).select().single()
 
-      if (error) throw error
-
+      if (error) {
+        return new Response(JSON.stringify({ success: false, message: `Daftar Gagal: ${error.message}` }), {
+          status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        })
+      }
       return new Response(JSON.stringify({ success: true, user: data }), {
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }
 
-    return new Response(JSON.stringify({ message: "Action not found" }), {
-      status: 404, headers: corsHeaders
+    return new Response(JSON.stringify({ success: false, message: "Action not found" }), {
+      status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
 
   } catch (error) {
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 500, headers: corsHeaders
+    return new Response(JSON.stringify({ success: false, message: `System Error: ${error.message}` }), {
+      status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   }
 })
