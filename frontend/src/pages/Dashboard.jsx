@@ -35,7 +35,7 @@ const DashboardOverview = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const res = await api.get('/dashboard-summary');
+        const res = await api.post('/', { action: 'dashboard-summary' });
         if (res.data && res.data.success) {
             setData(res.data.data);
         }
@@ -124,18 +124,18 @@ const Dashboard = () => {
       <main className="flex-1 overflow-hidden relative">
         <Routes>
           <Route path="/" element={user?.role === 5 || user?.role === 1 ? <DashboardPimpinan /> : <DashboardOverview />} />
-          <Route path="/evaluasi" element={<EvaluasiMandiri />} />
-          <Route path="/verifikasi" element={<VerifikasiOPD />} />
-          <Route path="/monitoring" element={<MonitoringProgres />} />
-          <Route path="/ranking" element={<RankingKlasemen />} />
-          <Route path="/export" element={<ExportData />} />
-          <Route path="/logs" element={<LogActivity />} />
-          <Route path="/profil" element={<ProfileManagement />} />
-          <Route path="/users" element={<UserManagement />} />
-          <Route path="/opd" element={<OpdManagement />} />
-          <Route path="/indikator" element={<ManajemenIndikator />} />
-          <Route path="/aspek" element={<ManajemenAspek />} />
-          <Route path="/periode" element={<ManajemenPeriode />} />
+          <Route path="evaluasi" element={<EvaluasiMandiri />} />
+          <Route path="verifikasi" element={<VerifikasiOPD />} />
+          <Route path="monitoring" element={<MonitoringProgres />} />
+          <Route path="ranking" element={<RankingKlasemen />} />
+          <Route path="export" element={<ExportData />} />
+          <Route path="logs" element={<LogActivity />} />
+          <Route path="profil" element={<ProfileManagement />} />
+          <Route path="users" element={<UserManagement />} />
+          <Route path="opd" element={<OpdManagement />} />
+          <Route path="indikator" element={<ManajemenIndikator />} />
+          <Route path="aspek" element={<ManajemenAspek />} />
+          <Route path="periode" element={<ManajemenPeriode />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </main>
