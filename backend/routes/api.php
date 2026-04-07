@@ -31,6 +31,8 @@ Route::prefix('v1')->group(function () {
         Route::put('/users/{id}', [\App\Http\Controllers\Api\V1\UserController::class, 'update']);
         Route::delete('/users/{id}', [\App\Http\Controllers\Api\V1\UserController::class, 'destroy']);
         
+        Route::apiResource('periode', \App\Http\Controllers\Api\V1\PeriodeController::class);
+        
         Route::post('/change-password', [AuthController::class, 'changePassword']);
     });
 });

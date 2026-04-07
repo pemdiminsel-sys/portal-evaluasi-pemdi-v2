@@ -1,12 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CalendarDays, Plus, Edit2, Trash2, X, Loader2, Save, CheckCircle2, Clock, Lock } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const PERIODE_STATIC = [
-  { id: 1, nama: 'Evaluasi SPBE 2024', tahun: 2024, status: 'selesai', mulai: '2024-01-15', selesai: '2024-06-30', keterangan: 'Periode evaluasi tahunan 2024' },
-  { id: 2, nama: 'Evaluasi SPBE 2025', tahun: 2025, status: 'berjalan', mulai: '2025-01-15', selesai: '2025-06-30', keterangan: 'Periode aktif saat ini' },
-  { id: 3, nama: 'Evaluasi SPBE 2026', tahun: 2026, status: 'draft', mulai: '2026-01-15', selesai: '2026-06-30', keterangan: 'Belum dimulai' },
-];
+import api from '../services/api';
+import { toast } from 'react-hot-toast';
 
 const statusConfig = {
   berjalan: { label: 'Sedang Berjalan', color: 'bg-emerald-50 text-emerald-700', icon: CheckCircle2 },
@@ -15,16 +11,37 @@ const statusConfig = {
 };
 
 const ManajemenPeriode = () => {
-  const [periodes, setPeriodes] = useState(PERIODE_STATIC);
+  const [periodes, setPeriodes] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [current, setCurrent] = useState(null);
   const [saving, setSaving] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [form, setForm] = useState({ nama: '', tahun: new Date().getFullYear(), status: 'draft', mulai: '', selesai: '', keterangan: '' });
+
+  useEffect(() => {
+    fetchPeriodes();
+  }, []);
+
+  const fetchPeriodes = async () => {
+    try {
+      const res = await api.get('/periode');
+      const formatted = res.data.map(p => ({
+        ...p,
+        mulai: p.start_date.split('T')[0],
+        selesai: p.end_date.split('T')[0]
+      }));
+      setPeriodes(formatted);
+    } catch (err) {
+      toast.error('Gagal mengambil data periode');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleOpen = (periode = null) => {
     if (periode) {
       setCurrent(periode);
-      setForm({ nama: periode.nama, tahun: periode.tahun, status: periode.status, mulai: periode.mulai, selesai: periode.selesai, keterangan: periode.keterangan });
+      setForm({ nama: periode.nama, tahun: periode.tahun, status: periode.status, mulai: periode.mulai, selesai: periode.selesai, keterangan: periode.keterangan || '' });
     } else {
       setCurrent(null);
       setForm({ nama: '', tahun: new Date().getFullYear(), status: 'draft', mulai: '', selesai: '', keterangan: '' });
@@ -32,18 +49,45 @@ const ManajemenPeriode = () => {
     setIsModalOpen(true);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
-    setTimeout(() => {
+    try {
+      const payload = {
+        nama: form.nama,
+        tahun: Number(form.tahun),
+        start_date: form.mulai,
+        end_date: form.selesai,
+        status: form.status,
+        keterangan: form.keterangan
+      };
+
       if (current) {
-        setPeriodes(prev => prev.map(p => p.id === current.id ? { ...p, ...form, tahun: Number(form.tahun) } : p));
+        await api.put(`/periode/${current.id}`, payload);
+        toast.success('Periode berhasil diperbarui');
       } else {
-        setPeriodes(prev => [...prev, { id: Date.now(), ...form, tahun: Number(form.tahun) }]);
+        await api.post('/periode', payload);
+        toast.success('Periode berhasil ditambahkan');
       }
+      fetchPeriodes();
       setIsModalOpen(false);
+    } catch (err) {
+      toast.error('Gagal menyimpan periode');
+      console.error(err);
+    } finally {
       setSaving(false);
-    }, 600);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (!window.confirm('Yakin ingin menghapus periode ini?')) return;
+    try {
+      await api.delete(`/periode/${id}`);
+      toast.success('Periode berhasil dihapus');
+      fetchPeriodes();
+    } catch (err) {
+      toast.error('Gagal menghapus periode');
+    }
   };
 
   return (
@@ -61,36 +105,50 @@ const ManajemenPeriode = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {periodes.map(periode => {
-          const cfg = statusConfig[periode.status];
-          const Icon = cfg.icon;
-          return (
-            <div key={periode.id} className={`bg-white p-8 rounded-[2.5rem] border shadow-sm hover:shadow-md transition-all relative overflow-hidden ${periode.status === 'berjalan' ? 'border-emerald-200 ring-2 ring-emerald-100' : 'border-slate-100'}`}>
-              {periode.status === 'berjalan' && (
-                <div className="absolute top-4 right-4 w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
-              )}
-              <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest mb-5 ${cfg.color}`}>
-                <Icon size={12} /> {cfg.label}
+      {loading ? (
+        <div className="flex flex-col items-center justify-center py-20 gap-4">
+          <Loader2 size={48} className="text-red-600 animate-spin" />
+          <p className="text-slate-400 font-bold">Memuat data periode...</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {periodes.map(periode => {
+            const cfg = statusConfig[periode.status];
+            const Icon = cfg.icon;
+            return (
+              <div key={periode.id} className={`bg-white p-8 rounded-[2.5rem] border shadow-sm hover:shadow-md transition-all relative overflow-hidden ${periode.status === 'berjalan' ? 'border-emerald-200 ring-2 ring-emerald-100' : 'border-slate-100'}`}>
+                {periode.status === 'berjalan' && (
+                  <div className="absolute top-4 right-4 w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
+                )}
+                <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-widest mb-5 ${cfg.color}`}>
+                  <Icon size={12} /> {cfg.label}
+                </div>
+                <h3 className="text-xl font-black text-slate-800 leading-tight mb-2">{periode.nama}</h3>
+                <p className="text-slate-400 font-bold text-sm mb-6">{periode.keterangan}</p>
+                <div className="space-y-2 text-xs font-bold text-slate-500 mb-6">
+                  <div className="flex justify-between"><span>Mulai</span><span className="text-slate-800">{periode.mulai}</span></div>
+                  <div className="flex justify-between"><span>Selesai</span><span className="text-slate-800">{periode.selesai}</span></div>
+                </div>
+                <div className="flex gap-2 pt-4 border-t border-slate-100">
+                  <button onClick={() => handleOpen(periode)} className="flex-1 flex items-center justify-center gap-1 py-3 bg-slate-100 text-slate-600 hover:bg-red-600 hover:text-white font-black rounded-xl transition-all text-sm">
+                    <Edit2 size={14} /> Edit
+                  </button>
+                  <button onClick={() => handleDelete(periode.id)} className="p-3 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all">
+                    <Trash2 size={16} />
+                  </button>
+                </div>
               </div>
-              <h3 className="text-xl font-black text-slate-800 leading-tight mb-2">{periode.nama}</h3>
-              <p className="text-slate-400 font-bold text-sm mb-6">{periode.keterangan}</p>
-              <div className="space-y-2 text-xs font-bold text-slate-500 mb-6">
-                <div className="flex justify-between"><span>Mulai</span><span className="text-slate-800">{periode.mulai}</span></div>
-                <div className="flex justify-between"><span>Selesai</span><span className="text-slate-800">{periode.selesai}</span></div>
-              </div>
-              <div className="flex gap-2 pt-4 border-t border-slate-100">
-                <button onClick={() => handleOpen(periode)} className="flex-1 flex items-center justify-center gap-1 py-3 bg-slate-100 text-slate-600 hover:bg-red-600 hover:text-white font-black rounded-xl transition-all text-sm">
-                  <Edit2 size={14} /> Edit
-                </button>
-                <button className="p-3 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all">
-                  <Trash2 size={16} />
-                </button>
-              </div>
+            );
+          })}
+
+          {periodes.length === 0 && (
+            <div className="col-span-full py-20 text-center bg-slate-50 rounded-[3rem] border-2 border-dashed border-slate-200">
+               <CalendarDays size={48} className="mx-auto text-slate-200 mb-4" />
+               <p className="text-slate-400 font-bold text-lg">Belum ada periode evaluasi yang dibuka.</p>
             </div>
-          );
-        })}
-      </div>
+          )}
+        </div>
+      )}
 
       <AnimatePresence>
         {isModalOpen && (
