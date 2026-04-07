@@ -92,10 +92,14 @@ class SupabaseService
 
             public function update($data)
             {
+                // Supabase REST: filter harus di URL query param, bukan body
+                $queryString = http_build_query($this->query);
+                $url = "{$this->url}/{$this->table}" . ($queryString ? "?{$queryString}" : '');
+
                 $response = Http::withHeaders(array_merge($this->headers, [
                     'Content-Type' => 'application/json',
                     'Prefer'       => 'return=representation',
-                ]))->patch("{$this->url}/{$this->table}", $data, $this->query);
+                ]))->patch($url, $data);
 
                 return $response->json();
             }
@@ -112,7 +116,11 @@ class SupabaseService
 
             public function delete()
             {
-                $response = Http::withHeaders($this->headers)->delete("{$this->url}/{$this->table}", $this->query);
+                // Supabase REST: filter harus di URL query param, bukan body
+                $queryString = http_build_query($this->query);
+                $url = "{$this->url}/{$this->table}" . ($queryString ? "?{$queryString}" : '');
+
+                $response = Http::withHeaders($this->headers)->delete($url);
                 return $response->json();
             }
         };
