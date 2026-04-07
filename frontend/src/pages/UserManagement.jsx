@@ -3,13 +3,9 @@ import {
   Users, 
   UserPlus, 
   Trash2, 
-  Shield, 
+  Edit2,
   Mail, 
   Building2, 
-  MoreVertical,
-  Search,
-  CheckCircle2,
-  XCircle,
   Loader2
 } from 'lucide-react';
 import api from '../services/api';
