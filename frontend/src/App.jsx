@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import useAuthStore from './store/authStore';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import { Toaster } from 'react-hot-toast';
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useAuthStore();
@@ -13,6 +14,7 @@ const App = () => {
 
   return (
     <Router>
+      <Toaster position="top-right" />
       <Routes>
         <Route 
           path="/login" 
