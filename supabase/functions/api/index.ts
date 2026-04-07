@@ -15,13 +15,24 @@ serve(async (req) => {
     const supabaseUrl = Deno.env.get('SUPABASE_URL') ?? ''
     const adminKey = Deno.env.get('ADMIN_SERVICE_KEY') ?? Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     
-    console.log("DB URL Check:", !!supabaseUrl)
-    console.log("Admin Key Check:", !!adminKey)
-
+    // Inisialisasi client sekali di sini
     const supabaseClient = createClient(supabaseUrl, adminKey)
 
     const body = await req.json()
     const { action } = body
+
+    // --- DIAGNOSTIC PING ---
+    if (action === 'ping') {
+      const { data, error } = await supabaseClient.from('users').select('count', { count: 'exact', head: true })
+      return new Response(JSON.stringify({ 
+        success: !error, 
+        count: data, 
+        error: error?.message,
+        env_check: { url: !!supabaseUrl, key: !!adminKey }
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      })
+    }
 
     // --- LOGIKA LOGIN ---
     if (action === 'login') {
@@ -42,13 +53,13 @@ serve(async (req) => {
       })
     }
 
-    // --- LOGIKA REGISTER (BARU) ---
+    // --- LOGIKA REGISTER ---
     if (action === 'register') {
       const { name, email, password, whatsapp, jabatan, opd_id, surat_tugas_url } = body
       
       const { data, error } = await supabaseClient.from('users').insert([{
          name, email, password, whatsapp, jabatan, opd_id, surat_tugas_url,
-         role: 3, status_approval: 0 // Default: Operator OPD, Status: Pending
+         role: 3, status_approval: 0
       }]).select().single()
 
       if (error) throw error
