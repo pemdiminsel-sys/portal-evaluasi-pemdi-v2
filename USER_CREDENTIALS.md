@@ -6,8 +6,7 @@ Berikut adalah daftar akun yang siap digunakan untuk pengujian sistem berdasarka
 | :--- | :--- | :--- | :--- | :--- |
 | **1** | **Administrator** | `admin@gmail.com` | `admin123` | Full Access, Manajemen User, Setting Indikator |
 | **2** | **OPD (Dinas Kominfo)** | `kominfo@gmail.com` | `admin123` | Penilaian Mandiri & Upload Bukti Dokumen |
-| **3** | **Asesor Internal** | `internal@gmail.com` | `admin123` | Verifikasi Kelengkapan & Kesesuaian Bukti |
-| **4** | **Asesor Eksternal** | `eksternal@gmail.com` | `admin123` | Penilaian Dokumen, Interviu, dan Visitasi |
+| **3** | **Asesor** | `internal@gmail.com` | `admin123` | Verifikasi, Interviu, Visitasi & Penilaian Akhir |
 | **5** | **Operator SPBE** | `operator@gmail.com` | `admin123` | Monitoring Progres, Rekapitulasi & Laporan |
 | **6** | **Pimpinan (Bupati)** | `pimpinan@gmail.com` | `admin123` | Dashboard Eksekutif, Grafik Radar & Tren |
 

@@ -22,16 +22,15 @@ const Sidebar = () => {
     navigate('/login');
   };
 
-  // Matriks Hak Akses (SISTEM_BEKERJA.MD Bab 6.5)
+  // Matriks Hak Akses Terpadu (Asesor Digabung)
   const allNavItems = [
-    { title: 'Beranda', icon: LayoutDashboard, path: '/dashboard', roles: [1, 2, 3, 4, 5, 6] },
+    { title: 'Beranda', icon: LayoutDashboard, path: '/dashboard', roles: [1, 2, 3, 5, 6] },
     { title: 'Evaluasi Mandiri', icon: FileText, path: '/dashboard/evaluasi', roles: [1, 2] },
-    { title: 'Verifikasi Dokumen', icon: ShieldCheck, path: '/dashboard/verifikasi', roles: [1, 3] },
-    { title: 'Interviu & Visitasi', icon: CheckCircle, path: '/dashboard/visitasi', roles: [1, 4] },
+    { title: 'Penialaian Asesor', icon: ShieldCheck, path: '/dashboard/verifikasi', roles: [1, 3] },
     { title: 'Manajemen OPD', icon: BarChart3, path: '/dashboard/opd', roles: [1] },
     { title: 'Manajemen User', icon: Users, path: '/dashboard/users', roles: [1] },
     { title: 'Laporan Rekap', icon: BarChart3, path: '/dashboard/statistik', roles: [1, 5, 6] },
-    { title: 'Pengaturan', icon: Settings, path: '/dashboard/settings', roles: [1, 2, 3, 4, 5, 6] },
+    { title: 'Pengaturan', icon: Settings, path: '/dashboard/settings', roles: [1, 2, 3, 5, 6] },
   ];
 
   const navItems = allNavItems.filter(item => item.roles.includes(user?.role));

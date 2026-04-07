@@ -24,8 +24,7 @@ const UserManagement = () => {
     const roles = {
         1: { name: 'Administrator', color: 'text-red-600 bg-red-50' },
         2: { name: 'OPD (Dinas)', color: 'text-blue-600 bg-blue-50' },
-        3: { name: 'Asesor Internal', color: 'text-emerald-600 bg-emerald-50' },
-        4: { name: 'Asesor Eksternal', color: 'text-purple-600 bg-purple-50' },
+        3: { name: 'Asesor', color: 'text-emerald-600 bg-emerald-50' },
         5: { name: 'Operator', color: 'text-orange-600 bg-orange-50' },
         6: { name: 'Pimpinan', color: 'text-rose-600 bg-rose-50' },
     };
