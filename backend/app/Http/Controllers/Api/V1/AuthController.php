@@ -21,10 +21,18 @@ class AuthController extends Controller
 
         $user = User::with('opd')->where('email', $request->email)->first();
 
-        if (! $user || ! Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['Kredensial yang diberikan tidak cocok.'],
-            ]);
+        if (!$user) {
+             return response()->json([
+                'success' => false,
+                'message' => 'Email tidak terdaftar di database.'
+            ], 401);
+        }
+
+        if (!Hash::check($request->password, $user->password)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Email ditemukan, tapi Password salah.'
+            ], 401);
         }
 
         return response()->json([
