@@ -4,6 +4,18 @@ Dokumen ini berisi langkah-langkah detail untuk memindahkan aplikasi **Portal Ev
 
 ---
 
+## 0. Membuat Akun Vercel (Dari Awal)
+Jika Anda belum memiliki akun, ikuti langkah ini:
+1. Buka [Vercel.com](https://vercel.com/signup).
+2. Pilih **"Continue with GitHub"** (Sangat direkomendasikan karena akan mempermudah sinkronasi kode).
+3. Masukkan username dan password GitHub Anda (jika diminta).
+4. Klik **"Authorize Vercel"** untuk memberikan izin akses ke repository GitHub Anda.
+5. Pada pertanyaan "What will you use Vercel for?", pilih **"Hobby"** (Ini adalah opsi gratis selamanya).
+6. Masukkan nama Anda, lalu klik **"Continue"**.
+7. Jika diminta verifikasi nomor HP, masukkan nomor HP aktif Anda (ini hanya verifikasi keamanan satu kali, bukan untuk pembayaran).
+
+---
+
 ## 1. Persiapan Akhir (Git Push)
 Pastikan semua file konfigurasi terbaru sudah terkirim ke GitHub:
 1. Buka terminal di folder `v2-modern`.
