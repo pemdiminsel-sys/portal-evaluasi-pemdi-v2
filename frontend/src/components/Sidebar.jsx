@@ -17,43 +17,53 @@ const Sidebar = () => {
     navigate('/login');
   };
 
-  // PEMETAAN ROLE BARU (Sesuai SQL tabel roles)
-  // 1: Super Admin, 2: Admin Pemkab, 3: Operator OPD, 4: Tim Asesor, 5: Pimpinan, 6: Viewer
-  const allNavItems = [
-    // Dashboard (Selalu Muncul untuk Semua)
-    { title: 'Dashboard', icon: LayoutDashboard, path: '/dashboard', roles: [1, 2, 3, 4, 5, 6] },
-
-    // Menu Administrasi & Master Data (Role: 1, 2)
-    { title: 'Manajemen User', icon: Key, path: '/dashboard/users', roles: [1] },
-    { title: 'Manajemen OPD', icon: Building2, path: '/dashboard/opd', roles: [1, 2] },
-    { title: 'Manajemen Indikator', icon: ListChecks, path: '/dashboard/indikator', roles: [1, 2] },
-    { title: 'Manajemen Aspek', icon: Layers, path: '/dashboard/aspek', roles: [1, 2] },
-    { title: 'Manajemen Periode', icon: CalendarDays, path: '/dashboard/periode', roles: [1, 2] },
-    
-    // Evaluasi Mandiri (Role: 3 - OPD)
-    { title: 'Penilaian Mandiri', icon: FileText, path: '/dashboard/evaluasi', roles: [1, 3] },
-    { title: 'Riwayat Penilaian', icon: History, path: '/dashboard/riwayat', roles: [3] },
-    { title: 'Profil Instansi', icon: Building2, path: '/dashboard/profil', roles: [3] },
-
-    // Audit & Verifikasi (Role: 4 - Asesor)
-    { title: 'Verifikasi OPD', icon: CheckCircle, path: '/dashboard/verifikasi', roles: [1, 4] },
-    { title: 'Catatan Perbaikan', icon: Edit2, path: '/dashboard/catatan', roles: [4] },
-    { title: 'Penilaian Interviu', icon: Users, path: '/dashboard/penilaian-interviu', roles: [4] },
-    { title: 'Berita Acara', icon: FileSignature, path: '/dashboard/berita-acara', roles: [4] },
-
-    // Laporan & Monitoring (Role: 1, 2, 4, 5)
-    { title: 'Monitoring Progres', icon: Activity, path: '/dashboard/monitoring', roles: [1, 2, 5] },
-    { title: 'Ranking Klasemen', icon: Trophy, path: '/dashboard/ranking', roles: [1, 2, 5] },
-    { title: 'Laporan Indeks', icon: PieChart, path: '/dashboard/rekap-nilai', roles: [1, 2, 5] },
-    { title: 'Ekspor Data', icon: Download, path: '/dashboard/export', roles: [1, 2, 5] },
-
-    // Pemeliharaan (Role: 1)
-    { title: 'Pengaturan SMTP', icon: Mail, path: '/dashboard/smtp', roles: [1] },
-    { title: 'Backup & Logs', icon: Database, path: '/dashboard/logs', roles: [1] },
+  // PEMETAAN ROLE BARU
+  const navigationGroups = [
+    {
+      group: 'Utama',
+      items: [
+        { title: 'Dashboard', icon: LayoutDashboard, path: '/dashboard', roles: [1, 2, 3, 4, 5, 6] }
+      ]
+    },
+    {
+      group: 'Master Data',
+      items: [
+        { title: 'Manajemen User', icon: Key, path: '/dashboard/users', roles: [1] },
+        { title: 'Manajemen OPD', icon: Building2, path: '/dashboard/opd', roles: [1, 2] },
+        { title: 'Manajemen Indikator', icon: ListChecks, path: '/dashboard/indikator', roles: [1, 2] },
+        { title: 'Manajemen Aspek', icon: Layers, path: '/dashboard/aspek', roles: [1, 2] },
+        { title: 'Manajemen Periode', icon: CalendarDays, path: '/dashboard/periode', roles: [1, 2] }
+      ]
+    },
+    {
+      group: 'Evaluasi SPBE',
+      items: [
+        { title: 'Penilaian Mandiri', icon: FileText, path: '/dashboard/evaluasi', roles: [1, 3] },
+        { title: 'Riwayat Penilaian', icon: History, path: '/dashboard/riwayat', roles: [3] },
+        { title: 'Profil Instansi', icon: Building2, path: '/dashboard/profil', roles: [3] },
+        { title: 'Verifikasi OPD', icon: CheckCircle, path: '/dashboard/verifikasi', roles: [1, 4] },
+        { title: 'Catatan Perbaikan', icon: Edit2, path: '/dashboard/catatan', roles: [4] },
+        { title: 'Penilaian Interviu', icon: Users, path: '/dashboard/penilaian-interviu', roles: [4] },
+        { title: 'Berita Acara', icon: FileSignature, path: '/dashboard/berita-acara', roles: [4] }
+      ]
+    },
+    {
+      group: 'Laporan',
+      items: [
+        { title: 'Monitoring Progres', icon: Activity, path: '/dashboard/monitoring', roles: [1, 2, 5] },
+        { title: 'Ranking Klasemen', icon: Trophy, path: '/dashboard/ranking', roles: [1, 2, 5] },
+        { title: 'Laporan Indeks', icon: PieChart, path: '/dashboard/rekap-nilai', roles: [1, 2, 5] },
+        { title: 'Ekspor Data', icon: Download, path: '/dashboard/export', roles: [1, 2, 5] }
+      ]
+    },
+    {
+      group: 'Pemeliharaan',
+      items: [
+        { title: 'Pengaturan SMTP', icon: Mail, path: '/dashboard/smtp', roles: [1] },
+        { title: 'Backup & Logs', icon: Database, path: '/dashboard/logs', roles: [1] }
+      ]
+    }
   ];
-
-  // Logic filter menu berdasarkan role user. Pastikan casting ke Number agar persis sama dengan id roles.
-  const navItems = allNavItems.filter(item => item.roles.includes(Number(user?.role)));
 
   const roleNames = {
     1: 'Super Admin',
@@ -76,22 +86,34 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <nav className="flex-1 px-4 space-y-1 mt-6 overflow-y-auto scrollbar-hide">
-        {navItems.map((item) => (
-          <Link
-            key={item.path}
-            to={item.path}
-            className={`flex items-center gap-3 px-5 py-4 rounded-2xl transition-all group font-black text-xs uppercase tracking-widest ${
-              location.pathname === item.path
-                ? 'bg-red-600 text-white shadow-xl shadow-red-100 scale-[1.02]'
-                : 'text-slate-400 hover:bg-slate-50 hover:text-slate-800'
-            }`}
-          >
-            <item.icon size={18} className={location.pathname === item.path ? 'text-white' : 'text-slate-300 group-hover:text-red-500'} />
-            <span>{item.title}</span>
-            {location.pathname === item.path && <ChevronRight size={14} className="ml-auto opacity-50" />}
-          </Link>
-        ))}
+      <nav className="flex-1 px-4 space-y-6 mt-6 overflow-y-auto scrollbar-hide pb-8">
+        {navigationGroups.map((navGroup, gIdx) => {
+          // Filter out items the user cannot see
+          const allowedItems = navGroup.items.filter(item => item.roles.includes(Number(user?.role)));
+          
+          if (allowedItems.length === 0) return null;
+
+          return (
+            <div key={gIdx} className="space-y-2">
+              <p className="px-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">{navGroup.group}</p>
+              {allowedItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`flex items-center gap-3 px-5 py-4 rounded-2xl transition-all group font-black text-xs uppercase tracking-widest ${
+                    location.pathname === item.path
+                      ? 'bg-red-600 text-white shadow-xl shadow-red-100 scale-[1.02]'
+                      : 'text-slate-400 hover:bg-slate-50 hover:text-slate-800'
+                  }`}
+                >
+                  <item.icon size={18} className={location.pathname === item.path ? 'text-white' : 'text-slate-300 group-hover:text-red-500'} />
+                  <span>{item.title}</span>
+                  {location.pathname === item.path && <ChevronRight size={14} className="ml-auto opacity-50" />}
+                </Link>
+              ))}
+            </div>
+          );
+        })}
       </nav>
 
       <div className="p-6 mt-auto">
