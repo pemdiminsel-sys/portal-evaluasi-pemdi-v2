@@ -24,10 +24,15 @@ const useAuthStore = create((set) => ({
       return { success: true };
     } catch (error) {
       set({ isLoading: false });
-      return { 
-        success: false, 
-        message: error.response?.data?.message || 'Login gagal. Periksa kembali email dan password.' 
-      };
+      let errorMsg = 'Terjadi kesalahan sistem.';
+      
+      if (!error.response) {
+        errorMsg = 'Gagal terhubung ke Server. Periksa VITE_API_BASE_URL atau status Backend di Vercel.';
+      } else {
+        errorMsg = error.response.data.message || 'Email atau Password salah.';
+      }
+
+      return { success: false, message: errorMsg };
     }
   },
 
