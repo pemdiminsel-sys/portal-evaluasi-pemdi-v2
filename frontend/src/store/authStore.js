@@ -27,12 +27,13 @@ const useAuthStore = create((set) => ({
       return { success: true };
     } catch (error) {
       set({ isLoading: false });
-      let errorMsg = 'Terjadi kesalahan sistem.';
+      console.error('Full login error:', error);
       
-      if (!error.response) {
-        errorMsg = 'Gagal terhubung ke Server. Periksa VITE_API_BASE_URL atau status Backend di Vercel.';
-      } else {
-        errorMsg = error.response.data.message || 'Email atau Password salah.';
+      let errorMsg = 'Terjadi kesalahan sistem.';
+      if (error.message) {
+        errorMsg = `Supabase Error: ${error.message}`;
+      } else if (!error.response) {
+        errorMsg = 'Gagal terhubung ke Server Supabase. Cek koneksi internet atau firewall.';
       }
 
       return { success: false, message: errorMsg };
