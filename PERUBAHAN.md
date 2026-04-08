@@ -22,6 +22,7 @@ Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
 - **Feat (Email Approval):** Menambahkan pengiriman email otomatis saat Admin menyetujui user (klik tombol Approve). Email berisi password login lengkap dan template berwarna hijau "✅ Akun Telah Diaktifkan" yang berbeda dari email pendaftaran. Subject email juga disesuaikan secara dinamis.
 - **Deploy:** Edge Function `api` di-deploy ulang dengan library `npm:nodemailer@6.9.9`.
 - **Fix (Email Template):** Menyembunyikan password pengguna saat berada pada tahap "Menunggu Verifikasi" / pendaftaran awal, dan menggantinya dengan teks "Hubungi Admin (Admin TIK bisa melihat password)". Password asli hanya akan ditampilkan pada email ketika akun sudah diaktifkan.
+- **Fix (Empty Password):** Memperbaiki bug di mana user yang mendaftar secara mandiri tidak memiliki nilai password di *database* sehingga email persetujuan menampilkan teks `(hubungi admin)` alih-alih password aslinya. Perbaikan pada *Edge Function* kini akan men-*generate* password acak (jika masih kosong) dan menyimpannya secara otomatis sebelum email dikirim.
 
 ## [2026-04-08] - Perbaikan Fitur Manajemen User
 - **Fix (UserManagement):** Mengaktifkan tombol hapus user (*Trash button*) yang sebelumnya tidak berfungsi. Menambahkan fungsi `handleDelete` dengan konfirmasi keamanan sebelum data dihapus dari database Supabase.
