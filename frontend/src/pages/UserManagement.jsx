@@ -248,7 +248,7 @@ const UserManagement = () => {
                                 <div className="grid grid-cols-2 gap-6">
                                     <div className="space-y-2">
                                         <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Account Email</label>
-                                        <input type="email" disabled={!!currentUser} value={form.email}
+                                        <input type="email" disabled={!!currentUser} value={form.email} onChange={e => setForm({...form, email: e.target.value})}
                                             className={`w-full ${currentUser ? 'bg-slate-100 text-slate-400' : 'bg-slate-50'} border border-slate-100 rounded-2xl px-6 py-4 outline-none font-bold`} />
                                     </div>
                                     <div className="space-y-2">
