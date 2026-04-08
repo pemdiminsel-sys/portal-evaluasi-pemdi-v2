@@ -35,7 +35,21 @@ const EvaluasiMandiri = () => {
             // 1. Ambil Periode Aktif
             const { data: pData, error: pError } = await supabase.from('periodes').select('*').eq('status', 'active').single();
             
-            if (pError || !pData) {
+            if (pError) {
+                 console.error('Error fetching periode:', pError);
+                 if (pError.code === 'PGRST116') {
+                    // No rows returned
+                    toast.error('❌ Tidak ada periode aktif. Hubungi Admin untuk membuka periode evaluasi.');
+                 } else {
+                    toast.error('❌ Error memuat periode: ' + pError.message);
+                 }
+                 setPeriode(null);
+                 setLoading(false);
+                 return;
+            }
+            
+            if (!pData) {
+                 console.warn('No active periode found');
                  toast.error('❌ Tidak ada periode aktif. Hubungi Admin untuk membuka periode evaluasi.');
                  setPeriode(null);
                  setLoading(false);

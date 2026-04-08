@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { 
   User, Mail, Phone, Briefcase, Building2, ShieldCheck, 
-  Loader2, Camera, Save, Lock, ArrowRight, ShieldAlert
+  Loader2, Camera, Save, Lock, ArrowRight, ShieldAlert, ChevronRight
 } from 'lucide-react';
 import { supabase } from '../services/supabase';
 import useAuthStore from '../store/authStore';
