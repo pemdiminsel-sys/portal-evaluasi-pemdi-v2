@@ -159,12 +159,21 @@ const Register = () => {
                                 </div>
                             </div>
                             <div className="space-y-2">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">WhatsApp Phone</label>
+                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Password</label>
                                 <div className="relative group">
-                                    <Phone size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-red-600 transition-colors" />
-                                    <input required placeholder="0822..." value={formData.whatsapp} onChange={e => setFormData({...formData, whatsapp: e.target.value})}
+                                    <Lock size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-red-600 transition-colors" />
+                                    <input required type="password" placeholder="Minimal 8 karakter" value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})}
                                         className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-12 py-4 focus:ring-4 focus:ring-red-100 outline-none font-bold" />
                                 </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">WhatsApp Phone</label>
+                            <div className="relative group">
+                                <Phone size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-red-600 transition-colors" />
+                                <input required placeholder="0822..." value={formData.whatsapp} onChange={e => setFormData({...formData, whatsapp: e.target.value})}
+                                    className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-12 py-4 focus:ring-4 focus:ring-red-100 outline-none font-bold" />
                             </div>
                         </div>
 

@@ -3,6 +3,16 @@
 
 Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
 
+## [2026-04-08] - Fitur Password & Manajemen OPD dengan Indikator
+- **Feat (Register):** Menambahkan input field **Password** pada form registrasi user. User kini dapat membuat password sendiri saat mendaftar, dengan placeholder "Minimal 8 karakter". Field password menampilkan icon kunci (Lock) dan validasi required.
+- **Feat (OpdManagement):** Mengimplementasikan pengambilan **PIC OPD secara otomatis** dari user yang mendaftar di OPD tersebut. Sistem akan menampilkan nama PIC yang paling baru / terakhir mendaftar di OPD bersangkutan. Jika belum ada user yang mendaftar, akan menampilkan "Belum ditunjuk".
+- **Feat (OpdManagement):** Menambahkan modal edit OPD yang diperluas dengan section **Indikator Tanggung Jawab OPD**. Admin dapat memilih indikator mana saja yang menjadi tanggung jawab OPD menggunakan checkbox. Indikator ditampilkan dalam grid 2 kolom dengan informasi kode, nama, dan aspek.
+- **Database (Migration):** Membuat migration baru `2026_04_08_000001_create_opd_indikators_table.php` untuk tabel pivot `opd_indikators` yang menghubungkan OPD dengan Indikator. Tabel ini menyimpan relasi many-to-many dengan unique constraint untuk mencegah duplikasi data.
+- **Backend (Models):** Menambahkan Model `OpdIndikator` untuk mewakili relasi antara OPD dan Indikator. Update Model `Opd` dan `Indikator` dengan relationship `belongsToMany()` menggunakan tabel pivot `opd_indikators`.
+- **Frontend (OpdManagement):** Update fungsi `fetchOpds()` untuk mengambil PIC dari setiap OPD dengan fungsi `fetchPicByOpdId()` yang melakukan query ke tabel `users` berdasarkan `opd_id`. PIC diambil dari user yang paling baru mendaftar (order by `created_at` DESC).
+- **Frontend (OpdManagement):** Menambahkan state `indikators` dan `selectedIndicators` untuk mengelola data indikator. Fungsi `fetchIndikators()` mengambil semua indikator dengan relasi aspek, dan `fetchSelectedIndicators()` mengambil indikator yang sudah dipilih untuk OPD tertentu.
+- **Frontend (OpdManagement):** Update `handleSaveEdit()` untuk menyimpan relasi OPD-Indikator. Sistem akan menghapus semua relasi lama dan membuat relasi baru berdasarkan checkbox yang dipilih user.
+
 ## [2026-04-08] - Perbaikan Navigasi & Tampilan Mobile
 - **Fix (UserManagement):** Memperbaiki isian input email admin yang sebelumnya terkunci karena tidak ada event handler `onChange`, kini admin dapat mendaftarkan email untuk user baru.
 - **Feat (Menu):** Membuat file `daftar_menu.md` berisikan list navigasi beserta daftar akses per-*role*.

@@ -24,4 +24,11 @@ class Indikator extends Model
     {
         return $this->hasMany(Penilaian::class);
     }
+
+    public function opds()
+    {
+        return $this->belongsToMany(Opd::class, 'opd_indikators', 'indikator_id', 'opd_id')
+                    ->withPivot('is_responsibility')
+                    ->withTimestamps();
+    }
 }

@@ -7,6 +7,8 @@ const OpdManagement = () => {
     const [opds, setOpds] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
+    const [indikators, setIndikators] = useState([]);
+    const [selectedIndicators, setSelectedIndicators] = useState([]);
     
     // Modal State
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -14,7 +16,55 @@ const OpdManagement = () => {
 
     useEffect(() => {
         fetchOpds();
+        fetchIndikators();
     }, []);
+
+    const fetchIndikators = async () => {
+        try {
+            const { data, error } = await supabase
+                .from('indikators')
+                .select('id, kode, nama, aspeks(nama)')
+                .order('urutan', { ascending: true });
+            
+            if (error) throw error;
+            setIndikators(data || []);
+        } catch (err) {
+            console.error('Gagal fetch indikator:', err);
+            toast.error('Gagal mengambil data indikator');
+        }
+    };
+
+    const fetchSelectedIndicators = async (opd_id) => {
+        try {
+            const { data, error } = await supabase
+                .from('opd_indikators')
+                .select('indikator_id')
+                .eq('opd_id', opd_id);
+            
+            if (error) throw error;
+            setSelectedIndicators((data || []).map(item => item.indikator_id));
+        } catch (err) {
+            console.error('Gagal fetch indikator terpilih:', err);
+        }
+    };
+
+    const fetchPicByOpdId = async (opd_id) => {
+        try {
+            const { data, error } = await supabase
+                .from('users')
+                .select('name, email')
+                .eq('opd_id', opd_id)
+                .order('created_at', { ascending: false })
+                .limit(1)
+                .single();
+            
+            if (error || !data) return null;
+            return data.name;
+        } catch (err) {
+            console.error('Gagal fetch PIC:', err);
+            return null;
+        }
+    };
 
     const fetchOpds = async () => {
         try {
@@ -26,7 +76,16 @@ const OpdManagement = () => {
                 .order('nama', { ascending: true });
 
             if (error) throw error;
-            setOpds(data || []);
+            
+            // Fetch PIC untuk setiap OPD
+            const opdsWithPic = await Promise.all(
+                (data || []).map(async (opd) => {
+                    const pic = await fetchPicByOpdId(opd.id);
+                    return { ...opd, pic };
+                })
+            );
+            
+            setOpds(opdsWithPic);
         } catch (err) {
             toast.error('Gagal mengambil data OPD');
             console.error(err);
@@ -55,19 +114,35 @@ const OpdManagement = () => {
 
     const handleSaveEdit = async () => {
         try {
-            const { error } = await supabase.from('opds').update({
+            // Update data OPD
+            const { error: updateError } = await supabase.from('opds').update({
                 nama: editForm.nama,
                 singkatan: editForm.singkatan,
                 tugas: editForm.tugas,
                 kelompok: editForm.kelompok
             }).eq('id', editForm.id);
             
-            if (error) throw error;
+            if (updateError) throw updateError;
+
+            // Hapus semua relasi indikator yang lama
+            await supabase.from('opd_indikators').delete().eq('opd_id', editForm.id);
+
+            // Tambah relasi indikator yang baru
+            if (selectedIndicators.length > 0) {
+                const indicatorData = selectedIndicators.map(ind_id => ({
+                    opd_id: editForm.id,
+                    indikator_id: ind_id
+                }));
+                const { error: insertError } = await supabase.from('opd_indikators').insert(indicatorData);
+                if (insertError) throw insertError;
+            }
+
             toast.success('Perubahan berhasil disimpan');
             setIsEditModalOpen(false);
             fetchOpds();
         } catch (err) {
             toast.error('Gagal menyimpan perubahan');
+            console.error(err);
         }
     };
 
@@ -142,6 +217,7 @@ const OpdManagement = () => {
                                     <div className="flex gap-2 mt-8 relative z-10">
                                         <button onClick={() => {
                                             setEditForm(opd);
+                                            fetchSelectedIndicators(opd.id);
                                             setIsEditModalOpen(true);
                                         }} className="flex-1 py-3 bg-slate-50 text-slate-400 hover:bg-indigo-600 hover:text-white font-black rounded-xl transition-all text-[10px] uppercase tracking-widest flex items-center justify-center gap-2">
                                             <Edit2 size={12} /> Edit
@@ -166,14 +242,14 @@ const OpdManagement = () => {
 
             {/* Edit Modal */}
             {isEditModalOpen && editForm && (
-                <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-                    <div className="bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl flex flex-col gap-6">
+                <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-y-auto">
+                    <div className="bg-white rounded-3xl p-8 max-w-2xl w-full shadow-2xl flex flex-col gap-6 my-8">
                         <div className="flex justify-between items-center">
                             <h2 className="text-2xl font-black text-slate-800 tracking-tighter">Edit OPD</h2>
                             <button onClick={() => setIsEditModalOpen(false)} className="text-slate-400 hover:text-red-500 font-black">X</button>
                         </div>
                         
-                        <div className="space-y-4">
+                        <div className="space-y-4 max-h-[60vh] overflow-y-auto">
                             <div>
                                 <label className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1 block">Nama Instansi</label>
                                 <input type="text" value={editForm.nama} onChange={(e) => setEditForm({...editForm, nama: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 rounded-xl font-bold" />
@@ -192,9 +268,36 @@ const OpdManagement = () => {
                                 <label className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1 block">Tugas Utama</label>
                                 <input type="text" value={editForm.tugas || ''} onChange={(e) => setEditForm({...editForm, tugas: e.target.value})} className="w-full bg-slate-50 border border-slate-200 p-4 rounded-xl font-bold" />
                             </div>
+
+                            {/* Indikator Section */}
+                            <div className="border-t border-slate-200 pt-6 mt-6">
+                                <label className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 block">Indikator Tanggung Jawab OPD</label>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                    {indikators.map(ind => (
+                                        <label key={ind.id} className="flex items-start gap-3 p-3 bg-slate-50 rounded-lg cursor-pointer hover:bg-indigo-50 transition-all">
+                                            <input 
+                                                type="checkbox" 
+                                                checked={selectedIndicators.includes(ind.id)}
+                                                onChange={(e) => {
+                                                    if (e.target.checked) {
+                                                        setSelectedIndicators([...selectedIndicators, ind.id]);
+                                                    } else {
+                                                        setSelectedIndicators(selectedIndicators.filter(id => id !== ind.id));
+                                                    }
+                                                }}
+                                                className="w-4 h-4 mt-1 rounded border-slate-300 cursor-pointer"
+                                            />
+                                            <div className="flex-1">
+                                                <p className="text-xs font-bold text-slate-800">{ind.kode}: {ind.nama}</p>
+                                                <p className="text-[10px] text-slate-400 italic">{ind.aspeks?.nama || ''}</p>
+                                            </div>
+                                        </label>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
 
-                        <div className="flex gap-4 mt-4">
+                        <div className="flex gap-4 mt-4 border-t border-slate-200 pt-6">
                             <button onClick={() => setIsEditModalOpen(false)} className="flex-1 py-4 bg-slate-100 text-slate-500 font-black rounded-xl hover:bg-slate-200">Batal</button>
                             <button onClick={handleSaveEdit} className="flex-1 py-4 bg-indigo-600 text-white font-black rounded-xl shadow-lg hover:bg-indigo-700">Simpan</button>
                         </div>
