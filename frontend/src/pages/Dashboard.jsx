@@ -18,6 +18,10 @@ import RankingKlasemen from './RankingKlasemen';
 import ExportData from './ExportData';
 import LogActivity from './LogActivity';
 import SmtpSettings from './SmtpSettings';
+import CatatanPerbaikan from './CatatanPerbaikan';
+import PenilaianInterviu from './PenilaianInterviu';
+import BeritaAcara from './BeritaAcara';
+import RekapNilai from './RekapNilai';
 
 import { 
   Bell, Search, TrendingUp, Users, FileText, 
@@ -162,6 +166,10 @@ const Dashboard = () => {
             <Route path="aspek" element={<ManajemenAspek />} />
             <Route path="periode" element={<ManajemenPeriode />} />
             <Route path="smtp" element={<SmtpSettings />} />
+            <Route path="catatan" element={<CatatanPerbaikan />} />
+            <Route path="penilaian-interviu" element={<PenilaianInterviu />} />
+            <Route path="berita-acara" element={<BeritaAcara />} />
+            <Route path="rekap-nilai" element={<RekapNilai />} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
         </div>

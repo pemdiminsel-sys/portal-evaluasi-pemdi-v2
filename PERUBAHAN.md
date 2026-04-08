@@ -3,7 +3,17 @@
 
 Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
 
-## [2026-04-08] - Fix: Critical Bugs di Production
+## [2026-04-08] - Fix: Dashboard Operator & Profil Instansi
+- **Fix (Penilaian Mandiri - Periode Aktif):** Memperbaiki masalah "Tidak ada periode aktif" dengan mengubah logic query status periode dari `'active'` menjadi `'berjalan'`. Hal ini disesuaikan dengan skema status yang ada di backend.
+  - File: `frontend/src/pages/EvaluasiMandiri.jsx`
+- **Fix (Riwayat Penilaian - Auto Redirect Dashboard):** Mengatasi masalah klik menu Riwayat Penilaian yang selalu kembali ke Dashboard. 
+  - Melakukan implementasi pengambilan data real dari Supabase untuk riwayat penilaian per tahun.
+  - Menghapus ketergantungan `framer-motion` yang berpotensi crash dan menggantinya dengan optimasi CSS.
+  - Menambahkan route-route yang hilang di `Dashboard.jsx` (`catatan`, `penilaian-interviu`, `berita-acara`, `rekap-nilai`) untuk mencegah catch-all redirect.
+  - File: `frontend/src/pages/RiwayatPenilaian.jsx`, `frontend/src/pages/Dashboard.jsx`
+- **Fix (Profil Instansi - Halaman Putih):** Menghilangkan blank/white screen pada halaman Profil Instansi. Menambahkan *null-guard* pada data user, memperbaiki error handling saat fetch data gagal, dan menambahkan fallback UI (Error/Try Again) agar aplikasi tidak crash.
+  - File: `frontend/src/pages/ProfileManagement.jsx`
+
 - **Fix (Vercel Configuration - Schema Validation):** Removing invalid `env` property dari dalam builds array di vercel.json. Vercel schema tidak allow nested env di builds item. Environment variables harus di-set di top-level `env` object atau via Vercel Dashboard. 
   - File: `vercel.json`
   - Perubahan: Remove `env` dari `builds[0]`

@@ -12,6 +12,7 @@ const ProfileManagement = () => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
+    const [fetchError, setFetchError] = useState(null);
     const [formData, setFormData] = useState({
         name: '', whatsapp: '', jabatan: '', password: ''
     });
@@ -23,9 +24,10 @@ const ProfileManagement = () => {
     const fetchProfile = async () => {
         try {
             setLoading(true);
+            setFetchError(null);
             
             if (!authUser?.id) {
-                toast.error('User tidak teridentifikasi');
+                setFetchError('Sesi login tidak valid. Silakan logout dan login kembali.');
                 return;
             }
 
@@ -37,7 +39,24 @@ const ProfileManagement = () => {
             
             if (error) {
                 console.error('fetchProfile error:', error);
-                throw error;
+                // Coba ambil data tanpa relasi opds
+                const { data: dataSimple, error: errSimple } = await supabase
+                    .from('users')
+                    .select('*')
+                    .eq('id', authUser.id)
+                    .single();
+                
+                if (errSimple) throw errSimple;
+                if (!dataSimple) throw new Error('Data user tidak ditemukan');
+                
+                setUser({ ...dataSimple, opds: null });
+                setFormData({
+                    name: dataSimple.name || '',
+                    whatsapp: dataSimple.whatsapp || '',
+                    jabatan: dataSimple.jabatan || '',
+                    password: ''
+                });
+                return;
             }
 
             if (!data) {
@@ -46,14 +65,15 @@ const ProfileManagement = () => {
 
             setUser(data);
             setFormData({
-                name: data.name,
+                name: data.name || '',
                 whatsapp: data.whatsapp || '',
                 jabatan: data.jabatan || '',
                 password: ''
             });
         } catch (err) {
             console.error('fetchProfile full error:', err);
-            toast.error('Gagal mengambil data profil: ' + (err.message || 'Unknown error'));
+            setFetchError(err.message || 'Gagal mengambil data profil');
+            toast.error('Gagal mengambil data profil');
         } finally {
             setLoading(false);
         }
@@ -97,6 +117,22 @@ const ProfileManagement = () => {
         <div className="h-full flex flex-col items-center justify-center gap-4">
             <Loader2 className="animate-spin text-red-600" size={48} />
             <p className="text-slate-400 font-bold uppercase tracking-widest text-[10px]">Secure Profile Sync...</p>
+        </div>
+    );
+
+    if (fetchError || !user) return (
+        <div className="h-full flex flex-col items-center justify-center p-8">
+            <div className="bg-white rounded-[3rem] p-12 max-w-lg w-full text-center border border-red-100 shadow-sm">
+                <ShieldAlert size={56} className="mx-auto text-red-400 mb-4" />
+                <h2 className="text-xl font-black text-slate-800 mb-2 uppercase tracking-tighter">Gagal Memuat Profil</h2>
+                <p className="text-sm font-bold text-slate-400 mb-6">{fetchError || 'Data profil tidak dapat dimuat. Silakan coba lagi.'}</p>
+                <button
+                    onClick={fetchProfile}
+                    className="bg-red-600 text-white font-black px-8 py-3 rounded-2xl text-sm uppercase tracking-widest hover:bg-red-700 transition-all"
+                >
+                    Coba Lagi
+                </button>
+            </div>
         </div>
     );
 

@@ -32,8 +32,8 @@ const EvaluasiMandiri = () => {
         try {
             setLoading(true);
             
-            // 1. Ambil Periode Aktif
-            const { data: pData, error: pError } = await supabase.from('periodes').select('*').eq('status', 'active').single();
+            // 1. Ambil Periode Aktif (status 'berjalan' = periode sedang berjalan)
+            const { data: pData, error: pError } = await supabase.from('periodes').select('*').eq('status', 'berjalan').single();
             
             if (pError) {
                  console.error('Error fetching periode:', pError);
