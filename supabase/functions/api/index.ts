@@ -55,6 +55,26 @@ serve(async (req) => {
           status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         })
       }
+
+      // --- MENGIRIM EMAIL NOTIFIKASI ---
+      try {
+        const resendApiKey = Deno.env.get('RESEND_API_KEY');
+        if (resendApiKey) {
+          await fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${resendApiKey}` },
+            body: JSON.stringify({
+              from: 'Portal SPBE <onboarding@resend.dev>',
+              to: email,
+              subject: 'Pendaftaran Berhasil - Portal SPBE',
+              html: `<h3>Halo ${name},</h3><p>Pendaftaran Anda (Email: ${email}) di Portal Evaluasi SPBE telah diterima dan sedang menunggu proses verifikasi oleh Admin.</p>`
+            })
+          });
+        }
+      } catch (emailErr) {
+        console.error("Email gagal dikirim:", emailErr);
+      }
+
       return new Response(JSON.stringify({ success: true, user: data }), {
         status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })

@@ -1,4 +1,5 @@
 # Catatan Perubahan (Changelog)
+(tiap perubahan dicatat dalam PERUBAHAN.MD dan auto push ke git)
 
 Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
 
@@ -10,3 +11,4 @@ Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
 
 ## [2026-04-08] - Perbaikan Registrasi User (Bucket Error)
 - **Fix (Storage):** Menyelesaikan kendala "Bucket not found" saat form registrasi mencoba meng-upload file Surat Tugas. Membuat file *script SQL* `SETUP_STORAGE.sql` untuk mengeksekusi otomatis pembuatan *Storage Bucket* bernama `surat-tugas` beserta kebijakan akses terbukanya (RLS Policy).
+- **Feat (Email Notification):** Menambahkan integrasi pengiriman email masuk (*registration alert*) melalui layanan Resend API pada Edge Function saat ada user baru yang berhasil mem-bypass error sebelumnya dan mendaftar di sistem.
