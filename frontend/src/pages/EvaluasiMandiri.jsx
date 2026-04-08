@@ -33,13 +33,16 @@ const EvaluasiMandiri = () => {
             setLoading(true);
             
             // 1. Ambil Periode Aktif
-            const { data: pData } = await supabase.from('periodes').select('*').eq('status', 'active').single();
-            setPeriode(pData);
-
-            if (!pData) {
-                 toast.error('Tidak ada periode aktif!');
+            const { data: pData, error: pError } = await supabase.from('periodes').select('*').eq('status', 'active').single();
+            
+            if (pError || !pData) {
+                 toast.error('❌ Tidak ada periode aktif. Hubungi Admin untuk membuka periode evaluasi.');
+                 setPeriode(null);
+                 setLoading(false);
                  return;
             }
+
+            setPeriode(pData);
 
             // 2. Ambil Aspek & Indikator
             const [asRes, inRes, penRes, bukRes] = await Promise.all([
@@ -62,7 +65,8 @@ const EvaluasiMandiri = () => {
             setBuktis(bukRes.data || []);
 
         } catch (err) {
-            toast.error('Gagal memuat data evaluasi');
+            console.error('fetchInitialData error:', err);
+            toast.error('Gagal memuat data evaluasi: ' + err.message);
         } finally {
             setLoading(false);
         }
@@ -158,6 +162,24 @@ const EvaluasiMandiri = () => {
         <div className="h-full flex flex-col items-center justify-center gap-4">
             <Loader2 className="animate-spin text-indigo-600" size={48} />
             <p className="text-slate-400 font-black uppercase text-[10px] tracking-[0.3em]">Evaluation Engine Booting...</p>
+        </div>
+    );
+
+    if (!periode) return (
+        <div className="h-full flex flex-col items-center justify-center bg-slate-50 p-8">
+            <div className="bg-white rounded-[3rem] p-16 max-w-2xl w-full text-center border-2 border-dashed border-amber-200">
+                <AlertCircle size={64} className="mx-auto text-amber-500 mb-6" />
+                <h2 className="text-3xl font-black text-slate-800 mb-3 tracking-tighter">Periode Evaluasi Belum Aktif</h2>
+                <p className="text-slate-500 font-bold text-lg mb-6">Saat ini belum ada periode evaluasi SPBE yang aktif. Hubungi Administrator untuk membuka periode evaluasi.</p>
+                <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-left">
+                    <p className="text-[10px] font-black text-amber-600 uppercase tracking-widest mb-2">Info:</p>
+                    <ul className="text-sm font-bold text-amber-600 space-y-2">
+                        <li>✓ Admin perlu membuat Periode Evaluasi terlebih dahulu</li>
+                        <li>✓ Periode harus di-set dengan status "active"</li>
+                        <li>✓ Setelah itu OPD bisa mulai input penilaian</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     );
 

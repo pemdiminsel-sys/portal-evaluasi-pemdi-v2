@@ -22,13 +22,28 @@ const ProfileManagement = () => {
 
     const fetchProfile = async () => {
         try {
+            setLoading(true);
+            
+            if (!authUser?.id) {
+                toast.error('User tidak teridentifikasi');
+                return;
+            }
+
             const { data, error } = await supabase
                 .from('users')
                 .select('*, opds(nama)')
                 .eq('id', authUser.id)
                 .single();
             
-            if (error) throw error;
+            if (error) {
+                console.error('fetchProfile error:', error);
+                throw error;
+            }
+
+            if (!data) {
+                throw new Error('Data user tidak ditemukan');
+            }
+
             setUser(data);
             setFormData({
                 name: data.name,
@@ -37,7 +52,8 @@ const ProfileManagement = () => {
                 password: ''
             });
         } catch (err) {
-            toast.error('Gagal mengambil data profil');
+            console.error('fetchProfile full error:', err);
+            toast.error('Gagal mengambil data profil: ' + (err.message || 'Unknown error'));
         } finally {
             setLoading(false);
         }
@@ -47,6 +63,10 @@ const ProfileManagement = () => {
         e.preventDefault();
         setSaving(true);
         try {
+            if (!authUser?.id) {
+                throw new Error('User tidak teridentifikasi');
+            }
+
             const updateData = {
                 name: formData.name,
                 whatsapp: formData.whatsapp,
@@ -58,12 +78,16 @@ const ProfileManagement = () => {
                 .update(updateData)
                 .eq('id', authUser.id);
 
-            if (error) throw error;
+            if (error) {
+                console.error('Update profile error:', error);
+                throw error;
+            }
             
-            toast.success('Profil berhasil diperbarui!');
-            fetchProfile();
+            toast.success('✅ Profil berhasil diperbarui!');
+            await fetchProfile();
         } catch (err) {
-            toast.error('Terjadi kesalahan saat menyimpan');
+            console.error('handleUpdate error:', err);
+            toast.error('❌ Gagal menyimpan: ' + (err.message || 'Unknown error'));
         } finally {
             setSaving(false);
         }

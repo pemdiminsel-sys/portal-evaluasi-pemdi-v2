@@ -11,6 +11,7 @@ import ManajemenAspek from './ManajemenAspek';
 import ManajemenPeriode from './ManajemenPeriode';
 import ProfileManagement from './ProfileManagement';
 import EvaluasiMandiri from './EvaluasiMandiri';
+import RiwayatPenilaian from './RiwayatPenilaian';
 import VerifikasiOPD from './VerifikasiOPD';
 import MonitoringProgres from './MonitoringProgres';
 import RankingKlasemen from './RankingKlasemen';
@@ -148,6 +149,7 @@ const Dashboard = () => {
           <Routes>
             <Route path="/" element={user?.role === 5 || user?.role === 1 ? <DashboardPimpinan /> : <DashboardOverview />} />
             <Route path="evaluasi" element={<EvaluasiMandiri />} />
+            <Route path="riwayat" element={<RiwayatPenilaian />} />
             <Route path="verifikasi" element={<VerifikasiOPD />} />
             <Route path="monitoring" element={<MonitoringProgres />} />
             <Route path="ranking" element={<RankingKlasemen />} />
