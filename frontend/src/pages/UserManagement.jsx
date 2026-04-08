@@ -106,6 +106,19 @@ const UserManagement = () => {
         }
     };
 
+    const handleDelete = async (userId, name) => {
+        if (!window.confirm(`Sistem Keamanan: Apakah Anda yakin ingin mematikan akses dan menghapus user "${name}" secara permanen dari Matrix Control?`)) return;
+        
+        try {
+            const { error } = await supabase.from('users').delete().eq('id', userId);
+            if (error) throw error;
+            toast.success(`User ${name} berhasil dihapus.`);
+            fetchData();
+        } catch (err) {
+            toast.error(`Kegagalan Protokol: ${err.message}`);
+        }
+    };
+
     if (loading) return (
         <div className="h-full flex flex-col items-center justify-center gap-4">
             <Loader2 className="animate-spin text-red-600" size={48} />
@@ -208,7 +221,11 @@ const UserManagement = () => {
                                                 className="p-3 text-slate-400 hover:text-indigo-600 hover:bg-white rounded-2xl transition-all shadow-sm border border-transparent hover:border-slate-100 bg-slate-50">
                                                 <Edit2 size={18} />
                                             </button>
-                                            <button className="p-3 text-slate-300 hover:text-red-500 hover:bg-red-50 transition-all"><Trash2 size={18}/></button>
+                                            <button 
+                                                onClick={() => handleDelete(user.id, user.name)}
+                                                className="p-3 text-slate-300 hover:text-red-500 hover:bg-red-50 transition-all rounded-2xl">
+                                                <Trash2 size={18}/>
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
