@@ -3,6 +3,20 @@
 
 Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
 
+## [2026-04-08] - Fix: API Endpoint Configuration untuk Production
+- **Fix (API Endpoint):** Update `VITE_API_BASE_URL` environment variable di Vercel ke endpoint yang correct:
+  - **Production**: `https://portal-evaluasi-pemdi-v2-cfyb.vercel.app/api/v1`
+  - **Development**: `http://localhost/portal-evaluasi-pemdi/v2-modern/backend/public/api/v1`
+- **Files Updated:**
+  - `vercel.json` - Set env variable dengan HTTP endpoint (bukan `/api` relative path)
+  - `frontend/.env.example` - Update documentation dengan correct endpoint
+- **Result:** API calls di production sekarang akan correctly route ke Vercel backend API, mencegah blank halaman dan error "tidak ada periode aktif"
+- **Action Required di Vercel Dashboard:**
+  1. Buka Project Settings > Environment Variables
+  2. Update atau create variable: `VITE_API_BASE_URL` = `https://portal-evaluasi-pemdi-v2-cfyb.vercel.app/api/v1`
+  3. Apply ke scope: Production, Preview, Development
+  4. Trigger **"Redeploy"** dari Vercel
+
 ## [2026-04-08] - Fix: Vercel Build Configuration untuk Vite
 - **Fix (Deployment - Vercel Build Not Triggering):** Memperbaiki konfigurasi `vercel.json` yang menggunakan `@vercel/static-build` yang tidak compatible dengan Vite build system. Frontend tidak bisa di-build di Vercel karena builder yang salah.
 - **Solution:** Mengubah konfigurasi untuk menggunakan `@vercel/node` builder dengan explicit `buildCommand: "cd frontend && npm install && npm run build"` dan `outputDirectory: "frontend/dist"`. Ini memastikan Vercel properly:

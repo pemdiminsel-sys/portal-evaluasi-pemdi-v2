@@ -27,21 +27,22 @@ Ini adalah langkah untuk mempublikasikan tampilan website Anda.
    - Klik menu **Settings** > **Environment Variables**
    - Tambahkan variable baru:
      - **Name**: `VITE_API_BASE_URL`
-     - **Value**: `/api`
+     - **Value**: `https://portal-evaluasi-pemdi-v2-cfyb.vercel.app/api/v1`
      - Pilih scope: **Production, Preview, Development**
    - Klik **Save**
-   - *(Trik ini agar Vercel otomatis mengarahkan panggilan data ke API Supabase)*
+   - *(Trik ini agar frontend API calls mengarah ke backend API di Vercel)*
 5. Klik **"Deploy"** atau trigger rebuild dari GitHub push.
 6. **Selesai!** Website Anda kini sudah memiliki URL (misal: `evaluasi.vercel.app`).
 
 ### ⚠️ Jika Build Gagal atau Halaman Putih:
 
 **Masalah 1: Halaman Putih / Blank**
-- Penyebab: Environment variable `VITE_API_BASE_URL` tidak di-set
+- Penyebab: Environment variable `VITE_API_BASE_URL` tidak di-set dengan value yang correct
 - Solusi: 
   1. Buka Vercel Project Settings > Environment Variables
-  2. Pastikan `VITE_API_BASE_URL` = `/api` sudah di-set untuk semua scope (Production, Preview, Development)
+  2. Pastikan `VITE_API_BASE_URL` = `https://portal-evaluasi-pemdi-v2-cfyb.vercel.app/api/v1` sudah di-set untuk semua scope (Production, Preview, Development)
   3. Klik **"Redeploy"** dari Vercel Dashboard
+  4. Buka DevTools Console (F12) dan check value: `console.log(import.meta.env.VITE_API_BASE_URL)`
 
 **Masalah 2: API Calls Failed / Tidak Ada Data**
 - Penyebab: API rewrites tidak configured atau Supabase endpoint tidak accessible
