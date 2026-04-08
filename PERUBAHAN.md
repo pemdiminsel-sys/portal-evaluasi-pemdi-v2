@@ -17,6 +17,7 @@ Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
 - **Fix (Email):** Mengganti jalur pengiriman email dari Resend API ke **Gmail SMTP** menggunakan `nodemailer` agar lolos dari blokir Google (Error 550-5.7.26 SPF/DKIM).
 - **Config:** Menyimpan kredensial `GMAIL_USER` dan `GMAIL_APP_PASSWORD` ke Supabase Secrets.
 - **Feat (Email Template):** Email notifikasi pendaftaran kini memiliki tampilan HTML yang lebih profesional dan responsif dengan identitas Portal Evaluasi PEMDI.
+- **Feat (Email):** Menambahkan **Informasi Password** user ke dalam email aktivasi menggunakan tabel HTML yang rapi, lengkap dengan tabel Email, Password, dan Jabatan. Ditambahkan pula tombol langsung menuju halaman login dan peringatan agar user menyimpan informasi akunnya.
 - **Deploy:** Edge Function `api` di-deploy ulang dengan library `npm:nodemailer@6.9.9`.
 
 ## [2026-04-08] - Perbaikan Fitur Manajemen User

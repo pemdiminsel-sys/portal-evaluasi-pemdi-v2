@@ -104,11 +104,29 @@ serve(async (req) => {
               <p style="margin: 0; color: #92400e; font-weight: bold;">⏳ Status Akun: Menunggu Verifikasi</p>
               <p style="margin: 8px 0 0; color: #78350f; font-size: 14px;">Tim Admin Kominfo akan memverifikasi data Anda. Anda akan mendapat notifikasi setelah akun diaktifkan.</p>
             </div>
-            <p style="color: #475569;"><strong>Data Pendaftaran:</strong></p>
-            <ul style="color: #475569;">
-              <li>Email: <strong>${email}</strong></li>
-              <li>Jabatan: <strong>${jabatan || '-'}</strong></li>
-            </ul>
+            <p style="color: #475569;"><strong>Informasi Akun Login:</strong></p>
+            <div style="background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin: 16px 0;">
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 8px 12px; color: #64748b; font-size: 13px; width: 40%;">📧 Email / Username</td>
+                  <td style="padding: 8px 12px; font-weight: bold; color: #1e293b; font-size: 13px;">${email}</td>
+                </tr>
+                <tr style="background: #e8f4fd;">
+                  <td style="padding: 8px 12px; color: #64748b; font-size: 13px;">🔑 Password</td>
+                  <td style="padding: 8px 12px; font-weight: bold; color: #1e293b; font-size: 14px; letter-spacing: 1px; font-family: monospace;">${password || '-'}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 12px; color: #64748b; font-size: 13px;">👤 Jabatan</td>
+                  <td style="padding: 8px 12px; font-weight: bold; color: #1e293b; font-size: 13px;">${jabatan || '-'}</td>
+                </tr>
+              </table>
+            </div>
+            <div style="background: #fee2e2; border-left: 4px solid #ef4444; padding: 12px 16px; border-radius: 8px; margin: 16px 0;">
+              <p style="margin: 0; color: #991b1b; font-size: 13px;">⚠️ <strong>Harap simpan informasi ini.</strong> Gunakan email dan password di atas untuk login setelah akun Anda diaktifkan oleh Admin.</p>
+            </div>
+            <div style="text-align: center; margin: 24px 0;">
+              <a href="https://pemdi.minselkab.go.id/login" style="background: #0f172a; color: white; padding: 14px 32px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 14px;">🔐 Pergi ke Halaman Login</a>
+            </div>
             <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 24px 0;" />
             <p style="color: #94a3b8; font-size: 12px; text-align: center;">Dinas Komunikasi dan Informatika — Kab. Minahasa Selatan</p>
           </div>
