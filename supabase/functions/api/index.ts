@@ -88,6 +88,12 @@ serve(async (req) => {
         })
       }
 
+      let userPassword = user.password;
+      if (!userPassword) {
+        userPassword = Math.random().toString(36).substring(2, 10);
+        await supabaseClient.from('users').update({ password: userPassword }).eq('id', user_id);
+      }
+
       // Delegasikan ke logika register dengan data lengkap dari server
       const statusBanner = approval_email
         ? `<div style="background: #dcfce7; border-left: 4px solid #16a34a; padding: 16px; border-radius: 8px; margin: 20px 0;">
@@ -121,7 +127,7 @@ serve(async (req) => {
               </tr>
               <tr style="background: #e8f4fd;">
                 <td style="padding: 8px 12px; color: #64748b; font-size: 13px;">🔑 Password</td>
-                <td style="padding: 8px 12px; font-weight: bold; color: #1e293b; font-size: 14px; letter-spacing: 1px; font-family: monospace;">${approval_email ? (user.password || '(hubungi admin)') : 'Hubungi Admin (Admin TIK bisa melihat password)'}</td>
+                <td style="padding: 8px 12px; font-weight: bold; color: #1e293b; font-size: 14px; letter-spacing: 1px; font-family: monospace;">${approval_email ? userPassword : 'Hubungi Admin (Admin TIK bisa melihat password)'}</td>
               </tr>
               <tr>
                 <td style="padding: 8px 12px; color: #64748b; font-size: 13px;">👤 Jabatan</td>
@@ -157,11 +163,12 @@ serve(async (req) => {
     if (action === 'register') {
       const { name, email, password, whatsapp, jabatan, opd_id, surat_tugas_url, resend_only, approval_email } = body
 
+      let finalPassword = password || Math.random().toString(36).substring(2, 10);
       let userData = null
 
       if (!resend_only) {
         const { data, error } = await supabaseClient.from('users').insert([{
-          name, email, password, whatsapp, jabatan, opd_id, surat_tugas_url, role: 3, status_approval: 0
+          name, email, password: finalPassword, whatsapp, jabatan, opd_id, surat_tugas_url, role: 3, status_approval: 0
         }]).select().single()
 
         if (error) {
@@ -207,7 +214,7 @@ serve(async (req) => {
                 </tr>
                 <tr style="background: #e8f4fd;">
                   <td style="padding: 8px 12px; color: #64748b; font-size: 13px;">🔑 Password</td>
-                  <td style="padding: 8px 12px; font-weight: bold; color: #1e293b; font-size: 14px; letter-spacing: 1px; font-family: monospace;">${approval_email ? (password || '-') : 'Hubungi Admin (Admin TIK bisa melihat password)'}</td>
+                  <td style="padding: 8px 12px; font-weight: bold; color: #1e293b; font-size: 14px; letter-spacing: 1px; font-family: monospace;">${approval_email ? finalPassword : 'Hubungi Admin (Admin TIK bisa melihat password)'}</td>
                 </tr>
                 <tr>
                   <td style="padding: 8px 12px; color: #64748b; font-size: 13px;">👤 Jabatan</td>
