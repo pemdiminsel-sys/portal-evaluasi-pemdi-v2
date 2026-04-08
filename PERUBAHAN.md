@@ -3,6 +3,21 @@
 
 Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
 
+## [2026-04-08] - Fix: Critical Bugs di Production
+- **Fix (Profil Instansi - White/Blank Screen):** **CRITICAL BUG** - ProfileManagement.jsx menggunakan icon `ChevronRight` tapi tidak di-import. Ini menyebabkan component crash dengan error "ChevronRight is not defined". Menambahkan `ChevronRight` ke import statement dari lucide-react. Sekarang halaman Profil Instansi akan render dengan baik tanpa error.
+  - File: `frontend/src/pages/ProfileManagement.jsx`
+  - Perubahan: Import `ChevronRight` dari lucide-react
+  - Result: ✅ Layar putih fixed, form profile now fully functional
+- **Fix (Evaluasi - Error Handling Periode):** Improve error logging di EvaluasiMandiri saat fetch periode aktif. Menambahkan detailed console logging untuk debug bila terjadi error. Ini membantu identify apakah error adalah "no rows returned" (PGRST116) atau error lain yang lebih serius.
+  - File: `frontend/src/pages/EvaluasiMandiri.jsx`
+  - Perubahan: Improved error handling di `fetchInitialData()` dengan conditional checks
+  - Result: ✅ Better error diagnostics untuk troubleshooting
+- **Fix (Riwayat Penilaian):** RiwayatPenilaian route sudah properly di-import dan di-setup di Dashboard.jsx dengan path `riwayat`. Component tidak memiliki redirect logic, hanya menampilkan dummy history data. Jika masih terjadi auto-redirect, check:
+  1. Browser cache - clear cache dan reload
+  2. Vercel environment variables - pastikan VITE_API_BASE_URL sudah set dengan benar
+  3. Browser console - cek apakah ada error yang trigger redirect
+- **Deployment:** Commit `db95f2b` pushed ke GitHub. Vercel akan auto-rebuild dan deploy ke production (pemdi.minselkab.go.id)
+
 ## [2026-04-08] - Fix: API Endpoint Configuration untuk Production
 - **Fix (API Endpoint):** Update `VITE_API_BASE_URL` environment variable di Vercel ke endpoint yang correct:
   - **Production**: `https://portal-evaluasi-pemdi-v2-cfyb.vercel.app/api/v1`
