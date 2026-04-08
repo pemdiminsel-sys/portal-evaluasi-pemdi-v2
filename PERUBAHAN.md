@@ -4,6 +4,10 @@
 Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
 
 ## [2026-04-08] - Fix: Critical Bugs di Production
+- **Fix (Vercel Configuration - Schema Validation):** Removing invalid `env` property dari dalam builds array di vercel.json. Vercel schema tidak allow nested env di builds item. Environment variables harus di-set di top-level `env` object atau via Vercel Dashboard. 
+  - File: `vercel.json`
+  - Perubahan: Remove `env` dari `builds[0]`
+  - Result: ✅ Schema validation passed, Vercel can now build successfully
 - **Fix (Profil Instansi - White/Blank Screen):** **CRITICAL BUG** - ProfileManagement.jsx menggunakan icon `ChevronRight` tapi tidak di-import. Ini menyebabkan component crash dengan error "ChevronRight is not defined". Menambahkan `ChevronRight` ke import statement dari lucide-react. Sekarang halaman Profil Instansi akan render dengan baik tanpa error.
   - File: `frontend/src/pages/ProfileManagement.jsx`
   - Perubahan: Import `ChevronRight` dari lucide-react
@@ -16,7 +20,11 @@ Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
   1. Browser cache - clear cache dan reload
   2. Vercel environment variables - pastikan VITE_API_BASE_URL sudah set dengan benar
   3. Browser console - cek apakah ada error yang trigger redirect
-- **Deployment:** Commit `db95f2b` pushed ke GitHub. Vercel akan auto-rebuild dan deploy ke production (pemdi.minselkab.go.id)
+- **Deployment:** 
+  - Commit `db95f2b` - Critical bug fixes
+  - Commit `232fdbb` - Force rebuild untuk ChevronRight fix
+  - Commit `3408fdd` - Fix Vercel schema validation
+  - Vercel akan auto-rebuild dan deploy ke production (pemdi.minselkab.go.id)
 
 ## [2026-04-08] - Fix: API Endpoint Configuration untuk Production
 - **Fix (API Endpoint):** Update `VITE_API_BASE_URL` environment variable di Vercel ke endpoint yang correct:
