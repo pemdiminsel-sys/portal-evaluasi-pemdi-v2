@@ -43,17 +43,23 @@ serve(async (req) => {
       })
     }
 
-    // --- REGISTER ---
+    // --- REGISTER / RESEND ---
     if (action === 'register') {
-      const { name, email, password, whatsapp, jabatan, opd_id, surat_tugas_url } = body
-      const { data, error } = await supabaseClient.from('users').insert([{
-         name, email, password, whatsapp, jabatan, opd_id, surat_tugas_url, role: 3, status_approval: 0
-      }]).select().single()
+      const { name, email, password, whatsapp, jabatan, opd_id, surat_tugas_url, resend_only } = body
+      
+      let userData = null;
 
-      if (error) {
-        return new Response(JSON.stringify({ success: false, message: `Daftar Gagal: ${error.message}` }), {
-          status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-        })
+      if (!resend_only) {
+        const { data, error } = await supabaseClient.from('users').insert([{
+           name, email, password, whatsapp, jabatan, opd_id, surat_tugas_url, role: 3, status_approval: 0
+        }]).select().single()
+
+        if (error) {
+          return new Response(JSON.stringify({ success: false, message: `Daftar Gagal: ${error.message}` }), {
+            status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          })
+        }
+        userData = data;
       }
 
       // --- MENGIRIM EMAIL NOTIFIKASI ---
@@ -75,7 +81,7 @@ serve(async (req) => {
         console.error("Email gagal dikirim:", emailErr);
       }
 
-      return new Response(JSON.stringify({ success: true, user: data }), {
+      return new Response(JSON.stringify({ success: true, user: userData, message: resend_only ? 'Email Berhasil Dikirim Ulang' : 'Pendaftaran Berhasil' }), {
         status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })
     }

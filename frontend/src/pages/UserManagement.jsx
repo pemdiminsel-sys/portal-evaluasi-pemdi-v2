@@ -14,6 +14,7 @@ const UserManagement = () => {
     const [currentUser, setCurrentUser] = useState(null);
     const [opds, setOpds] = useState([]);
     const [saving, setSaving] = useState(false);
+    const [resending, setResending] = useState(null); // ID user yang sedang resend
     
     const [form, setForm] = useState({ 
         name: '', email: '', password: '', role: 3, opd_id: '', whatsapp: '', jabatan: ''
@@ -106,16 +107,27 @@ const UserManagement = () => {
         }
     };
 
-    const handleDelete = async (userId, name) => {
-        if (!window.confirm(`Sistem Keamanan: Apakah Anda yakin ingin mematikan akses dan menghapus user "${name}" secara permanen dari Matrix Control?`)) return;
-        
+    const handleResendActivation = async (user) => {
+        setResending(user.id);
         try {
-            const { error } = await supabase.from('users').delete().eq('id', userId);
+            const { data, error } = await supabase.functions.invoke('api', {
+                body: {
+                    action: 'register', // Kita gunakan action register karena di dalamnya sudah ada logika kirim email
+                    name: user.name,
+                    email: user.email,
+                    whatsapp: user.whatsapp,
+                    jabatan: user.jabatan,
+                    opd_id: user.opd_id,
+                    resend_only: true // Flag tambahan agar tidak insert data baru
+                }
+            });
+
             if (error) throw error;
-            toast.success(`User ${name} berhasil dihapus.`);
-            fetchData();
+            toast.success(`Email aktivasi dikirim ulang ke ${user.email}`);
         } catch (err) {
-            toast.error(`Kegagalan Protokol: ${err.message}`);
+            toast.error(`Gagal mengirim ulang: ${err.message}`);
+        } finally {
+            setResending(null);
         }
     };
 
@@ -214,6 +226,9 @@ const UserManagement = () => {
                                             {user.status_approval === 0 && (
                                                 <div className="flex items-center bg-slate-900 border border-slate-800 p-1.5 rounded-2xl shadow-xl">
                                                     <button onClick={() => handleApproval(user.id, 1)} className="p-2.5 text-emerald-400 hover:bg-emerald-500 hover:text-white rounded-xl transition-all" title="Approve Access"><ThumbsUp size={18} /></button>
+                                                    <button onClick={() => handleResendActivation(user)} disabled={resending === user.id} className="p-2.5 text-blue-400 hover:bg-blue-500 hover:text-white rounded-xl transition-all disabled:opacity-50" title="Resend Activation Email">
+                                                        {resending === user.id ? <Loader2 size={18} className="animate-spin" /> : <Mail size={18} />}
+                                                    </button>
                                                     <button onClick={() => handleApproval(user.id, 2)} className="p-2.5 text-red-400 hover:bg-red-500 hover:text-white rounded-xl transition-all" title="Reject Request"><ThumbsDown size={18} /></button>
                                                 </div>
                                             )}
