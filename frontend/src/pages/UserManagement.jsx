@@ -226,7 +226,7 @@ const UserManagement = () => {
                                             {user.status_approval === 0 && (
                                                 <div className="flex items-center bg-slate-900 border border-slate-800 p-1.5 rounded-2xl shadow-xl">
                                                     <button onClick={() => handleApproval(user.id, 1)} className="p-2.5 text-emerald-400 hover:bg-emerald-500 hover:text-white rounded-xl transition-all" title="Approve Access"><ThumbsUp size={18} /></button>
-                                                    <button onClick={() => handleResendActivation(user)} disabled={resending === user.id} className="p-2.5 text-blue-400 hover:bg-blue-500 hover:text-white rounded-xl transition-all disabled:opacity-50" title="Resend Activation Email">
+                                                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleResendActivation(user); }} disabled={resending === user.id} className="p-2.5 text-blue-400 hover:bg-blue-500 hover:text-white rounded-xl transition-all disabled:opacity-50" title="Resend Activation Email">
                                                         {resending === user.id ? <Loader2 size={18} className="animate-spin" /> : <Mail size={18} />}
                                                     </button>
                                                     <button onClick={() => handleApproval(user.id, 2)} className="p-2.5 text-red-400 hover:bg-red-500 hover:text-white rounded-xl transition-all" title="Reject Request"><ThumbsDown size={18} /></button>
