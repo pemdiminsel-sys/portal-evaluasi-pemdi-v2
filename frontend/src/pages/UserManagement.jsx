@@ -124,11 +124,19 @@ const UserManagement = () => {
     const handleResendActivation = async (user) => {
         setResending(user.id);
         try {
+            // Ambil password plain text dari database untuk disertakan di email
+            const { data: userData, error: fetchErr } = await supabase
+                .from('users')
+                .select('password')
+                .eq('id', user.id)
+                .single();
+
             const { data, error } = await supabase.functions.invoke('api', {
                 body: {
                     action: 'register',
                     name: user.name,
                     email: user.email,
+                    password: userData?.password || '-',
                     whatsapp: user.whatsapp,
                     jabatan: user.jabatan,
                     opd_id: user.opd_id,
