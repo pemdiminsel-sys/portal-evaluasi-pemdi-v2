@@ -66,6 +66,29 @@ serve(async (req) => {
           status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         })
       }
+
+      // Validasi password
+      if (user.password !== password) {
+        return new Response(JSON.stringify({ success: false, message: 'Login Gagal: Password salah.' }), {
+          status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        })
+      }
+
+      // Validasi status approval - user harus diaktifkan admin terlebih dahulu
+      if (user.status_approval !== 1) {
+        const statusMessage = user.status_approval === 0 
+          ? 'Akun Anda masih menunggu verifikasi dari Admin. Silakan tunggu email persetujuan.'
+          : 'Akun Anda telah ditolak oleh Admin. Hubungi Admin untuk informasi lebih lanjut.'
+        
+        return new Response(JSON.stringify({ 
+          success: false, 
+          message: statusMessage,
+          status: user.status_approval
+        }), {
+          status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        })
+      }
+
       return new Response(JSON.stringify({ success: true, user: user }), {
         status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       })

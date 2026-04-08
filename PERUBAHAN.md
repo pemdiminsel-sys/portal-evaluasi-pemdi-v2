@@ -8,10 +8,22 @@ Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
 - **Feat (OpdManagement):** Mengimplementasikan pengambilan **PIC OPD secara otomatis** dari user yang mendaftar di OPD tersebut. Sistem akan menampilkan nama PIC yang paling baru / terakhir mendaftar di OPD bersangkutan. Jika belum ada user yang mendaftar, akan menampilkan "Belum ditunjuk".
 - **Feat (OpdManagement):** Menambahkan modal edit OPD yang diperluas dengan section **Indikator Tanggung Jawab OPD**. Admin dapat memilih indikator mana saja yang menjadi tanggung jawab OPD menggunakan checkbox. Indikator ditampilkan dalam grid 2 kolom dengan informasi kode, nama, dan aspek.
 - **Database (Migration):** Membuat migration baru `2026_04_08_000001_create_opd_indikators_table.php` untuk tabel pivot `opd_indikators` yang menghubungkan OPD dengan Indikator. Tabel ini menyimpan relasi many-to-many dengan unique constraint untuk mencegah duplikasi data.
+- **Database (Migration):** Membuat migration `2026_04_08_000002_add_status_approval_to_users_table.php` untuk menambahkan field `status_approval` (0=Pending, 1=Approved, 2=Rejected) ke tabel users di Laravel.
 - **Backend (Models):** Menambahkan Model `OpdIndikator` untuk mewakili relasi antara OPD dan Indikator. Update Model `Opd` dan `Indikator` dengan relationship `belongsToMany()` menggunakan tabel pivot `opd_indikators`.
 - **Frontend (OpdManagement):** Update fungsi `fetchOpds()` untuk mengambil PIC dari setiap OPD dengan fungsi `fetchPicByOpdId()` yang melakukan query ke tabel `users` berdasarkan `opd_id`. PIC diambil dari user yang paling baru mendaftar (order by `created_at` DESC).
 - **Frontend (OpdManagement):** Menambahkan state `indikators` dan `selectedIndicators` untuk mengelola data indikator. Fungsi `fetchIndikators()` mengambil semua indikator dengan relasi aspek, dan `fetchSelectedIndicators()` mengambil indikator yang sudah dipilih untuk OPD tertentu.
 - **Frontend (OpdManagement):** Update `handleSaveEdit()` untuk menyimpan relasi OPD-Indikator. Sistem akan menghapus semua relasi lama dan membuat relasi baru berdasarkan checkbox yang dipilih user.
+
+## [2026-04-08] - Fix: Keamanan Login dengan Validasi Status Approval & Password
+- **Fix (Security - CRITICAL):** Memperbaiki bug keamanan di mana user yang belum diaktifkan admin dapat login ke sistem. Menambahkan validasi `status_approval` di Edge Function API action `login` — hanya user dengan status_approval = 1 (Approved) yang dapat login.
+- **Fix (Security - CRITICAL):** Menambahkan validasi password di Edge Function login. Sebelumnya sistem hanya validasi email tanpa cek password, memungkinkan siapa saja login hanya dengan mengetahui email user lain.Password harus cocok dengan yang tersimpan di database sebelum proses login dilanjutkan.
+- **Feat (Error Handling):** Menambahkan pesan error yang deskriptif untuk kasus login gagal:
+  - "Login Gagal: Email tidak terdaftar di sistem." — jika email tidak ada
+  - "Login Gagal: Password salah." — jika password tidak sesuai
+  - "Akun Anda masih menunggu verifikasi dari Admin..." — jika status_approval = 0
+  - "Akun Anda telah ditolak oleh Admin..." — jika status_approval = 2 (Rejected)
+
+## [2026-04-08] - Fitur Password & Manajemen OPD dengan Indikator (Utama)
 
 ## [2026-04-08] - Perbaikan Navigasi & Tampilan Mobile
 - **Fix (UserManagement):** Memperbaiki isian input email admin yang sebelumnya terkunci karena tidak ada event handler `onChange`, kini admin dapat mendaftarkan email untuk user baru.
