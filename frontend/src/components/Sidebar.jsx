@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 
-const Sidebar = () => {
+const Sidebar = ({ onMobileClose }) => {
   const { logout, user } = useAuthStore();
   const navigate = useNavigate();
   const location = useLocation();
@@ -59,8 +59,8 @@ const Sidebar = () => {
     {
       group: 'Pemeliharaan',
       items: [
-        { title: 'Pengaturan SMTP', icon: Mail, path: '/dashboard/smtp', roles: [1] },
-        { title: 'Backup & Logs', icon: Database, path: '/dashboard/logs', roles: [1] }
+        { title: 'Pengaturan SMTP', icon: Mail, path: '/dashboard/smtp', roles: [1, 2] },
+        { title: 'Backup & Logs', icon: Database, path: '/dashboard/logs', roles: [1, 2] }
       ]
     }
   ];
@@ -100,6 +100,7 @@ const Sidebar = () => {
                 <Link
                   key={item.path}
                   to={item.path}
+                  onClick={onMobileClose}
                   className={`flex items-center gap-3 px-5 py-4 rounded-2xl transition-all group font-black text-xs uppercase tracking-widest ${
                     location.pathname === item.path
                       ? 'bg-red-600 text-white shadow-xl shadow-red-100 scale-[1.02]'

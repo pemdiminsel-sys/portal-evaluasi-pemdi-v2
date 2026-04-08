@@ -20,7 +20,7 @@ import SmtpSettings from './SmtpSettings';
 
 import { 
   Bell, Search, TrendingUp, Users, FileText, 
-  ArrowUpRight, ArrowDownRight, Target, Loader2
+  ArrowUpRight, ArrowDownRight, Target, Loader2, Menu
 } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 import api from '../services/api';
@@ -118,28 +118,51 @@ const DashboardOverview = () => {
 
 const Dashboard = () => {
   const { user } = useAuthStore();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex h-screen bg-slate-50 font-sans overflow-hidden">
-      <Sidebar />
-      <main className="flex-1 overflow-hidden relative">
-        <Routes>
-          <Route path="/" element={user?.role === 5 || user?.role === 1 ? <DashboardPimpinan /> : <DashboardOverview />} />
-          <Route path="evaluasi" element={<EvaluasiMandiri />} />
-          <Route path="verifikasi" element={<VerifikasiOPD />} />
-          <Route path="monitoring" element={<MonitoringProgres />} />
-          <Route path="ranking" element={<RankingKlasemen />} />
-          <Route path="export" element={<ExportData />} />
-          <Route path="logs" element={<LogActivity />} />
-          <Route path="profil" element={<ProfileManagement />} />
-          <Route path="users" element={<UserManagement />} />
-          <Route path="opd" element={<OpdManagement />} />
-          <Route path="indikator" element={<ManajemenIndikator />} />
-          <Route path="aspek" element={<ManajemenAspek />} />
-          <Route path="periode" element={<ManajemenPeriode />} />
-          <Route path="smtp" element={<SmtpSettings />} />
-          <Route path="*" element={<Navigate to="/dashboard" replace />} />
-        </Routes>
+    <div className="flex h-screen bg-slate-50 font-sans overflow-hidden relative">
+      {/* Mobile Sidebar Overlay */}
+      {sidebarOpen && (
+        <div 
+           className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 md:hidden"
+           onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* Sidebar Container */}
+      <div className={`fixed inset-y-0 left-0 z-50 w-72 transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <Sidebar onMobileClose={() => setSidebarOpen(false)} />
+      </div>
+
+      <main className="flex-1 overflow-hidden relative flex flex-col">
+        {/* Mobile Header with Toggle Button */}
+        <div className="md:hidden flex items-center p-4 bg-white border-b border-slate-100 shadow-sm z-30">
+          <button onClick={() => setSidebarOpen(true)} className="p-2 -ml-2 text-slate-800 hover:bg-slate-50 rounded-lg">
+             <Menu size={24} />
+          </button>
+          <span className="ml-4 font-black uppercase text-slate-800 tracking-tighter">Portal SPBE</span>
+        </div>
+
+        <div className="flex-1 overflow-y-auto relative h-full scrollbar-hide">
+          <Routes>
+            <Route path="/" element={user?.role === 5 || user?.role === 1 ? <DashboardPimpinan /> : <DashboardOverview />} />
+            <Route path="evaluasi" element={<EvaluasiMandiri />} />
+            <Route path="verifikasi" element={<VerifikasiOPD />} />
+            <Route path="monitoring" element={<MonitoringProgres />} />
+            <Route path="ranking" element={<RankingKlasemen />} />
+            <Route path="export" element={<ExportData />} />
+            <Route path="logs" element={<LogActivity />} />
+            <Route path="profil" element={<ProfileManagement />} />
+            <Route path="users" element={<UserManagement />} />
+            <Route path="opd" element={<OpdManagement />} />
+            <Route path="indikator" element={<ManajemenIndikator />} />
+            <Route path="aspek" element={<ManajemenAspek />} />
+            <Route path="periode" element={<ManajemenPeriode />} />
+            <Route path="smtp" element={<SmtpSettings />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
+        </div>
       </main>
     </div>
   );
