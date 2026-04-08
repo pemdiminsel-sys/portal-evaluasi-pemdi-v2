@@ -122,10 +122,17 @@ const OpdManagement = () => {
                 kelompok: editForm.kelompok
             }).eq('id', editForm.id);
             
-            if (updateError) throw updateError;
+            if (updateError) {
+                console.error('Update OPD Error:', updateError);
+                throw updateError;
+            }
 
             // Hapus semua relasi indikator yang lama
-            await supabase.from('opd_indikators').delete().eq('opd_id', editForm.id);
+            const { error: deleteError } = await supabase.from('opd_indikators').delete().eq('opd_id', editForm.id);
+            if (deleteError) {
+                console.error('Delete Indikators Error:', deleteError);
+                // Jangan throw, lanjutkan karena mungkin data baru dari awal
+            }
 
             // Tambah relasi indikator yang baru
             if (selectedIndicators.length > 0) {
@@ -134,15 +141,19 @@ const OpdManagement = () => {
                     indikator_id: ind_id
                 }));
                 const { error: insertError } = await supabase.from('opd_indikators').insert(indicatorData);
-                if (insertError) throw insertError;
+                if (insertError) {
+                    console.error('Insert Indikators Error:', insertError);
+                    console.error('Insert Data:', indicatorData);
+                    throw insertError;
+                }
             }
 
             toast.success('Perubahan berhasil disimpan');
             setIsEditModalOpen(false);
             fetchOpds();
         } catch (err) {
-            toast.error('Gagal menyimpan perubahan');
-            console.error(err);
+            console.error('Full Save Error:', err);
+            toast.error(`Gagal menyimpan perubahan: ${err.message || err}`);
         }
     };
 
