@@ -23,6 +23,7 @@ Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
   - "Akun Anda masih menunggu verifikasi dari Admin..." — jika status_approval = 0
   - "Akun Anda telah ditolak oleh Admin..." — jika status_approval = 2 (Rejected)
 - **Fix (Robustness):** Improve handling untuk NULL/undefined `status_approval` di browser lama maupun data user yang belum ter-update status_approval-nya (treat sebagai pending).
+- **Deploy (COMPLETED):** ✅ Edge Function `api` telah berhasil di-deploy ke Supabase project `rgmxobrceqtnnxvmkhji` menggunakan Supabase CLI. Fix keamanan login sekarang aktif di production.
 - **⚠️ PENTING - DEPLOYMENT:** Fix ini memerlukan **deploy Edge Function ke Supabase** agar bekerja. Jalankan:
   ```bash
   supabase functions deploy api
