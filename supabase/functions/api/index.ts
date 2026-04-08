@@ -121,7 +121,7 @@ serve(async (req) => {
               </tr>
               <tr style="background: #e8f4fd;">
                 <td style="padding: 8px 12px; color: #64748b; font-size: 13px;">🔑 Password</td>
-                <td style="padding: 8px 12px; font-weight: bold; color: #1e293b; font-size: 14px; letter-spacing: 1px; font-family: monospace;">${user.password || '(hubungi admin)'}</td>
+                <td style="padding: 8px 12px; font-weight: bold; color: #1e293b; font-size: 14px; letter-spacing: 1px; font-family: monospace;">${approval_email ? (user.password || '(hubungi admin)') : 'Hubungi Admin (Admin TIK bisa melihat password)'}</td>
               </tr>
               <tr>
                 <td style="padding: 8px 12px; color: #64748b; font-size: 13px;">👤 Jabatan</td>
@@ -207,7 +207,7 @@ serve(async (req) => {
                 </tr>
                 <tr style="background: #e8f4fd;">
                   <td style="padding: 8px 12px; color: #64748b; font-size: 13px;">🔑 Password</td>
-                  <td style="padding: 8px 12px; font-weight: bold; color: #1e293b; font-size: 14px; letter-spacing: 1px; font-family: monospace;">${password || '-'}</td>
+                  <td style="padding: 8px 12px; font-weight: bold; color: #1e293b; font-size: 14px; letter-spacing: 1px; font-family: monospace;">${approval_email ? (password || '-') : 'Hubungi Admin (Admin TIK bisa melihat password)'}</td>
                 </tr>
                 <tr>
                   <td style="padding: 8px 12px; color: #64748b; font-size: 13px;">👤 Jabatan</td>
