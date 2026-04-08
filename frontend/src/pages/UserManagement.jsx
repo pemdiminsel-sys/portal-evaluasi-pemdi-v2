@@ -112,13 +112,13 @@ const UserManagement = () => {
         try {
             const { data, error } = await supabase.functions.invoke('api', {
                 body: {
-                    action: 'register', // Kita gunakan action register karena di dalamnya sudah ada logika kirim email
+                    action: 'register',
                     name: user.name,
                     email: user.email,
                     whatsapp: user.whatsapp,
                     jabatan: user.jabatan,
                     opd_id: user.opd_id,
-                    resend_only: true // Flag tambahan agar tidak insert data baru
+                    resend_only: true
                 }
             });
 
@@ -128,6 +128,31 @@ const UserManagement = () => {
             toast.error(`Gagal mengirim ulang: ${err.message}`);
         } finally {
             setResending(null);
+        }
+    };
+
+    const handleDelete = async (userId, name) => {
+        if (!window.confirm(`Sistem Keamanan: Apakah Anda yakin ingin mematikan akses dan menghapus user "${name}" secara permanen?`)) return;
+        
+        try {
+            const { error } = await supabase.from('users').delete().eq('id', userId);
+            if (error) throw error;
+            toast.success(`User ${name} berhasil dihapus.`);
+            fetchData();
+        } catch (err) {
+            toast.error(`Kegagalan Protokol: ${err.message}`);
+        }
+    };
+
+    const handleStatusToggle = async (userId, currentStatus) => {
+        const newStatus = currentStatus === 1 ? 2 : 1; // Toggle antara Active (1) dan Rejected/Inactive (2)
+        try {
+            const { error } = await supabase.from('users').update({ status_approval: newStatus }).eq('id', userId);
+            if (error) throw error;
+            toast.success(`Status user berhasil diperbarui.`);
+            fetchData();
+        } catch (err) {
+            toast.error(`Gagal mengubah status: ${err.message}`);
         }
     };
 
@@ -185,9 +210,21 @@ const UserManagement = () => {
                                             <div>
                                                 <p className="font-black text-slate-800 text-lg leading-tight flex items-center gap-2">
                                                     {user.name}
-                                                    {user.surat_tugas_url && (
-                                                        <a href={`${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/surat-tugas/${user.surat_tugas_url}`} target="_blank" rel="noreferrer" className="text-indigo-500 hover:text-indigo-700"><FileText size={16}/></a>
-                                                    )}
+                                                    <div className="flex items-center gap-1.5">
+                                                        {user.surat_tugas_url && (
+                                                            <a href={`${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/surat-tugas/${user.surat_tugas_url}`} target="_blank" rel="noreferrer" className="text-indigo-500 hover:text-indigo-700 p-1 hover:bg-indigo-50 rounded-lg transition-colors" title="Lihat Surat Tugas">
+                                                                <FileText size={16}/>
+                                                            </a>
+                                                        )}
+                                                        <button 
+                                                            onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleResendActivation(user); }}
+                                                            disabled={resending === user.id}
+                                                            className="text-blue-500 hover:text-blue-700 p-1 hover:bg-blue-50 rounded-lg transition-colors disabled:opacity-50"
+                                                            title="Kirim Ulang Email Aktivasi"
+                                                        >
+                                                            {resending === user.id ? <Loader2 size={16} className="animate-spin" /> : <Mail size={16} />}
+                                                        </button>
+                                                    </div>
                                                 </p>
                                                 <div className="space-y-1 mt-1">
                                                     <p className="text-[10px] font-bold text-slate-400 flex items-center gap-1.5 uppercase tracking-tighter"><Mail size={10} className="text-red-500" /> {user.email}</p>
@@ -223,7 +260,7 @@ const UserManagement = () => {
                                     </td>
                                     <td className="px-8 py-6 text-right">
                                         <div className="flex items-center justify-end gap-3 scale-90 group-hover:scale-100 transition-transform">
-                                            {user.status_approval === 0 && (
+                                            {user.status_approval === 0 ? (
                                                 <div className="flex items-center bg-slate-900 border border-slate-800 p-1.5 rounded-2xl shadow-xl">
                                                     <button onClick={() => handleApproval(user.id, 1)} className="p-2.5 text-emerald-400 hover:bg-emerald-500 hover:text-white rounded-xl transition-all" title="Approve Access"><ThumbsUp size={18} /></button>
                                                     <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleResendActivation(user); }} disabled={resending === user.id} className="p-2.5 text-blue-400 hover:bg-blue-500 hover:text-white rounded-xl transition-all disabled:opacity-50" title="Resend Activation Email">
@@ -231,6 +268,17 @@ const UserManagement = () => {
                                                     </button>
                                                     <button onClick={() => handleApproval(user.id, 2)} className="p-2.5 text-red-400 hover:bg-red-500 hover:text-white rounded-xl transition-all" title="Reject Request"><ThumbsDown size={18} /></button>
                                                 </div>
+                                            ) : (
+                                                <button 
+                                                    onClick={() => handleStatusToggle(user.id, user.status_approval)}
+                                                    className={`p-2.5 rounded-xl transition-all font-black text-[9px] uppercase tracking-widest border ${
+                                                        user.status_approval === 1 
+                                                        ? 'bg-rose-50 text-rose-600 border-rose-100 hover:bg-rose-600 hover:text-white' 
+                                                        : 'bg-emerald-50 text-emerald-600 border-emerald-100 hover:bg-emerald-600 hover:text-white'
+                                                    }`}
+                                                >
+                                                    {user.status_approval === 1 ? 'Disable' : 'Enable'}
+                                                </button>
                                             )}
                                             <button onClick={() => handleOpenModal(user)} 
                                                 className="p-3 text-slate-400 hover:text-indigo-600 hover:bg-white rounded-2xl transition-all shadow-sm border border-transparent hover:border-slate-100 bg-slate-50">
