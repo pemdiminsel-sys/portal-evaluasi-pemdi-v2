@@ -58,30 +58,17 @@ const UserManagement = () => {
 
     const handleApproval = async (userId, status) => {
         try {
-            // 1. Ambil data lengkap user termasuk password sebelum update status
-            const { data: userData } = await supabase
-                .from('users')
-                .select('name, email, password, jabatan, whatsapp, opd_id')
-                .eq('id', userId)
-                .single();
-
-            // 2. Update status approval di database
+            // Update status approval di database
             const { error } = await supabase.from('users').update({ status_approval: status }).eq('id', userId);
             if (error) throw error;
 
-            // 3. Jika disetujui (status=1), kirim email notifikasi approval dengan password
-            if (status === 1 && userData) {
+            // Jika disetujui, biarkan Edge Function yang fetch password via service_role
+            if (status === 1) {
                 try {
                     await supabase.functions.invoke('api', {
                         body: {
-                            action: 'register',
-                            name: userData.name,
-                            email: userData.email,
-                            password: userData.password || '-',
-                            jabatan: userData.jabatan,
-                            whatsapp: userData.whatsapp,
-                            opd_id: userData.opd_id,
-                            resend_only: true,
+                            action: 'send_notification',
+                            user_id: userId,
                             approval_email: true
                         }
                     });
@@ -155,27 +142,17 @@ const UserManagement = () => {
     const handleResendActivation = async (user) => {
         setResending(user.id);
         try {
-            // Ambil password plain text dari database untuk disertakan di email
-            const { data: userData, error: fetchErr } = await supabase
-                .from('users')
-                .select('password')
-                .eq('id', user.id)
-                .single();
-
+            // Kirim user_id ke Edge Function — password diambil di server dengan service_role
             const { data, error } = await supabase.functions.invoke('api', {
                 body: {
-                    action: 'register',
-                    name: user.name,
-                    email: user.email,
-                    password: userData?.password || '-',
-                    whatsapp: user.whatsapp,
-                    jabatan: user.jabatan,
-                    opd_id: user.opd_id,
-                    resend_only: true
+                    action: 'send_notification',
+                    user_id: user.id,
+                    approval_email: false
                 }
             });
 
             if (error) throw error;
+            if (data && !data.success) throw new Error(data.message);
             toast.success(`Email aktivasi dikirim ulang ke ${user.email}`);
         } catch (err) {
             toast.error(`Gagal mengirim ulang: ${err.message}`);
