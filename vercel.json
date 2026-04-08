@@ -2,12 +2,18 @@
   "version": 2,
   "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
+  "env": {
+    "VITE_API_BASE_URL": "/api"
+  },
   "builds": [
     { 
       "src": "frontend/package.json", 
       "use": "@vercel/node",
       "config": { 
         "zeroConfig": true
+      },
+      "env": {
+        "VITE_API_BASE_URL": "/api"
       }
     },
     { "src": "backend/api/index.php", "use": "vercel-php@0.7.1" }
