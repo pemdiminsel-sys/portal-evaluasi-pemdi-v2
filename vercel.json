@@ -11,9 +11,6 @@
       "use": "@vercel/node",
       "config": { 
         "zeroConfig": true
-      },
-      "env": {
-        "VITE_API_BASE_URL": "https://portal-evaluasi-pemdi-v2-cfyb.vercel.app/api/v1"
       }
     },
     { "src": "backend/api/index.php", "use": "vercel-php@0.7.1" }
