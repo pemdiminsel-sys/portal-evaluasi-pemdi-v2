@@ -58,14 +58,45 @@ const UserManagement = () => {
 
     const handleApproval = async (userId, status) => {
         try {
+            // 1. Ambil data lengkap user termasuk password sebelum update status
+            const { data: userData } = await supabase
+                .from('users')
+                .select('name, email, password, jabatan, whatsapp, opd_id')
+                .eq('id', userId)
+                .single();
+
+            // 2. Update status approval di database
             const { error } = await supabase.from('users').update({ status_approval: status }).eq('id', userId);
             if (error) throw error;
-            toast.success(status === 1 ? 'User telah disetujui & aktif!' : 'Pendaftaran user ditolak.');
+
+            // 3. Jika disetujui (status=1), kirim email notifikasi approval dengan password
+            if (status === 1 && userData) {
+                try {
+                    await supabase.functions.invoke('api', {
+                        body: {
+                            action: 'register',
+                            name: userData.name,
+                            email: userData.email,
+                            password: userData.password || '-',
+                            jabatan: userData.jabatan,
+                            whatsapp: userData.whatsapp,
+                            opd_id: userData.opd_id,
+                            resend_only: true,
+                            approval_email: true
+                        }
+                    });
+                } catch (emailErr) {
+                    console.error('Email approval gagal:', emailErr);
+                }
+            }
+
+            toast.success(status === 1 ? 'User disetujui & email notifikasi terkirim!' : 'Pendaftaran user ditolak.');
             fetchData();
         } catch (err) {
             toast.error('Gagal memproses persetujuan');
         }
     };
+
 
     const checkOpdOwnership = (opdId, currentUserId) => {
         if (!opdId) return false;

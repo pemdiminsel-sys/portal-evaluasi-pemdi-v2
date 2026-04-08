@@ -71,9 +71,9 @@ serve(async (req) => {
       })
     }
 
-    // --- REGISTER / RESEND ---
+    // --- REGISTER / RESEND / APPROVAL ---
     if (action === 'register') {
-      const { name, email, password, whatsapp, jabatan, opd_id, surat_tugas_url, resend_only } = body
+      const { name, email, password, whatsapp, jabatan, opd_id, surat_tugas_url, resend_only, approval_email } = body
 
       let userData = null
 
@@ -92,6 +92,21 @@ serve(async (req) => {
 
       // --- KIRIM EMAIL NOTIFIKASI VIA GMAIL SMTP ---
       try {
+        // Template berbeda berdasarkan konteks: approval email vs pendaftaran baru
+        const statusBanner = approval_email
+          ? `<div style="background: #dcfce7; border-left: 4px solid #16a34a; padding: 16px; border-radius: 8px; margin: 20px 0;">
+              <p style="margin: 0; color: #14532d; font-weight: bold;">✅ Akun Anda Telah Diaktifkan!</p>
+              <p style="margin: 8px 0 0; color: #166534; font-size: 14px;">Selamat! Admin Kominfo telah menyetujui pendaftaran Anda. Anda kini dapat login ke Portal Evaluasi PEMDI menggunakan informasi di bawah.</p>
+             </div>`
+          : `<div style="background: #fef9c3; border-left: 4px solid #eab308; padding: 16px; border-radius: 8px; margin: 20px 0;">
+              <p style="margin: 0; color: #92400e; font-weight: bold;">⏳ Status Akun: Menunggu Verifikasi</p>
+              <p style="margin: 8px 0 0; color: #78350f; font-size: 14px;">Tim Admin Kominfo akan memverifikasi data Anda. Simpan informasi akun ini untuk login setelah akun diaktifkan.</p>
+             </div>`
+
+        const emailSubject = approval_email
+          ? '✅ Akun Anda Telah Diaktifkan - Portal Evaluasi PEMDI'
+          : '📋 Pendaftaran Diterima - Portal Evaluasi PEMDI'
+
         const emailHtml = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f8fafc; padding: 32px; border-radius: 16px;">
             <div style="background: #0f172a; padding: 24px; border-radius: 12px; text-align: center; margin-bottom: 24px;">
@@ -99,11 +114,8 @@ serve(async (req) => {
               <p style="color: #94a3b8; margin: 4px 0 0; font-size: 12px;">Kabupaten Minahasa Selatan</p>
             </div>
             <h2 style="color: #1e293b;">Halo, ${name}!</h2>
-            <p style="color: #475569;">Pendaftaran Anda di <strong>Portal Evaluasi Pemerintahan Digital (PEMDI)</strong> telah berhasil diterima.</p>
-            <div style="background: #fef9c3; border-left: 4px solid #eab308; padding: 16px; border-radius: 8px; margin: 20px 0;">
-              <p style="margin: 0; color: #92400e; font-weight: bold;">⏳ Status Akun: Menunggu Verifikasi</p>
-              <p style="margin: 8px 0 0; color: #78350f; font-size: 14px;">Tim Admin Kominfo akan memverifikasi data Anda. Anda akan mendapat notifikasi setelah akun diaktifkan.</p>
-            </div>
+            <p style="color: #475569;">${approval_email ? 'Kabar gembira! Pendaftaran Anda di' : 'Pendaftaran Anda di'} <strong>Portal Evaluasi Pemerintahan Digital (PEMDI)</strong> ${approval_email ? 'telah disetujui.' : 'telah berhasil diterima.'}</p>
+            ${statusBanner}
             <p style="color: #475569;"><strong>Informasi Akun Login:</strong></p>
             <div style="background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin: 16px 0;">
               <table style="width: 100%; border-collapse: collapse;">
@@ -122,7 +134,7 @@ serve(async (req) => {
               </table>
             </div>
             <div style="background: #fee2e2; border-left: 4px solid #ef4444; padding: 12px 16px; border-radius: 8px; margin: 16px 0;">
-              <p style="margin: 0; color: #991b1b; font-size: 13px;">⚠️ <strong>Harap simpan informasi ini.</strong> Gunakan email dan password di atas untuk login setelah akun Anda diaktifkan oleh Admin.</p>
+              <p style="margin: 0; color: #991b1b; font-size: 13px;">⚠️ <strong>Harap simpan informasi ini.</strong> Jangan bagikan password Anda kepada siapapun.</p>
             </div>
             <div style="text-align: center; margin: 24px 0;">
               <a href="https://pemdi.minselkab.go.id/login" style="background: #0f172a; color: white; padding: 14px 32px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 14px;">🔐 Pergi ke Halaman Login</a>
@@ -133,7 +145,7 @@ serve(async (req) => {
         `
         await sendEmailViaGmail(
           email,
-          'Pendaftaran Berhasil - Portal Evaluasi PEMDI',
+          emailSubject,
           emailHtml
         )
       } catch (emailErr: unknown) {

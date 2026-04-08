@@ -19,6 +19,7 @@ Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
 - **Feat (Email Template):** Email notifikasi pendaftaran kini memiliki tampilan HTML yang lebih profesional dan responsif dengan identitas Portal Evaluasi PEMDI.
 - **Feat (Email):** Menambahkan **Informasi Password** user ke dalam email aktivasi menggunakan tabel HTML yang rapi, lengkap dengan tabel Email, Password, dan Jabatan. Ditambahkan pula tombol langsung menuju halaman login dan peringatan agar user menyimpan informasi akunnya.
 - **Fix (Email Resend):** Memperbaiki email kirim ulang dari Admin — password user sekarang diambil dari database terlebih dahulu sebelum dikirim ke Edge Function, agar kolom password tidak tampil kosong dalam email aktivasi.
+- **Feat (Email Approval):** Menambahkan pengiriman email otomatis saat Admin menyetujui user (klik tombol Approve). Email berisi password login lengkap dan template berwarna hijau "✅ Akun Telah Diaktifkan" yang berbeda dari email pendaftaran. Subject email juga disesuaikan secara dinamis.
 - **Deploy:** Edge Function `api` di-deploy ulang dengan library `npm:nodemailer@6.9.9`.
 
 ## [2026-04-08] - Perbaikan Fitur Manajemen User
