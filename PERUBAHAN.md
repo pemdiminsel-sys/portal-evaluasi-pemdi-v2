@@ -3,6 +3,18 @@
 
 Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
 
+## [2026-04-08] - Fix: 3 Bug UI/UX - Profil Instansi, Riwayat Penilaian, Error Handling
+- **Fix (ProfileManagement - Profil Instansi Blank Screen):** Memperbaiki kemungkinan blank page pada halaman Profil Instansi dengan meningkatkan error handling di fungsi `fetchProfile()` dan `handleUpdate()`. Menambahkan validasi `authUser.id`, detailed error messages, dan console.error untuk debugging. Status loading sekarang proper handled.
+- **Fix (RiwayatPenilaian - Riwayat Penilaian Redirect):** Memperbaiki bug di mana Riwayat Penilaian tidak bisa diakses dari Sidebar. File `RiwayatPenilaian.jsx` sudah ada tapi TIDAK di-import dan TIDAK di-route di `Dashboard.jsx`. Sekarang sudah ditambahkan:
+  - Import: `import RiwayatPenilaian from './RiwayatPenilaian';`
+  - Route: `<Route path="riwayat" element={<RiwayatPenilaian />} />`
+- **Fix (Evaluasi - Tidak Ada Periode Aktif Error):** Memperbaiki blank page atau generic error saat tidak ada periode evaluasi aktif. Sekarang menampilkan user-friendly error page dengan:
+  - Icon dan heading yang jelas: "Periode Evaluasi Belum Aktif"
+  - Pesan deskriptif kepada user untuk hubungi Admin
+  - Info checklist untuk Admin tentang langkah-langkah setup periode
+  - Graceful error handling dengan `.single()` error detection
+- **Feat (Error Handling):** Menambahkan detailed console.error logging di ProfileManagement, EvaluasiMandiri, dan improved error messages untuk semua operasi async. Memudahkan debugging dan troubleshooting.
+
 ## [2026-04-08] - Fitur Password & Manajemen OPD dengan Indikator
 - **Feat (Register):** Menambahkan input field **Password** pada form registrasi user. User kini dapat membuat password sendiri saat mendaftar, dengan placeholder "Minimal 8 karakter". Field password menampilkan icon kunci (Lock) dan validasi required.
 - **Feat (OpdManagement):** Mengimplementasikan pengambilan **PIC OPD secara otomatis** dari user yang mendaftar di OPD tersebut. Sistem akan menampilkan nama PIC yang paling baru / terakhir mendaftar di OPD bersangkutan. Jika belum ada user yang mendaftar, akan menampilkan "Belum ditunjuk".
