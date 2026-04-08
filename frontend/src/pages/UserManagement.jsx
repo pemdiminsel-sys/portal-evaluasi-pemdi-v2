@@ -97,6 +97,20 @@ const UserManagement = () => {
                 }).eq('id', currentUser.id);
                 if (error) throw error;
                 toast.success('Profil user berhasil diperbarui');
+            } else {
+                // ENROLL NEW USER (ADMIN)
+                const { error } = await supabase.from('users').insert([{
+                    name: form.name,
+                    email: form.email,
+                    password: form.password || 'Minsel123!', // Default password if empty
+                    role: form.role,
+                    opd_id: form.opd_id || null,
+                    whatsapp: form.whatsapp,
+                    jabatan: form.jabatan,
+                    status_approval: 1 // Admin enroll is automatically active
+                }]);
+                if (error) throw error;
+                toast.success('User baru berhasil ditambahkan ke Matrix');
             }
             setShowModal(false);
             fetchData();
@@ -212,7 +226,7 @@ const UserManagement = () => {
                                                     {user.name}
                                                     <div className="flex items-center gap-1.5">
                                                         {user.surat_tugas_url && (
-                                                            <a href={`${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/surat-tugas/${user.surat_tugas_url}`} target="_blank" rel="noreferrer" className="text-indigo-500 hover:text-indigo-700 p-1 hover:bg-indigo-50 rounded-lg transition-colors" title="Lihat Surat Tugas">
+                                                            <a href={`${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/surat-tugas/${user.surat_tugas_url.startsWith('requests/') ? user.surat_tugas_url : 'requests/' + user.surat_tugas_url}`} target="_blank" rel="noreferrer" className="text-indigo-500 hover:text-indigo-700 p-1 hover:bg-indigo-50 rounded-lg transition-colors" title="Lihat Surat Tugas">
                                                                 <FileText size={16}/>
                                                             </a>
                                                         )}

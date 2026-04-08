@@ -19,3 +19,5 @@ Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
 - **Feat (Edge Function):** Memperbaharui *Supabase Edge Function* untuk mendukung mode pengiriman email saja (*resend only*) agar tidak terjadi error data duplikat saat admin menekan tombol kirim ulang.
 - **Fix (UserManagement):** Memperbaiki posisi tombol email biru agar berada tepat di samping nama user dan memastikan tidak terjadi *redirect* atau pembukaan tab baru yang tidak diinginkan saat tombol diklik.
 - **Feat (UserManagement):** Menambahkan fitur **Enable/Disable Status** pada tabel user, memungkinkan admin untuk menonaktifkan akun yang sudah aktif atau mengaktifkan kembali akun yang sebelumnya ditolak.
+- **Fix (UserManagement):** Menyelesaikan masalah di mana Admin tidak dapat menambahkan user baru lewat tombol "Force Enroll". Menambahkan logika `INSERT` ke database dengan *password default* `Minsel123!`.
+- **Fix (Storage Path):** Memperbaiki tautan (link) "Lihat Surat Tugas" yang sebelumnya sering menghasilkan error *Not Found* atau *Broken Link* dengan menambahkan pengecekan otomatis awalan folder `/requests/` pada path file di Supabase Storage.
