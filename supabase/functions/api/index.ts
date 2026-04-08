@@ -75,6 +75,18 @@ serve(async (req) => {
       }
 
       // Validasi status approval - user harus diaktifkan admin terlebih dahulu
+      // Status approval: 0=Pending, 1=Approved, 2=Rejected
+      if (!user.status_approval || user.status_approval === null || user.status_approval === undefined) {
+        // Data lama atau belum di-update - treat sebagai pending
+        return new Response(JSON.stringify({ 
+          success: false, 
+          message: 'Akun Anda masih menunggu verifikasi dari Admin. Status data belum tersinkronisasi.',
+          status: 0
+        }), {
+          status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        })
+      }
+
       if (user.status_approval !== 1) {
         const statusMessage = user.status_approval === 0 
           ? 'Akun Anda masih menunggu verifikasi dari Admin. Silakan tunggu email persetujuan.'

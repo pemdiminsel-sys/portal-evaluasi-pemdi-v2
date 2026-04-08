@@ -22,6 +22,20 @@ Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
   - "Login Gagal: Password salah." — jika password tidak sesuai
   - "Akun Anda masih menunggu verifikasi dari Admin..." — jika status_approval = 0
   - "Akun Anda telah ditolak oleh Admin..." — jika status_approval = 2 (Rejected)
+- **Fix (Robustness):** Improve handling untuk NULL/undefined `status_approval` di browser lama maupun data user yang belum ter-update status_approval-nya (treat sebagai pending).
+- **⚠️ PENTING - DEPLOYMENT:** Fix ini memerlukan **deploy Edge Function ke Supabase** agar bekerja. Jalankan:
+  ```bash
+  supabase functions deploy api
+  ```
+  Jika belum install Supabase CLI, install terlebih dahulu:
+  ```bash
+  npm install -g supabase
+  ```
+  Kemudian login ke Supabase:
+  ```bash
+  supabase login
+  ```
+  **TANPA deploy ini, fix keamanan tidak akan berlaku!**
 
 ## [2026-04-08] - Fitur Password & Manajemen OPD dengan Indikator (Utama)
 
