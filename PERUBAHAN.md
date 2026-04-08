@@ -3,6 +3,21 @@
 
 Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
 
+## [2026-04-08] - Fix: Vercel Build Configuration untuk Vite
+- **Fix (Deployment - Vercel Build Not Triggering):** Memperbaiki konfigurasi `vercel.json` yang menggunakan `@vercel/static-build` yang tidak compatible dengan Vite build system. Frontend tidak bisa di-build di Vercel karena builder yang salah.
+- **Solution:** Mengubah konfigurasi untuk menggunakan `@vercel/node` builder dengan explicit `buildCommand: "cd frontend && npm install && npm run build"` dan `outputDirectory: "frontend/dist"`. Ini memastikan Vercel properly:
+  1. Install dependencies frontend
+  2. Jalankan `npm run build` untuk generate bundle Vite
+  3. Serve file statis dari `frontend/dist`
+- **Cleaning:** Menghapus `frontend/vercel.json` yang conflicting dengan routing root-level `vercel.json`. Konfigurasi terpusat di root `vercel.json` saja untuk menghindari conflict.
+- **Routes Updated:** Routing sudah proper configured untuk:
+  - `/api/*` → backend API (`backend/api/index.php`)
+  - `/assets/*` → frontend static assets (`frontend/dist/assets`)
+  - `*` → SPA routing ke `frontend/dist/index.html`
+- **Environment Variables:** Pastikan di Vercel Project Settings sudah di-set:
+  - `VITE_API_BASE_URL` = `/api` (atau sesuai Supabase endpoint)
+- **Result:** ✅ Commit `af850a5` pushed. Vercel sekarang akan otomatis build & deploy saat ada push ke GitHub.
+
 ## [2026-04-08] - Fix: 3 Bug UI/UX - Profil Instansi, Riwayat Penilaian, Error Handling
 - **Fix (ProfileManagement - Profil Instansi Blank Screen):** Memperbaiki kemungkinan blank page pada halaman Profil Instansi dengan meningkatkan error handling di fungsi `fetchProfile()` dan `handleUpdate()`. Menambahkan validasi `authUser.id`, detailed error messages, dan console.error untuk debugging. Status loading sekarang proper handled.
 - **Fix (RiwayatPenilaian - Riwayat Penilaian Redirect):** Memperbaiki bug di mana Riwayat Penilaian tidak bisa diakses dari Sidebar. File `RiwayatPenilaian.jsx` sudah ada tapi TIDAK di-import dan TIDAK di-route di `Dashboard.jsx`. Sekarang sudah ditambahkan:
