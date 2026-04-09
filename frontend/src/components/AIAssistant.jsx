@@ -42,45 +42,40 @@ const AIAssistant = () => {
         setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
         setLoading(true);
 
-        // Optimasi Knowledge Base untuk API (Hapus spasi/baris kosong berlebih)
+        // Optimasi Knowledge Base (Sangat Agresif untuk stabilitas)
         const optimizedKnowledge = KNOWLEDGE_BASE
             .split('\n')
             .map(line => line.trim())
             .filter(line => line.length > 0)
-            .join('\n')
-            .slice(0, 100000); // Limit ke 100k karakter untuk menjaga stabilitas
+            .join(' ') // Gabung dengan spasi saja untuk hemat token
+            .slice(0, 50000); // Limit lebih ketat 50k karakter
+
+        console.log('Sending payload size:', optimizedKnowledge.length);
 
         const tryGemini = async () => {
-            if (!API_KEYS.gemini) throw new Error('Gemini Key tidak tersedia');
+            if (!API_KEYS.gemini) throw new Error('Key Gemini Kosong');
             setEngineStatus('Admin 1...');
-            const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEYS.gemini}`, {
+            const resp = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEYS.gemini}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     contents: [{ 
-                        role: 'user',
                         parts: [{ 
-                            text: `SISTEM: Kamu adalah Pakar Evaluasi Pemdi Minahasa Selatan. Gunakan BASIS PENGETAHUAN berikut sebagai SATU-SATUNYA sumber kebenaran (Ground Truth).\n\nBASIS PENGETAHUAN:\n${optimizedKnowledge}\n\nUSER: ${userMessage}` 
+                            text: `BASIS DATA:\n${optimizedKnowledge}\n\nINSTRUKSI: Kamu Pakar SPBE Pemdi. Jawab singkat padat.\n\nUSER: ${userMessage}` 
                         }] 
-                    }],
-                    generationConfig: {
-                        temperature: 0.1,
-                        topK: 40,
-                        topP: 0.95,
-                        maxOutputTokens: 2048,
-                    }
+                    }]
                 })
             });
             const data = await resp.json();
-            if (data.error) throw new Error(data.error.message || 'Gemini Error');
+            if (data.error) throw new Error(data.error.message);
             return data.candidates?.[0]?.content?.parts?.[0]?.text;
         };
 
         const tryGroq = async () => {
-            if (!API_KEYS.groq) throw new Error('Groq Key tidak tersedia');
+            if (!API_KEYS.groq) throw new Error('Key Groq Kosong');
             setEngineStatus('Admin 2...');
-            // Truncate knowledge for Groq (Limit 8k tokens ≈ 30k characters)
-            const groqKnowledge = optimizedKnowledge.slice(0, 25000);
+            // Groq sangat terbatas (8k tokens). Limit 15k karakter saja.
+            const groqKnowledge = optimizedKnowledge.slice(0, 15000);
             const resp = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
                 method: 'POST',
                 headers: { 
@@ -90,21 +85,18 @@ const AIAssistant = () => {
                 body: JSON.stringify({
                     model: "llama-3.3-70b-versatile",
                     messages: [
-                        { 
-                            role: "system", 
-                            content: `Kamu adalah Pakar Evaluasi Pemdi Minahasa Selatan. Jawab HANYA berdasarkan BASIS PENGETAHUAN ini.\n\nBASIS PENGETAHUAN:\n${groqKnowledge}` 
-                        },
+                        { role: "system", content: `Pakar SPBE Pemdi. Data:\n${groqKnowledge}` },
                         { role: "user", content: userMessage }
                     ]
                 })
             });
             const data = await resp.json();
-            if (data.error) throw new Error(data.error.message || 'Groq Error');
+            if (data.error) throw new Error(data.error.message);
             return data.choices?.[0]?.message?.content;
         };
 
         const tryDeepSeek = async () => {
-            if (!API_KEYS.deepseek) throw new Error('DeepSeek Key tidak tersedia');
+            if (!API_KEYS.deepseek) throw new Error('Key DeepSeek Kosong');
             setEngineStatus('Admin 3...');
             const resp = await fetch(`https://api.deepseek.com/chat/completions`, {
                 method: 'POST',
@@ -115,20 +107,13 @@ const AIAssistant = () => {
                 body: JSON.stringify({
                     model: "deepseek-chat",
                     messages: [
-                        { 
-                            role: "system", 
-                            content: `Kamu adalah Pakar Evaluasi Pemdi Kabupaten Minahasa Selatan (Ground Truth Mode).\n\nBASIS PENGETAHUAN:\n${optimizedKnowledge}` 
-                        },
+                        { role: "system", content: `Pakar SPBE Pemdi. Data:\n${optimizedKnowledge}` },
                         { role: "user", content: userMessage }
-                    ],
-                    stream: false
+                    ]
                 })
             });
-            if (!resp.ok) {
-                const errorData = await resp.text();
-                throw new Error(`DeepSeek Error: ${resp.status} - ${errorData.slice(0, 100)}`);
-            }
             const data = await resp.json();
+            if (data.error) throw new Error(data.error.message);
             return data.choices?.[0]?.message?.content;
         };
 
