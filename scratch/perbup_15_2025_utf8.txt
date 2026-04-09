@@ -1,0 +1,421 @@
+﻿/
+BUPATI MINAHASA SELATAN PROVINSI SULAWESI UTARA
+PERATURAN BUPATI MINAHASA SELATAN
+NOMOR 15 TAHUN 2025 TENTANG
+PENYELENGGARAAN SISTEM PEMERINTAHAN BERBASIS ELEKTRONIK
+DENGAN RAHMAT TUHAN YANG MAHA ESA
+BUPATI MINAHASA SELATAN,
+Menimbang:
+bahwa untuk mewujudkan tata kelola pemerintahan yang bersih, efektif, transparan, dan akuntabel serta pelayanan publik yang berkualitas dan terpercaya diperlukan sistem pemerintahan berbasis elektronik;
+bahwa sistem pemerintahan berbasis elektronik yang terpadu merupakan sistem utama pembangunan yang cerdas akan membutuhkan keterlibatan semua pemangku kepentingan dalam pembangunan dan penyediaan sistem berbasis teknologi informasi dan komunikasi;
+bahwa berdasarkan ketentuan Pasal 61 ayat (1) Peraturan Presiden Nomor 95 Tahun 2018 tentang Sistem Pemerintahan Berbasis Elektronik, setiap Kepala Daerah mempunyai tugas melakukan koordinasi dan menetapkan kebijakan sistem pemerintahan berbasis elektronik di Pemerintah Daerah;
+bahwa berdasarkan pertimbangan sebagaimana dimaksud dalam huruf a, huruf b, dan huruf c, perlu menetapkan Peraturan Bupati tentang Penyelenggaraan Sistem
+Pemerintahan Berbasi$ Elektronik;
+
+Mengingat:
+Undang-Undang Nomor 1() Tahun 2003 tentang Pembentukan Kabupaten Minahasa Selatan dan Kota Tomohon di Provinsi Sulawesi Utara (Lembaran Negara Republik Indonesia Tahun 2003 Nomor 30, Tambahan Lembaran Negara Republik
+Indonesia Nomor 4273);
+Undang-Undang Nomor 23 Tahun 2014 tentang Pemerintahan
+
+Daerah (Lembaran Negara Republik Indonesia Tahun 2014 Nomor 244, Tambahan Lembaran Negara Republik Indonesia Nomor 5587), sebagaimana telah diubah beberapa kali terakhir dengan Undang-Undang Nomor 6 Tahun 2023 tentang Penetapan Peraturan Pemerintah Pengganti Undang — Undang
+Nomor 2 Tahun 2022 Tentang Cipta Kerja Menjadi Undang — Undang (Lembaran Negara Republik Indonesia Tahun 2023 Nomor 41, Tambahan Lembaran Negara Republik Indonesia Nornor 6856);
+Peraturan Pemerintah Nomor 71 Tahun 2019 tentang Penyelenggaraan Sistem dan Transaksi Elektronik (Lembaran
+Negara Republik Indonesia Tahun 2019 Nomor 185, Tambahan Lembaran Negara Republik Indonesia Nomor 6400);
+Peraturan Presiden Nomor 95 Tahun 2018 tentang Sistem Pemerintahan Berbasis Elektronik (Lembaran Negara Republik
+Indonesia Tahun 2018 Nomor 182);
+MEMUTUSKAN:
+Menetapkan: PERATURAN BUPATI TENTANG PENYELENGGARAAN SISTEM PEMERINTAH+N BERBASIS ELEKTRONIK.
+BAB 1
+KETENTUAN UMUM
+Pasal 1
+Dalam Peraturan Bupati ini yang dimaksud dengan:
+Daerah adalah Kabupaten Minahasa Selatan.
+Pemerintah Daerah adalah Bupati sebagai unsur penyelenggara pemerintahan Daerah yang memimpin pelaksanaan unsur pemerintahan yang menjadi kewenangan Daerah otonom.
+Bupati adalah Bupati Minahasa Selatan.
+Sekretaris I Daerah adalah Sekretaris Daerah Kabupaten Minahasa Selatan.
+Dinas Komunikasi dan Informatika yang selanjutnya disebut DISKOMINFO adalah Dinas Komunikasi dan Informatika Kabupaten Minahasa Selatan.
+Perangkat Daerah yang selanjutnya disingkat PD adalah perangkat daerah pada Pemerintah Daerah yang merupakan unsur pembantu Bupati dalam penyelenggaraan pemerintah daerah. /
+Sistem Pemerintahan Berbasis Elektronik yang selanjutnya disingkat SPBE adalah penyelenggaraan pemerintahan yang memanfaatkan teknologi informasi dan komunikasi untuk memberikan layanan kepada pengguna SPBE.
+Tata Kelola SPBE adalah kerangka kerja yang memastikan terlaksananya pengaturan, pengarahan, dan pengendalian dalam penerapan SPBE secara terpadu.
+Manajemen SPBE adalah serangkaian proses untuk mencapai /SPBE yang efektif, efisien, dan berkesinambungan, serta layanan SPBE yang berkualitas.
+10.Layanan SPBE adalah keluaran yang dihasilkan oleh 1 (satu) atau beberapa fungsi aplikasi SPBE dan yang memiliki nilai manfaat.
+11 .Arsitektur SPBE Pemerintah Daerah, yang selanjutnya disebut Arsitektur SPBE adalah kerangka dasar yang mendeskripsikan integrasi proses bisnis, data dan informasi, infrastruktur SPBE, aplikasi SPBE, dan keamanan SPBE untuk menghasilkan layanan SPBE yang terintegrasi yang diterapkan di pemerintah daerah.
+12,Peta Rencana SPBE Pemerintah Daerah, yang selanjutnya disebut Peta Rencana SPBE adalah dokumen yang mendeskripsikan arah dan langkah penyiapan dan
+pelaksanaan SPBE yang terintegrasi dan diterapkan di pemerintah daerah.
+13.Proses Bisnis adalah sekumpulan kegiatan yang terstruktur dan saling terkait dałam pelaksanaan tugas dan fungsi instansi pusat dan pemerintah daerah masing-masing.
+14.1nfrastruktur SPBE adalah semua perangkat keras, perangkat lunak, dan fasilitas yang menjadi penunjang ułama untuk menjalankan sistem, aplikasi, komunikasi data, pengolahan dan penyimpanan data, perangkat integrasi/penghubung, dan perangkat elektronik lainnya.
+15.Pusat Data adalah fasilitas yang digunakan untuk penempatan sistem elektronik dan komponen terkait lainnya untuk keperluan benempatan, penyimpanan dan pengolahan data, dan pemulihan data.
+16.Jaringan intra adalah jaringan tertutup yang menghubungkan antara simpul jaringan dalam suatu organisasi.
+17.Sistem Penghubung Layanan adalah perangkat integrasi/penghubung untuk melakukan pertukaran layanan
+	SPBE.	/
+18.Aplikasi SPBE adalah satu atau sekumpulan program komputer dan prosedur yang dirancang untuk melakukan tugas atau fungsi layanan SPBE.
+19.Aplikasi Umum adalah Aplikasi SPBE yang sama, standar, dan digunakan oleh instansi pusat dan/ atau pemerintah daerah.
+20.Aplikasi Khusus adalah Aplikasi SPBE yang dibangun, dikembangkan, digunakan, dan dikelola oleh instansi pusat atau pemerintah daerah tertentu untuk memenuhi kebutuhan khusus yang bukan kebutuhan instansi pusat dan pemerintah daerah lain.
+21. Keamanan SPBE adalah pengendalian keamanan yang terpadu dałam SPBE.
+22.Audit Teknologi Informasi dan Komunikasi dengan tujuan untuk menetapkan tingkat kesesuaian antara teknologi informasi dan komunikasi dengan kriteria dan/ atau standar yang telah ditetapkan.
+23.Pengguna "BE adalah instansi pusat, pemerintah daerah, pegawai Aparatur Sipil Negara, perorangan, masyarakat, pelaku Usaha, dan pihak lain yang memanfaatkan Layanan SPBE./
+24.1nformasi elektronik yang selanjutnya disebut dengan Informasi ądalah satu atau sekumpulan data elektronik, termasuk tetapi tidak terbatas pada tulisan, suara, gambar, peta, rancangan, foto, elektronik data interchange, surat elektronik (electronic mail), telegram, teleks, telecopy atau sejenisnya, huruf, tanda, angka, kode akses, simbol, atau perforasi yang telah diolah yang memiliki arti atau dapat dipahami oleh orang yang mampu memahaminya.
+25.Pusat Pemulihan Bencana adalah suatu fasilitas yang digunakan untuk memulihkan kembali data atau informasi serta fungsi-fungsi penting SPBĘ yang terganggu atau rusak akibat terjadinya bencana yang disebabkan oleh alam atau manusia. /
+26.Sumber daya manusia teknologi informasi komunikasi adalah pegawai PD yang memiliki tugąs dan wewenang terkait dengan tekn logi irłiOrmasi dan komunikasi.
+27.Teknologi Informasi dan Komunikasi yang selanjutnya disingkat TIK adalah segala kegiatan yang terkait dengan pemrosesan, pengelolaan dan penyampaian atau pemindahan informasi antar sarana/ media.
+28.PD Mandiri TIK adalah PD yang dinilai telah mampu membangun, mengembangkan, dan mengelola aplikasi dan/atau infrastruktur SPBE.
+29.PD Wali Data adalah PD yang memiliki wewenang membuat, membaca, memperbaharui, dan menghapus data tertentu sesuai dengan uraian tugas pokok dan fungsinya.
+30.PD Pemilik Layanan adalah PD yang berdasarkan uraian tugas pokok dan fungsinya merupakan penanggung jawab utama layanan terkait.
+31.Keamanan informasi adalah perlindungan data dan informasi dalam SPBE dari akses, penggunaan, gangguan, dan/atau penghancuran oleh pihak yang tidak berwenang.
+32.Repositori ädalah tempat penyimpanan aplikasi, source code, dan berbagai dokumentasi aplikasi lainnya.
+33 .Petunjuk TCknis adalah panduan detail aktivitas-aktivitas yang harus dilakukan, mencakup di dalamnya: dokumen yang digunakan dan/atau yang dihasilkan, cara atau metode yang digunakan, data masukan dan informasi atau produk yang dihasilkan, dan standar masing-masing aktivitas, masukan, dan keluaran.
+Pasal 2
+Maksud ditetapkannya Peraturan Bupati ini untuk mengatur pelaksanaan SPBE di lingkungan Pemerintah Daerah.
+Tujuan ditetapkannya Peraturan Bupati ini untuk memberikan acuan, pedoman dan panduan pelaksanaan SPBE di lingkungan Pemerintah Daerah.
+Pasal 3
+SPBE di lingkungan Pemerintah Daerah dilaksanakan berdasarkan prinsip:
+efektivitas;
+keterpaduan;
+kesinambungan;
+efisiensi;
+akuntabilitas;
+interoperabilitas; dan
+keamanan.
+Efektivitas sebagaimana dimaksud pada ayat (1) huruf a merupakan optimalisasi pemanfaatan sumber daya dalam mendukung SPBE yang berhasil guna sesuai dengan kebutuhan.
+Keterpaduan sebagaimana dimaksud pada ayat (1) huruf b merupakan pengintegrasian sumber daya yang mendukung SPBE.
+Kesinambungan sebagaimana dimaksud pada ayat (1) huruf c merupakarå keberlanjutan SPBE secara terencana, bertahap, dan terus menerus sesuai dengan perkembangannya.
+Efisiensi sebagaimana dimaksud pada ayat (1) huruf d merupakari optimalisasi pemanfaatan sumber daya untuk mendukung SPBE yang tepat guna.
+Akuntabilitas sebagaimana dimaksud pada ayat (1) huruf e merupakan kejelasan fungsi pertanggungjawaban dari SPBE.
+Interoperabilitas sebagaimana dimaksud pada ayat (1) huruf f merupakaą koordinasi dan kolaborasi antar Proses Bisnis dan antar sistem elektronik, dalam rangka pertukaran data, informasi, gtau Layanan SPBE.
+Keamanan sebagaimana dimaksud pada ayat (1) huruf g
+merupakan kerahasiaan, keutuhan, ketersediaan, keaslian, tidak ada penolakan (nonrepudiation) sumber daya yang mendukung SPBE.
+Pasal 4
+Ruang lingkup Peraturan Bupati ini adalah:
+tata kelola SPBE;
+manajemen SPBE;
+audit teknologi informasi dan komunikasi serta pemantauan dan evaluasi SPBE; dan
+penyelenggaraan SPBE.
+BAB 11
+TATA KELOLA SISTEM PEMERINTAHAN BERBASIS
+ELEKTRONIK
+Pasai 5
+Tata Kelola SPBE bertujuan untuk memastikan penerapan unsur-unsur SPBE secara terpadu.
+Unsur-unsur SPBE sebagaimana dimaksud pada ayat (1) meliputi: /
+arsitektur SPBE;
+peta rencana SPBE;
+rencana dan anggaran SPBE;
+proses bisnis;
+data dan informasi;
+infrastruktur SPBE;
+aplikasi SPBE;
+keamanan SPBE; dan
+layanan SPBE.
+Bagian Kesatu
+Arsitektur Sistem Pemerintahan Berbasis Elektronik Pasal 6
+Arsitektur SPBE bertujuan untuk memberikan panduan dalam pelaksanaan integrasi proses bisnis, data dan informasi, infrastruktur SPBE, Aplikasi SPBE, dan Keamanan SPBE untuk menghasilkan Layanan SPBE yang terpadu di lingkungan Pemerintah Daerah.
+Domain arsitektur SPBE mendeskripsikan substansi arsitektur yang meliputi: /
+domain arsitektur proses bisnis;
+domain arsitektur data dan informași;
+domain arsitektur infrastruktur SPBE;
+domain arșitektur aplikasi SPBE;
+domain arsitektur kcamanan SPBE; dan
+domain arsitektur layanan SPBE.
+Pelaksanaan SPBE di lingkungan Pemerintah Daerah wajib mengacu pada Arsitektur SPBE.
+Arsitektur SPBE Pemerintah Daerah dilakukan reviu pada paruh waktu dan tahun terakhir pelaksanaan atau sewaktu waktu sesuai dengan kebutuhan.
+Reviu Arsitektur SPBE Pemerintah Daerah sebagaimana dimaksud pada ayat (1) dilakukan berdasarkan:
+perubahan Arsitektur SPBE Nasional;
+hasil perhantauan dan evaluasi SPBE di Pemerintah Daerah;
+perubahan pada unsur SPBE Pemerintah Daerah sebagaimana dimaksud dalam Pasal 5 ayat (2); atau
+perubahan Rencana Pembangunan Jangka Menengah Daerah./
+Reviu Arshtektur SPBE Pemerintah Daerah sebagaimana dimaksud Pada ayat (5) dilakukan Oleh Bupati.
+Bagian Kedua
+Peta Rencana $istem Pemerintahan Berbasis Elektronik Pasal 7
+Peta Rencana SPBE disusun dengan berpedoman pada Arsitektur SPBE Pemerintah Daerah, Rencana Pembangunan Jangka Menengah Daerah, dan Rencana Strategis Pemerintah Daerah.
+Peta Rencana SPBE disusun untuk jangka waktu 5 (lima) tahun. /
+Peta Rencana SPBE ditetapkan dengan Keputusan Bupati.
+Peta Rehcana SPBE Pemerintah Daerah dilakukan reviu pada paruh waktu dan tahun terakhir pelaksanaan atau sewaktuwaktu sesuai dengan kebutuhan
+Reviu Peta Rencana SPBE Pemerintah Daerah sebagaimana dimaksud pada ayat (4) dilakukan berdasarkan:
+perubahan Peta Rencana SPBE Nasional;
+perubahan rencana strategis Pemerintah Daerah;
+perubahan Arsitektur SPBE Pemerintah Daerah; atau
+hasil pemantauan dan evaluasi SPBE Pemerintah Daerah.
+Reviu Pete Rencana SPBE Pemerintah Daerah sebagaimana dimaksud pada ayat (5) dilakukan Oleh Bupati.
+Bagian Ketiga
+Rencana dan Anggaran Sistem Pemerintahan Berbasis
+Elektronik Pasal 8
+Rencana dan anggaran SPEE disusun Oleh PD sesuai dengan proses perencanaan dan penganggaran tahunan Pemerintah Daerah.
+Rencana dan anggaran SPBE sebagaimana dimaksud pada ayat (1) berpedoman pada Arsitektur SPBE.
+Untuk keterpaduan rencana dan anggaran SPBE, penyusunan rencana dan anggaran SPBE Pemerintah Daerah dikoordinasikan Oleh PD yang menyelenggarakan urusan pemerintahan di bidang perencanaan pembangunan Daerah.
+Bagian Keempat
+Proses Bisnis Pasal 9
+(I) Penyusunan Proses Bisnis bertujuan untuk membcrikan pedoman dalam penggunaan data dan informasi serta penerapan Aplikasi SPBE, Keamanan SPBE, dan Layanan SPBE.
+Proses Bisnis disusun Oleh PD pemilik Layanan SPBE berdasarkan pada Arsitektur SPBE
+Proses Bisnis yang saling terkait disusun secara terintegrasi untuk mendukung pembangunan atau pengembangan Aplikasi SPBE dan Layanan SPBE yang terintegrasi.
+Bagian Kelima
+Data dan Informasi Pasal 10
+Setiap PD menyediakan data dan informasi sesuai dengan ketentuan peraturan perundang-undangan.
+Data dan informasi sebagaimana dimaksud pada ayat (1) harus memenuhi standar keamanan, kerahasiaan, kekinian, akurasi serta kebutuhan data dan informasinya.
+Struktur serta format data dan informasi sebagaimana dimaksud pada ayat (1) harus sesuai dengan standar yang ditetapkan dengan memperhatikan prinsip interoperabilitas
+dan keamanan
+Penggunaan data dan informasi sebagaimana dimaksud pada ayat (1) dilaksanakan dengan mengacu pada Arsitektur SPBE.
+Pasal 11
+PerlindunUan keamanan, kerahasiaan, kekinian, akurasi serta keutuhan data dan informasi sebagaimana dimaksud dalam Pasal 10 ayat (2) menjadi tanggung jawab PD sesuai dengan kewenangannya dengan memperhatikan tugas dan fungsi masing-masing PD.
+Pelaksanaan perlindungan sebagaimana dimaksud pada ayat (1) dilakukan dengan berpedoman pada ketentuan peraturan perundang-undangan.
+Pelaksanaan perlindungan sebagaimana dimaksud pada ayat (2) dilakukan dengan:
+menetapkan klasifikasi keamanan, pembatasan akses dan /keamanan Iainnya;
+menerapkan autentikasi dan pendeteksian modifikasi;
+menjaga kerahasiaan data dan informasi dari pihak yang tidak berwenang;
+menjaga keutuhan dan orisinalitas data dan informasi; dan menjamin ketersediaan akses data dan informasi Oleh pihak yang berwenang.
+Pasal 12
+Dalam rangka perlindungan keamanan, kerahasiaan, kekinian, akurasi serta keutuhan data dan informasi sebagaimana dimaksud dalam Pasal 11 ayat (I), PD menyusun kebijakan kearnanan informasi.
+Kebijakan Keamanan informasi sebagaimana dimaksud pada ayat (1) mencakup antara Iain:
+panduan penggunaan sarana-prasarana TIK di lingkungan Pemeriptah Daerah, termasuk penggunaan akses internet, pengaksesan e-mail resmi kantor, penggunaan akscs interne!, pengaksesan dari kantor baik dari Local Area Network, Wide Area Network, maupun internet;
+panduan membawa peralatan TIK pribadi ke kantor dan menghubungkannya dengan sarana-prasarana TIK di /Pemerintah Daerah;
+kewajiban setiap PD untuk mengimplementasikan perangkat lunak dan perangkat keras keamanan informasi di sistem informasi PD tersebut atau Local Area Network, khususnya sistem TIK yang langsung terkoneksi dengan internet; dan
+kewajiban mengimplementasikan perangkat lunak dan perangkat keras keamanan informasi di sistem antar PD atau Wide Area Network, serta memonitor keamanan informasi khususnya di sarana-prasarana TIK yang menjalankan fungsi vital bagi jalannya Pemerintahan Daerah.
+(3) Kebijakan keamanan informasi sebagaimana dimaksud pada ayat (2) berlaku untuk semua PD penyedia data dan informasi.
+Bagian Keenam
+	/	Infrastruktur SPBE
+Paragraf 1
+Pasal 13
+Infrastruktur SPBE terdiri atas:
+Jaringan Intra Pemerintah Daerah; dan
+sistem penghubung layanan instansi pusat dan Pemerintah Daerah.
+Penggunaan Infrastruktur SPBE Pemerintah Daerah bertujuan untuk meningkatkan efisiensi, keamanan, dan kemudahan integrasi galam rangka memenuhi kebutuhan Infrastruktur SPBE bagi internal dan antar PD.
+Penggunaan Infrastruktur SPBE Pemerintah Daerah sebagaimana dimaksud pada ayat (2) dilakukan secara bagi pakai oleh internal PD dan antar PD, dan saling terhubung.
+Pembangunan dan pengembangan Infrastruktur SPBE Pemerintah Daerah harus didasarkan pada Arsitektur SPBE.
+Jaringan Intra Pemerintah Daerah sebagaimana dimaksud pada ayat (1) huruf a merupakan jaringan interkoneksi tertutup yang men;hubungkan antar PD
+Sistem Penghubung Layanan Instansi Pusat dan Instansi Pemerintah Daerah sebagaimana dimaksud pada ayat (1) huruf (b) merupakan perangkat integrasi pertukaran Layanan SPBE antar PD dan antara PD dengan Instansi Pusat
+Paragraf 2
+Jaringan Intra Pemerintah Vaerah Pasal 14
+Penggunaan Uaringan Intra Pemerintah Daerah bertujuan untuk menjaga keamanan dalam melakukan pengiriman data dan informasi antar simpul jaringan dalam Pemerintah Daerah
+Setiap PD harus menggunakan Jaringan Intra Pemerintah Daerah sepagaimana dimaksud pada ayat (I).
+Perencanaan, pembangunan, pemeliharaan, pengoperasian dan/atau pengembangan Jaringan Intra Pemerintah Daerah ditetapkan sebagai berikut:
+DISKOMINFO melaksanakan perencanaan, pembangunan, pemeliharaan, pengoperasian dan/ atau pengembangan infrastruktur Wide Area Network hingga router PD seluruh Pemerintah Daerah termasuk jaringan fiber optic Pemerintah Daerah.
+PD Mandiri TIK melaksanakan perencanaan, pembangunan, pemeliharaan, pengoperasian dan/ atau pengembangan infrastruktur Locgl Area Network, dan infrastruktur khusus PD sesuai dengan kewenangannya dengan memperhatikan tugas pokok dan fungsi masingmasing PD.
+Perencanaan, pembangunan, pemeliharaan, pengoperasian dan/atau pengembangan infrastruktur Local Area Network, dan infrastruktur khusus PD selain PD Mandiri TIK dapat dilaksanakan oleh DISKOMINFO.
+Pasal 15
+Infrastruktur Jaringan Intra Pemerintah Daerah sebagaimana dimaksud dalam Pasal 14 harus sesuai dengan standar yang ditetapkari dan ketentuan peraturan perundang-undangan.
+Infrastruktur Local Area Network, PD harus dapat diperiksa oleh DISKPMINFO.
+Pasal 16
+Setiap PD wajib menyerahkan diagram infrastruktur Local Area Network, terkini kepada DISKOMINFQ paling sedikit 1 (satu) kali dalam setahun.
+Setiap PD wajib melaporkan detail perubahan infrastruktur Local Areff Network, apabila terdapat perubahan infrastruktur Local Area Network.
+Pasal 17
+(l) Setiap PD wajib mengadakan, mengembangkan, dan mengelola laman wep yang berisi informasi dan layanan sesuai ketentuan peraturan perundang-undangan dengan memperhatikan tugas pokok dan fungsi masing-masing PD.
+Laman web setiap PD sebagaimana dirnaksud pada ayat (1) harus merupakan sub domain atau menginduk pada portal Pemerintah Daerah yaitu https:/lwww.minselkab.go.id.
+Setiap PD wajib menggunakan surat elektronik resmi Pemerintah Paereh dalam setiap transaksi elektronik urusan kedinasan.
+$urat elektronik resmi PD sebagaimana dimaksud pada ayat (3) wajib menggunakan domain Pemerintah Darah, yaitu pd@ninselkap.go..id.
+Paragraf 3
+/ Sistem Penghubung Layanan Pasal 18
+PenggunaÅn Sistem Penghubung Layanan Pemerintah Daerah bertujuan untuk memudahkan dalam melakukan integrasi antar Layanan SPBE.
+Setiap PD wajib menyediakan Sistem Penghubung Layanan untuk layanan SPBE yang membutuhkan integrasi dengan data dan/ atau layanan SPBE yang dikelolanya.
+Sistem Penghubung Layanan sebagaimana yang dimaksud pada ayat (2) dibangun oleh DİSKOMINFO atau PD Mandiri TIK.
+Dalam penyediaan Sistem Penghubung Layanan sebagaimana
+dimaksud membuat pada keterhubungan ayat (2), PD harus:dan akses Data Jaringan Intra PD
+dengan 4aringan Intra PD yang membutuhkan;
+memenuhi standar interoperabilitas antar Layanan SPBE dan sesuai dengan ketentuan peraturan perundangundangan; dan
+mendapatkan pertimbangan kelaikan operasi dan keamanan dari DIS$OMINFO.
+Bagian Ketujuh
+Aplikasi SPBE
+Pasal 19
+Aplikasi SPBE digunakan Pemerintah Daerah untuk memberilgn Layanan SPBE.
+Aplikasi SPBE sebagaimana dimaksud pada ayat (1) terdiri ataş:	/
+aplikasi umum; dan
+aplikasi khusus.
+Keterpaduan perencanaan, pembangunan, pemeliharaan dan/ atau pengembangan aplikasi sebagaimana dimaksud pada ayat (1) dikoordinasikan oleh DİSKOMINFO dan harus didasarkan pada Arsitektur SPBE.
+Pelaksanaan perencanaan, pembangunan, pemeliharaan dan/atau pengembangan aplikasi sebagaimana dimaksud pada ayat (3) ditetapkan sebagai berikut:
+Perencanaan, pembangunan, pemeliharaan dan/ atau pengembangan Aplikasi Umum dilakukan oleh Instansi Pusat atau DISKOMINFO dalam hal daftar resmi Aplikasi Umum, belum ditetapkan oleh Instansi Pusat yang berwenang.
+Dalam hal dua atau lebih Aplikasi Umum dan Instansi Pusat tidak terintegrasi, maka DISKOMINFO dapat merencanakan, membangun, memelihara dan/ atau mengembangkan aplikasi penghubung antar Aplikasi Umum
+Perencanaan, pembangunan, pemeliharaan dan/ atau pengerpbangan Aplikaşi Khuşus dilakukan oleh DİSKOMINFO atau PD Mandiri TIR.
+Aplikasi sşbagaimana dimakşud pada ayat (1) dioperasikan oleh PD Pemilik Layanan.
+Aplikasi' sebagaimana dimakşud pada ayat (1) harus sesuai dengan standar yang ditetapkan dan ketentuan peraturan perundang-undangan.
+Pasal 20
+PD yang melakukan pembangunan dan/ atau pengembangan Aplikasi, wajib melakukan pengujian dan reviu Aplikasi yang dirancang dan/ atau dikembangkan.
+Pasal 21
+(I) Setiap PD harus menerapkan Keamanan SPBE.
+Dalam menerapkan Keamanan SPBE dan menyelesaikan permasalahan Keamanan SPBE, pimpinan PD dapat melakukan konsultasi dan atau koordinasi dengan
+DISKOMINFO.
+Penerapan Keamanan SPBE harus memenuhi standar teknis dan prosedur Keamanan SPBE
+Bagian Kedelapan
+Layanan SPBE
+Paragraf 1 Pasal 22
+Layanan SPBE terdiri atas:
+layanan administrasi pemerintahan berbasis elektronik;
+dan
+layanan publik berbasis elektronik.
+Layanan administrasi pemerintahan berbasis elektronik sebagaimana dimaksud pada ayat (1) huruf a merupakan layanan SPBE yang mendukung tata laksana internal birokrasi dalam rangka meningkatkan kinerja dan akuntabilitas Pemerintah Daerah.
+Layanan publik berbasis elektronik sebagaimana dimaksud pada ayat (1) huruf b merupakan layanan SPBE yang mendukung pelaksanaan pelayanan publik di Pemerintah Daerah.
+Paragraf 2
+Layanan Administrasi Pemerintahan Berbasis Elektronik Pasal 23
+DISKOMINFO dan PD pemilik layanan harus menyediakan layanan administrasi pemerintahan berbasis elektronik sebagaimana dimaksud dalam Pasal 22 ayat (1) huruf a meliputi layanan yang mendukung kegiatan di bidang perencanaan, penganggaran, keuangan, kepegawaian, jaringan informasi kearsipan, pengelolaan barang milik daerah, akuntabilitas kinerja organisasi, sasaran kinerja pegawai, layanan pemantauan dan evaluasi perencanaan dan penganggaran, pengawasan internal pemerintah, naskah dinas elektronik, dan layanan Iain sesuai dengan kebutuhan internal birokrasi pemerintahan.
+Layanan administrasi pemerintahan berbasis elektronik diterapkan dengan pembangunan dan pengembangan Aplikasi Umum sebagaimana dimaksud dalam Pasal 22 Ayat (2) huruf
+a.
+Paragraf 3
+/Layanan Publik Berbasis Elektronik Pasal 24
+Layanan publik berbasis elektronik sebagaimana dimaksud dalam pasal 22 ayat (1) huruf b meliputi layanan pengaduan pelayanan publik, layanan satu data, Jaringan Dokumentasi dan Informasi Hukum (JDIH), pengadaan barang dan jasa, dan layanan-layanan publik Iain yang mendukung kegiatan di sektor pendidikan, pengajaran, pekerjaan dan usaha, tempat
+tinggal, komunikasi dan informasi, lingkungan hidup, kesehatan; jaminan sosial, energi, perbankan, perhubungan, sumber daya alam, pariwisata, dan sektor strategis Iainnya.
+Layanan publik berbasis elektronik sebagaimana dimaksud pada ayat (1) dapat dikembangkan sesuai dengan kebutuhan pelayanan publik Pemerintah Daerah.
+Layanan publik berbasis elektronik diterapkan dengan mengutamakan penggunaan Aplikasi Umum sebagaimana dimaksud dalam Pasal 19 Ayat (1) huruf a.
+Dalam hal layanan publik berbasis elektronik memerlukan Aplikasi Khusus, PD dapat melakukan pembangunan dan pengembangan Aplikasi Khusus sebagaimana dimaksud dalam Pasal 19 Ayat (2) huruf b.
+Paragraf 4
+/Integrasi Layanan SPBE Pasal 25
+Integrasi Layanan SPBE merupakan proses menghubungkan dan menyatukan beberapa Layanan $PBE ke dalam satu kesatuan alur kerja Layanan SPBE.
+Pemerintah Daerah menerapkan integrasi Layanan SPBE didasarkan pada Arsitektur SPBE Pemerintah Darah.
+Integasi Layanan SPBE antar PD dikoordinasikan oleh DISKOMINFO
+BAB 111
+MANAJEMEN SISTEM PEMERINTAHAN BERBASIS
+ELEKTRONIK
+Bagian Kesatu
+Umum
+Pasal 26
+DISKOMINFO harus merumuskan pedoman manajemen SPBE untuk semua PD, meliputi:
+manajemen risiko;
+manajemen keamanan informasi;
+manajemen data;
+manajemen aset teknologi informasi dan komunikasi;
+manajemen sumber daya manusia;
+manajemen pengetahuan;
+manajemen perubahan; dan
+manajemen layanan SPBE.
+PD melaksanakan Manajemen SPBE sebagaimana dimaksud pada ayat (1).
+Perumusan dan pelaksanaan manajemen SPBE sebagaimana dimaksud pada ayat (1) dan ayat (2) berpedoman pada Standar Nasional Indonesia, atau Standar Internasional.
+Bagian Kedua
+Manajemen Risiko Pasal 27
+Manajemen risiko sebagaimana dimaksud dalam Pasal 26 ayat (1) huruf a bertujuan untuk menjamin keberlangsungan SPBE dengan meminimalkan dampak risiko dalam SPBE.
+Manajemen risiko dilakukan melalui serangkaian proses identifikasi, analisis, pengendalian, pemantauan, dan evaluasi terhadap risiko dalam SPBE.
+Manajemen risiko sebagaimana dimaksud pada ayat (2) dilaksanaken berdasarkan pedoman manajemen risiko SPBE.
+Bagian Ketiga
+/Manajemen Keamanan Informasi Pasal 28
+Manajemen keamanan informasi sebagaimana dimaksud dalam Pasal 26 ayat (1) huruf b bertujuan untuk menjamin keberlangsungan SPBE dengan meminimalkan dampak risiko keamanan informasi.
+Manajemen keamanan informasi dilakukan melalui serangkaian proses yang meliputi penetapan ruang lingkup, penetapan penanggung jawab, perencanaan, dukungan pengoperasian, evaluasi kinerja, dan perbaikan berkelanjutan terhadap keamanan informasi dalam SPBE.
+Manajemen keamanan informasi sebagaimana dimaksud pada ayat (2) dilaksanakan berdasarkan pedoman manajemen keamanan informasi SPBE.
+Dalam pelaksanaan manajemen keamanan informasi, PD berkoordinasi dan dapat melakukan konsultasi dengan DISKOMINFO.
+Bagian Keempat
+Manajemen Data Pasal 29
+Manajemen data sebagaimana dimaksud dalam Pasal 26 ayat (1) huruf c bertujuan untuk menjamin terwujudnya data Yang akurat, mutakhir, terintegrasi, dan dapat diakses sebagai dasar perencanaan, pelaksanaan, evaluasi, dan pengendalian pembangunan nasional.
+Manajemefl data dilakukan melalui serangkaian proses pengelolaan arsitektur data, data induk, data referensi, basis data, dan kualitas data.
+Manajemen data sebagaimana dimaksud pada ayat (2) dilaksanakan berdasarkan pedoman manajemen data SPBE.
+Manajemen Data dilaksanakan oleh seluruh PD dan melakukan konsultasi dengan DISKOMINFO.
+Bagian Kelima
+Manajemen Aset Teknologi Informasi Dan Komunikasi Pasal 30
+Manajemen aset teknologi informasi dan komunikasi sebagaimana dimaksud dalam Pasal 26 huruf d bertujuan untuk menjamin ketersediaan dan optimalisasi pemanfaatan aset teknologi informasi dan komunikasi dalam SPBE.
+Manajemep aset teknologi informasi dan komunikasi dilakukan melalui proses perencanaan, pengadaan, pengelolaan, dan penghapusan perangkat keras dan perangkat lunak yang digunakan dalam pelaksanaan SPBE Pemerintah Daerah./
+Manajemen aset teknologi informasi dan komunikasi dilaksanakan Oleh seluruh unit kerja Pemerintah Daerah.
+Manajemen aset teknologi informasi dan komunikasi PD berkoordinasi melakukan konsultasi dengan DISKOMINFO dan PD yang berwenang mengelola urusan aset Pemerintah Daerah. /
+Bagian Keenam
+/Manajemen Sumber Daya Manusia Pasal 31
+Manajemen sumber daya manusia sebagaimana dimaksud dalam Pasal 26 huruf e bertujuan untuk menjamin keberlangsUngan dan peningkatan mutu dan Layanan SPBE.
+Manajemen sumber daya manusia dilakukan melalui proses perencanaan, pengembangan, pembinaan, dan pendayagunaan sumber daya manusia dalam pelaksanaan
+SPBE Pemerintah Daerah.
+Manajemen sumber daya manusia dilaksanakan oleh unit kerja yang membidangi tugas dan fungsi mengenai urusan sumber daya manusia dan dapat melakukan konsultasi dengan DISKOMINFO.
+Manajemen sumber daya manusia memastikan ketersediaan dan kompetensi sumber daya manusia untuk pelaksanaan Tata Keloia SPEE dan Manajemen SPBE.
+Bagian Ketujuh
+Manajemen Pengetahuan Pasal 32
+Manajemen pengetahuan sebagaimana dimaksud dalam Pasal 26 ayat (1) huruf f bertujuan untuk meningkatkan kualitas layanan SPBE dan mendukung proses pengambilan keputusan dalam SPBE.
+Manajemen pengetahuan dilakukan melalui serangkaian proses pengumpulan, pengolahan, penyimpanan, penggunaan, dan alih pengetahuan dan teknologi yang dihasilkan dalam SPBE.
+Manajemen pengetahuan sebagaimana dimaksud pada ayat (2) dilaksanakan berdasarkan pedoman manajemen pengetahuan SPBE. /
+Dalam pelaksanaan manajemen pengetahuan, PD berkoordinasi dan dapat melakukan konsultasi dengan DISKOMINFO.
+Eagian Kedelapan
+Manajemen Perubahan Pasal 33
+Manajemen perubahan sebagaimana dimaksud dalam Pasal 26 ayat (1) hUruf g bertujuan untuk menjamin keberlangsungan dan meningkatkan kualitas layanan SPBE melalui pengendalian perubahan yang terjadi dalam SPBE.
+Manajemen perubahan dilakukan melalui serangkaian proses perencanaan, analisis, pengembangan, implementasi, pemantauan dan evaluasi terhadap perubahan SPBE.
+/
+Manajernen perubahan sebagaimana dimaksud pada ayat (2) dilaksanakan berdasarkan pedoman manajemen perubahan
+SPBE.
+Dalam pelaksanaan manajemen perubahan, PD berkoordinasi dan dapat melakukan konsultasi dengan DISKOMINFO.
+Bagian Kesembilan
+/	Manajemen Layanan SPBE Pasal 34
+Manajemen Layanan SPBE sebagaimana dimaksud dalam Pasal 26 ayat (1) huruf h bertujuan untuk menjamin keberlangSungan dan meningkatkan kualitas Layanan SPBE kepada Pengguna SPBE.
+Manajemen Layanan SPBE dilakukan melalui serangkaian proses pe ayanan Pengguna SPBE, pengoperasian Layanan SPBE, pengelolaan Aplikasi SPBE.
+Pelayanan Pengguna SPBE sebagaimana dimaksud pada ayat (2) merupakan kegiatan pelayanan terhadap keluhan, gangguan, masalah, permintaan, dan perubahan Layanan SPBE dari Pengguna SPBE.
+Pengoperasian Layanan SPBE sebagaimana dimaksud pada ayat (2) merupakan kegiatan pendayagunaan dan pemeliharaan Infrastruktur SPBE dan Aplikasi SPBE.
+Pengelol"n Aplikasi SPBE sebagaimana dimaksud pada ayat (2) merupakan kegiatan pembangunan dan pengembangan aplikasi yeng berpedoman pada metodologi pembangunan dan pengembangan Aplikasi SPBE.
+Manajemen Layanan SPBE sebagaimana dimaksud pada ayat
+(2) dilaksanakan berdasarkan pedoman manajemen Layanan SPBE
+Dalam rangka pelaksanaan Manajemen Layanan SPBE, maka:
+setiap PD menunjuk minimal 1 (satu) orang staf atau membentuk unit untuk melaksanakan uraian tugas dan fungsi sebagai teknisi TIK sekaligus Service Dask Tier 1;
+DISKOMINFO membentuk unit sebagai Service Dask Tier 2.
+Service Dask Tier 1 sebagaimana dimaksud dalam ayat (7) huruf a bertanggung-jawab untuk menyelesaikan berbagai permasalahan layanan SPBE di tingkat PD.
+Dalam hal Service Dask Tier 1 tidak mampu menyelesaikan permasalahan layanan SPBE di tingkat PD sebagaimana dimaksud pada ayat (8), maka Service Dask Tier 1 menyampaikan permintaan solusi permasalahan ke Service Dask Tier 2.
+(10)Service Dask Tier 2 bertanggung-jawab menyelesaikan permasalahan layanan SPBE yang tidak mampu diselesaikan Service Dask Tier 1.
+(11)DISKOMINFO melakukan koordinasi dan supervisi antara Service Dask Tier 1 di masing-masing PD dengan Service Dask Tien di DISKOMINFQ.
+(12)Dalam pelaksanaan manajemen Layanan SPBE, PD berkoordihasi dan dapat melakukan konsultasi dengan DISKOMINFO.
+BAB IV
+AUDIT TEKNOLOGI INFORMASI DAN KOMUNIKASI SERTA
+PEMANTAVAN DAN EVALUASI SPBE
+Bagian Kesatu
+Umum
+Pasal 35
+Audit TIK terdiri atas:
+audit infrastruktur SPBE;
+audit aplikasi SPBE; dan
+audit keamanan SPBE.
+Audit TIK meliputi pemeriksaan hal pokok teknis pada:
+penerapan tata kelola dan manajemen teknologi informasi dan komunikasi;
+fungsionalitas teknologi informasi dan komunikasi;
+kinerja teknologi informasi dan komunikasi yang dihasilkan; dan
+aspek teknologi informasi dan komunikasi lainnya.
+Audit TIK dilaksanakan oleh lembaga pelaksana Audit TIK pemerintah atau lembaga pelaksana Audit TIK yang terakreditasi sesuai dengan ketentuan peraturan perundangundangan.
+Audit TIK dilaksanakan berdasarkan kebijakan umum penyelenggaraan TIK.
+Tim auditor sebagaimana dimaksud pada ayat (3) ditetapkan dengan Keputusan Bupati.
+Bagian Kedua
+Audit Infrastruktur SPBE Pasal 36
+Audit Infrastruktur SPBE sebagaimana dimaksud dalam Pasal 35 ayat (1) huruf a dilaksanakan paling sedikit 1 (satu) kali dalam 2 (dua) tahun oleh Tim Auditor.
+Audit Infrastruktur SPBE sebagaimana dimaksud pada ayat (1) dilaksanakan berdasarkan standar dan tata cara pelaksanaan audit Infrastruktur SPBE.
+Dalam melaksanakan audit Infrastruktur SPBE, Tim Auditor sebagaimana dimaksud pada ayat (1) berkoordinasi dengan Kementerian Komunikasi dan Informatika terkait pemantauan, evaluasi, dan pelaporan audit Infrastruktur SPBE Pemerintah Daerah.
+Pagian Ketiga
+Audit Aplikasi SPBE
+Pasal 37
+Audit Aplikasi SPBE dilakukan pada Aplikasi Khusus.
+Audit Aplikasi SPBE sebagaimana dimaksud pada ayat (1) dilaksanakan berdasarkan standar dan tata cara pelaksanaan audit Aplikasi SPBE.
+Audit Aplikasi Khusus sebagaimana dimaksud pada ayat (1) dilaksanakan paling sedikit 1 (satu) kali dalam 2 (dua) tahun oleh Tim Auditor.
+Dalam mela.ksanakan audit Aplikasi Khusus, Tim Auditor sebagaimana dimaksud pada ayat (1) berkoordinasi dengan
+Kementerian Komunikasi dan Informatika terkait pemantauan, evaluasi, dan pelaporan audit Aplikasi Khusus.
+Bagian Keempat
+Audit Keamanan SPBE Pasal 38
+Audit Keamanan SPBE dilakukan pada Infrastruktur SPBE Pemerintqh Daerah dan Aplikasi Khusus.
+Audit keamanan SPBE sebagaimana dimaksud pada ayat (1) dilaksanakan berdasarkan standar dan tata cara pelaksanaan audit Keamanan SPBE.
+Audit keamanan Infrastruktur SPBE Pemerintah Daerah dan audit keamanan Aplikasi Khusus sebagaimana dimaksud pada ayat (1) dilaksanakan paling sedikit 1 (satu) kali dalam 2 (dua) tahun oleh Tim Auditor.
+Dalam melaksanakan audit keamanan Infrastruktur SPBE Pemerintah Daerah dan audit keamanan Aplikasi Khusus sebagaimana dimaksud pada ayat (1) Tim Auditor berkoordinasi dengan Kementerian Komunikasi dan Informatika terkait pemantauan, evaluasi, dan pelaporan audit keamanan Infrastruktur SPBE Pemerintah Daerah dan audit keamanan Aplikasi Khusus.
+Bagian Kelima
+Pemantauan dan Evaluasi SPBE Pasal 39
+DISKOMINFO melaksanakan pemantauan dan evaluasi mandiri terhadap implementasi SPBE bertujuan untuk mengukur kemajuan dan meningkatkan kualitas SPBE di Pemerintah Daerah, mengidentifikasi permasalahan SPBE, peluang SPBE, pelaksanaan Arsitektur SPBE dan Peta Rencana SPBE.
+Pelaksanaan pemantauan dan evaluasi sebagaimana dimaksud pada ayat (1) dapat dibantu oleh PD terkait.
+Pelaksanaan pemantauan dan evaluasi sebagaimana dimaksud pada ayat (1) dilaksanakan sesuai dengan ketentuan peraturan perundang-undangan yang berlaku.
+Hasil kegiatan pemantauan dan evaluasi sebagaimana dimaksud pada ayat (1) dilaporkan kepada Bupati melalui Sekretaris Daerah.
+BAB V
+PENYELENOOARA SISTEM PEMERINTAHAN BERBASIS
+ELEKTRONIK
+Bagian Kesatu
+Tim Koordinasi SPBE Pemerintah Daerah Pasal 40
+Untuk meningkatkan keterpaduan pelaksanaan Tata Kelola SPBE, Manajemen SPBE, dan Audit TIK, serta pemantauan dan evalyasi SPBE Pemerintah Daerah, Bupati membentuk Tim Koordinasi SPBE Pemerintah Daerah.
+Tim Koordinasi SPBE Pemerintah Daerah sebagaimana dimaksuq pada ayat (1) berada di bawah dan bertanggung jawab kepada Bupati.
+Bupati mempunyai tugas melakukan koordinasi dan menetapkan kebijakan SPBE pada Pemerintah Daerah.
+Koordinator SPBE Pemerintah Daerah adalah Sekretaris Daerah.
+Tim Koordinasi SPBE Pemerintah Daerah sebagaimana dimaksud pada ayat (1) diberi tugas untuk mengarahkan, memantau, dan mengevaluasi pelaksanaan SPBE Yang terpadu di dalam Pemerintah Daerah, serta melakukan koordinasi dengan Tim Koordinasi SPBE Nasional untuk pelaksanaan SPBE Yang melibatkan lintas Pemerintah Daerah.
+Tim Koordinasi SPBE Pemerintah Daerah ditetapkan dengan Keputusan Bupati.
+Bagian Kedua
+PD Mandiri TIK Pasal 41
+Dalam rangka mewujudkan upaya peningkatan kemampuan dan kapasitas Pemerintah Daerah dalam memenuhi dan mengantisipasi kebutuhan serta tuntutan layanan berbasis TIK maka dapat ditetapkan PD Mandiri TIK.
+Penetapan PD Mandiri TIK sebagaimana dimaksud pada ayat (1) dilakukan setelah melalui proses penilaian evaluasi kelaikan terhadap PD.
+Proses penilaian evaluasi kelayakan terhadap PD sebagaimana dimaksud pada ayat (2) dilakukan Oleh DISKOMINFO.
+Proses penilaian evaluasi kelayakan terhadap PD sebagaimana dimaksud pada ayat (2) dilaksanakan dengan mendasarkan pada kriteria sebagai berikut:
+memiliki SDM TIK; dan
+telah inemiliki kemampuan dan pengalaman membangun, mengelola dan/atau mengembangkan aplikasi SPBE secara man /
+Berdasarkan hasil proses penilaian evaluasi kelaikan terhadap PD sebagaimana dimaksud pada ayat (2), DISKOMINFO mengusulkan PD yang layak untuk ditetapkan sebagai PD Mandiri TIK kepada Bupati.
+Berdasarkan usulan sebagaimana dimaksud pada ayat (5) Bupati menetapkan PD Mandiri TIK dengan Keputusan Bupati.
+BAB VI
+PENDANAAN
+Pasal 42
+Pendanaan pelaksanaan SPBE di lingkungan Pemerintah Daerah bersumber dari Anggaran Pendapatan dan Belanja Daerah dan/ atau sumber pendanaan Iainnya yang sah sesuai dengan ketentuan peraturan perundang-undangan.
+BAB VII
+KETENTUAN LAIN-LAIN Pasal 43
+Ketentuan lebih lanjut dalam unsur SPEE yang dimaksud dalam Pasal 5 ayat! (2) mengenai pelaksanaan teknis di lingkungan Pemerintah Daerah ditetapkan dengan Keputusan Bupati.
+BAB VIII
+KETENTUAN PENUTUP
+Pasal 44
+Peraturan Bupati ini mulai berlaku pada tanggal diundangkan. Agar setiap orang mengetahuinya,	memerintahkan pengundangan Peraturan Bupati ini dengan penempatannya dalam Berita Daerah Kabupaten Minahasa Selatan.
+Ditetapkan di Amurang pada tanggal 6 Oktober 2025
+Ń4HASA SELATAN,
+WONGKAR
+Amurang
+Oktober 2025
+KABUPATEN MINAHASA SELATAN,
+YNDA KAWATU
+KABUPATEN MINAHASA SELATAN TAHUN 2025 NOMOR 103
+

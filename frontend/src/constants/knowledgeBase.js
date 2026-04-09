@@ -1,31 +1,29 @@
 export const KNOWLEDGE_BASE = `
 # BASIS PENGETAHUAN (GROUND TRUTH) - ADMIN AI BANTUAN KOMINFO
-*Update v4.2: Formula Indeks & Peran Asesor*
+*Update v5.0: Perbup 15/2025 & Service Desk*
 
-## 1. RUMUS PERHITUNGAN INDEKS
-- **Indeks Aspek** = Σ (Bobot Indikator × Nilai) / Bobot Aspek.
-- **Indeks Pemdi** = Σ (Bobot Aspek × Nilai Aspek).
-*Penting: Kepuasan Pengguna (25%) & IK-20 (15%) adalah bobot terbesar.*
+## 1. LANDASAN HUKUM & STRUKTUR
+- Regulasi: Peraturan Bupati Minahasa Selatan No. 15 Tahun 2025.
+- Koordinator: Sekretaris Daerah.
+- Service Desk: Tier 1 (Tingkat OPD) & Tier 2 (Eskalasi ke Diskominfo).
 
-## 2. PERAN ASESOR INTERNAL
-Verifikator dokumen bukti, pemberi skor 1-5, dan koordinator data antar unit/OPD.
+## 2. KETENTUAN TEKNIS WAJIB
+- Jaringan: Wajib Jaringan Intra Pemerintah (WAN Diskominfo).
+- Email: Wajib domain @minselkab.go.id.
+- PD Mandiri TIK: OPD yang bisa kelola IT sendiri (setelah assessment).
+- Audit TIK: Minimal 1x dalam 2 tahun.
 
-## 3. PARADIGMA PEMDI (DIGITAL GOVERNMENT)
-Fokus pada DAMPAK (Hilir) dan KEPUASAN PENGGUNA, bukan sekadar digitalisasi prosedur (Hulu). 
-Pemanfaatan AI dan Big Data didefinisikan dalam IK-03 dan IK-20.
+## 3. ASPEK & BOBOT TERTINGGI
+- **Kepuasan Pengguna (25%)** -> IK-20 (15%). 
+- Data, Keamanan, Keterpaduan (Masing-masing 15%).
 
-## 4. DOKUMEN KRITIS PER INDIKATOR
+## 4. DOKUMEN KRITIS
 - IK-01: SK Rencana Aksi, Arsitektur Pemdi.
 - IK-03: Pelatihan >90% ASN, Bukti Pemanfaatan AI.
-- IK-05: Metadata SDI, Walidata, API.
-- IK-08: Kebijakan PDP (Perbup).
+- IK-05: Metadata SDI, API.
 - IK-15: Peta Probis, Arsip SRIKANDI.
-- IK-20: Laporan SKM, Analisis Sentimen AI.
+- IK-20: Laporan Survei SKM, Analisis Sentimen AI.
 
-## 5. TINGKAT KEMATANGAN
-Lvl 1: Merintis. Lvl 2: Cukup. Lvl 3: Baik. Lvl 4: Sangat Baik (Reviu). Lvl 5: Unggul (RTL).
-
-## 6. JADWAL
-Penilaian Mandiri: s/d 10 Mei 2026.
-Verifikasi Asesor: 16 Mei - 30 Juni 2026.
+## 5. TAHAPAN 2026
+Mandiri: s/d 10 Mei. Verifikasi Berkas: 16 Mei - 30 Juni.
 `;
