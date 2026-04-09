@@ -136,7 +136,7 @@ const ProfileManagement = () => {
             toast.success('Foto profil berhasil diperbarui!');
         } catch (err) {
             console.error('Upload Error:', err);
-            toast.error('Gagal mengunggah foto');
+            toast.error(`Gagal: ${err.message || 'Cek koneksi/storage'}`);
         } finally {
             setUploading(false);
         }
