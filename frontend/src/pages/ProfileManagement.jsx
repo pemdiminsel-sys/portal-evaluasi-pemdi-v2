@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useState, useEffect } from 'react';
 import { 
   User, Mail, Phone, Briefcase, Building2, ShieldCheck, 

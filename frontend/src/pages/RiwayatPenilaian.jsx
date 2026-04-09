@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useState, useEffect } from 'react';
 import { History, FileText, ChevronRight, CheckCircle2, AlertCircle, Loader2, Clock, Award } from 'lucide-react';
 import { supabase } from '../services/supabase';

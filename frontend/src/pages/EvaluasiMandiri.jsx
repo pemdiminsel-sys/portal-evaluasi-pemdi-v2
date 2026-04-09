@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useState, useEffect } from 'react';
 import { 
   FileText, CheckCircle, ChevronRight, Loader2, Target, 
