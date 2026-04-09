@@ -7,6 +7,7 @@ import useAuthStore from '../store/authStore';
 import Sidebar from '../components/Sidebar';
 import { Outlet } from 'react-router-dom';
 import { supabase } from '../services/supabase';
+import { toast } from 'react-hot-toast';
 
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -22,7 +23,7 @@ const Dashboard = () => {
                 if (Array.isArray(currentOpd)) currentOpd = currentOpd[0];
                 setOpdName(currentOpd?.nama || 'Pusat Pemerintahan');
              } else {
-                setOpdName('Admin Dashboard');
+                setOpdName('Dasbor Admin');
              }
           });
      }
@@ -56,7 +57,7 @@ const Dashboard = () => {
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{user?.role === 1 ? 'Administrator' : 'Operator OPD'}</span>
             </div>
-            <button className="relative p-3 bg-slate-50 hover:bg-slate-100 rounded-2xl text-slate-500 transition-all active:scale-95 shadow-inner">
+            <button onClick={() => toast.success('Belum ada notifikasi baru')} className="relative p-3 bg-slate-50 hover:bg-slate-100 rounded-2xl text-slate-500 transition-all active:scale-95 shadow-inner">
               <Bell size={22} />
               <div className="absolute top-2 right-2 w-2.5 h-2.5 bg-red-600 rounded-full border-2 border-white" />
             </button>

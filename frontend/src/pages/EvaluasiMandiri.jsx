@@ -214,7 +214,7 @@ const EvaluasiMandiri = () => {
     if (loading) return (
         <div className="h-full flex flex-col items-center justify-center gap-4">
             <Loader2 className="animate-spin text-indigo-600" size={48} />
-            <p className="text-slate-400 font-black uppercase text-[10px] tracking-[0.3em]">Evaluation Engine Booting...</p>
+            <p className="text-slate-400 font-black uppercase text-[10px] tracking-[0.3em]">Memuat Mesin Evaluasi...</p>
         </div>
     );
 
@@ -308,7 +308,7 @@ const EvaluasiMandiri = () => {
                              <h2 className="text-4xl font-black text-slate-800 leading-[1.1] tracking-tight">{selectedIndikator.nama}</h2>
                              <div className="flex items-center gap-4">
                                 <div className="bg-indigo-50 text-indigo-600 px-4 py-1.5 rounded-full font-black text-[10px] uppercase tracking-widest">Bobot: {selectedIndikator.bobot || 'N/A'}%</div>
-                                <div className="bg-slate-100 text-slate-500 px-4 py-1.5 rounded-full font-black text-[10px] uppercase tracking-widest italic tracking-tighter">Mandatory Verification</div>
+                                <div className="bg-slate-100 text-slate-500 px-4 py-1.5 rounded-full font-black text-[10px] uppercase tracking-widest italic tracking-tighter">Verifikasi Wajib</div>
                              </div>
                         </div>
 
@@ -335,7 +335,7 @@ const EvaluasiMandiri = () => {
                                 </div>
                                 <h5 className="font-black text-indigo-500 text-[10px] uppercase tracking-widest mb-4">Kriteria Level {evalForm.nilai}:</h5>
                                 <p className="text-slate-700 font-bold leading-relaxed text-sm italic pr-12">
-                                    {selectedIndikator[`level${evalForm.nilai}`] || 'Belum ada definisi kriteria spesifik untuk level ini.'}
+                                    {selectedIndikator[`kriteria_${evalForm.nilai}`] || 'Belum ada definisi kriteria spesifik untuk level ini.'}
                                 </p>
                             </div>
                         </div>
@@ -361,7 +361,7 @@ const EvaluasiMandiri = () => {
                                 </h4>
                                 <label className="bg-emerald-50 text-emerald-600 px-6 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-pointer hover:bg-emerald-600 hover:text-white transition-all shadow-sm">
                                     <input type="file" className="hidden" onChange={handleUploadBukti} />
-                                    + Add New File
+                                    + Tambah Berkas Baru
                                 </label>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -385,7 +385,7 @@ const EvaluasiMandiri = () => {
                                 {evalForm.files.length === 0 && (
                                     <div className="col-span-full py-12 bg-slate-50 border-2 border-dashed border-slate-100 rounded-[2.5rem] text-center">
                                         <Upload size={32} className="mx-auto text-slate-200 mb-3" />
-                                        <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">No evidence uploaded yet</p>
+                                        <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">Belum ada bukti yang diunggah</p>
                                     </div>
                                 )}
                             </div>
@@ -399,7 +399,7 @@ const EvaluasiMandiri = () => {
                                 className="flex-1 bg-white border border-slate-200 text-slate-400 font-black py-5 rounded-[2.5rem] shadow-xl shadow-slate-100 flex items-center justify-center gap-3 hover:text-slate-800 hover:shadow-2xl transition-all disabled:opacity-50"
                             >
                                 {saving ? <Loader2 className="animate-spin" /> : <Save size={20} />}
-                                SAVE AS DRAFT
+                                SIMPAN SEBAGAI DRAF
                             </button>
                             <button 
                                 onClick={() => handleSave(true)}
@@ -407,7 +407,7 @@ const EvaluasiMandiri = () => {
                                 className="flex-[2] bg-slate-900 text-white font-black py-5 rounded-[2.5rem] shadow-2xl shadow-slate-200 flex items-center justify-center gap-3 hover:bg-emerald-600 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 group"
                             >
                                 {saving ? <Loader2 className="animate-spin" /> : <Send size={20} className="group-hover:translate-x-2 transition-transform" />}
-                                SUBMIT FINAL EVALUATION
+                                KIRIM EVALUASI FINAL
                             </button>
                         </div>
                     </div>
