@@ -22,7 +22,8 @@ const Sidebar = ({ onMobileClose }) => {
     {
       group: 'Utama',
       items: [
-        { title: 'Dashboard', icon: LayoutDashboard, path: '/dashboard', roles: [1, 2, 3, 4, 5, 6] }
+        { title: 'Dashboard', icon: LayoutDashboard, path: '/dashboard', roles: [1, 2, 3, 4, 5, 6] },
+        { title: 'Profil Akun', icon: ShieldCheck, path: '/dashboard/profil', roles: [1, 2, 3, 4, 5, 6] }
       ]
     },
     {
@@ -40,7 +41,7 @@ const Sidebar = ({ onMobileClose }) => {
       items: [
         { title: 'Penilaian Mandiri', icon: FileText, path: '/dashboard/evaluasi', roles: [1, 3] },
         { title: 'Riwayat Penilaian', icon: History, path: '/dashboard/riwayat', roles: [3] },
-        { title: 'Profil Instansi', icon: Building2, path: '/dashboard/profil', roles: [3] },
+        { title: 'Profil Instansi OPD', icon: Building2, path: '/dashboard/profil-opd', roles: [3] },
         { title: 'Verifikasi OPD', icon: CheckCircle, path: '/dashboard/verifikasi', roles: [1, 4] },
         { title: 'Catatan Perbaikan', icon: Edit2, path: '/dashboard/catatan', roles: [4] },
         { title: 'Penilaian Interviu', icon: Users, path: '/dashboard/penilaian-interviu', roles: [4] },

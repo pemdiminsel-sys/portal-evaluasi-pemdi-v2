@@ -8,6 +8,15 @@ import { supabase } from '../services/supabase';
 import useAuthStore from '../store/authStore';
 import { toast } from 'react-hot-toast';
 
+const ROLE_NAMES = {
+    1: 'Super Admin',
+    2: 'Admin Pemkab',
+    3: 'Operator OPD',
+    4: 'Tim Asesor',
+    5: 'Pimpinan',
+    6: 'Viewer'
+};
+
 const ProfileManagement = () => {
     const { user: authUser } = useAuthStore();
     const [user, setUser] = useState(null);
@@ -156,9 +165,14 @@ const ProfileManagement = () => {
                     </h1>
                     <p className="text-slate-400 font-bold mt-1 uppercase text-[10px] tracking-widest">Kelola identitas dan keamanan akun Anda</p>
                 </div>
-                <div className="bg-emerald-50 text-emerald-600 px-6 py-3 rounded-2xl border border-emerald-100 flex items-center gap-3">
+                <div className={`px-6 py-3 rounded-2xl border flex items-center gap-3 ${
+                    user?.role === 1 ? 'bg-red-50 text-red-600 border-red-100' :
+                    user?.role === 4 ? 'bg-emerald-50 text-emerald-600 border-emerald-100' :
+                    user?.role === 5 ? 'bg-rose-50 text-rose-600 border-rose-100' :
+                    'bg-indigo-50 text-indigo-600 border-indigo-100'
+                }`}>
                     <ShieldCheck size={20} />
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em]">Akun PIC Terverifikasi</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em]">{ROLE_NAMES[user?.role] || 'Pengguna'}</span>
                 </div>
             </div>
 

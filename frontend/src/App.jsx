@@ -63,6 +63,7 @@ function App() {
             <Route path="evaluasi" element={<EvaluasiMandiri />} />
             <Route path="riwayat" element={<RiwayatPenilaian />} />
             <Route path="profil" element={<ProfileManagement />} />
+            <Route path="profil-opd" element={<ProfileManagement />} />
             <Route path="users" element={<UserManagement />} />
             <Route path="opd" element={<OpdManagement />} />
             <Route path="indikator" element={<ManajemenIndikator />} />
