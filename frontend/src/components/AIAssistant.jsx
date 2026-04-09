@@ -14,7 +14,7 @@ const AIAssistant = () => {
         return 'Malam Bae';
     };
 
-    const [selectedAdmin, setSelectedAdmin] = useState(1); // 1 = Gemini, 2 = Groq
+    const [selectedAdmin, setSelectedAdmin] = useState(1); // 1 = Gemini, 2 = Groq, 3 = DeepSeek
     const [messages, setMessages] = useState([
         { 
             role: 'assistant', 
@@ -31,6 +31,7 @@ const AIAssistant = () => {
     const API_KEYS = {
         gemini: import.meta.env.VITE_GEMINI_KEY || '',
         groq: import.meta.env.VITE_GROQ_KEY || '',
+        deepseek: import.meta.env.VITE_DEEPSEEK_KEY || 'sk-a7e1876707284a99bf8518dc46877d88',
     };
 
     const handleSend = async () => {
@@ -78,6 +79,29 @@ const AIAssistant = () => {
             return data.choices?.[0]?.message?.content;
         };
 
+        const tryDeepSeek = async () => {
+            if (!API_KEYS.deepseek) throw new Error('DeepSeek Key tidak tersedia');
+            setEngineStatus('DeepSeek (Admin 3)...');
+            const resp = await fetch(`https://api.deepseek.com/chat/completions`, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${API_KEYS.deepseek}`
+                },
+                body: JSON.stringify({
+                    model: "deepseek-chat",
+                    messages: [
+                        { role: "system", content: `Kamu adalah asisten AI Portal Pemdi Kabupaten Minahasa Selatan. Gunakan basis pengetahuan ini: ${KNOWLEDGE_BASE}` },
+                        { role: "user", content: userMessage }
+                    ],
+                    stream: false
+                })
+            });
+            const data = await resp.json();
+            if (data.error) throw new Error(data.error.message);
+            return data.choices?.[0]?.message?.content;
+        };
+
         try {
             let aiResponse = '';
             
@@ -85,15 +109,37 @@ const AIAssistant = () => {
                 try {
                     aiResponse = await tryGemini();
                 } catch (err) {
-                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 sedang sibuk, saya akan arahkan Anda dengan Admin 2...` }]);
-                    aiResponse = await tryGroq();
+                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 sedang sibuk, saya coba hubungkan dengan Admin 3 (DeepSeek)...` }]);
+                    try {
+                        aiResponse = await tryDeepSeek();
+                    } catch (err2) {
+                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 juga sibuk, beralih ke Admin 2 (Groq)...` }]);
+                        aiResponse = await tryGroq();
+                    }
                 }
-            } else {
+            } else if (selectedAdmin === 2) {
                 try {
                     aiResponse = await tryGroq();
                 } catch (err) {
-                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 2 sedang sibuk, saya akan arahkan Anda dengan Admin 1...` }]);
-                    aiResponse = await tryGemini();
+                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 2 sedang sibuk, beralih ke Admin 3 (DeepSeek)...` }]);
+                    try {
+                        aiResponse = await tryDeepSeek();
+                    } catch (err2) {
+                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 juga sibuk, beralih ke Admin 1 (Gemini)...` }]);
+                        aiResponse = await tryGemini();
+                    }
+                }
+            } else {
+                try {
+                    aiResponse = await tryDeepSeek();
+                } catch (err) {
+                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 sedang sibuk, beralih ke Admin 1 (Gemini)...` }]);
+                    try {
+                        aiResponse = await tryGemini();
+                    } catch (err2) {
+                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 juga sibuk, beralih ke Admin 2 (Groq)...` }]);
+                        aiResponse = await tryGroq();
+                    }
                 }
             }
 
@@ -175,18 +221,24 @@ const AIAssistant = () => {
                             </div>
 
                             {/* Admin Selector */}
-                            <div className="flex bg-white/5 rounded-xl p-1 border border-white/10">
+                            <div className="grid grid-cols-3 bg-white/5 rounded-xl p-1 border border-white/10">
                                 <button 
                                     onClick={() => setSelectedAdmin(1)}
-                                    className={`flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all ${selectedAdmin === 1 ? 'bg-red-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
+                                    className={`py-2 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all ${selectedAdmin === 1 ? 'bg-red-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
                                 >
                                     Admin 1
                                 </button>
                                 <button 
                                     onClick={() => setSelectedAdmin(2)}
-                                    className={`flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all ${selectedAdmin === 2 ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
+                                    className={`py-2 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all ${selectedAdmin === 2 ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
                                 >
                                     Admin 2
+                                </button>
+                                <button 
+                                    onClick={() => setSelectedAdmin(3)}
+                                    className={`py-2 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all ${selectedAdmin === 3 ? 'bg-emerald-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
+                                >
+                                    Admin 3
                                 </button>
                             </div>
                         </div>
