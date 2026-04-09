@@ -5,7 +5,7 @@ import {
 } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 import Sidebar from '../components/Sidebar';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { supabase } from '../services/supabase';
 import { toast } from 'react-hot-toast';
 
@@ -13,21 +13,28 @@ const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { user } = useAuthStore();
   const [opdName, setOpdName] = useState('...');
+  const [pendingUsers, setPendingUsers] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
-     if (user?.id) {
-        supabase.from('users').select('*, opds(*)').eq('id', user.id).single()
-          .then(({data, error}) => {
-             if (!error && data) {
-                let currentOpd = data.opds;
-                if (Array.isArray(currentOpd)) currentOpd = currentOpd[0];
-                setOpdName(currentOpd?.nama || 'Pusat Pemerintahan');
-             } else {
-                setOpdName('Dasbor Admin');
-             }
-          });
-     }
-  }, [user?.id]);
+      if (user?.id) {
+         supabase.from('users').select('*, opds(*)').eq('id', user.id).single()
+           .then(({data, error}) => {
+              if (!error && data) {
+                 let currentOpd = data.opds;
+                 if (Array.isArray(currentOpd)) currentOpd = currentOpd[0];
+                 setOpdName(currentOpd?.nama || 'Pusat Pemerintahan');
+              } else {
+                 setOpdName('Dasbor Admin');
+              }
+           });
+           
+         if (user.role === 1 || user.role === 4) {
+             supabase.from('users').select('*', { count: 'exact', head: true }).eq('status_approval', 0)
+               .then(({ count }) => setPendingUsers(count || 0));
+         }
+      }
+   }, [user?.id, user?.role]);
 
   return (
     <div className="flex h-screen bg-slate-50 font-sans text-slate-900 overflow-hidden">
@@ -57,9 +64,16 @@ const Dashboard = () => {
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{user?.role === 1 ? 'Administrator' : 'Operator OPD'}</span>
             </div>
-            <button onClick={() => toast.success('Belum ada notifikasi baru')} className="relative p-3 bg-slate-50 hover:bg-slate-100 rounded-2xl text-slate-500 transition-all active:scale-95 shadow-inner">
+            <button onClick={() => {
+                if (pendingUsers > 0) {
+                    navigate('/dashboard/users');
+                    toast.error(`Perhatian: Ada ${pendingUsers} akses pengguna yang menunggu persetujuan Anda.`);
+                } else {
+                    toast.success('Belum ada notifikasi baru');
+                }
+            }} className="relative p-3 bg-slate-50 hover:bg-slate-100 rounded-2xl text-slate-500 transition-all active:scale-95 shadow-inner">
               <Bell size={22} />
-              <div className="absolute top-2 right-2 w-2.5 h-2.5 bg-red-600 rounded-full border-2 border-white" />
+              {pendingUsers > 0 && <div className="absolute top-2 right-2 w-2.5 h-2.5 bg-red-600 rounded-full border-2 border-white animate-pulse" />}
             </button>
             <div className="h-10 w-[1px] bg-slate-100 mx-2" />
             <div className="flex items-center gap-4 pl-2 group cursor-pointer">

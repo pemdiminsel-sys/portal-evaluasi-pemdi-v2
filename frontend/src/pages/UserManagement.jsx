@@ -253,7 +253,7 @@ const UserManagement = () => {
                                                     {user.name}
                                                     <div className="flex items-center gap-1.5">
                                                         {user.surat_tugas_url && (
-                                                            <a href={`${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/surat-tugas/${user.surat_tugas_url.startsWith('requests/') ? user.surat_tugas_url : 'requests/' + user.surat_tugas_url}`} target="_blank" rel="noreferrer" className="text-indigo-500 hover:text-indigo-700 p-1 hover:bg-indigo-50 rounded-lg transition-colors" title="Lihat Surat Tugas">
+                                                            <a href={`https://rgmxobrceqtnnxvmkhji.supabase.co/storage/v1/object/public/surat-tugas/${user.surat_tugas_url.startsWith('requests/') ? user.surat_tugas_url : 'requests/' + user.surat_tugas_url}`} target="_blank" rel="noreferrer" className="text-indigo-500 hover:text-indigo-700 p-1 hover:bg-indigo-50 rounded-lg transition-colors" title="Lihat Surat Tugas">
                                                                 <FileText size={16}/>
                                                             </a>
                                                         )}

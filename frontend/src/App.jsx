@@ -18,6 +18,19 @@ import ManajemenIndikator from './pages/ManajemenIndikator';
 import ManajemenAspek from './pages/ManajemenAspek';
 import ManajemenPeriode from './pages/ManajemenPeriode';
 
+// Missing Missing Pages
+import VerifikasiOPD from './pages/VerifikasiOPD';
+import CatatanPerbaikan from './pages/CatatanPerbaikan';
+import PenilaianInterviu from './pages/PenilaianInterviu';
+import BeritaAcara from './pages/BeritaAcara';
+import MonitoringProgres from './pages/MonitoringProgres';
+import RankingKlasemen from './pages/RankingKlasemen';
+import RekapNilai from './pages/RekapNilai';
+import ExportData from './pages/ExportData';
+import SmtpSettings from './pages/SmtpSettings';
+import BackupDatabase from './pages/BackupDatabase';
+import LogAktivitas from './pages/LogAktivitas';
+
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useAuthStore();
   return isAuthenticated ? children : <Navigate to="/login" replace />;
@@ -55,6 +68,19 @@ function App() {
             <Route path="indikator" element={<ManajemenIndikator />} />
             <Route path="aspek" element={<ManajemenAspek />} />
             <Route path="periode" element={<ManajemenPeriode />} />
+            
+            {/* Added Missing Routes */}
+            <Route path="verifikasi" element={<VerifikasiOPD />} />
+            <Route path="catatan" element={<CatatanPerbaikan />} />
+            <Route path="penilaian-interviu" element={<PenilaianInterviu />} />
+            <Route path="berita-acara" element={<BeritaAcara />} />
+            <Route path="monitoring" element={<MonitoringProgres />} />
+            <Route path="ranking" element={<RankingKlasemen />} />
+            <Route path="rekap-nilai" element={<RekapNilai />} />
+            <Route path="export" element={<ExportData />} />
+            <Route path="smtp" element={<SmtpSettings />} />
+            <Route path="logs" element={<BackupDatabase />} />
+            
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Route>
 
