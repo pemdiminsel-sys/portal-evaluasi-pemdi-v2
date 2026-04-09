@@ -44,7 +44,7 @@ const AIAssistant = () => {
 
         const tryGemini = async () => {
             if (!API_KEYS.gemini) throw new Error('Gemini Key tidak tersedia');
-            setEngineStatus('Gemini (Utama)...');
+            setEngineStatus('Admin 1...');
             const resp = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEYS.gemini}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -63,7 +63,7 @@ const AIAssistant = () => {
 
         const tryGroq = async () => {
             if (!API_KEYS.groq) throw new Error('Groq Key tidak tersedia');
-            setEngineStatus('Groq (Cadangan)...');
+            setEngineStatus('Admin 2...');
             const resp = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
                 method: 'POST',
                 headers: { 
@@ -88,7 +88,7 @@ const AIAssistant = () => {
 
         const tryDeepSeek = async () => {
             if (!API_KEYS.deepseek) throw new Error('DeepSeek Key tidak tersedia');
-            setEngineStatus('DeepSeek (Admin 3)...');
+            setEngineStatus('Admin 3...');
             const resp = await fetch(`https://api.deepseek.com/chat/completions`, {
                 method: 'POST',
                 headers: { 
@@ -119,11 +119,11 @@ const AIAssistant = () => {
                 try {
                     aiResponse = await tryGemini();
                 } catch (err) {
-                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 sedang sibuk, saya coba hubungkan dengan Admin 3 (DeepSeek)...` }]);
+                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 sedang sibuk, saya coba hubungkan dengan Admin 3...` }]);
                     try {
                         aiResponse = await tryDeepSeek();
                     } catch (err2) {
-                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 juga sibuk, beralih ke Admin 2 (Groq)...` }]);
+                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 juga sibuk, beralih ke Admin 2...` }]);
                         aiResponse = await tryGroq();
                     }
                 }
@@ -131,11 +131,11 @@ const AIAssistant = () => {
                 try {
                     aiResponse = await tryGroq();
                 } catch (err) {
-                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 2 sedang sibuk, beralih ke Admin 3 (DeepSeek)...` }]);
+                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 2 sedang sibuk, beralih ke Admin 3...` }]);
                     try {
                         aiResponse = await tryDeepSeek();
                     } catch (err2) {
-                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 juga sibuk, beralih ke Admin 1 (Gemini)...` }]);
+                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 juga sibuk, beralih ke Admin 1...` }]);
                         aiResponse = await tryGemini();
                     }
                 }
@@ -143,11 +143,11 @@ const AIAssistant = () => {
                 try {
                     aiResponse = await tryDeepSeek();
                 } catch (err) {
-                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 sedang sibuk, beralih ke Admin 1 (Gemini)...` }]);
+                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 sedang sibuk, beralih ke Admin 1...` }]);
                     try {
                         aiResponse = await tryGemini();
                     } catch (err2) {
-                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 juga sibuk, beralih ke Admin 2 (Groq)...` }]);
+                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 juga sibuk, beralih ke Admin 2...` }]);
                         aiResponse = await tryGroq();
                     }
                 }
