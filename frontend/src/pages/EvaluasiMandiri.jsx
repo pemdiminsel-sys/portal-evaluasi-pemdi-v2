@@ -202,7 +202,7 @@ const EvaluasiMandiri = () => {
             fetchInitialData();
             // Refresh files in form
             const newBuktis = await supabase.from('buktis').select('*').eq('indikator_id', selectedIndikator.id).eq('opd_id', user.opd_id);
-            setEvalForm(prev => ({...prev, files: newBuktis.data}));
+            setEvalForm(prev => ({...prev, files: newBuktis.data || []}));
 
         } catch (err) {
             console.error('Bukti Upload Error:', err);
@@ -365,7 +365,7 @@ const EvaluasiMandiri = () => {
                                 </label>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {evalForm.files.map(file => (
+                                {evalForm.files?.map(file => (
                                     <div key={file.id} className="bg-white p-6 rounded-[2rem] border border-slate-50 flex items-center justify-between group shadow-sm">
                                         <div className="flex items-center gap-4 min-w-0">
                                             <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-red-500">
@@ -382,7 +382,7 @@ const EvaluasiMandiri = () => {
                                         </div>
                                     </div>
                                 ))}
-                                {evalForm.files.length === 0 && (
+                                {(!evalForm.files || evalForm.files.length === 0) && (
                                     <div className="col-span-full py-12 bg-slate-50 border-2 border-dashed border-slate-100 rounded-[2.5rem] text-center">
                                         <Upload size={32} className="mx-auto text-slate-200 mb-3" />
                                         <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest">Belum ada bukti yang diunggah</p>
