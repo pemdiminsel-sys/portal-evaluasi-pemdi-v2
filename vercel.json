@@ -3,7 +3,7 @@
   "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
   "env": {
-    "VITE_API_BASE_URL": "https://portal-evaluasi-pemdi-v2-cfyb.vercel.app/api/v1"
+    "VITE_API_BASE_URL": "/api/v1" 
   },
   "builds": [
     { 
@@ -32,6 +32,14 @@
     {
        "src": "/(.*)",
        "dest": "frontend/dist/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
     }
   ]
 }

@@ -18,22 +18,26 @@ const RiwayatPenilaian = () => {
             setLoading(true);
             setError(null);
 
-            // Ambil semua periode yang sudah selesai
-            const { data: periodes, error: pError } = await supabase
+            // Ambil semua periode (Cek yang selesai atau berjalan di JS agar case-insensitive)
+            const { data: periodesAll, error: pError } = await supabase
                 .from('periodes')
                 .select('*')
-                .in('status', ['selesai', 'berjalan'])
                 .order('tahun', { ascending: false });
 
             if (pError) throw pError;
 
-            if (!periodes || periodes.length === 0) {
+            // Filter periode yang 'selesai' atau 'berjalan'
+            const validPeriodes = (periodesAll || []).filter(p => 
+                ['selesai', 'berjalan', 'aktif', 'active'].includes(p.status?.toLowerCase())
+            );
+
+            if (validPeriodes.length === 0) {
                 setHistories([]);
                 return;
             }
 
-            // Ambil penilaian OPD ini untuk semua periode
-            const periodeIds = periodes.map(p => p.id);
+            // Ambil penilaian OPD ini untuk semua periode yang valid
+            const periodeIds = validPeriodes.map(p => p.id);
             const { data: penilaians, error: penError } = await supabase
                 .from('penilaians')
                 .select('*')
@@ -44,7 +48,7 @@ const RiwayatPenilaian = () => {
             if (penError) throw penError;
 
             // Gabungkan data periode dengan penilaian
-            const result = periodes.map(periode => {
+            const result = validPeriodes.map(periode => {
                 const pensPeriode = (penilaians || []).filter(p => p.periode_id === periode.id);
                 const totalNilai = pensPeriode.reduce((sum, p) => sum + (p.nilai || 0), 0);
                 const avgNilai = pensPeriode.length > 0 ? totalNilai / pensPeriode.length : 0;

@@ -32,31 +32,33 @@ const EvaluasiMandiri = () => {
         try {
             setLoading(true);
             
-            // 1. Ambil Periode Aktif (status 'berjalan' = periode sedang berjalan)
-            const { data: pData, error: pError } = await supabase.from('periodes').select('*').eq('status', 'berjalan').single();
+            // 1. Ambil Semua Periode (Cek yang aktif di JS agar case-insensitive)
+            const { data: pDataAll, error: pError } = await supabase
+                .from('periodes')
+                .select('*')
+                .order('tahun', { ascending: false });
             
             if (pError) {
-                 console.error('Error fetching periode:', pError);
-                 if (pError.code === 'PGRST116') {
-                    // No rows returned
-                    toast.error('❌ Tidak ada periode aktif. Hubungi Admin untuk membuka periode evaluasi.');
-                 } else {
-                    toast.error('❌ Error memuat periode: ' + pError.message);
-                 }
+                 console.error('Error fetching periocdes:', pError);
+                 toast.error('❌ Error memuat periode: ' + pError.message);
                  setPeriode(null);
                  setLoading(false);
                  return;
             }
             
-            if (!pData) {
-                 console.warn('No active periode found');
-                 toast.error('❌ Tidak ada periode aktif. Hubungi Admin untuk membuka periode evaluasi.');
+            // Cari yang statusnya berjalan/aktif (case insensitive)
+            const activeP = (pDataAll || []).find(p => 
+                ['berjalan', 'aktif', 'active'].includes(p.status?.toLowerCase())
+            );
+
+            if (!activeP) {
+                 console.warn('No active periode found among:', pDataAll);
                  setPeriode(null);
                  setLoading(false);
                  return;
             }
 
-            setPeriode(pData);
+            setPeriode(activeP);
 
             // 2. Ambil Aspek & Indikator
             const [asRes, inRes, penRes, bukRes] = await Promise.all([
@@ -65,12 +67,12 @@ const EvaluasiMandiri = () => {
                 supabase.from('penilaians')
                     .select('*')
                     .eq('opd_id', user?.opd_id)
-                    .eq('periode_id', pData.id)
+                    .eq('periode_id', activeP.id)
                     .eq('jenis', 1), // 1 = Mandiri
                 supabase.from('buktis')
                     .select('*')
                     .eq('opd_id', user?.opd_id)
-                    .eq('periode_id', pData.id)
+                    .eq('periode_id', activeP.id)
             ]);
 
             setAspeks(asRes.data || []);
