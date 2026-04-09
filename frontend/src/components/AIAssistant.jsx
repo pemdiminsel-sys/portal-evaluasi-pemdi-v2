@@ -49,7 +49,11 @@ const AIAssistant = () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    contents: [{ parts: [{ text: `KNOWLEDGE: ${KNOWLEDGE_BASE}\n\nUSER: ${userMessage}` }] }]
+                    contents: [{ 
+                        parts: [{ 
+                            text: `SISTEM: Kamu adalah Pakar Evaluasi Pemdi Minahasa Selatan. Gunakan BASIS PENGETAHUAN berikut sebagai SATU-SATUNYA sumber kebenaran (Ground Truth). Jika data tidak ada, katakan belum tersedia secara resmi.\n\nBASIS PENGETAHUAN:\n${KNOWLEDGE_BASE}\n\nUSER: ${userMessage}` 
+                        }] 
+                    }]
                 })
             });
             const data = await resp.json();
@@ -69,7 +73,10 @@ const AIAssistant = () => {
                 body: JSON.stringify({
                     model: "llama-3.3-70b-versatile",
                     messages: [
-                        { role: "system", content: `Kamu adalah asisten AI Portal Pemdi. Gunakan data ini: ${KNOWLEDGE_BASE}` },
+                        { 
+                            role: "system", 
+                            content: `Kamu adalah Pakar Evaluasi Pemdi Minahasa Selatan. Jawab pertanyaan HANYA berdasarkan BASIS PENGETAHUAN ini. Jangan memberikan informasi di luar data ini.\n\nBASIS PENGETAHUAN:\n${KNOWLEDGE_BASE}` 
+                        },
                         { role: "user", content: userMessage }
                     ]
                 })
@@ -91,7 +98,10 @@ const AIAssistant = () => {
                 body: JSON.stringify({
                     model: "deepseek-chat",
                     messages: [
-                        { role: "system", content: `Kamu adalah asisten AI Portal Pemdi Kabupaten Minahasa Selatan. Gunakan basis pengetahuan ini: ${KNOWLEDGE_BASE}` },
+                        { 
+                            role: "system", 
+                            content: `Kamu adalah Pakar Evaluasi Pemdi Kabupaten Minahasa Selatan (Ground Truth Mode). Gunakan basis pengetahuan ini sebagai referensi utama:\n\n${KNOWLEDGE_BASE}` 
+                        },
                         { role: "user", content: userMessage }
                     ],
                     stream: false
