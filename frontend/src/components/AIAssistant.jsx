@@ -119,10 +119,12 @@ const AIAssistant = () => {
                 try {
                     aiResponse = await tryGemini();
                 } catch (err) {
-                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 sedang sibuk, saya coba hubungkan dengan Admin 3...` }]);
+                    setSelectedAdmin(3); // Auto-switch UI to Admin 3
+                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 sedang sibuk, saya hubungkan dengan Admin 3...` }]);
                     try {
                         aiResponse = await tryDeepSeek();
                     } catch (err2) {
+                        setSelectedAdmin(2); // Auto-switch UI to Admin 2
                         setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 juga sibuk, beralih ke Admin 2...` }]);
                         aiResponse = await tryGroq();
                     }
@@ -131,10 +133,12 @@ const AIAssistant = () => {
                 try {
                     aiResponse = await tryGroq();
                 } catch (err) {
+                    setSelectedAdmin(3);
                     setMessages(prev => [...prev, { role: 'assistant', content: `Admin 2 sedang sibuk, beralih ke Admin 3...` }]);
                     try {
                         aiResponse = await tryDeepSeek();
                     } catch (err2) {
+                        setSelectedAdmin(1);
                         setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 juga sibuk, beralih ke Admin 1...` }]);
                         aiResponse = await tryGemini();
                     }
@@ -143,10 +147,12 @@ const AIAssistant = () => {
                 try {
                     aiResponse = await tryDeepSeek();
                 } catch (err) {
+                    setSelectedAdmin(1);
                     setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 sedang sibuk, beralih ke Admin 1...` }]);
                     try {
                         aiResponse = await tryGemini();
                     } catch (err2) {
+                        setSelectedAdmin(2);
                         setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 juga sibuk, beralih ke Admin 2...` }]);
                         aiResponse = await tryGroq();
                     }
