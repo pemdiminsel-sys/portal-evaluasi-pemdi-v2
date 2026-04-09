@@ -5,14 +5,26 @@ import { KNOWLEDGE_BASE } from '../constants/knowledgeBase';
 
 const AIAssistant = () => {
     const [isOpen, setIsOpen] = useState(false);
+    
+    const getGreeting = () => {
+        const hour = new Date().getHours();
+        if (hour >= 2 && hour < 11) return 'Selamat Pagi';
+        if (hour >= 11 && hour < 16) return 'Tabea';
+        if (hour >= 16 && hour < 19) return 'Slamat Sore';
+        return 'Malam Bae';
+    };
+
+    const [selectedAdmin, setSelectedAdmin] = useState(1); // 1 = Gemini, 2 = Groq
     const [messages, setMessages] = useState([
-        { role: 'assistant', content: 'Halo! Saya Asisten AI Portal Pemdi. Ada yang bisa saya bantu terkait sistem evaluasi SPBE?' }
+        { 
+            role: 'assistant', 
+            content: `${getGreeting()}! Saya Admin AI (${selectedAdmin}) Portal Pemdi Kabupaten Minahasa Selatan. Saya akan membantu terkait Evaluasi Pemdi Kabupaten Minahasa Selatan.` 
+        }
     ]);
     const [input, setInput] = useState('');
     const [loading, setLoading] = useState(false);
     const scrollRef = useRef(null);
 
-    const [selectedAdmin, setSelectedAdmin] = useState(1); // 1 = Gemini, 2 = Groq
     const [engineStatus, setEngineStatus] = useState('Ready');
 
     // API Keys dari Environment Variables
@@ -95,6 +107,15 @@ const AIAssistant = () => {
     };
 
     useEffect(() => {
+        if (messages.length === 1 && messages[0].role === 'assistant') {
+            setMessages([{ 
+                role: 'assistant', 
+                content: `${getGreeting()}! Saya Admin AI (${selectedAdmin}) Portal Pemdi Kabupaten Minahasa Selatan. Saya akan membantu terkait Evaluasi Pemdi Kabupaten Minahasa Selatan.` 
+            }]);
+        }
+    }, [selectedAdmin]);
+
+    useEffect(() => {
         if (scrollRef.current) {
             scrollRef.current.scrollTo({
                 top: scrollRef.current.scrollHeight,
@@ -140,7 +161,10 @@ const AIAssistant = () => {
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <button 
-                                        onClick={() => setMessages([{ role: 'assistant', content: 'Halo! Saya Asisten AI Portal Pemdi. Ada yang bisa saya bantu terkait sistem evaluasi SPBE?' }])}
+                                        onClick={() => setMessages([{ 
+                                            role: 'assistant', 
+                                            content: `${getGreeting()}! Saya Admin AI (${selectedAdmin}) Portal Pemdi Kabupaten Minahasa Selatan. Saya akan membantu terkait Evaluasi Pemdi Kabupaten Minahasa Selatan.` 
+                                        }])}
                                         className="p-2 hover:bg-white/10 rounded-lg transition-colors"
                                         title="Bersihkan Chat"
                                     >
