@@ -28,7 +28,7 @@ const Sidebar = ({ onMobileClose }) => {
     {
       group: 'Master Data',
       items: [
-        { title: 'Manajemen User', icon: Key, path: '/dashboard/users', roles: [1] },
+        { title: 'Manajemen User', icon: Key, path: '/dashboard/users', roles: [1, 4] },
         { title: 'Manajemen OPD', icon: Building2, path: '/dashboard/opd', roles: [1, 2] },
         { title: 'Manajemen Indikator', icon: ListChecks, path: '/dashboard/indikator', roles: [1, 2] },
         { title: 'Manajemen Aspek', icon: Layers, path: '/dashboard/aspek', roles: [1, 2] },

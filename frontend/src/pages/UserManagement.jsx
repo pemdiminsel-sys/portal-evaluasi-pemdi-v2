@@ -1,23 +1,26 @@
 import { useState, useEffect } from 'react';
+import useAuthStore from '../store/authStore';
 import { 
   Users, UserPlus, Trash2, Edit2, Mail, Building2, Loader2, ShieldCheck, 
   Lock, Eye, CheckCircle, AlertCircle, X, ShieldAlert, Key, Phone, 
-  Briefcase, FileText, ExternalLink, ThumbsUp, ThumbsDown
+  Briefcase, FileText, ExternalLink, ThumbsUp, ThumbsDown, Layers
 } from 'lucide-react';
 import { supabase } from '../services/supabase';
 import { toast } from 'react-hot-toast';
 
 const UserManagement = () => {
+    const { user: authUser } = useAuthStore();
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
     const [currentUser, setCurrentUser] = useState(null);
     const [opds, setOpds] = useState([]);
+    const [aspeks, setAspeks] = useState([]);
     const [saving, setSaving] = useState(false);
-    const [resending, setResending] = useState(null); // ID user yang sedang resend
+    const [resending, setResending] = useState(null); 
     
     const [form, setForm] = useState({ 
-        name: '', email: '', password: '', role: 3, opd_id: '', whatsapp: '', jabatan: ''
+        name: '', email: '', password: '', role: 3, opd_id: '', aspek_id: '', whatsapp: '', jabatan: ''
     });
 
     const rolesMap = {
@@ -42,13 +45,20 @@ const UserManagement = () => {
     const fetchData = async () => {
         try {
             setLoading(true);
-            const { data: userData, error: uErr } = await supabase.from('users').select('*, opds(*)').order('created_at', { ascending: false });
+            let query = supabase.from('users').select('*, opds(*), aspeks(nama)').order('created_at', { ascending: false });
+            if (authUser?.role === 4) {
+                query = query.eq('role', 4);
+            }
+            const { data: userData, error: uErr } = await query;
             if (uErr) throw uErr;
             setUsers(userData || []);
 
             const { data: opdData, error: oErr } = await supabase.from('opds').select('id, nama, singkatan').order('nama', { ascending: true });
             if (oErr) throw oErr;
             setOpds(opdData || []);
+
+            const { data: aspekData } = await supabase.from('aspeks').select('id, nama').order('urutan', { ascending: true });
+            setAspeks(aspekData || []);
         } catch (err) {
             toast.error('Gagal sinkronisasi data user');
         } finally {
@@ -95,11 +105,11 @@ const UserManagement = () => {
             setCurrentUser(user);
             setForm({ 
                 name: user.name, email: user.email, password: '', role: user.role || 3, 
-                opd_id: user.opd_id || '', whatsapp: user.whatsapp || '', jabatan: user.jabatan || '' 
+                opd_id: user.opd_id || '', aspek_id: user.aspek_id || '', whatsapp: user.whatsapp || '', jabatan: user.jabatan || '' 
             });
         } else {
             setCurrentUser(null);
-            setForm({ name: '', email: '', password: '', role: 3, opd_id: '', whatsapp: '', jabatan: '' });
+            setForm({ name: '', email: '', password: '', role: authUser?.role === 4 ? 4 : 3, opd_id: '', aspek_id: '', whatsapp: '', jabatan: '' });
         }
         setShowModal(true);
     };
@@ -110,7 +120,7 @@ const UserManagement = () => {
         try {
             if (currentUser) {
                 const { error } = await supabase.from('users').update({
-                    name: form.name, role: form.role, opd_id: form.opd_id || null,
+                    name: form.name, role: form.role, opd_id: form.opd_id || null, aspek_id: form.aspek_id || null,
                     whatsapp: form.whatsapp, jabatan: form.jabatan
                 }).eq('id', currentUser.id);
                 if (error) throw error;
@@ -123,6 +133,7 @@ const UserManagement = () => {
                     password: form.password || 'Minsel123!', // Default password if empty
                     role: form.role,
                     opd_id: form.opd_id || null,
+                    aspek_id: form.aspek_id || null,
                     whatsapp: form.whatsapp,
                     jabatan: form.jabatan,
                     status_approval: 1 // Admin enroll is automatically active
@@ -286,6 +297,12 @@ const UserManagement = () => {
                                                     <span className="text-[9px] font-black uppercase italic">OPD has another active PIC</span>
                                                 </div>
                                             )}
+                                            {user.aspeks?.nama && (
+                                                <div className="flex items-center gap-1.5 text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-lg w-fit border border-indigo-100 mt-2">
+                                                    <Layers size={12}/>
+                                                    <span className="text-[10px] font-black uppercase tracking-widest italic">{user.aspeks.nama}</span>
+                                                </div>
+                                            )}
                                         </div>
                                     </td>
                                     <td className="px-8 py-6 text-right">
@@ -371,8 +388,9 @@ const UserManagement = () => {
                                 <div className="grid grid-cols-2 gap-6">
                                     <div className="space-y-2">
                                         <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Security Role</label>
-                                        <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:ring-4 focus:ring-red-100 outline-none font-black text-sm"
-                                            value={form.role} onChange={e => setForm({...form, role: parseInt(e.target.value)})}>
+                                        <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:ring-4 focus:ring-red-100 outline-none font-black text-sm disabled:opacity-50"
+                                            value={form.role} onChange={e => setForm({...form, role: parseInt(e.target.value)})}
+                                            disabled={authUser?.role === 4}>
                                             <option value="1">Kategori: 1 - Administrator Utama</option>
                                             <option value="2">Kategori: 2 - Admin SPBE Pemkab</option>
                                             <option value="3">Kategori: 3 - Operator/PIC OPD</option>
@@ -382,14 +400,28 @@ const UserManagement = () => {
                                         </select>
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Assigned Organization</label>
-                                        <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:ring-4 focus:ring-red-100 outline-none font-black text-xs italic"
-                                            value={form.opd_id} onChange={e => setForm({...form, opd_id: e.target.value})}>
-                                            <option value="">None / External</option>
-                                            {opds.map(opd => <option key={opd.id} value={opd.id}>{opd.singkatan || opd.nama}</option>)}
-                                        </select>
-                                        {checkOpdOwnership(form.opd_id, currentUser?.id) && (
-                                            <p className="text-[9px] font-black text-amber-500 uppercase mt-2 animate-pulse">⚠️ Warning: OPD already has an active PIC</p>
+                                        {form.role === 4 ? (
+                                            <>
+                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Fokus Aspek (Asesor Anggota)</label>
+                                                <select className="w-full bg-indigo-50 border border-indigo-100 rounded-2xl px-5 py-4 focus:ring-4 focus:ring-indigo-200 outline-none font-black text-xs text-indigo-700"
+                                                    value={form.aspek_id} onChange={e => setForm({...form, aspek_id: e.target.value})}>
+                                                    <option value="">Koordinator (Semua Aspek)</option>
+                                                    {aspeks.map(a => <option key={a.id} value={a.id}>{a.urutan} - {a.nama}</option>)}
+                                                </select>
+                                                <p className="text-[9px] font-black text-indigo-400 uppercase mt-2">Dikosongkan jika ini adalah akun Koordinator</p>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Assigned Organization</label>
+                                                <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:ring-4 focus:ring-red-100 outline-none font-black text-xs italic"
+                                                    value={form.opd_id} onChange={e => setForm({...form, opd_id: e.target.value})}>
+                                                    <option value="">None / External</option>
+                                                    {opds.map(opd => <option key={opd.id} value={opd.id}>{opd.singkatan || opd.nama}</option>)}
+                                                </select>
+                                                {checkOpdOwnership(form.opd_id, currentUser?.id) && (
+                                                    <p className="text-[9px] font-black text-amber-500 uppercase mt-2 animate-pulse">⚠️ Warning: OPD already has an active PIC</p>
+                                                )}
+                                            </>
                                         )}
                                     </div>
                                 </div>
