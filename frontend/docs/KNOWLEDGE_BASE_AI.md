@@ -1,132 +1,59 @@
-# BASIS PENGETAHUAN (KNOWLEDGE BASE) - PORTAL EVALUASI PEMDI V2
-
-Dokumen ini berisi informasi struktur dan operasional sistem untuk digunakan sebagai referensi utama (Ground Truth) bagi Chatbot AI.
+# BASIS PENGETAHUAN (KNOWLEDGE BASE) - PORTAL PEMDI V2
+*Versi Dokumen: 3.1 (Konsolidasi Penuh 2026)*
 
 ## 1. PENGENALAN DASAR
-Portal Evaluasi Pemerintah Digital (Pemdi) adalah platform berbasis web untuk penilaian Mandiri dan Audit Sistem Pemerintahan Berbasis Elektronik (SPBE) di lingkungan Pemerintah Kabupaten Minahasa Selatan.
+Portal Evaluasi Pemerintah Digital (Pemdi) adalah sistem berbasis web untuk penilaian mandiri dan audit Sistem Pemerintahan Berbasis Elektronik (SPBE) di Kabupaten Minahasa Selatan.
+- **Website**: pemdi.minselkab.go.id
+- **Tujuan**: Mengukur tingkat kematangan penerapan digital (Indeks SPBE) di seluruh Perangkat Daerah.
 
-*   **URL Akses**: pemdi.minselkab.go.id
-*   **Tujuan**: Mengukur tingkat kematangan penerapan digital di seluruh Perangkat Daerah Kabupaten Minahasa Selatan, transparansi, akuntabilitas, dan percepatan indeks SPBE Nasional.
+## 2. PANDUAN PENGGUNA & LOGIN
+- **Cara Login**: Masukkan email instansi dan password di halaman login.
+- **Pendaftaran**: Klik "Daftar Sekarang", pilih jabatan/instansi, dan **wajib unggah Surat Tugas**. Tunggu verifikasi admin.
+- **Alur Penilaian (2026)**:
+  - 1 April - 10 Mei: Penilaian Mandiri (OPD).
+  - 16 Mei - 30 Juni: Penilaian Dokumen (Asesor).
+  - 1 Juli - 15 Agustus: Interviu.
+  - 16 Agustus - 15 September: Visitasi.
 
-## 2. JENIS PENGGUNA (ROLE)
-1.  **Kategori 1: Super Admin (Administrator Utama)**: Akses penuh, kelola teknis (SMTP, Backup, Logs).
-2.  **Kategori 2: Admin SPBE Pemkab**: Kelola Master Data (OPD, Indikator), monitoring progres.
-3.  **Kategori 3: Operator / PIC OPD**: Perwakilan dinas penanggung jawab pengisian indikator dan bukti dukung.
-4.  **Kategori 4: Tim Asesor Internal**: Verifikasi dokumen, audit, dan interviu.
-5.  **Kategori 5: Pimpinan Instansi**: Lihat Dashboard eksekutif, Ranking, dan Laporan Indeks.
-6.  **Kategori 6: Viewer**: Akses baca-saja.
+## 3. INDIKATOR (IK-01 SAMPAI IK-20)
+Indikator (parameter ukur) berasal dari Permen PANRB tentang Evaluasi Kinerja Pemerintah Digital.
 
-## 3. INDIKATOR - DEFINISI & TANGGUNG JAWAB
-Indikator adalah parameter pengukuran tingkat kematangan Pemerintah Digital. Total ada **20 indikator (IK-01 sampai IK-20)**. Indikator berasal dari Peraturan Menteri PANRB dan RPJMN 2025-2029.
+### Tanggung Jawab Pengisian:
+- **Diskominfo**: 18 Indikator.
+- **Bappelitbangda**: 7 Indikator.
+- **OPD Layanan Publik (Dinkes, Disdik, Dinsos)**: 9 Indikator (IK-05, 07, 13, 15, 16, 17, 18, 19, 20).
 
-*   **Diskominfo**: Bertanggung jawab untuk 18 indikator.
-*   **Bappelitbangda**: Bertanggung jawab untuk 7 indikator.
-*   **OPD Layanan Publik (Dinas Kesehatan, Pendidikan, Sosial)**: Bertanggung jawab untuk 9 indikator (IK-05, IK-07, IK-13, IK-15, IK-16, IK-17, IK-18, IK-19, IK-20).
+### Rincian Dokumen & Persyaratan:
+1.  **IK-01 (Tata Kelola)**: SK Rencana Aksi Pemdi, Arsitektur Pemdi, Laporan Realisasi, Bukti Reviu berkala.
+2.  **IK-02 (Manajemen Layanan)**: SOP Layanan, Profil Risiko, Log Perubahan, Portal Manajemen Pengetahuan, BCP/DRP.
+3.  **IK-03 (SDM)**: Peta Kompetensi Digital, Data Pelatihan ASN, Sertifikat, Bukti pemanfaatan AI/Analisis Data.
+4.  **IK-04 (Kolaborasi)**: SK Forum Koordinasi, Notulensi Rapat, Daftar Peserta Kolaborasi, Bukti kontribusi ke Dasbor Presiden.
+5.  **IK-05 (Tata Kelola Data)**: Kelembagaan Data (Walidata), Metadata, Standar Data, Portal Berbagi Pakai API, Nilai SDI.
+6.  **IK-06 (Geospasial)**: SK Kelembagaan IG, URL Geoportal, Nilai SJIG, Bukti alat produksi (GPS/Drone/Theodolite).
+7.  **IK-07 (Statistik)**: SK Statistik Sektoral, Rencana Kerja Statistik, Nilai EPSS.
+8.  **IK-08 (Pelindungan Data Pribadi/PDP)**: Kebijakan PDP (Perbup/SK), Bukti Enkripsi/Enkripsi, SOP Hak Subjek Data.
+9.  **IK-09 (Audit Keamanan & IT)**: SK Tim Audit, Perencanaan Audit Tahunan, Laporan Audit (LHA), RTL.
+10. **IK-10 (Keamanan Informasi)**: Dokumen ISO 27001, Identifikasi Infrastruktur Vital, Nilai IKASANDI.
+11. **IK-11 (Kriptografi)**: Konfigurasi SSL/TLS, Enkripsi Database, Kebijakan Algoritma.
+12. **IK-12 (Penanganan Insiden)**: SK TTIS/CSIRT, Laporan Deteksi/Pemulihan, Simulasi Insiden Siber.
+13. **IK-14 (Infrastruktur)**: Pemanfaatan PDN (Pusat Data Nasional), Cloud Computing, Integrasi JIP.
+14. **IK-15 (Keterpaduan Probis)**: Peta Proses Bisnis, Penyederhanaan Layanan, Penggunaan Arsip Digital (SRikandi).
+15. **IK-16 (Integrasi Aplikasi)**: Arsitektur Teknologi, API Lintas OPD, Koneksi ke Dasbor Presiden.
+16. **IK-17 (Portal Layanan)**: URL minselkab.go.id, Daftar Layanan Portal, Integrasi Portal Nasional.
+17. **IK-18 (Interoperabilitas)**: Standar Interop, Pertukaran Data Real-time, Kontribusi ke Satu Data Indonesia.
+18. **IK-19 (Dukungan Pengguna)**: SOP SLA, Fasilitas Helpdesk/Call Center, Dashboard Monitoring SLA.
+19. **IK-20 (Kepuasan Pengguna - Bobot 15%)**: Laporan Survei, Analisis Sentimen AI, Mystery Guest, Data Kelompok Rentan.
 
-## 4. RINCIAN INDIKATOR (IK-01 SAMPAI IK-20)
+## 4. PEDOMAN PENGISIAN & PENILAIAN
+### Cara Mengisi:
+1. Pilih **Level Kematangan** (1-5).
+2. Tulis **Deskripsi/Penjelasan** riil.
+3. Unggah **Dokumen Bukti** (PDF/Gambar/SK).
+4. Klik **Simpan**.
 
-### IK-01: Tata Kelola Pemerintah Digital
-*   **Definisi**: Mengukur tingkat kematangan perencanaan, pelaksanaan, dan pengendalian Pemdi terpadu.
-*   **Penanggung Jawab**: Diskominfo, Bappelitbangda, Bagian Organisasi Setda.
-*   **Dokumen Wajib**: Rencana Aksi (SK Bupati/Perbup), Arsitektur Pemdi, Laporan Pelaksanaan, Bukti Reviu berkala.
-*   **Level**: 1 (Kurang/Rencana aksi tahap pemilihan), 3 (Baik/Langkah nyata dilaksanakan), 5 (Memuaskan/Tindak lanjut reviu menyeluruh).
-
-### IK-02: Manajemen Layanan Digital
-*   **Definisi**: Menilai manajemen risiko, perubahan, pengetahuan, keberlangsungan, dan relasi pengguna.
-*   **Dokumen Wajib**: SOP Manajemen Layanan, Bukti Manajemen Risiko, Log Perubahan, Portal Knowledge Management, Dokumen BCP/DRP.
-
-### IK-03: SDM Pemerintah Digital
-*   **Definisi**: Menilai kompetensi digital ASN.
-*   **Penanggung Jawab**: BKPSDM, Diskominfo, Bagian Organisasi Setda.
-*   **Dokumen Wajib**: Peta Kompetensi Digital, Data Pelatihan, Sertifikat, Data ASN IT, Bukti pemanfaatan AI/Analisis Data.
-
-### IK-04: Kolaborasi Pemerintah Digital
-*   **Definisi**: Menilai forum koordinasi Pemdi dan kolaborasi lintas sektor.
-*   **Dokumen Wajib**: SK Forum Koordinasi, Notulensi Rapat, Daftar Peserta Kolaborasi, Bukti kontribusi ke Dasbor Presiden.
-
-### IK-05: Tata Kelola Data
-*   **Definisi**: Implementasi Satu Data Indonesia (SDI).
-*   **Dokumen Wajib**: SK Walidata/Produsen Data, Metadata, Standar Data, Portal Data (API), Nilai SDI.
-
-### IK-06: Informasi Geospasial
-*   **Definisi**: Berbagi pakai data geospasial.
-*   **Dokumen Wajib**: SK Kelembagaan IG, URL Geoportal, Metadata Geospasial, Nilai SJIG, Foto Perangkat Produksi (GPS/Drone).
-
-### IK-07: Pembangunan Statistik
-*   **Definisi**: Pemanfaatan data statistik sektoral.
-*   **Dokumen Wajib**: SK Statistik Sektoral, Rencana Kerja Statistik, Data Statistik yang dihasilkan, Nilai EPSS.
-
-### IK-08: Pelindungan Data Pribadi
-*   **Definisi**: Penerapan UU PDP.
-*   **Dokumen Wajib**: Kebijakan PDP (Perbup), Bukti Enkripsi/Enkripsi, SOP Hak Subjek Data, Register Pemrosesan Data.
-
-### IK-09: Audit Keamanan dan Teknologi
-*   **Definisi**: Pelaksanaan audit berkala BSSN.
-*   **Dokumen Wajib**: SK Tim Audit, Perencanaan Audit, Laporan Audit Internal/Eksternal, Rencana Tindak Lanjut (RTL).
-
-### IK-10: Keamanan Pemerintah Digital
-*   **Definisi**: Tata kelola keamanan informasi (ISO 27001).
-*   **Dokumen Wajib**: Dokumen Keamanan Informasi, Nilai IKASANDI, Bukti Reviu berkala.
-
-### IK-11: Kriptografi
-*   **Definisi**: Proteksi data melalui enkripsi.
-*   **Dokumen Wajib**: Bukti SSL/TLS, Standar Algoritma Enkripsi yang digunakan.
-
-### IK-12: Penanganan Insiden
-*   **Definisi**: Kapabilitas CSIRT/TTIS dalam menangani insiden siber.
-*   **Dokumen Wajib**: SK CSIRT, Laporan Penanganan Insiden, Bukti Simulasi Penanganan.
-
-### IK-13: Aplikasi Pemerintah Digital
-*   **Definisi**: Pembangunan aplikasi sesuai siklus SDLC.
-*   **Dokumen Wajib**: Dokumen Perencanaan (Project Charter), Bukti SDLC, Daftar Aplikasi, Bukti Integrasi API.
-
-### IK-14: Infrastruktur Pemerintah Digital
-*   **Definisi**: Pemanfaatan Teknologi Awan / Cloud (PDN).
-*   **Dokumen Wajib**: Rencana Infrastruktur, Data Pemanfaatan PDN/Cloud, Integrasi JIP (Jaringan Intra Pemerintah).
-
-### IK-15: Keterpaduuan Proses Bisnis
-*   **Definisi**: Proses bisnis lintas unit berorientasi pengguna.
-*   **Dokumen Wajib**: Peta Proses Bisnis, Bukti Penyederhanaan Proses, Penggunaan Arsip Digital (SRikandi).
-
-### IK-16: Integrasi Aplikasi
-*   **Definisi**: Menghubungkan aplikasi untuk berbagi data holistik.
-*   **Dokumen Wajib**: Arsitektur Teknologi, Bukti Integrasi API, Koneksi ke Dasbor Presiden.
-
-### IK-17: Portal Layanan Digital
-*   **Definisi**: Konsolidasi layanan di portal minselkab.go.id.
-*   **Dokumen Wajib**: URL Portal Layanan, Daftar Layanan, Bukti integrasi portal nasional.
-
-### IK-18: Interoperabilitas Data
-*   **Definisi**: Pertukaran data antar sistem berbeda.
-*   **Dokumen Wajib**: Standar Interoperabilitas, Bukti Pertukaran Data Real-time, Kontribusi ke SDI.
-
-### IK-19: Fasilitas Dukungan Pengguna
-*   **Definisi**: Helpdesk/Service Level Agreement (SLA).
-*   **Dokumen Wajib**: SOP SLA, Bukti Helpdesk/Call Center, Dashboard Monitoring SLA.
-
-### IK-20: Kepuasan Pengguna (Bobot Terbesar: 15%)
-*   **Definisi**: Mengukur kepuasan masyarakat terhadap layanan digital.
-*   **Dokumen Wajib**: Laporan Survei Kepuasan, Analisis Sentimen AI, Bukti Mystery Guest, Kanal Umpan Balik, Keterlibatan Kelompok Rentan.
-
-## 5. PROSEDUR PENGISIAN & ALUR
-1.  **Cara Login**: Buka pemdi.minselkab.go.id, masukkan email/password. Pendaftaran butuh surat tugas.
-2.  **Langkah Isi Indikator**: 
-    - Pilih Level (1-5).
-    - Tulis Penjelasan/Deskripsi.
-    - Unggah Dokumen Bukti (Sesuai rincian di atas).
-    - Klik Simpan. 
-3.  **Jadwal (Timeframe)**:
-    - Penilaian Mandiri: 1 April - 10 Mei (Batas Akhir).
-    - Penilaian Dokumen: 16 Mei - 30 Juni.
-    - Interviu: 1 Juli - 15 Agustus.
-    - Visitasi: 16 Agustus - 15 September.
-
-## 6. PEDOMAN NILAI (LEVEL)
-*   **Level 1 (Kurang)**: Merintis / Ad-hoc.
-*   **Level 2 (Cukup)**: Membangun / Terencana sebagian.
-*   **Level 3 (Baik)**: Berkembang / Terintegrasi sistematis.
-*   **Level 4 (Sangat Baik)**: Melembaga / Reviu reguler.
-*   **Level 5 (Memuaskan)**: Unggul / Inovatif & Berdampak Luas.
-
----
-*Versi Dokumen: 3.0 (Update Full Indicators 2026)*
+### Tingkat Kematangan:
+- **Level 1 (Kurang)**: Masih tahap merintis / ad-hoc.
+- **Level 2 (Cukup)**: Sudah terencana tapi belum menyeluruh.
+- **Level 3 (Baik)**: Berkembang dan terintegrasi sistematis.
+- **Level 4 (Sangat Baik)**: Melembaga dengan reviu berkala.
+- **Level 5 (Memuaskan)**: Unggul, inovatif, dan berdampak luas.
