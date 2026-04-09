@@ -14,7 +14,7 @@ const AIAssistant = () => {
         return 'Malam Bae';
     };
 
-    const [selectedAdmin, setSelectedAdmin] = useState(1); // 1 = Gemini, 2 = Groq, 3 = DeepSeek
+    const [selectedAdmin, setSelectedAdmin] = useState(2); // Default ke Admin 2 (Groq) karena paling stabil
     const [messages, setMessages] = useState([
         { 
             role: 'assistant', 
@@ -42,15 +42,12 @@ const AIAssistant = () => {
         setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
         setLoading(true);
 
-        // Optimasi Knowledge Base (Sangat Agresif untuk stabilitas)
+        // Optimasi Knowledge Base untuk API
         const optimizedKnowledge = KNOWLEDGE_BASE
             .split('\n')
             .map(line => line.trim())
             .filter(line => line.length > 0)
-            .join(' ') // Gabung dengan spasi saja untuk hemat token
-            .slice(0, 50000); // Limit lebih ketat 50k karakter
-
-        console.log('Sending payload size:', optimizedKnowledge.length);
+            .join('\n');
 
         const tryGemini = async () => {
             if (!API_KEYS.gemini) throw new Error('Key Gemini Kosong');
@@ -74,8 +71,7 @@ const AIAssistant = () => {
         const tryGroq = async () => {
             if (!API_KEYS.groq) throw new Error('Key Groq Kosong');
             setEngineStatus('Admin 2...');
-            // Groq sangat terbatas (8k tokens). Limit 15k karakter saja.
-            const groqKnowledge = optimizedKnowledge.slice(0, 15000);
+            // UNLIMITED context for Groq (Llama 3.3 supports 128k context)
             const resp = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
                 method: 'POST',
                 headers: { 
@@ -85,7 +81,7 @@ const AIAssistant = () => {
                 body: JSON.stringify({
                     model: "llama-3.3-70b-versatile",
                     messages: [
-                        { role: "system", content: `Pakar SPBE Pemdi. Data:\n${groqKnowledge}` },
+                        { role: "system", content: `Kamu adalah Pakar Evaluasi Pemdi Minahasa Selatan. Jawab HANYA berdasarkan data ini:\n\n${optimizedKnowledge}` },
                         { role: "user", content: userMessage }
                     ]
                 })
@@ -107,7 +103,7 @@ const AIAssistant = () => {
                 body: JSON.stringify({
                     model: "deepseek-chat",
                     messages: [
-                        { role: "system", content: `Pakar SPBE Pemdi. Data:\n${optimizedKnowledge}` },
+                        { role: "system", content: `Kamu adalah Pakar Evaluasi Pemdi Kabupaten Minahasa Selatan. Data:\n\n${optimizedKnowledge}` },
                         { role: "user", content: userMessage }
                     ]
                 })
@@ -120,46 +116,46 @@ const AIAssistant = () => {
         try {
             let aiResponse = '';
             
-            if (selectedAdmin === 1) {
-                try {
-                    aiResponse = await tryGemini();
-                } catch (err) {
-                    setSelectedAdmin(3); // Auto-switch UI to Admin 3
-                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 sedang sibuk, saya hubungkan dengan Admin 3...` }]);
-                    try {
-                        aiResponse = await tryDeepSeek();
-                    } catch (err2) {
-                        setSelectedAdmin(2); // Auto-switch UI to Admin 2
-                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 juga sibuk, beralih ke Admin 2...` }]);
-                        aiResponse = await tryGroq();
-                    }
-                }
-            } else if (selectedAdmin === 2) {
+            if (selectedAdmin === 2) {
                 try {
                     aiResponse = await tryGroq();
                 } catch (err) {
-                    setSelectedAdmin(3);
-                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 2 sedang sibuk, beralih ke Admin 3...` }]);
+                    setSelectedAdmin(1);
+                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 2 sedang sibuk, beralih ke Admin 1...` }]);
                     try {
-                        aiResponse = await tryDeepSeek();
-                    } catch (err2) {
-                        setSelectedAdmin(1);
-                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 juga sibuk, beralih ke Admin 1...` }]);
                         aiResponse = await tryGemini();
+                    } catch (err2) {
+                        setSelectedAdmin(3);
+                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 juga sibuk, beralih ke Admin 3...` }]);
+                        aiResponse = await tryDeepSeek();
+                    }
+                }
+            } else if (selectedAdmin === 1) {
+                try {
+                    aiResponse = await tryGemini();
+                } catch (err) {
+                    setSelectedAdmin(2);
+                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 sedang sibuk, beralih ke Admin 2...` }]);
+                    try {
+                        aiResponse = await tryGroq();
+                    } catch (err2) {
+                        setSelectedAdmin(3);
+                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 2 juga sibuk, beralih ke Admin 3...` }]);
+                        aiResponse = await tryDeepSeek();
                     }
                 }
             } else {
                 try {
                     aiResponse = await tryDeepSeek();
                 } catch (err) {
-                    setSelectedAdmin(1);
-                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 sedang sibuk, beralih ke Admin 1...` }]);
+                    setSelectedAdmin(2);
+                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 sedang sibuk, beralih ke Admin 2...` }]);
                     try {
-                        aiResponse = await tryGemini();
-                    } catch (err2) {
-                        setSelectedAdmin(2);
-                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 juga sibuk, beralih ke Admin 2...` }]);
                         aiResponse = await tryGroq();
+                    } catch (err2) {
+                        setSelectedAdmin(1);
+                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 2 juga sibuk, beralih ke Admin 1...` }]);
+                        aiResponse = await tryGemini();
                     }
                 }
             }
