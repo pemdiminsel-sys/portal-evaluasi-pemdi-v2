@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\V1\PenilaianController;
 
 Route::prefix('v1')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/ai-proxy', [\App\Http\Controllers\Api\V1\AIProxyController::class, 'proxy']);
     Route::get('/test-supabase', [\App\Http\Controllers\Api\V1\SupabaseTestController::class, 'test']);
 
     Route::middleware('auth:sanctum')->group(function () {

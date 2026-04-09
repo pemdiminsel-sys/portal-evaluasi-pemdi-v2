@@ -50,28 +50,24 @@ const AIAssistant = () => {
             .join('\n');
 
         const tryGemini = async () => {
-            if (!API_KEYS.gemini) throw new Error('Key Gemini Kosong');
             setEngineStatus('Admin 1...');
-            const resp = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEYS.gemini}`, {
+            const resp = await fetch('/api/v1/ai-proxy', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    contents: [{ 
-                        parts: [{ 
-                            text: `BASIS DATA:\n${optimizedKnowledge}\n\nINSTRUKSI: Kamu Pakar SPBE Pemdi. Jawab singkat padat.\n\nUSER: ${userMessage}` 
-                        }] 
-                    }]
+                    engine: 'gemini',
+                    knowledge: optimizedKnowledge,
+                    messages: [{ role: 'user', content: userMessage }]
                 })
             });
             const data = await resp.json();
-            if (data.error) throw new Error(data.error.message);
-            return data.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (data.error) throw new Error(data.error);
+            return data.content;
         };
 
         const tryGroq = async () => {
             if (!API_KEYS.groq) throw new Error('Key Groq Kosong');
             setEngineStatus('Admin 2...');
-            // UNLIMITED context for Groq (Llama 3.3 supports 128k context)
             const resp = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
                 method: 'POST',
                 headers: { 
@@ -92,25 +88,19 @@ const AIAssistant = () => {
         };
 
         const tryDeepSeek = async () => {
-            if (!API_KEYS.deepseek) throw new Error('Key DeepSeek Kosong');
             setEngineStatus('Admin 3...');
-            const resp = await fetch(`https://api.deepseek.com/chat/completions`, {
+            const resp = await fetch('/api/v1/ai-proxy', {
                 method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${API_KEYS.deepseek}`
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    model: "deepseek-chat",
-                    messages: [
-                        { role: "system", content: `Kamu adalah Pakar Evaluasi Pemdi Kabupaten Minahasa Selatan. Data:\n\n${optimizedKnowledge}` },
-                        { role: "user", content: userMessage }
-                    ]
+                    engine: 'deepseek',
+                    knowledge: optimizedKnowledge,
+                    messages: [{ role: 'user', content: userMessage }]
                 })
             });
             const data = await resp.json();
-            if (data.error) throw new Error(data.error.message);
-            return data.choices?.[0]?.message?.content;
+            if (data.error) throw new Error(data.error);
+            return data.content;
         };
 
         try {
