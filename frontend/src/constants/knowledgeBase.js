@@ -1,39 +1,45 @@
 export const KNOWLEDGE_BASE = `
-# BASIS PENGETAHUAN (KNOWLEDGE BASE) - PORTAL EVALUASI PEMDI V2
+# BASIS PENGETAHUAN PORTAL PEMDI V2 (GROUND TRUTH)
 
-Dokumen ini berisi informasi struktur dan operasional sistem untuk digunakan sebagai referensi utama (Ground Truth) bagi Chatbot AI.
+## 1. PENGENALAN
+Portal Pemdi (pemdi.minselkab.go.id) adalah sistem evaluasi SPBE Kabupaten Minahasa Selatan. 
+- Role: Super Admin (1), Admin SPBE (2), Operator OPD (3), Asesor (4), Pimpinan (5), Viewer (6).
 
-## 1. PENGENALAN SISTEM
-Portal Evaluasi Pemerintah Digital (Pemdi) adalah platform berbasis web untuk penilaian Mandiri dan Audit Sistem Pemerintahan Berbasis Elektronik (SPBE) di lingkungan Pemerintah Kabupaten Minahasa Selatan.
+## 2. PENGISIAN INDIKATOR (TOTAL 20: IK-01 s/d IK-20)
+Alur: Pilih Level (1-5) -> Isi Deskripsi -> Unggah Bukti -> Simpan.
+Jadwal Penilaian Mandiri: 1 April - 10 Mei 2026.
 
-*   URL Akses: pemdi.minselkab.go.id
-*   Tujuan: Tranparansi, akuntabilitas, dan percepatan indeks SPBE Nasional.
+## 3. DETAIL INDIKATOR & DOKUMEN WAJIB
+- IK-01 (Tata Kelola): SK Rencana Aksi, Arsitektur Pemdi, Laporan Pelaksanaan.
+- IK-02 (Manajemen Layanan): SOP, Manajemen Risiko, Log Perubahan, BCP/DRP.
+- IK-03 (SDM): Peta Kompetensi, Sertifikat Pelatihan, Bukti pakai AI/Analisis Data.
+- IK-04 (Kolaborasi): SK Forum Koordinasi, Notulensi, Bukti Kolaborasi lintas OPD.
+- IK-05 (Data): Walidata, Metadata, Standar Data, Portal Data (SDI).
+- IK-06 (Geospasial): URL Geoportal, Metadata IG, Nilai SJIG, Alat GPS/Drone.
+- IK-07 (Statistik): Statistik Sektoral, Rencana Kerja Statistik, Nilai EPSS.
+- IK-08 (PDP): Kebijakan PDP (Perbup), Enkripsi, SOP Hak Subjek Data.
+- IK-09 (Audit): Tim Audit, Rencana Audit, Laporan Audit (Internal/Eksternal).
+- IK-10 (Keamanan): ISO 27001, IKASANDI, Identifikasi Infrastruktur Vital.
+- IK-11 (Kriptografi): SSL/TLS, Enkripsi Database, Standar Algoritma.
+- IK-12 (Insiden): SK CSIRT/TTIS, Laporan Insiden Siber, Simulasi Penanganan.
+- IK-13 (Aplikasi): Dokumen SDLC, Project Charter, Daftar Aplikasi, API.
+- IK-14 (Infrastruktur): PDN/Cloud Computing, JIP (Jaringan Intra Pemerintah).
+- IK-15 (Probis): Peta Probis, Arsip Digital (SRikandi), Penyederhanaan Layanan.
+- IK-16 (Integrasi): Koneksi antar aplikasi, Integrasi Dasbor Presiden.
+- IK-17 (Portal): URL minselkab.go.id, Daftar Layanan Publik, Integrasi Nasional.
+- IK-18 (Interoperabilitas): Standar API, Pertukaran Data Real-time, Koneksi SDI.
+- IK-19 (Dukungan): SOP SLA, Helpdesk/Call Center, Monitoring SLA.
+- IK-20 (Kepuasan): Laporan Survei, Analisis Sentimen AI, Mystery Guest, Kelompok Rentan.
 
-## 2. JENIS PENGGUNA (ROLE) DALAM SISTEM
-Terdapat 6 kategori pengguna dengan tingkat akses yang berbeda:
-- Kategori 1: Super Admin (Akses penuh, kelola teknis)
-- Kategori 2: Admin SPBE Pemkab (Kelola master data, monitoring)
-- Kategori 3: Operator / PIC OPD (Isi penilaian mandiri, upload bukti)
-- Kategori 4: Tim Asesor Internal (Verifikasi, audit, interviu)
-- Kategori 5: Pimpinan Instansi (Pantau dashboard, ranking)
-- Kategori 6: Viewer (Hanya baca)
+## 4. TANGGUNG JAWAB
+- Diskominfo: 18 Indikator.
+- Bappelitbangda: 7 Indikator.
+- OPD Layanan (Dinkes/Disdik/Dinsos): 9 Indikator (IK-05, 07, 13, 15 s/d 20).
 
-## 3. CARA LOGIN & AKSES
-- Akses website di pemdi.minselkab.go.id.
-- Masukkan Email dan Password.
-- Pendaftaran baru wajib mengunggah Surat Tugas.
-
-## 4. STRUKTUR MENU
-- Dashboard, Profil Akun.
-- Manajemen User, OPD, Indikator, Periode.
-- Penilaian Mandiri, Verifikasi, Berita Acara.
-- Klasemen Ranking, Log Aktivitas.
-
-## 5. PENGISIAN INDIKATOR (PENILAIAN MANDIRI)
-Wajib mengisi: 
-1. Pilih Skor (Level 1-5).
-2. Tulis Deskripsi penjelasan (Uraian kebijakan/layanan).
-3. Unggah bukti dukung (PDF/Gambar/Dokumen SK).
-4. Klik Simpan. 
-Setiap indikator (1-47) mengikuti alur ini sebelum di-Submit.
+## 5. LEVEL KEMATANGAN
+- Level 1: Merintis (Kurang).
+- Level 2: Membangun (Cukup).
+- Level 3: Berkembang (Baik).
+- Level 4: Melembaga (Sangat Baik).
+- Level 5: Unggul (Memuaskan).
 `;
