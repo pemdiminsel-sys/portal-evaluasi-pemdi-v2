@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { supabase } from '../services/supabase';
 import { toast } from 'react-hot-toast';
+import { logActivity } from '../services/logger';
 
 const UserManagement = () => {
     const { user: authUser } = useAuthStore();
@@ -95,6 +96,13 @@ const UserManagement = () => {
             }
 
             toast.success(status === 1 ? 'User disetujui & email notifikasi terkirim!' : 'Pendaftaran user ditolak.');
+            
+            logActivity({
+                action: `${status === 1 ? 'Menyetujui' : 'Menolak'} pendaftaran user: ${users.find(u => u.id === userId)?.email}`,
+                module: 'Manajemen User',
+                type: status === 1 ? 'update' : 'delete'
+            });
+
             fetchData();
         } catch (err) {
             toast.error('Gagal memproses persetujuan');
@@ -139,6 +147,13 @@ const UserManagement = () => {
                 const { error } = await supabase.from('users').update(updatePayload).eq('id', currentUser.id);
                 if (error) throw error;
                 toast.success('Profil user berhasil diperbarui');
+                
+                logActivity({
+                    action: `Memperbarui profil user: ${form.email}`,
+                    module: 'Manajemen User',
+                    type: 'update',
+                    payload: { role: form.role, opd: form.opd_id }
+                });
             } else {
                 // ENROLL NEW USER (ADMIN)
                 const { error } = await supabase.from('users').insert([{
@@ -154,6 +169,13 @@ const UserManagement = () => {
                 }]);
                 if (error) throw error;
                 toast.success('User baru berhasil ditambahkan ke Matrix');
+                
+                logActivity({
+                    action: `Mendaftarkan user baru: ${form.email}`,
+                    module: 'Manajemen User',
+                    type: 'create',
+                    payload: { role: form.role }
+                });
             }
             setShowModal(false);
             fetchData();

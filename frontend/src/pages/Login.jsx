@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Mail, Lock, ChevronRight, AlertCircle, Loader2 } from 'lucide-react';
 import useAuthStore from '../store/authStore';
+import { logActivity } from '../services/logger';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,6 +17,11 @@ const Login = () => {
     setError('');
     const result = await login(email, password);
     if (result.success) {
+      logActivity({
+        action: 'Login ke sistem',
+        module: 'Auth',
+        type: 'info'
+      });
       navigate('/dashboard');
     } else {
       setError(result.message);

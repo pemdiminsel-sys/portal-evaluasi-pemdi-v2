@@ -8,6 +8,7 @@ import {
 import { supabase } from '../services/supabase';
 import useAuthStore from '../store/authStore';
 import { toast } from 'react-hot-toast';
+import { logActivity } from '../services/logger';
 
 const EvaluasiMandiri = () => {
     const { user } = useAuthStore();
@@ -166,9 +167,16 @@ const EvaluasiMandiri = () => {
                 if (error) throw error;
             }
 
-            toast.success(isSubmit ? 'Evaluasi berhasil dikirim!' : 'Draft disimpan');
+            logActivity({
+                action: `${isSubmit ? 'Submit' : 'Simpan Draft'} Penilaian Mandiri: ${selectedIndikator.nama}`,
+                module: 'Evaluasi Mandiri',
+                type: isSubmit ? 'create' : 'update',
+                payload: { nilai: evalForm.nilai }
+            });
+
+            toast.success(isSubmit ? 'Penilaian berhasil dikirim!' : 'Draft berhasil disimpan!');
+            setSelectedIndikator(null);
             fetchInitialData();
-            if (isSubmit) setSelectedIndikator(null);
         } catch (err) {
             toast.error('Gagal menyimpan evaluasi');
         } finally {
