@@ -205,8 +205,9 @@ const EvaluasiMandiri = () => {
             setEvalForm(prev => ({...prev, files: newBuktis.data}));
 
         } catch (err) {
+            console.error('Bukti Upload Error:', err);
             toast.dismiss();
-            toast.error('Upload gagal');
+            toast.error('Upload gagal: ' + (err.message || 'Error tidak diketahui'));
         }
     };
 
