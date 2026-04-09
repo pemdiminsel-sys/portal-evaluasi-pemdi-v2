@@ -12,13 +12,13 @@ const AIAssistant = () => {
     const [loading, setLoading] = useState(false);
     const scrollRef = useRef(null);
 
-    const [engine, setEngine] = useState('Gemini'); // Status engine aktif
+    const [selectedAdmin, setSelectedAdmin] = useState(1); // 1 = Gemini, 2 = Groq
+    const [engineStatus, setEngineStatus] = useState('Ready');
 
     // API Keys dari Environment Variables
     const API_KEYS = {
         gemini: import.meta.env.VITE_GEMINI_KEY || '',
         groq: import.meta.env.VITE_GROQ_KEY || '',
-        deepseek: import.meta.env.VITE_DEEPSEEK_KEY || ''
     };
 
     const handleSend = async () => {
@@ -31,7 +31,7 @@ const AIAssistant = () => {
 
         const tryGemini = async () => {
             if (!API_KEYS.gemini) throw new Error('Gemini Key tidak tersedia');
-            setEngine('Gemini (Utama)');
+            setEngineStatus('Gemini (Utama)...');
             const resp = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEYS.gemini}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -46,7 +46,7 @@ const AIAssistant = () => {
 
         const tryGroq = async () => {
             if (!API_KEYS.groq) throw new Error('Groq Key tidak tersedia');
-            setEngine('Groq (Cadangan 1)');
+            setEngineStatus('Groq (Cadangan)...');
             const resp = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
                 method: 'POST',
                 headers: { 
@@ -69,21 +69,28 @@ const AIAssistant = () => {
         try {
             let aiResponse = '';
             
-            // Strategi: Coba Gemini dulu, jika gagal coba Groq
-            try {
-                aiResponse = await tryGemini();
-            } catch (err) {
-                console.warn('Gemini Gagal, mencoba Groq...', err.message);
-                setMessages(prev => [...prev, { role: 'assistant', content: `⚠️ Gemini (Utama) terkendala: ${err.message}. Mencoba mesin cadangan...` }]);
-                aiResponse = await tryGroq();
+            if (selectedAdmin === 1) {
+                try {
+                    aiResponse = await tryGemini();
+                } catch (err) {
+                    setMessages(prev => [...prev, { role: 'assistant', content: `⚠️ Admin 1 (Gemini) gagal: ${err.message}. Mencoba Admin 2...` }]);
+                    aiResponse = await tryGroq();
+                }
+            } else {
+                try {
+                    aiResponse = await tryGroq();
+                } catch (err) {
+                    setMessages(prev => [...prev, { role: 'assistant', content: `⚠️ Admin 2 (Groq) gagal: ${err.message}. Mencoba Admin 1...` }]);
+                    aiResponse = await tryGemini();
+                }
             }
 
             setMessages(prev => [...prev, { role: 'assistant', content: aiResponse }]);
         } catch (err) {
-            setMessages(prev => [...prev, { role: 'assistant', content: `❌ Semua mesin (Gemini & Groq) gagal merespon. Mohon cek API Key di Vercel/Env.` }]);
+            setMessages(prev => [...prev, { role: 'assistant', content: `❌ Semua mesin gagal merespon. Mohon cek API Key di Vercel.` }]);
         } finally {
             setLoading(false);
-            setEngine('Idle');
+            setEngineStatus('Ready');
         }
     };
 
@@ -118,27 +125,45 @@ const AIAssistant = () => {
                         className="absolute bottom-20 right-0 w-[350px] md:w-[400px] h-[500px] bg-white rounded-[2rem] shadow-2xl flex flex-col overflow-hidden border border-slate-100"
                     >
                         {/* Header */}
-                        <div className="bg-slate-900 p-6 text-white flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center">
-                                    <Bot size={24} />
+                        <div className="bg-slate-900 p-6 text-white flex flex-col gap-4">
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center">
+                                        <Bot size={24} />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-black text-sm uppercase tracking-widest">AI Bantuan Kominfo</h4>
+                                        <p className="text-[9px] text-slate-400 font-bold uppercase">
+                                            {loading ? engineStatus : 'Status: Online'}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h4 className="font-black text-sm uppercase tracking-widest">AI Assistant</h4>
-                                    <p className="text-[9px] text-slate-400 font-bold uppercase">
-                                        {loading ? `Engines: ${engine}...` : 'Status: Online'}
-                                    </p>
+                                <div className="flex items-center gap-2">
+                                    <button 
+                                        onClick={() => setMessages([{ role: 'assistant', content: 'Halo! Saya Asisten AI Portal Pemdi. Ada yang bisa saya bantu terkait sistem evaluasi SPBE?' }])}
+                                        className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                                        title="Bersihkan Chat"
+                                    >
+                                        <Trash2 size={16} className="text-slate-400" />
+                                    </button>
+                                    <Sparkles size={18} className="text-amber-400 animate-pulse" />
                                 </div>
                             </div>
-                            <div className="flex items-center gap-2">
+
+                            {/* Admin Selector */}
+                            <div className="flex bg-white/5 rounded-xl p-1 border border-white/10">
                                 <button 
-                                    onClick={() => setMessages([{ role: 'assistant', content: 'Halo! Saya Asisten AI Portal Pemdi. Ada yang bisa saya bantu terkait sistem evaluasi SPBE?' }])}
-                                    className="p-2 hover:bg-white/10 rounded-lg transition-colors"
-                                    title="Bersihkan Chat"
+                                    onClick={() => setSelectedAdmin(1)}
+                                    className={`flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all ${selectedAdmin === 1 ? 'bg-red-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
                                 >
-                                    <Trash2 size={16} className="text-slate-400" />
+                                    Admin 1 (Gemini)
                                 </button>
-                                <Sparkles size={18} className="text-amber-400 animate-pulse" />
+                                <button 
+                                    onClick={() => setSelectedAdmin(2)}
+                                    className={`flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all ${selectedAdmin === 2 ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
+                                >
+                                    Admin 2 (Groq)
+                                </button>
                             </div>
                         </div>
 
