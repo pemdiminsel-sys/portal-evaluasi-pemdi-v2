@@ -42,28 +42,45 @@ const AIAssistant = () => {
         setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
         setLoading(true);
 
+        // Optimasi Knowledge Base untuk API (Hapus spasi/baris kosong berlebih)
+        const optimizedKnowledge = KNOWLEDGE_BASE
+            .split('\n')
+            .map(line => line.trim())
+            .filter(line => line.length > 0)
+            .join('\n')
+            .slice(0, 100000); // Limit ke 100k karakter untuk menjaga stabilitas
+
         const tryGemini = async () => {
             if (!API_KEYS.gemini) throw new Error('Gemini Key tidak tersedia');
             setEngineStatus('Admin 1...');
-            const resp = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEYS.gemini}`, {
+            const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEYS.gemini}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     contents: [{ 
+                        role: 'user',
                         parts: [{ 
-                            text: `SISTEM: Kamu adalah Pakar Evaluasi Pemdi Minahasa Selatan. Gunakan BASIS PENGETAHUAN berikut sebagai SATU-SATUNYA sumber kebenaran (Ground Truth). Jika data tidak ada, katakan belum tersedia secara resmi.\n\nBASIS PENGETAHUAN:\n${KNOWLEDGE_BASE}\n\nUSER: ${userMessage}` 
+                            text: `SISTEM: Kamu adalah Pakar Evaluasi Pemdi Minahasa Selatan. Gunakan BASIS PENGETAHUAN berikut sebagai SATU-SATUNYA sumber kebenaran (Ground Truth).\n\nBASIS PENGETAHUAN:\n${optimizedKnowledge}\n\nUSER: ${userMessage}` 
                         }] 
-                    }]
+                    }],
+                    generationConfig: {
+                        temperature: 0.1,
+                        topK: 40,
+                        topP: 0.95,
+                        maxOutputTokens: 2048,
+                    }
                 })
             });
             const data = await resp.json();
-            if (data.error) throw new Error(data.error.message);
+            if (data.error) throw new Error(data.error.message || 'Gemini Error');
             return data.candidates?.[0]?.content?.parts?.[0]?.text;
         };
 
         const tryGroq = async () => {
             if (!API_KEYS.groq) throw new Error('Groq Key tidak tersedia');
             setEngineStatus('Admin 2...');
+            // Truncate knowledge for Groq (Limit 8k tokens ≈ 30k characters)
+            const groqKnowledge = optimizedKnowledge.slice(0, 25000);
             const resp = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
                 method: 'POST',
                 headers: { 
@@ -75,14 +92,14 @@ const AIAssistant = () => {
                     messages: [
                         { 
                             role: "system", 
-                            content: `Kamu adalah Pakar Evaluasi Pemdi Minahasa Selatan. Jawab pertanyaan HANYA berdasarkan BASIS PENGETAHUAN ini. Jangan memberikan informasi di luar data ini.\n\nBASIS PENGETAHUAN:\n${KNOWLEDGE_BASE}` 
+                            content: `Kamu adalah Pakar Evaluasi Pemdi Minahasa Selatan. Jawab HANYA berdasarkan BASIS PENGETAHUAN ini.\n\nBASIS PENGETAHUAN:\n${groqKnowledge}` 
                         },
                         { role: "user", content: userMessage }
                     ]
                 })
             });
             const data = await resp.json();
-            if (data.error) throw new Error(data.error.message);
+            if (data.error) throw new Error(data.error.message || 'Groq Error');
             return data.choices?.[0]?.message?.content;
         };
 
@@ -100,15 +117,18 @@ const AIAssistant = () => {
                     messages: [
                         { 
                             role: "system", 
-                            content: `Kamu adalah Pakar Evaluasi Pemdi Kabupaten Minahasa Selatan (Ground Truth Mode). Gunakan basis pengetahuan ini sebagai referensi utama:\n\n${KNOWLEDGE_BASE}` 
+                            content: `Kamu adalah Pakar Evaluasi Pemdi Kabupaten Minahasa Selatan (Ground Truth Mode).\n\nBASIS PENGETAHUAN:\n${optimizedKnowledge}` 
                         },
                         { role: "user", content: userMessage }
                     ],
                     stream: false
                 })
             });
+            if (!resp.ok) {
+                const errorData = await resp.text();
+                throw new Error(`DeepSeek Error: ${resp.status} - ${errorData.slice(0, 100)}`);
+            }
             const data = await resp.json();
-            if (data.error) throw new Error(data.error.message);
             return data.choices?.[0]?.message?.content;
         };
 
