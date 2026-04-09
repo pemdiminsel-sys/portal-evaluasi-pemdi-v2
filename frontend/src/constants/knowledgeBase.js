@@ -28,4 +28,12 @@ Terdapat 6 kategori pengguna dengan tingkat akses yang berbeda:
 - Manajemen User, OPD, Indikator, Periode.
 - Penilaian Mandiri, Verifikasi, Berita Acara.
 - Klasemen Ranking, Log Aktivitas.
+
+## 5. PENGISIAN INDIKATOR (PENILAIAN MANDIRI)
+Wajib mengisi: 
+1. Pilih Skor (Level 1-5).
+2. Tulis Deskripsi penjelasan (Uraian kebijakan/layanan).
+3. Unggah bukti dukung (PDF/Gambar/Dokumen SK).
+4. Klik Simpan. 
+Setiap indikator (1-47) mengikuti alur ini sebelum di-Submit.
 `;

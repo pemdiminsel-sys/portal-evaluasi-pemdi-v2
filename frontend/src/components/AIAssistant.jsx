@@ -195,7 +195,7 @@ const AIAssistant = () => {
                         <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50">
                             {messages.map((msg, i) => (
                                 <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                    <div className={`max-w-[85%] p-4 rounded-3xl text-xs font-medium leading-relaxed shadow-sm ${
+                                    <div className={`max-w-[85%] p-4 rounded-3xl text-xs font-medium leading-relaxed shadow-sm whitespace-pre-wrap ${
                                         msg.role === 'user' 
                                             ? 'bg-slate-900 text-white rounded-tr-none' 
                                             : 'bg-white text-slate-700 border border-slate-100 rounded-tl-none'

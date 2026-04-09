@@ -228,6 +228,18 @@ Ranking Klasemen	Peringkat antar instansi berdasarkan nilai SPBE sementara	Pimpi
 Laporan Indeks	Rekapitulasi nilai indeks per domain dan aspek	Pimpinan, Viewer
 Log Aktivitas	Rekam jejak seluruh tindakan user di sistem	Super Admin
 Pengaturan SMTP	Konfigurasi email notifikasi	Super Admin
+
+## 5. PROSEDUR PENGISIAN INDIKATOR (PENILAIAN MANDIRI)
+Setiap indikator (Indikator 1 - 47) wajib diisi dengan langkah berikut agar valid:
+1.  **Pilih Tingkat Kematangan (Level 1-5)**: Pilih level yang paling sesuai dengan kondisi riil di instansi Anda.
+2.  **Isi Penjelasan/Deskripsi**: Berikan uraian singkat mengapa instansi Anda layak mendapatkan level tersebut.
+3.  **Unggah Bukti Dukung**: Wajib mengunggah file (PDF/Gambar) yang membuktikan klaim Anda (Misal: SK Bupati, Foto Layanan, atau Dokumen SOP).
+4.  **Klik Simpan**: Pastikan data tersimpan di setiap nomor indikator.
+5.  **Final Submit**: Setelah semua indikator (1-47) diisi, klik tombol "Submit" untuk mengirim seluruh data ke Tim Asesor Pemkab.
+
+---
+*Versi Dokumen: 2.6 (Update Prosedur Indikator 2026)*
+
 BAB 5: INDIKATOR PENILAIAN (20 INDIKATOR)
 5.1 Ringkasan 7 Aspek dan 20 Indikator
 No	Kode	Indikator	Bobot	Aspek
