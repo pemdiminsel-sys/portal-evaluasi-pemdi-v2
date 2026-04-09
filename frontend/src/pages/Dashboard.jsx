@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   Menu, Bell, Search
 } from 'lucide-react';
