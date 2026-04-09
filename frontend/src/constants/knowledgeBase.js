@@ -1,31 +1,31 @@
 export const KNOWLEDGE_BASE = `
 # BASIS PENGETAHUAN (GROUND TRUTH) - ADMIN AI BANTUAN KOMINFO
-*Update: 9 April 2026 (Ref: Bimtek OPD)*
+*Update v4.2: Formula Indeks & Peran Asesor*
 
-## 1. PRINSIP UTAMA PEMDI
-1. Data sebagai New Oil. 2. Berorientasi Dampak. 3. Keterpaduan Layanan. 4. Inklusif. 5. Digital Resilience. 6. Adaptif (AI/Big Data).
+## 1. RUMUS PERHITUNGAN INDEKS
+- **Indeks Aspek** = Σ (Bobot Indikator × Nilai) / Bobot Aspek.
+- **Indeks Pemdi** = Σ (Bobot Aspek × Nilai Aspek).
+*Penting: Kepuasan Pengguna (25%) & IK-20 (15%) adalah bobot terbesar.*
 
-## 2. STRUKTUR ASPEK & BOBOT
-- **Aspek 7: Kepuasan Pengguna (Bobot Terbesar 25%)** -> IK-19 (10%), IK-20 (15%).
-- Aspek 3, 4, 6: (Bobot 15% masing-masing).
-- Aspek 1, 2, 5: (Bobot 10% masing-masing).
-*Catatan: IK-20 adalah indikator dengan bobot tertinggi (15%).*
+## 2. PERAN ASESOR INTERNAL
+Verifikator dokumen bukti, pemberi skor 1-5, dan koordinator data antar unit/OPD.
 
-## 3. DETAIL DOKUMEN PER INDIKATOR
-- IK-01 (Tata Kelola-5%): SK Rencana Aksi, Arsitektur Pemdi, Laporan Realisasi.
-- IK-02 (Manajemen-5%): SOP, Register Risiko, BCP/DRP.
-- IK-03 (SDM-5%): Peta Kompetensi, Pelatihan ASN >90%, Bukti Pakai AI.
-- IK-04 (Kolaborasi-5%): SK Forum Koordinasi, MoU.
-- IK-05 (Data-5%): SK Walidata, Metadata SDI, API.
-- IK-10 (Keamanan-4%): ISO 27001, Nilai IKASANDI.
-- IK-13 (Aplikasi-4%): SDLC, API.
-- IK-15 (Probis-4%): Peta BPMN, Arsip SRIKANDI.
-- IK-20 (Kepuasan-15%): Laporan Survei SKM, Analisis Sentimen AI.
+## 3. PARADIGMA PEMDI (DIGITAL GOVERNMENT)
+Fokus pada DAMPAK (Hilir) dan KEPUASAN PENGGUNA, bukan sekadar digitalisasi prosedur (Hulu). 
+Pemanfaatan AI dan Big Data didefinisikan dalam IK-03 dan IK-20.
 
-## 4. JADWAL EVALUASI
-- Mandiri: 1 April - 10 Mei 2026.
-- Berkas: 16 Mei - 30 Juni 2026.
+## 4. DOKUMEN KRITIS PER INDIKATOR
+- IK-01: SK Rencana Aksi, Arsitektur Pemdi.
+- IK-03: Pelatihan >90% ASN, Bukti Pemanfaatan AI.
+- IK-05: Metadata SDI, Walidata, API.
+- IK-08: Kebijakan PDP (Perbup).
+- IK-15: Peta Probis, Arsip SRIKANDI.
+- IK-20: Laporan SKM, Analisis Sentimen AI.
 
 ## 5. TINGKAT KEMATANGAN
-Lvl 1 (Merintis), Lvl 2 (Membangun), Lvl 3 (Baik), Lvl 4 (Sangat Baik/Reviu), Lvl 5 (Unggul/RTL).
+Lvl 1: Merintis. Lvl 2: Cukup. Lvl 3: Baik. Lvl 4: Sangat Baik (Reviu). Lvl 5: Unggul (RTL).
+
+## 6. JADWAL
+Penilaian Mandiri: s/d 10 Mei 2026.
+Verifikasi Asesor: 16 Mei - 30 Juni 2026.
 `;

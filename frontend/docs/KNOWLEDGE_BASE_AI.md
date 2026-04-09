@@ -1,73 +1,61 @@
 # PANDUAN PENGETAHUAN (GROUND TRUTH) - PORTAL PEMDI V2
-*Versi Dokumen: 4.1 (Update Bimtek & Bobot 2026)*
+*Versi Dokumen: 4.2 (Update Formula & Peran Asesor 2026)*
 
-## 1. PENGENALAN & KEBIJAKAN
-Portal Evaluasi Pemerintah Digital (Pemdi) adalah pilar kunci transformasi digital di Kabupaten Minahasa Selatan sesuai **Perpres No. 12 Tahun 2025 (RPJMN 2025-2029)** dan **Perbup No. 15 Tahun 2025**.
+## 1. PENGENALAN & PARADIGMA
+Transformasi dari SPBE (Hulu - Fokus TIK) ke **Pemdi (Hilir - Fokus Dampak & Kepuasan Pengguna)**.
+- **Landasan Hukum Utama**: Perbup Minahasa Selatan No. 15 Tahun 2025.
+- **Visi**: Mendukung Indonesia 2045 melalui ekosistem digital yang adaptif (AI, Big Data).
 
-### Prinsip Utama Pemdi:
-1.  **Data sebagai New Oil**: Pemerintah harus mengendalikan data, bukan vendor.
-2.  **Berorientasi Dampak**: Belanja IT harus mempermudah masyarakat.
-3.  **Keterpaduan Layanan**: Menghapus silo-silo antar instansi.
-4.  **Desain Inklusif**: Memperhatikan kelompok rentan.
-5.  **Digital Resilience**: Keandalan layanan adalah faktor utama.
-6.  **Adaptif terhadap Disrupsi**: Pemanfaatan AI dan Big Data.
+## 2. STRUKTUR & RUMUS PERHITUNGAN
+Indeks Pemdi dihitung berdasarkan 7 Aspek (20 Indikator).
 
----
+### Rumus Indeks:
+- **Indeks Aspek** = `Σ (Bobot Indikator × Nilai) / Bobot Aspek`
+- **Indeks Pemdi** = `Σ (Bobot Aspek × Nilai Aspek)`
 
-## 2. STRUKTUR PENILAIAN & BOBOT
-Total ada **20 Indikator** yang terbagi dalam **7 Aspek**.
-
-| No | Aspek Penilaian | Bobot Aspek | Fokus Utama |
-|---|---|---|---|
-| 1 | Tata Kelola & Manajemen | 10% | IK-01 (5%), IK-02 (5%) |
-| 2 | Penyelenggara | 10% | IK-03 (5%), IK-04 (5%) |
-| 3 | Data | 15% | IK-05 (5%), IK-06 (3%), IK-07 (3%) |
-| 4 | Keamanan Pemdi | 15% | IK-08 (4%), IK-09 (4%), IK-10 (4%) |
-| 5 | Teknologi Pemdi | 10% | IK-11 (3%), IK-12 (4%), IK-13 (4%), IK-14 (5%) |
-| 6 | Keterpaduan Layanan | 15% | IK-15 (4%), IK-16 (4%), IK-17 (4%), IK-18 (3%) |
-| 7 | **Kepuasan Pengguna** | **25%** | IK-19 (10%), IK-20 (15%) |
-
-> [!IMPORTANT]
-> **Aspek Kepuasan Pengguna (25%)** dan **Indikator IK-20 (15%)** memiliki bobot tertinggi. Kegagalan menyediakan data survei kepasuan akan sangat menurunkan Indeks Pemdi secara keseluruhan.
+### Bobot Strategis:
+| Aspek | Bobot | Indikator Kunci |
+|---|---|---|
+| **Kepuasan Pengguna** | **25%** | IK-20 (15%) - *Bobot Tertinggi* |
+| Data | 15% | IK-05 (5%) |
+| Keamanan | 15% | IK-08, 09, 10 (4% masing-masing) |
+| Keterpaduan | 15% | IK-15, 16, 17 (4% masing-masing) |
 
 ---
 
-## 3. RINCIAN KRITERIA LEVEL (PER INDIKATOR)
-- **Level 1 (1.00 - 1.50)**: Tahap Pemilihan / Perencanaan Awal.
-- **Level 2 (1.51 - 2.50)**: Rencana Aksi disusun, pelaksanaan parsial (sebagian layanan).
-- **Level 3 (2.51 - 3.50)**: Langkah nyata dilaksanakan, arsitektur dimanfaatkan pd seluruh layanan prioritas.
-- **Level 4 (3.51 - 4.00)**: Reviu dan evaluasi berkala telah dilakukan.
-- **Level 5 (4.01 - 5.00)**: Tindak lanjut hasil reviu (RTL) dilaksanakan menyeluruh.
+## 3. PERAN TIM ASESOR INTERNAL
+Asesor adalah ujung tombak penilaian mandiri dengan tugas:
+1.  **Verifikator**: Memeriksa kesesuaian dokumen bukti (PDF/Link) dengan indikator.
+2.  **Pemberi Skor**: Memberikan nilai 1-5 berdasarkan kriteria objektif.
+3.  **Rekomendator**: Memberikan catatan perbaikan bagi OPD.
 
 ---
 
 ## 4. DAFTAR INDIKATOR & DOKUMEN WAJIB
-*(Dirangkum dari Panduan Teknis 2026)*
+*(Update: Filter Dokumen Paling Kritis)*
 
-1.  **IK-01 (Tata Kelola)**: SK Rencana Aksi Pemdi, Arsitektur Pemdi, Laporan Realisasi, Notulensi Reviu.
-2.  **IK-02 (Manajemen Layanan)**: SOP Layanan, Profil Risiko, Log Perubahan, BCP/DRP.
-3.  **IK-03 (SDM)**: Peta Kompetensi, Data Pelatihan ASN (>90%), Sertifikat, **Bukti Pakai AI**.
-4.  **IK-04 (Kolaborasi)**: SK Forum Koordinasi, Notulensi Rapat, MoU Kolaborasi, kontribusi Dasbor Presiden.
-5.  **IK-05 (Tata Kelola Data)**: SK Walidata, Metadata SDI, Standar Data, API Berbagi Pakai, Nilai Indeks SDI.
-6.  **IK-06 (Geospasial)**: URL Geoportal, Nilai SJIG, Foto alat (Drone/GPS).
-7.  **IK-07 (Statistik)**: SK Statistik Sektoral, Nilai EPSS.
-8.  **IK-08 (PDP)**: Kebijakan PDP (Perbup), Enkripsi, SOP Hak Subjek Data.
-9.  **IK-09 (Audit IT)**: SK Tim Audit, Laporan Audit Internal/Eksternal, RTL.
-10. **IK-10 (Keamanan)**: ISO 27001, Penentuan Infrastruktur Vital, Nilai IKASANDI.
-11. **IK-11 (Kriptografi)**: SSL/TLS, Enkripsi Database.
-12. **IK-12 (CSIRT)**: SK CSIRT, Laporan Insiden.
-13. **IK-13 (Aplikasi)**: Dokumentasi SDLC, Daftar Aplikasi, API Integrasi.
-14. **IK-14 (Infrastruktur)**: PDN (Hosting Nasional), Jaringan Intra (JIP).
-15. **IK-15 (Probis)**: Peta Proses Bisnis (BPMN), Bukti Penyederhanaan, **Arsip SRIKANDI**.
-16. **IK-16 (Integrasi)**: Matriks Integrasi, Sinkronisasi Dasbor Presiden.
-17. **IK-17 (Portal)**: URL minselkab.go.id, Integrasi Portal Layanan Nasional.
-18. **IK-18 (Interoperabilitas)**: Standar API, Pertukaran Data Real-time.
-19. **IK-19 (SLA)**: SOP SLA, Helpdesk/Call Center, Dashboard Monitoring SLA.
-20. **IK-20 (Kepuasan Pengguna)**: Laporan Survei SKM, **Analisis Sentimen AI**, Data Kelompok Rentan.
-
-## 5. JADWAL PELAKSANAAN
-- Penilaian Mandiri: 1 April - 10 Mei 2026.
-- Verifikasi Asesor: 16 Mei - 30 Juni 2026.
+- **IK-01 (Tata Kelola)**: SK Rencana Aksi, Arsitektur Pemdi.
+- **IK-03 (SDM)**: Pelatihan ASN (>90%), **Bukti Pemanfaatan AI**.
+- **IK-05 (Data)**: SK Walidata, Metadata SDI, Portal API.
+- **IK-08 (PDP)**: Kebijakan PDP (Perbup), Register Proses Data.
+- **IK-13 (Aplikasi)**: Dokumentasi SDLC, Daftar Aplikasi.
+- **IK-15 (Probis)**: Peta BPMN, **Arsip Digital SRIKANDI**.
+- **IK-20 (Kepuasan)**: **Laporan Survei SKM** & **Analisis Sentimen AI**.
 
 ---
-*Ref: Materi Bimtek OPD & Rincian Indikator 2026*
+
+## 5. TINGKAT KEMATANGAN (NILAI 1-5)
+1.  **Level 1 (Merintis)**: Perencanaan awal / ad-hoc.
+2.  **Level 3 (Baik)**: Sistematis & terintegrasi.
+3.  **Level 4 (Sangat Baik)**: Menyeluruh & ada reviu berkala.
+4.  **Level 5 (Memuaskan)**: Inovatif, berdampak, dan ada **Tindak Lanjut Reviu (RTL)**.
+
+---
+
+## 6. JADWAL EVALUASI
+- **Penilaian Mandiri**: 1 April - 10 Mei.
+- **Verifikasi Asesor Internal**: 16 Mei - 30 Juni.
+- **Visitasi/Interviu**: Juli - September.
+
+---
+*Ref: Materi Bimtek Asesor & OPD, Perbup 15/2025*
