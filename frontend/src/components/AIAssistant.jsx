@@ -12,14 +12,14 @@ const AIAssistant = () => {
     const [loading, setLoading] = useState(false);
     const scrollRef = useRef(null);
 
-    // Ganti ini dengan Google Gemini API Key Anda dari Google AI Studio
-    const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_KEY || '';
+    const [engine, setEngine] = useState('Gemini'); // Status engine aktif
 
-    useEffect(() => {
-        if (scrollRef.current) {
-            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-        }
-    }, [messages]);
+    // API Keys dari Environment Variables
+    const API_KEYS = {
+        gemini: import.meta.env.VITE_GEMINI_KEY || '',
+        groq: import.meta.env.VITE_GROQ_KEY || '',
+        deepseek: import.meta.env.VITE_DEEPSEEK_KEY || ''
+    };
 
     const handleSend = async () => {
         if (!input.trim() || loading) return;
@@ -29,43 +29,72 @@ const AIAssistant = () => {
         setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
         setLoading(true);
 
-        try {
-            if (!GEMINI_API_KEY) {
-                throw new Error('API Key belum diatur. Mohon hubungi Administrator.');
-            }
-
-            const response = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+        const tryGemini = async () => {
+            if (!API_KEYS.gemini) throw new Error('Gemini Key tidak tersedia');
+            setEngine('Gemini (Utama)');
+            const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEYS.gemini}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    contents: [{
-                        parts: [{
-                            text: `Kamu adalah Asisten AI resmi untuk "Portal Evaluasi Pemerintah Digital (Pemdi) Kabupaten Minahasa Selatan".
-                            Gunakan basis pengetahuan berikut untuk menjawab pertanyaan pengguna. 
-                            Jika pertanyaan diluar konteks sistem, jawablah dengan sopan bahwa kamu hanya bisa membantu terkait operasional Portal SPBE.
-                            
-                            BASIS PENGETAHUAN:
-                            ${KNOWLEDGE_BASE}
-                            
-                            PERTANYAAN USER: ${userMessage}`
-                        }]
-                    }]
+                    contents: [{ parts: [{ text: `KNOWLEDGE: ${KNOWLEDGE_BASE}\n\nUSER: ${userMessage}` }] }]
                 })
             });
+            const data = await resp.json();
+            if (data.error) throw new Error(data.error.message);
+            return data.candidates?.[0]?.content?.parts?.[0]?.text;
+        };
 
-            const data = await response.json();
-            if (data.error) {
-                throw new Error(data.error.message || 'Gagal terhubung ke AI');
-            }
-            const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Maaf, saya sedang mengalami kendala teknis. Mohon coba lagi nanti.';
+        const tryGroq = async () => {
+            if (!API_KEYS.groq) throw new Error('Groq Key tidak tersedia');
+            setEngine('Groq (Cadangan 1)');
+            const resp = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${API_KEYS.groq}`
+                },
+                body: JSON.stringify({
+                    model: "llama-3.3-70b-versatile",
+                    messages: [
+                        { role: "system", content: `Kamu adalah asisten AI Portal Pemdi. Gunakan data ini: ${KNOWLEDGE_BASE}` },
+                        { role: "user", content: userMessage }
+                    ]
+                })
+            });
+            const data = await resp.json();
+            if (data.error) throw new Error(data.error.message);
+            return data.choices?.[0]?.message?.content;
+        };
+
+        try {
+            let aiResponse = '';
             
-            setMessages(prev => [...prev, { role: 'assistant', content: aiText }]);
+            // Strategi: Coba Gemini dulu, jika gagal coba Groq
+            try {
+                aiResponse = await tryGemini();
+            } catch (err) {
+                console.warn('Gemini Gagal, mencoba Groq...', err.message);
+                setMessages(prev => [...prev, { role: 'assistant', content: `⚠️ Gemini (Utama) terkendala: ${err.message}. Mencoba mesin cadangan...` }]);
+                aiResponse = await tryGroq();
+            }
+
+            setMessages(prev => [...prev, { role: 'assistant', content: aiResponse }]);
         } catch (err) {
-            setMessages(prev => [...prev, { role: 'assistant', content: `Kendala: ${err.message}. Pastikan API Key di Vercel sudah benar dan lakukan Redeploy.` }]);
+            setMessages(prev => [...prev, { role: 'assistant', content: `❌ Semua mesin (Gemini & Groq) gagal merespon. Mohon cek API Key di Vercel/Env.` }]);
         } finally {
             setLoading(false);
+            setEngine('Idle');
         }
     };
+
+    useEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollTo({
+                top: scrollRef.current.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+    }, [messages, loading]);
 
     return (
         <div className="fixed bottom-6 right-6 z-[9999]">
@@ -96,7 +125,9 @@ const AIAssistant = () => {
                                 </div>
                                 <div>
                                     <h4 className="font-black text-sm uppercase tracking-widest">AI Assistant</h4>
-                                    <p className="text-[10px] text-slate-400 font-bold uppercase">Portal Pemdi Minsel</p>
+                                    <p className="text-[9px] text-slate-400 font-bold uppercase">
+                                        {loading ? `Engines: ${engine}...` : 'Status: Online'}
+                                    </p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-2">
