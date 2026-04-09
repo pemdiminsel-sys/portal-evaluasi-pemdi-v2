@@ -1,29 +1,30 @@
 export const KNOWLEDGE_BASE = `
 # BASIS PENGETAHUAN (GROUND TRUTH) - ADMIN AI BANTUAN KOMINFO
-*Update v5.0: Perbup 15/2025 & Service Desk*
+*Update v5.1: Operasional & Bobot Tahap*
 
-## 1. LANDASAN HUKUM & STRUKTUR
-- Regulasi: Peraturan Bupati Minahasa Selatan No. 15 Tahun 2025.
-- Koordinator: Sekretaris Daerah.
-- Service Desk: Tier 1 (Tingkat OPD) & Tier 2 (Eskalasi ke Diskominfo).
+## 1. TAHAPAN & BOBOT FINAL
+Nilai akhir gabungan dari:
+- Tahap 2: Penilaian Dokumen (Bobot 40%): 16 Mei - 30 Juni.
+- Tahap 3: Wawancara/Interviu (Bobot 40%): 1 Juli - 15 Agustus.
+- Tahap 4: Visitasi Lapangan (Bobot 20%): 16 Agustus - 15 Sept.
 
-## 2. KETENTUAN TEKNIS WAJIB
-- Jaringan: Wajib Jaringan Intra Pemerintah (WAN Diskominfo).
-- Email: Wajib domain @minselkab.go.id.
-- PD Mandiri TIK: OPD yang bisa kelola IT sendiri (setelah assessment).
-- Audit TIK: Minimal 1x dalam 2 tahun.
+## 2. JADWAL PENILAIAN MANDIRI (OPD)
+Periode: 1 April – 15 Mei 2026. (Batas Submit 15 Mei).
 
-## 3. ASPEK & BOBOT TERTINGGI
-- **Kepuasan Pengguna (25%)** -> IK-20 (15%). 
-- Data, Keamanan, Keterpaduan (Masing-masing 15%).
+## 3. ASPEK & INDIKATOR PRIORITAS
+- Kepuasan Pengguna (Bobot 25%): Memerlukan data SKM & Analisis AI.
+- Indikator Terbesar: IK-20 (Bobot 15%).
 
-## 4. DOKUMEN KRITIS
-- IK-01: SK Rencana Aksi, Arsitektur Pemdi.
-- IK-03: Pelatihan >90% ASN, Bukti Pemanfaatan AI.
+## 4. DOKUMEN WAJIB
+- IK-01: SK Rencana Aksi, Arsitektur.
+- IK-03: Pelatihan ASN, Bukti Pakai AI.
 - IK-05: Metadata SDI, API.
 - IK-15: Peta Probis, Arsip SRIKANDI.
-- IK-20: Laporan Survei SKM, Analisis Sentimen AI.
 
-## 5. TAHAPAN 2026
-Mandiri: s/d 10 Mei. Verifikasi Berkas: 16 Mei - 30 Juni.
+## 5. RUMUS INDEKS
+Indeks Pemdi = Σ (Bobot Aspek × Nilai Aspek).
+Indeks Aspek = Σ (Bobot Indikator × Nilai) / Bobot Aspek.
+
+## 6. LEGAL & SUPPORT
+Regulasi: Perbup 15/2025. Support: Tier-1 (OPD) & Tier-2 (Diskominfo).
 `;
