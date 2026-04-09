@@ -1,0 +1,793 @@
+﻿RINCIAN DATA YANG HARUS DISEDIAKAN PER INDIKATOR
+Evaluasi Kinerja Pemerintah Digital (Pemdi)
+Kabupaten Minahasa Selatan
+
+ASPEK 1: TATA KELOLA DAN MANAJEMEN
+
+IK-01: Tingkat Kematangan Tata Kelola Pemerintah Digital
+Deskripsi: Tata kelola Pemdi adalah kerangka kerja yang memastikan terlaksananya perencanaan, pelaksanaan, dan pengendalian dalam penerapan Pemdi secara terpadu.
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Dokumen Rencana Aksi Pemdi Daerah
+Dokumen perencanaan yang memuat program, kegiatan, target, dan jadwal pelaksanaan Pemdi di lingkungan Kabupaten Minahasa Selatan. Minimal mencakup: visi-misi Pemda, sasaran strategis, program prioritas, indikator kinerja, dan penanggung jawab.
+PDF dokumen resmi yang ditetapkan dengan Surat Keputusan Bupati atau Peraturan Bupati
+
+2
+Dokumen Arsitektur Pemdi Daerah
+Dokumen yang menggambarkan kerangka kerja terpadu Pemdi, mencakup arsitektur bisnis, data, aplikasi, teknologi, dan keamanan yang selaras dengan Arsitektur Pemdi Nasional.
+PDF dokumen resmi minimal berupa pedoman atau panduan teknis yang ditetapkan
+
+3
+Bukti pelaksanaan Rencana Aksi
+Laporan realisasi pelaksanaan program/kegiatan Pemdi yang menunjukkan kesesuaian dengan rencana yang telah disusun. Mencakup capaian target, realisasi anggaran, dan output kegiatan.
+Laporan tahunan pelaksanaan Pemdi, disertai foto kegiatan, berita acara, atau dokumen serapan anggaran
+
+4
+Bukti reviu dan evaluasi berkala
+Dokumen yang menunjukkan adanya mekanisme evaluasi terhadap pelaksanaan Pemdi, seperti laporan evaluasi internal, notulensi rapat evaluasi, atau rekomendasi perbaikan.
+Laporan evaluasi, notulensi rapat koordinasi, atau dokumen reviu yang ditandatangani oleh pejabat berwenang
+
+Catatan Verifikasi:
+Tim Asesor Eksternal akan memverifikasi apakah dokumen-dokumen tersebut telah ditetapkan secara formal (dengan dasar hukum yang jelas)
+Reviu dan evaluasi harus menunjukkan adanya siklus perbaikan (plan-do-check-act)
+
+IK-02: Tingkat Kematangan Manajemen Layanan Digital Pemerintah
+Deskripsi: Serangkaian proses untuk mendukung penyelenggaraan Layanan Digital Pemerintah yang berkualitas, meliputi Manajemen Risiko, Perubahan, Pengetahuan, Keberlangsungan, dan Relasi Pengguna.
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Dokumen SOP Manajemen Layanan Digital
+Standar Operasional Prosedur yang mengatur tata kelola layanan digital, mencakup alur layanan, mekanisme pengaduan, dan prosedur penyelesaian masalah.
+SOP resmi yang ditetapkan oleh pimpinan perangkat daerah
+
+2
+Bukti pelaksanaan manajemen risiko
+Dokumen identifikasi risiko terhadap layanan digital, analisis dampak, dan strategi mitigasi. Minimal mencakup risiko keamanan, operasional, dan keberlangsungan layanan.
+Dokumen profil risiko layanan digital, register risiko, atau laporan analisis risiko
+
+3
+Bukti pelaksanaan manajemen perubahan
+Dokumen yang menunjukkan adanya mekanisme pengelolaan perubahan pada layanan digital, seperti prosedur pengembangan/pembaruan aplikasi, komunikasi perubahan kepada pengguna, dan dokumentasi versi.
+SOP manajemen perubahan, log perubahan aplikasi, bukti komunikasi perubahan kepada pengguna
+
+4
+Bukti pelaksanaan manajemen pengetahuan
+Dokumen yang menunjukkan adanya sistem pengelolaan pengetahuan terkait layanan digital, seperti basis pengetahuan (knowledge base), dokumentasi teknis, atau forum diskusi internal.
+Portal knowledge management, dokumentasi teknis aplikasi, rekaman pelatihan internal
+
+5
+Bukti pelaksanaan manajemen keberlangsungan
+Dokumen rencana keberlangsungan layanan (business continuity plan) untuk layanan digital prioritas, termasuk rencana pemulihan bencana (disaster recovery plan).
+Dokumen BCP/DRP yang telah diuji coba, berita acara uji coba pemulihan
+
+Catatan Verifikasi:
+Tim Asesor akan memeriksa apakah dokumen-dokumen tersebut tidak hanya ada tetapi juga diimplementasikan
+Bukti implementasi dapat berupa log aktivitas, screenshot sistem, atau laporan pelaksanaan
+
+
+ASPEK 2: PENYELENGGARA
+IK-03: Tingkat Kematangan Sumber Daya Manusia Pemerintah Digital
+Deskripsi: Kompetensi Digital ASN yang meliputi Kepemimpinan Digital, Kemahiran Digital, dan Literasi Digital sesuai tugas dan fungsi.
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Peta kompetensi digital ASN
+Dokumen pemetaan yang menunjukkan tingkat kompetensi digital ASN berdasarkan jenis jabatan, jenjang jabatan, dan kebutuhan perangkat daerah. Minimal mencakup identifikasi kesenjangan kompetensi (competency gap).
+Dokumen peta kompetensi digital, hasil asesmen kompetensi digital ASN
+
+2
+Data pelatihan/peningkatan kompetensi digital
+Rekapitulasi pelatihan digital yang telah diikuti oleh ASN, mencakup jenis pelatihan, jumlah peserta, dan capaian kompetensi. Pelatihan dapat berupa pelatihan teknis TIK, literasi digital, kepemimpinan digital, atau sertifikasi keahlian digital.
+Daftar hadir pelatihan, sertifikat pelatihan, laporan pelaksanaan pelatihan, rekapitulasi ASN yang telah mengikuti pelatihan
+
+3
+Sertifikat pelatihan digital
+Bukti fisik atau digital sertifikat yang menunjukkan ASN telah mengikuti dan menyelesaikan pelatihan digital, baik yang diselenggarakan oleh pemerintah pusat, pemerintah daerah, lembaga pelatihan, atau penyedia pelatihan terakreditasi.
+File PDF sertifikat, database sertifikasi ASN
+
+4
+Data ASN pengelola TIK
+Data lengkap ASN yang bertugas pada unit pengelola TIK (Dinas Kominfo atau unit kerja terkait), mencakup jumlah, kualifikasi pendidikan, dan sertifikasi keahlian yang dimiliki.
+Data kepegawaian, SK pengangkatan/pengisian jabatan pengelola TIK
+
+5
+Bukti pemanfaatan AI dan analisis data
+Bukti bahwa ASN telah memanfaatkan kecerdasan buatan (AI) atau analisis data dalam pelaksanaan tugas, seperti penggunaan dashboard analitik, aplikasi berbasis AI, atau pengolahan data dengan tools analitik.
+Screenshot dashboard, laporan analisis data, contoh penggunaan aplikasi AI dalam pekerjaan
+
+Catatan Verifikasi:
+Tim Asesor akan memverifikasi persentase ASN pengelola yang telah mengikuti peningkatan kompetensi digital (target >90%)
+Kompetensi digital optimal mencakup kemampuan menggunakan aplikasi perkantoran digital, memahami keamanan siber dasar, dan mampu beradaptasi dengan teknologi baru
+
+IK-04: Tingkat Kematangan Kolaborasi Pemerintah Digital
+Deskripsi: Forum Koordinasi Pemdi sebagai wadah pertukaran informasi dan peningkatan kapasitas pelaksanaan Pemdi bersama pemangku kepentingan.
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Dokumen pembentukan Forum Koordinasi Pemdi
+Surat Keputusan atau dokumen resmi lainnya yang menetapkan pembentukan forum koordinasi Pemdi di tingkat kabupaten, termasuk struktur keanggotaan dan tugas pokok fungsi.
+SK Bupati atau Surat Keputusan Kepala Dinas/OPD terkait
+
+2
+Notulensi/laporan kegiatan forum
+Dokumentasi pelaksanaan kegiatan forum koordinasi, mencakup rapat, diskusi, atau kegiatan kolaborasi lainnya. Minimal mencakup tanggal kegiatan, daftar peserta, topik yang dibahas, dan kesepakatan/ rekomendasi yang dihasilkan.
+Notulensi rapat, laporan kegiatan, berita acara
+
+3
+Daftar peserta kolaborasi
+Data pihak-pihak yang terlibat dalam kolaborasi Pemdi, mencakup instansi pemerintah lain (kabupaten/kota/provinsi), akademisi, lembaga penelitian, pelaku usaha, industri, media, komunitas, dan organisasi masyarakat.
+Daftar hadir kegiatan, daftar mitra kolaborasi, MoU/MoA kerjasama
+
+4
+Bukti kolaborasi lintas IPPD
+Dokumen yang menunjukkan adanya kerja sama dengan instansi pemerintah lain (pusat, provinsi, atau kabupaten/kota lain) dalam pelaksanaan Pemdi. Contoh: kerjasama pengembangan aplikasi bersama, berbagi data, atau pemanfaatan infrastruktur bersama.
+MoU/MoA, laporan kegiatan kolaborasi, bukti koordinasi tertulis
+
+5
+Bukti kontribusi ke Dasbor Presiden
+Bukti bahwa Kabupaten Minahasa Selatan telah memberikan kontribusi data atau informasi untuk mendukung Dasbor Presiden, baik melalui pengiriman data secara berkala maupun integrasi sistem.
+Surat pengiriman data, screenshot dashboard terintegrasi, bukti interoperabilitas dengan sistem nasional
+
+Catatan Verifikasi:
+Kolaborasi tingkat "baik" ditandai dengan adanya partisipasi aktif dari pihak eksternal (co-creation)
+Kolaborasi tingkat "sangat baik" ditandai dengan adanya reviu berkala terhadap kegiatan kolaborasi
+
+
+ASPEK 3: DATA
+IK-05: Tingkat Kematangan Tata Kelola Data
+Deskripsi: Kemampuan IPPD dalam menerapkan Tata Kelola Data melalui serangkaian proses Satu Data Indonesia (SDI).
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Struktur kelembagaan data
+Dokumen yang menetapkan struktur kelembagaan data sesuai prinsip Satu Data Indonesia, mencakup:• Pembina Data: pejabat yang bertanggung jawab membina data di tingkat daerah• Walidata: unit kerja yang bertanggung jawab melakukan verifikasi data• Produsen Data: unit kerja penghasil data sesuai tugas dan fungsi
+SK Bupati tentang Pembina Data, Walidata, dan Produsen Data Kabupaten
+
+2
+Dokumen metadata data
+Dokumentasi metadata dari setiap data yang dihasilkan oleh perangkat daerah. Metadata minimal mencakup: nama data, definisi, sumber data, periode pembaruan, unit penghasil data, dan spesifikasi teknis data.
+Portal metadata data kabupaten, dokumen katalog data, file metadata (format standar)
+
+3
+Standar data yang digunakan
+Dokumen yang menetapkan standar data yang digunakan untuk menjamin konsistensi dan interoperabilitas data. Standar dapat berupa kode referensi, klasifikasi, format data, atau spesifikasi teknis lainnya.
+Dokumen standar data, pedoman penggunaan kode referensi
+
+4
+Sistem berbagi pakai data
+Bukti adanya sistem yang memungkinkan berbagi pakai data antar perangkat daerah atau dengan instansi lain. Sistem dapat berupa portal data, application programming interface (API), atau mekanisme pertukaran data lainnya.
+URL portal data kabupaten, dokumentasi API, bukti pertukaran data
+
+5
+Bukti pemanfaatan data untuk layanan digital
+Contoh konkret pemanfaatan data dalam penyelenggaraan layanan digital, seperti data kependudukan digunakan untuk layanan perizinan, data spasial untuk perencanaan, atau data statistik untuk evaluasi pembangunan.
+Screenshot layanan digital yang memanfaatkan data, laporan pemanfaatan data
+
+6
+Nilai SDI (0-100)
+Nilai indeks Satu Data Indonesia yang diperoleh dari evaluasi oleh Kementerian PPN/Bappenas. Nilai ini dihasilkan dari penilaian terhadap aspek kebijakan, kelembagaan, metadata, standar data, dan interoperabilitas.
+Surat keterangan nilai SDI, hasil evaluasi SDI
+
+7
+Bukti kontribusi ke Dasbor Presiden
+Bukti bahwa data yang dikelola oleh Kabupaten Minahasa Selatan telah dikonsolidasikan dan digunakan untuk mendukung Dasbor Presiden.
+Surat pengiriman data, screenshot dashboard terintegrasi, bukti sinkronisasi data
+
+Catatan Verifikasi:
+Nilai SDI menjadi salah satu acuan utama penilaian indikator ini
+Tingkat kematangan ditentukan oleh kelengkapan dan konsistensi implementasi prinsip SDI
+
+IK-06: Tingkat Kematangan Penyelenggaraan Informasi Geospasial
+Deskripsi: Kemampuan IPPD dalam berbagi pakai dan memanfaatkan Informasi Geospasial (IG) untuk perencanaan, pelaksanaan, evaluasi, dan pengendalian pembangunan.
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Dokumen tata kelola dan kelembagaan IG
+Dokumen yang mengatur pengelolaan informasi geospasial di lingkungan pemerintah kabupaten, mencakup struktur kelembagaan, tugas dan fungsi, serta mekanisme koordinasi.
+SK Bupati tentang pengelolaan IG, dokumen tata kelola IG
+
+2
+Bukti pembentukan tim/kelompok kerja IG
+Surat keputusan atau dokumen penetapan tim/kelompok kerja yang bertugas mengelola informasi geospasial di kabupaten.
+SK pembentukan tim/kelompok kerja IG
+
+3
+Geoportal/berbagi pakai data geospasial
+Bukti keberadaan platform untuk berbagi pakai data geospasial, seperti geoportal, peta digital interaktif, atau layanan peta berbasis web.
+URL geoportal kabupaten, screenshot layanan peta digital
+
+4
+Metadata data geospasial
+Dokumentasi metadata dari setiap data geospasial yang dihasilkan, mencakup informasi tentang sumber data, metode pengumpulan, akurasi, dan periode pembaruan.
+Portal metadata IG, dokumen katalog data geospasial
+
+5
+SOP penyelenggaraan IG
+Standar Operasional Prosedur yang mengatur proses produksi, pengelolaan, dan pemanfaatan informasi geospasial di lingkungan kabupaten.
+SOP penyelenggaraan IG yang telah ditetapkan
+
+6
+Nilai SJIG (1-5)
+Nilai indeks Simpul Jaringan Informasi Geospasial yang diperoleh dari evaluasi oleh Badan Informasi Geospasial (BIG).
+Surat keterangan nilai SJIG, hasil evaluasi SJIG
+
+7
+Perangkat produksi data geospasial
+Daftar dan bukti kepemilikan perangkat untuk produksi data geospasial, seperti GPS, theodolite, total station, drone, perangkat lunak SIG, dan perangkat keras pendukung.
+Daftar inventaris perangkat, foto perangkat, bukti kepemilikan
+
+Catatan Verifikasi:
+Nilai SJIG menjadi salah satu acuan utama penilaian indikator ini
+Ketersediaan SDM dengan jabatan fungsional surveyor pemetaan menjadi nilai tambah
+
+IK-07: Tingkat Kematangan Pembangunan Statistik
+Deskripsi: Kemampuan IPPD dalam memanfaatkan Data Statistik untuk perencanaan, pelaksanaan, evaluasi, dan pengendalian pembangunan.
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Struktur kelembagaan statistik sektoral
+Dokumen yang menetapkan struktur kelembagaan statistik sektoral di kabupaten, mencakup penanggung jawab statistik sektoral dan unit kerja penghasil data statistik.
+SK Bupati tentang penanggung jawab statistik sektoral
+
+2
+Dokumen perencanaan statistik sektoral
+Dokumen perencanaan yang memuat program statistik sektoral, mencakup jenis data yang akan dihasilkan, jadwal pengumpulan data, metode pengumpulan, dan target capaian.
+Rencana kerja statistik sektoral, program statistik tahunan
+
+3
+Data statistik sektoral yang dihasilkan
+Contoh data statistik sektoral yang dihasilkan oleh perangkat daerah, mencakup data administrasi kependudukan, data pendidikan, data kesehatan, data pertanian, data industri, dan lain-lain.
+Dataset statistik dalam format standar, laporan statistik sektoral
+
+4
+Bukti pemanfaatan data statistik
+Contoh konkret pemanfaatan data statistik dalam perencanaan pembangunan, evaluasi kinerja, atau pengambilan keputusan.
+Dokumen RPJMD/RKPD yang menggunakan data statistik, laporan evaluasi pembangunan
+
+5
+Nilai EPSS
+Nilai Evaluasi Penyelenggaraan Statistik Sektoral yang diperoleh dari evaluasi oleh Badan Pusat Statistik (BPS). Nilai ini mencakup aspek kelembagaan, perencanaan, pelaksanaan, dan pemanfaatan statistik sektoral.
+Surat keterangan nilai EPSS, hasil evaluasi EPSS dari BPS
+
+Catatan Verifikasi:
+Nilai EPSS menjadi salah satu acuan utama penilaian indikator ini
+Tingkat kematangan ditentukan oleh seberapa terintegrasi dan terlembaganya penyelenggaraan statistik sektoral
+
+
+ASPEK 4: KEAMANAN PEMERINTAH DIGITAL
+IK-08: Tingkat Kematangan Pelindungan Data Pribadi
+Deskripsi: Kemampuan IPPD dalam menerapkan prinsip pelindungan data pribadi sesuai peraturan perundang-undangan.
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Dokumen kebijakan PDP
+Dokumen kebijakan internal yang mengatur pelindungan data pribadi di lingkungan pemerintah kabupaten, mencakup prinsip pengumpulan, pemrosesan, penyimpanan, dan penghapusan data pribadi.
+Peraturan Bupati atau Surat Keputusan tentang kebijakan PDP, pedoman PDP internal
+
+2
+Bukti sistem pengendalian teknis PDP
+Dokumentasi sistem dan kontrol teknis yang diterapkan untuk melindungi data pribadi, seperti enkripsi data, kontrol akses berbasis peran (RBAC), audit trail, dan mekanisme deteksi akses tidak sah.
+Dokumentasi teknis sistem, konfigurasi keamanan, laporan uji penetrasi (penetration test)
+
+3
+Bukti manajemen respons hak subjek data
+Bukti adanya mekanisme untuk menangani permintaan dari subjek data (pemilik data pribadi), seperti prosedur akses data, koreksi data, penghapusan data, atau penarikan persetujuan.
+SOP penanganan hak subjek data, bukti penanganan permintaan, formulir permintaan data pribadi
+
+4
+Bukti perekaman aktivitas pemrosesan data pribadi
+Dokumentasi yang mencatat seluruh aktivitas pemrosesan data pribadi, mencakup jenis data yang diproses, tujuan pemrosesan, dasar hukum, pihak yang menerima data, dan periode penyimpanan.
+Register aktivitas pemrosesan data pribadi, laporan kepatuhan PDP
+
+5
+Dokumen evaluasi risiko keamanan data pribadi
+Dokumen analisis risiko terhadap data pribadi yang dikelola, mencakup identifikasi ancaman, penilaian dampak, dan strategi mitigasi risiko.
+Dokumen penilaian dampak pelindungan data pribadi (DPIA), laporan evaluasi risiko
+
+Catatan Verifikasi:
+Indikator ini menjadi krusial seiring dengan pemberlakuan Undang-Undang Pelindungan Data Pribadi (UU PDP)
+Tim Asesor akan memeriksa apakah kabupaten telah memiliki petugas pelindungan data pribadi (data protection officer/DPO)
+
+IK-09: Tingkat Kematangan Pelaksanaan Audit Keamanan dan Teknologi Pemerintah Digital
+Deskripsi: Kemampuan IPPD dalam melaksanakan audit keamanan Pemdi dan teknologi Pemdi.
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Dokumen pembentukan Tim Audit
+Surat keputusan atau dokumen resmi yang menetapkan tim audit keamanan dan teknologi di lingkungan pemerintah kabupaten. Tim audit dapat berupa tim internal atau menggunakan jasa auditor eksternal.
+SK pembentukan Tim Audit Keamanan dan Teknologi
+
+2
+Dokumen perencanaan audit
+Dokumen rencana audit yang memuat ruang lingkup audit, jadwal pelaksanaan, metodologi, dan sumber daya yang digunakan.
+Program kerja audit, rencana audit tahunan
+
+3
+Laporan hasil audit internal keamanan
+Laporan hasil audit yang dilaksanakan oleh tim audit internal, mencakup temuan, rekomendasi, dan kesimpulan.
+Laporan audit internal, berita acara pelaksanaan audit
+
+4
+Laporan hasil audit eksternal keamanan
+Laporan hasil audit yang dilaksanakan oleh auditor eksternal (misalnya Inspektorat, BPK, BSSN, atau lembaga audit independen).
+Laporan audit eksternal, surat keterangan hasil audit
+
+5
+Bukti tindak lanjut hasil audit
+Dokumentasi tindak lanjut atas rekomendasi hasil audit, mencakup rencana aksi, status penyelesaian, dan bukti implementasi perbaikan.
+Rencana tindak lanjut (RTL), laporan progress penyelesaian, bukti implementasi perbaikan
+
+Catatan Verifikasi:
+Audit eksternal untuk layanan digital prioritas menjadi syarat untuk mencapai tingkat "sangat baik"
+Tindak lanjut hasil audit menjadi syarat untuk mencapai tingkat "memuaskan"
+
+IK-10: Tingkat Kematangan Keamanan Pemerintah Digital
+Deskripsi: Kemampuan IPPD dalam menyelenggarakan keamanan Pemdi meliputi implementasi tata kelola dan manajemen keamanan informasi, serta kontrol teknis keamanan.
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Dokumen tata kelola manajemen keamanan informasi
+Dokumen kerangka kerja manajemen keamanan informasi yang diterapkan di lingkungan kabupaten, dapat berbasis SNI ISO/IEC 27001 atau standar keamanan lainnya.
+Dokumen kebijakan keamanan informasi, prosedur keamanan informasi
+
+2
+Bukti penerapan kontrol teknis keamanan
+Dokumentasi penerapan kontrol teknis keamanan, seperti firewall, sistem deteksi intrusi (IDS), antivirus, manajemen patch, dan keamanan endpoint.
+Konfigurasi keamanan, laporan monitoring keamanan, hasil vulnerability assessment
+
+3
+Dokumen identifikasi Infrastruktur Informasi Vital
+Dokumen yang mengidentifikasi infrastruktur informasi vital (IIV) di lingkungan kabupaten, mencakup sistem yang penting bagi kelangsungan pelayanan publik.
+Daftar IIV kabupaten, dokumen penetapan IIV
+
+4
+Nilai IKASANDI
+Nilai Instrumen Pengukuran Kematangan Keamanan Siber yang diperoleh dari evaluasi oleh Badan Siber dan Sandi Negara (BSSN).
+Surat keterangan nilai IKASANDI, hasil evaluasi kematangan keamanan siber
+
+5
+Bukti reviu berkala
+Dokumentasi reviu dan evaluasi berkala terhadap manajemen keamanan informasi, mencakup rapat reviu, laporan evaluasi, dan rekomendasi perbaikan.
+Notulensi rapat reviu, laporan evaluasi keamanan, rencana perbaikan
+
+Catatan Verifikasi:
+Nilai IKASANDI menjadi salah satu acuan utama penilaian indikator ini
+Penerapan kontrol teknis keamanan harus terdokumentasi dengan baik
+
+ASPEK 5: TEKNOLOGI PEMERINTAH DIGITAL
+IK-11: Tingkat Kematangan Penerapan Kriptografi untuk Keamanan Data
+Deskripsi: Kemampuan IPPD dalam melakukan proteksi keamanan kerahasiaan data melalui penerapan fungsi kriptografi.
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Bukti penerapan teknologi kriptografi
+Dokumentasi penggunaan teknologi kriptografi untuk melindungi data, baik saat disimpan (at-rest), saat digunakan (in-use), maupun saat dipertukarkan (in-transit). Contoh: enkripsi database, SSL/TLS untuk komunikasi data, enkripsi file.
+Konfigurasi enkripsi, dokumentasi implementasi SSL/TLS, kebijakan penggunaan kriptografi
+
+2
+Dokumen standar kriptografi yang digunakan
+Dokumen yang menetapkan standar algoritma kriptografi yang digunakan, seperti AES, RSA, atau algoritma yang disetujui oleh BSSN.
+Kebijakan kriptografi, pedoman penggunaan algoritma
+
+3
+Bukti evaluasi penerapan kriptografi
+Dokumentasi evaluasi terhadap efektivitas penerapan kriptografi, mencakup pengujian kekuatan enkripsi, identifikasi kelemahan, dan rekomendasi peningkatan.
+Laporan evaluasi kriptografi, hasil pengujian keamanan enkripsi
+
+4
+Bukti tindak lanjut hasil evaluasi
+Dokumentasi perbaikan atau peningkatan yang dilakukan berdasarkan hasil evaluasi penerapan kriptografi.
+Rencana tindak lanjut, bukti implementasi perbaikan
+
+Catatan Verifikasi:
+Penerapan kriptografi harus sesuai dengan peraturan perundang-undangan dan rekomendasi BSSN
+Tingkat kematangan ditentukan oleh cakupan penerapan (sebagian vs seluruh layanan prioritas) dan siklus data yang dilindungi
+
+IK-12: Tingkat Kematangan Kapabilitas Penanganan Insiden
+Deskripsi: Kemampuan IPPD dalam penanganan insiden siber secara komprehensif, terstruktur, dan terstandar.
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Dokumen pembentukan TTIS/CSIRT
+Surat keputusan atau dokumen resmi yang menetapkan Tim Tanggap Insiden Siber (TTIS) atau Computer Security Incident Response Team (CSIRT) di lingkungan kabupaten.
+SK pembentukan TTIS/CSIRT
+
+2
+Bukti pelaksanaan penanganan insiden
+Dokumentasi proses penanganan insiden siber yang pernah terjadi, mencakup deteksi, analisis, penanganan, dan pemulihan.
+Laporan penanganan insiden, log kejadian keamanan
+
+3
+Laporan penanganan insiden siber
+Laporan lengkap yang mendokumentasikan setiap insiden siber yang ditangani, mencakup jenis insiden, dampak, tindakan yang diambil, dan rekomendasi pencegahan.
+Laporan insiden, ringkasan insiden
+
+4
+Bukti reviu kapabilitas TTIS
+Dokumentasi reviu dan evaluasi terhadap kapabilitas TTIS/CSIRT, mencakup uji coba kesiapan, simulasi penanganan insiden, atau evaluasi kinerja.
+Laporan reviu, berita acara simulasi insiden, hasil uji coba
+
+5
+Bukti partisipasi dalam berbagi informasi dengan TTIS nasional
+Bukti bahwa TTIS/CSIRT kabupaten berpartisipasi aktif dalam berbagi informasi dan/atau sumber daya dengan TTIS nasional (BSSN) atau TTIS lainnya.
+Surat keterangan partisipasi, bukti koordinasi, laporan kolaborasi
+
+Catatan Verifikasi:
+Keberadaan TTIS yang aktif menjadi syarat utama penilaian
+Partisipasi dalam jaringan TTIS nasional menjadi nilai tambah untuk tingkat "sangat baik"
+
+IK-13: Tingkat Kematangan Aplikasi Pemerintah Digital
+Deskripsi: Kemampuan IPPD dalam pembangunan/pengembangan aplikasi sesuai siklus SDLC yang selaras dengan Arsitektur Teknologi Pemdi.
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Dokumen perencanaan aplikasi
+Dokumen perencanaan pengembangan aplikasi yang mencakup analisis kebutuhan, spesifikasi teknis, dan rencana implementasi sesuai siklus SDLC.
+Dokumen analisis kebutuhan, project charter, rencana pengembangan aplikasi
+
+2
+Bukti implementasi SDLC
+Dokumentasi pelaksanaan siklus pengembangan aplikasi, mencakup rancang bangun, implementasi, uji kelayakan, dan pemeliharaan.
+Dokumen desain sistem, hasil pengujian (UAT), dokumentasi pemeliharaan
+
+3
+Dokumen Arsitektur Teknologi Pemdi daerah
+Dokumen yang menggambarkan arsitektur teknologi Pemdi di kabupaten, mencakup standar teknologi, platform, dan infrastruktur yang digunakan.
+Dokumen Arsitektur Teknologi Pemdi, panduan teknis pengembangan aplikasi
+
+4
+Daftar aplikasi yang dikembangkan
+Rekapitulasi seluruh aplikasi yang dikelola oleh pemerintah kabupaten, mencakup nama aplikasi, fungsi, platform, status (aktif/tidak aktif), dan tahun pengembangan.
+Database aplikasi, inventaris aplikasi
+
+5
+Bukti integrasi aplikasi
+Dokumentasi integrasi antar aplikasi, baik di lingkungan internal kabupaten maupun dengan sistem eksternal (pusat/provinsi).
+Dokumentasi API, diagram integrasi, bukti pertukaran data antar aplikasi
+
+6
+Bukti reviu dan evaluasi aplikasi
+Dokumentasi reviu dan evaluasi terhadap aplikasi yang dikembangkan, mencakup penilaian kinerja, keamanan, dan kepuasan pengguna.
+Laporan evaluasi aplikasi, notulensi reviu, rekomendasi perbaikan
+
+Catatan Verifikasi:
+Pengembangan aplikasi harus mengikuti siklus SDLC yang terdokumentasi
+Integrasi aplikasi menjadi syarat untuk mencapai tingkat "sangat baik"
+
+IK-14: Tingkat Kematangan Infrastruktur Pemerintah Digital
+Deskripsi: Kemampuan IPPD dalam menyelenggarakan layanan digital dengan mengutamakan teknologi awan.
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Dokumen perencanaan infrastruktur digital
+Dokumen perencanaan pengembangan infrastruktur digital di kabupaten, mencakup kebutuhan jaringan, pusat data, dan teknologi awan.
+Rencana pengembangan infrastruktur TIK, dokumen perencanaan teknologi awan
+
+2
+Data pemanfaatan pusat data nasional
+Bukti bahwa kabupaten telah memanfaatkan pusat data nasional (PDN) yang dikelola oleh pemerintah pusat untuk hosting aplikasi atau penyimpanan data.
+Surat permohonan pemanfaatan PDN, bukti alokasi sumber daya PDN, kontrak/SLA dengan pengelola PDN
+
+3
+Data pemanfaatan teknologi awan
+Bukti bahwa layanan digital kabupaten telah menggunakan teknologi awan (cloud computing), baik melalui private cloud, public cloud, atau hybrid cloud.
+Dokumentasi arsitektur cloud, bukti implementasi layanan berbasis cloud
+
+4
+Bukti integrasi dengan infrastruktur digital nasional
+Bukti bahwa infrastruktur digital kabupaten telah terintegrasi dengan jaringan intra pemerintah (JIP) atau infrastruktur digital nasional lainnya.
+Dokumentasi koneksi jaringan, bukti integrasi dengan JIP, konfigurasi jaringan
+
+5
+Bukti reviu pemanfaatan infrastruktur
+Dokumentasi reviu dan evaluasi terhadap pemanfaatan infrastruktur digital, mencakup penilaian kinerja, ketersediaan (availability), dan efisiensi.
+Laporan reviu infrastruktur, hasil monitoring SLA, rekomendasi perbaikan
+
+Catatan Verifikasi:
+Penggunaan teknologi awan menjadi syarat untuk mencapai tingkat "baik"
+Integrasi dengan infrastruktur digital nasional menjadi syarat untuk mencapai tingkat "sangat baik"
+
+
+ASPEK 6: KETERPADUAN LAYANAN DIGITAL PEMERINTAH
+IK-15: Keterpaduan Proses Bisnis Pemerintah Digital Lintas Unit dan Instansi
+Deskripsi: Kemampuan IPPD dalam mewujudkan keterpaduan layanan digital melalui keterpaduan proses bisnis berbasis Arsitektur Pemdi yang berorientasi pada kebutuhan pengguna (human-centric).
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Dokumen pemetaan proses bisnis
+Dokumen yang memetakan proses bisnis utama di lingkungan pemerintah kabupaten, mencakup alur layanan, pihak yang terlibat, dan kebutuhan data.
+Peta proses bisnis, business process mapping
+
+2
+Bukti penyederhanaan proses bisnis
+Dokumentasi upaya penyederhanaan proses bisnis melalui pemanfaatan teknologi digital, seperti pengurangan tahapan layanan, penghapusan persyaratan yang tidak perlu, atau otomatisasi proses.
+Dokumen perbandingan proses bisnis lama dan baru, SOP layanan digital
+
+3
+Bukti keterpaduan proses bisnis lintas OPD
+Bukti bahwa proses bisnis telah terpadu antar perangkat daerah, seperti layanan terintegrasi yang melibatkan lebih dari satu OPD (contoh: layanan perizinan terpadu, layanan administrasi kependudukan terintegrasi).
+Dokumen layanan terpadu, SK pembentukan layanan terpadu, bukti pelaksanaan layanan terpadu
+
+4
+Bukti keterpaduan dengan proses bisnis nasional
+Bukti bahwa proses bisnis kabupaten telah terintegrasi dengan proses bisnis di tingkat nasional, seperti sinkronisasi data dengan kementerian/lembaga.
+Dokumentasi interoperabilitas, bukti pertukaran data dengan sistem pusat
+
+5
+Bukti penerapan arsip digital
+Bukti bahwa dokumen dan arsip telah dikelola secara digital, sesuai dengan standar kearsipan digital yang ditetapkan oleh ANRI.
+Sistem pengelolaan arsip digital, bukti penggunaan tanda tangan elektronik
+
+6
+Bukti kontribusi ke Dasbor Presiden
+Bukti bahwa proses bisnis dan data kabupaten telah dikonsolidasikan untuk mendukung Dasbor Presiden.
+Surat pengiriman data, screenshot dashboard terintegrasi
+
+Catatan Verifikasi:
+Pendekatan human-centric berarti layanan dirancang berdasarkan kebutuhan masyarakat, bukan struktur organisasi
+Keterpaduan proses bisnis harus mencakup seluruh layanan prioritas
+
+IK-16: Integrasi Aplikasi
+Deskripsi: Kemampuan IPPD dalam menghubungkan berbagai aplikasi agar dapat bekerja sama dan berbagi data secara holistik.
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Dokumen Arsitektur Teknologi Pemdi
+Dokumen yang menggambarkan arsitektur teknologi dan integrasi aplikasi di kabupaten.
+Dokumen Arsitektur Teknologi Pemdi, diagram integrasi
+
+2
+Daftar aplikasi yang telah terintegrasi
+Rekapitulasi aplikasi yang telah terintegrasi, mencakup aplikasi yang saling terhubung, mekanisme integrasi, dan jenis data yang dipertukarkan.
+Database aplikasi terintegrasi, matriks integrasi
+
+3
+Bukti integrasi aplikasi lintas OPD
+Dokumentasi teknis integrasi antar aplikasi dari berbagai perangkat daerah, seperti integrasi data kependudukan dengan layanan perizinan, atau integrasi data keuangan dengan layanan pengadaan.
+Dokumentasi API, konfigurasi integrasi, bukti pertukaran data
+
+4
+Bukti integrasi dengan Dasbor Presiden
+Bukti bahwa aplikasi kabupaten telah terintegrasi dengan Dasbor Presiden, baik melalui pengiriman data otomatis maupun API.
+Dokumentasi integrasi, bukti sinkronisasi data, screenshot dashboard
+
+5
+Bukti reviu dan optimalisasi integrasi
+Dokumentasi reviu terhadap integrasi aplikasi yang telah dilakukan, serta upaya optimalisasi untuk meningkatkan kualitas dan keandalan integrasi.
+Laporan reviu integrasi, rekomendasi optimalisasi, bukti implementasi perbaikan
+
+Catatan Verifikasi:
+Integrasi aplikasi harus didokumentasikan dengan baik secara teknis
+Optimalisasi integrasi dilakukan secara berkala untuk menjaga kualitas
+
+IK-17: Portal Layanan Digital Pemerintah
+Deskripsi: Kemampuan IPPD dalam menyelenggarakan portal pelayanan publik yang mengonsolidasikan seluruh layanan masyarakat.
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Bukti keberadaan portal layanan digital daerah
+URL dan screenshot portal layanan digital yang dikelola oleh pemerintah kabupaten. Portal minimal mencakup informasi layanan, akses layanan, dan kanal pengaduan.
+URL portal, screenshot halaman utama, dokumentasi fitur portal
+
+2
+Daftar layanan yang tersedia di portal
+Rekapitulasi layanan yang dapat diakses melalui portal, mencakup jenis layanan, OPD pengelola, status layanan (online/offline), dan tautan akses.
+Daftar layanan digital, katalog layanan
+
+3
+Bukti integrasi dengan portal nasional
+Bukti bahwa portal layanan digital kabupaten telah terintegrasi dengan portal nasional (misalnya portal pelayanan publik nasional atau portal nasional lainnya).
+Dokumentasi integrasi, bukti pertukaran data, URL redirect atau embedding
+
+4
+Bukti integrasi dengan Dasbor Presiden
+Bukti bahwa data layanan dari portal kabupaten telah terintegrasi dengan Dasbor Presiden.
+Dokumentasi integrasi, bukti sinkronisasi data
+
+5
+Bukti reviu portal layanan
+Dokumentasi reviu dan evaluasi terhadap portal layanan digital, mencakup penilaian ketersediaan, kemudahan akses, dan kepuasan pengguna.
+Laporan reviu portal, hasil survei kepuasan, rekomendasi perbaikan
+
+Catatan Verifikasi:
+Portal harus mengonsolidasikan layanan berdasarkan siklus hidup pengguna (human-centric)
+Integrasi dengan portal nasional menjadi syarat untuk mencapai tingkat "baik"
+
+IK-18: Interoperabilitas Data
+Deskripsi: Kemampuan IPPD dalam pertukaran dan pemanfaatan data antar sistem yang berbeda.
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Dokumen standar interoperabilitas data
+Dokumen yang menetapkan standar interoperabilitas data yang digunakan di kabupaten, mencakup format data, protokol pertukaran, dan mekanisme keamanan.
+Kebijakan interoperabilitas data, standar API, pedoman pertukaran data
+
+2
+Bukti implementasi interoperabilitas data
+Dokumentasi implementasi interoperabilitas data, mencakup contoh pertukaran data antar sistem yang berhasil dilakukan.
+Dokumentasi API, bukti pertukaran data, log integrasi
+
+3
+Bukti pertukaran data real-time
+Bukti bahwa kabupaten telah mampu melakukan pertukaran data secara waktu nyata (real-time) antar sistem, baik internal maupun eksternal.
+Dokumentasi API real-time, bukti sinkronisasi data secara langsung
+
+4
+Bukti kontribusi ke Satu Data Indonesia
+Bukti bahwa data kabupaten telah berkontribusi dalam ekosistem Satu Data Indonesia, melalui portal data atau mekanisme berbagi data yang sesuai dengan prinsip SDI.
+Bukti pengiriman data ke portal SDI, dokumentasi metadata di portal SDI
+
+5
+Bukti kontribusi ke Dasbor Presiden
+Bukti bahwa data kabupaten yang dipertukarkan secara interoperabel telah digunakan untuk mendukung Dasbor Presiden.
+Dokumentasi integrasi dengan Dasbor Presiden, bukti sinkronisasi data
+
+Catatan Verifikasi:
+Interoperabilitas data yang baik memungkinkan pertukaran data tanpa hambatan teknis yang signifikan
+Real-time data exchange menjadi nilai tambah untuk tingkat "sangat baik"
+
+
+ASPEK 7: KEPUASAN PENGGUNA LAYANAN DIGITAL PEMERINTAH
+IK-19: Fasilitas Dukungan Pengguna Layanan Digital Pemerintah
+Deskripsi: Dukungan pengguna layanan digital untuk mencapai tingkat pemenuhan kualitas layanan (SLA).
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Dokumen SOP Layanan Digital dan SLA
+Standar Operasional Prosedur yang mengatur layanan digital, mencakup standar ketersediaan (availability), waktu respons, dan waktu penyelesaian masalah.
+SOP layanan digital, dokumen SLA layanan digital
+
+2
+Bukti ketersediaan fasilitas dukungan pengguna
+Bukti keberadaan fasilitas dukungan pengguna, seperti helpdesk, call center, layanan chat, atau kanal pengaduan lainnya.
+Nomor telepon helpdesk, URL kanal pengaduan, screenshot layanan chat, struktur tim dukungan
+
+3
+Bukti integrasi dukungan pengguna dengan tingkat nasional
+Bukti bahwa fasilitas dukungan pengguna kabupaten telah terintegrasi dengan sistem dukungan pengguna di tingkat nasional (jika ada).
+Dokumentasi integrasi, bukti koordinasi dengan pusat
+
+4
+Bukti sistem pemantauan pemenuhan SLA
+Bukti adanya sistem yang memantau pemenuhan SLA layanan digital, mencakup monitoring ketersediaan layanan, waktu respons, dan kepatuhan terhadap standar.
+Dashboard monitoring SLA, laporan pemenuhan SLA, log monitoring
+
+5
+Bukti reviu dan evaluasi pemenuhan SLA
+Dokumentasi reviu dan evaluasi terhadap pemenuhan SLA, mencakup analisis capaian, identifikasi kendala, dan rekomendasi perbaikan.
+Laporan evaluasi SLA, notulensi reviu, rencana perbaikan
+
+Catatan Verifikasi:
+SLA harus mencakup aspek ketersediaan layanan (misalnya 99% uptime) dan waktu respons
+Sistem pemantauan sebaiknya terotomasi untuk memudahkan pengukuran
+
+IK-20: Tingkat Kepuasan Pengguna Layanan Digital Pemerintah
+Deskripsi: Pencapaian tingkat kepuasan pengguna terhadap layanan digital pemerintah.
+No
+Data yang Disediakan
+Penjelasan Rinci
+Format/Dokumen
+
+1
+Bukti pelaksanaan survei kepuasan pengguna
+Dokumentasi pelaksanaan survei kepuasan pengguna, mencakup instrumen survei, metode pengumpulan data, periode pelaksanaan, dan jumlah responden.
+Kuesioner survei, laporan pelaksanaan survei, data responden
+
+2
+Hasil survei kepuasan pengguna
+Hasil pengukuran kepuasan pengguna, mencakup indeks kepuasan, distribusi jawaban, dan analisis temuan.
+Laporan hasil survei, indeks kepuasan pengguna, analisis sentimen
+
+3
+Bukti ketersediaan kanal umpan balik dua arah
+Bukti bahwa pengguna dapat memberikan masukan dan menerima tanggapan dari penyelenggara layanan, seperti formulir saran digital, email layanan, komentar publik, atau fitur ulasan.
+Screenshot kanal umpan balik, bukti tanggapan terhadap masukan
+
+4
+Bukti pelaksanaan mystery guest/mystery shopper
+Dokumentasi pelaksanaan evaluasi layanan dengan metode mystery guest atau mystery shopper, baik yang dilaksanakan sendiri maupun berkoordinasi dengan instansi pembina.
+Laporan mystery guest, berita acara pelaksanaan, rekomendasi perbaikan
+
+5
+Bukti pemanfaatan AI untuk analisis sentimen
+Bukti bahwa kabupaten telah memanfaatkan kecerdasan buatan (AI) untuk menganalisis sentimen pengguna, misalnya dari media sosial, ulasan, atau umpan balik digital.
+Dokumentasi sistem analisis sentimen, laporan hasil analisis sentimen
+
+6
+Bukti tindak lanjut hasil survei
+Dokumentasi tindak lanjut atas hasil survei kepuasan pengguna, mencakup perbaikan layanan yang dilakukan, update fitur, atau perubahan prosedur.
+Rencana tindak lanjut, laporan perbaikan layanan, log perubahan layanan
+
+7
+Data keterlibatan kelompok rentan dalam survei
+Bukti bahwa survei kepuasan melibatkan kelompok rentan (penyandang disabilitas, lansia, perempuan, atau kelompok marginal lainnya) sebagai responden.
+Data demografi responden, laporan keterlibatan kelompok rentan
+
+Catatan Verifikasi:
+Indikator ini memiliki bobot tertinggi (15%) sehingga sangat menentukan nilai akhir
+Survei kepuasan harus dilakukan secara berkala dan hasilnya dipublikasikan
+Tindak lanjut atas masukan pengguna menjadi pembeda antara tingkat kematangan
+
+REKOMENDASI PERSIAPAN DOKUMEN
+Berdasarkan rincian data di atas, berikut adalah langkah-langkah yang direkomendasikan untuk Kabupaten Minahasa Selatan:
+1. Inventarisasi Dokumen yang Sudah Ada
+Kumpulkan seluruh dokumen yang telah disebutkan di atas
+Identifikasi dokumen yang sudah lengkap dan yang masih belum tersedia
+2. Penyusunan Dokumen yang Belum Ada
+Prioritaskan dokumen yang menjadi prasyarat dasar:
+SK Pembina Data, Walidata, Produsen Data (IK-05)
+SK Forum Koordinasi Pemdi (IK-04)
+SK Tim Asesor Internal (Pasal 4 Permen)
+SK TTIS/CSIRT (IK-12)
+3. Digitalisasi dan Dokumentasi
+Pastikan seluruh dokumen tersimpan dalam format digital (PDF)
+Buat sistem penyimpanan yang terstruktur untuk memudahkan pencarian
+Dokumentasikan bukti implementasi dengan screenshot, foto, atau file pendukung
+4. Koordinasi Lintas OPD
+Libatkan seluruh OPD sesuai dengan pembagian tanggung jawab
+Lakukan rapat koordinasi rutin untuk memantau progress
+Tetapkan penanggung jawab untuk setiap indikator
+5. Simulasi Penilaian Mandiri
+Lakukan simulasi pengisian kuesioner secara internal
+Identifikasi indikator yang nilainya masih rendah
+Susun rencana perbaikan sebelum penilaian resmi
+
+
