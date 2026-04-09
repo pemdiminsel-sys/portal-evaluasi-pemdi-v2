@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import useAuthStore from '../store/authStore';
 import { 
   Users, UserPlus, Trash2, Edit2, Mail, Building2, Loader2, ShieldCheck, 
-  Lock, Eye, CheckCircle, AlertCircle, X, ShieldAlert, Key, Phone, 
+  Lock, Eye, EyeOff, CheckCircle, AlertCircle, X, ShieldAlert, Key, Phone, 
   Briefcase, FileText, ExternalLink, ThumbsUp, ThumbsDown, Layers
 } from 'lucide-react';
 import { supabase } from '../services/supabase';
@@ -17,7 +17,8 @@ const UserManagement = () => {
     const [opds, setOpds] = useState([]);
     const [aspeks, setAspeks] = useState([]);
     const [saving, setSaving] = useState(false);
-    const [resending, setResending] = useState(null); 
+    const [resending, setResending] = useState(null);
+    const [showPassword, setShowPassword] = useState(false);
     
     const [form, setForm] = useState({ 
         name: '', email: '', password: '', role: 3, opd_id: '', aspek_id: '', whatsapp: '', jabatan: ''
@@ -104,6 +105,7 @@ const UserManagement = () => {
     };
 
     const handleOpenModal = (user = null) => {
+        setShowPassword(false);
         if (user) {
             setCurrentUser(user);
             setForm({ 
@@ -122,10 +124,14 @@ const UserManagement = () => {
         setSaving(true);
         try {
             if (currentUser) {
-                const { error } = await supabase.from('users').update({
+                const updatePayload = {
                     name: form.name, role: form.role, opd_id: form.opd_id || null, aspek_id: form.aspek_id || null,
                     whatsapp: form.whatsapp, jabatan: form.jabatan
-                }).eq('id', currentUser.id);
+                };
+                if (form.password && form.password.trim() !== '') {
+                    updatePayload.password = form.password.trim();
+                }
+                const { error } = await supabase.from('users').update(updatePayload).eq('id', currentUser.id);
                 if (error) throw error;
                 toast.success('Profil user berhasil diperbarui');
             } else {
@@ -427,6 +433,33 @@ const UserManagement = () => {
                                             </>
                                         )}
                                     </div>
+                                </div>
+
+                                {/* Password Field */}
+                                <div className="space-y-2">
+                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                                        {currentUser ? 'Ganti Sandi (kosongkan jika tidak ingin diubah)' : 'Kata Sandi Akun'}
+                                    </label>
+                                    <div className="relative">
+                                        <input
+                                            type={showPassword ? 'text' : 'password'}
+                                            value={form.password}
+                                            onChange={e => setForm({...form, password: e.target.value})}
+                                            placeholder={currentUser ? '••••••••' : 'min. 8 karakter'}
+                                            className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-red-100 outline-none font-bold pr-14"
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowPassword(p => !p)}
+                                            className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-red-500 transition-colors p-1"
+                                            title={showPassword ? 'Sembunyikan Sandi' : 'Lihat Sandi'}
+                                        >
+                                            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                                        </button>
+                                    </div>
+                                    {!currentUser && (
+                                        <p className="text-[9px] font-black text-slate-300 uppercase ml-2">Default: Minsel123! (jika dikosongkan)</p>
+                                    )}
                                 </div>
 
                                 <div className="flex gap-4 pt-6">
