@@ -81,8 +81,8 @@ const Sidebar = ({ onMobileClose }) => {
            <ShieldCheck className="text-white" size={24} />
         </div>
         <div className="flex flex-col">
-          <span className="font-black text-red-600 leading-tight text-sm tracking-tighter uppercase">REFIX-SYSTEM-2026</span>
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest italic tracking-tighter">Sync Verified v2.2</span>
+          <span className="font-black text-red-600 leading-tight text-sm tracking-tighter uppercase">PORTAL EVALUASI</span>
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest italic tracking-tighter">PEMKAB MINSEL</span>
         </div>
       </div>
 

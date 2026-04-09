@@ -108,7 +108,7 @@ const EvaluasiMandiri = () => {
                     .eq('periode_id', activeP.id)
             ]);
 
-            const filteredIndikators = inRes.data || [];
+            const filteredIndikators = (inRes.data || []).map((ind, idx) => ({ ...ind, globalIndex: idx + 1 }));
             const activeAspekIds = [...new Set(filteredIndikators.map(i => i.aspek_id))];
             
             setAspeks((asRes.data || []).filter(a => activeAspekIds.includes(a.id)));
@@ -241,7 +241,7 @@ const EvaluasiMandiri = () => {
             <div className={`flex flex-col border-r border-slate-200 bg-white transition-all duration-500 overflow-hidden ${selectedIndikator ? 'w-0' : 'w-[400px]'}`}>
                 <div className="p-8 border-b border-slate-50 relative">
                     <div className="absolute top-2 right-2 px-2 py-0.5 bg-red-600 text-[8px] font-black text-white rounded-full animate-pulse">
-                        V.2.3.2-READY
+                        LIVE
                     </div>
                     <h2 className="text-2xl font-black text-slate-800 tracking-tighter uppercase italic">Indikator SPBE</h2>
                     <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Periode Evaluasi {periode?.tahun || 'N/A'}</p>
@@ -264,7 +264,7 @@ const EvaluasiMandiri = () => {
                                             className={`w-full p-4 rounded-2xl flex items-center justify-between text-left transition-all ${pen?.status === 1 ? 'bg-emerald-50 border-emerald-100 hover:bg-emerald-100' : 'bg-white hover:bg-slate-50 border border-slate-100'}`}
                                         >
                                             <div className="flex-1 min-w-0 pr-4">
-                                                <p className={`text-[11px] font-black leading-tight truncate ${pen?.status === 1 ? 'text-emerald-700' : 'text-slate-700'}`}>{ind.kode || ind.id}. {ind.nama}</p>
+                                                <p className={`text-[11px] font-black leading-tight truncate ${pen?.status === 1 ? 'text-emerald-700' : 'text-slate-700'}`}>{ind.globalIndex}. {ind.nama}</p>
                                                 <div className="flex items-center gap-3 mt-1.5">
                                                     <span className={`text-[9px] font-black uppercase tracking-tighter ${pen?.nilai ? 'text-indigo-500' : 'text-slate-300'}`}>Level {pen?.nilai || '-'}</span>
                                                     {hasBukti && <div className="w-1 h-1 bg-slate-300 rounded-full"></div>}
@@ -301,7 +301,7 @@ const EvaluasiMandiri = () => {
 
                         <div className="space-y-4">
                              <div className="bg-slate-900 p-1 rounded-full text-white inline-flex items-center gap-4 pr-6 pl-2">
-                                <div className="bg-red-600 w-10 h-10 rounded-full flex items-center justify-center font-black text-lg italic">I{selectedIndikator.id}</div>
+                                <div className="bg-red-600 w-10 h-10 rounded-full flex items-center justify-center font-black text-lg italic">I{selectedIndikator.globalIndex}</div>
                                 <span className="font-black text-xs uppercase tracking-widest">{selectedIndikator.nama}</span>
                              </div>
                              <h2 className="text-4xl font-black text-slate-800 leading-[1.1] tracking-tight">{selectedIndikator.nama}</h2>

@@ -6,10 +6,27 @@ import {
 import useAuthStore from '../store/authStore';
 import Sidebar from '../components/Sidebar';
 import { Outlet } from 'react-router-dom';
+import { supabase } from '../services/supabase';
 
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { user } = useAuthStore();
+  const [opdName, setOpdName] = useState('...');
+
+  useEffect(() => {
+     if (user?.id) {
+        supabase.from('users').select('*, opds(*)').eq('id', user.id).single()
+          .then(({data, error}) => {
+             if (!error && data) {
+                let currentOpd = data.opds;
+                if (Array.isArray(currentOpd)) currentOpd = currentOpd[0];
+                setOpdName(currentOpd?.nama || 'Pusat Pemerintahan');
+             } else {
+                setOpdName('Admin Dashboard');
+             }
+          });
+     }
+  }, [user?.id]);
 
   return (
     <div className="flex h-screen bg-slate-50 font-sans text-slate-900 overflow-hidden">
@@ -47,7 +64,7 @@ const Dashboard = () => {
             <div className="flex items-center gap-4 pl-2 group cursor-pointer">
               <div className="text-right hidden lg:block">
                 <p className="text-sm font-black text-slate-800 uppercase leading-none">{user?.name?.split(' ')[0]}</p>
-                <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1 italic">V2.1-REFIX-OUTLET</p>
+                <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1 italic line-clamp-1 max-w-[200px]" title={opdName}>{opdName}</p>
               </div>
               <div className="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center text-white font-black text-xl italic shadow-xl shadow-slate-200 group-hover:scale-110 transition-transform">
                 {user?.name?.[0]}
