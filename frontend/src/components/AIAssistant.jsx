@@ -32,7 +32,7 @@ const AIAssistant = () => {
         const tryGemini = async () => {
             if (!API_KEYS.gemini) throw new Error('Gemini Key tidak tersedia');
             setEngine('Gemini (Utama)');
-            const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEYS.gemini}`, {
+            const resp = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEYS.gemini}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
