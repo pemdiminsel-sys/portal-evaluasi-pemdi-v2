@@ -1,36 +1,31 @@
 export const KNOWLEDGE_BASE = `
 # BASIS PENGETAHUAN (GROUND TRUTH) - ADMIN AI BANTUAN KOMINFO
+*Update: 9 April 2026 (Ref: Bimtek OPD)*
 
-## 1. JADWAL EVALUASI 2026
-- Penilaian Mandiri: 1 April - 10 Mei (Batas Akhir).
-- Syarat Daftar: Unggah Surat Tugas.
+## 1. PRINSIP UTAMA PEMDI
+1. Data sebagai New Oil. 2. Berorientasi Dampak. 3. Keterpaduan Layanan. 4. Inklusif. 5. Digital Resilience. 6. Adaptif (AI/Big Data).
 
-## 2. DETAIL 20 INDIKATOR (IK-01 S/D IK-20)
-Dokumen wajib yang harus diunggah:
-- IK-01 (Tata Kelola): SK Rencana Aksi, Arsitektur Pemdi, Laporan Realisasi.
-- IK-02 (Manajemen Layanan): SOP, Register Risiko, Log Perubahan, BCP/DRP.
-- IK-03 (SDM): Peta Kompetensi, Data Pelatihan, Bukti Pemanfaatan AI.
-- IK-04 (Kolaborasi): SK Forum Koordinasi, Notulensi, MoU Lintas OPD.
-- IK-05 (Data): SK Walidata, Metadata, Standar Data, Portal API (SDI).
-- IK-06 (Geospasial): URL Geoportal, Metadata IG, Nilai SJIG, Alat (Drone/GPS).
-- IK-07 (Statistik): SK Statistik Sektoral, Rencana Kerja Statistik, Nilai EPSS.
-- IK-08 (PDP): Kebijakan PDP (Perbup), Dokumentasi Enkripsi, SOP Hak Subjek.
-- IK-09 (Audit IT): SK Tim Audit, Rencana Audit, Laporan Audit (LHA), RTL.
-- IK-10 (Keamanan): ISO 27001, Penentuan Infrastruktur Vital, Nilai IKASANDI.
-- IK-11 (Kriptografi): SSL/TLS, Enkripsi Database, Kebijakan Algoritma.
-- IK-12 (CSIRT): SK CSIRT/TTIS, Laporan Insiden, Simulasi Penanganan.
-- IK-13 (Aplikasi): Dokumentasi SDLC, Rancang Bangun (UAT), API.
-- IK-14 (Infrastruktur): PDN (Pusat Data Nasional), Cloud Computing, JIP.
-- IK-15 (Probis): Peta Proses Bisnis (BPMN), Arsip Digital (SRikandi).
-- IK-16 (Integrasi): Matriks Integrasi, API, Koneksi Dasbor Presiden.
-- IK-17 (Portal): URL minselkab.go.id, Layanan Terintegrasi Nasional.
-- IK-18 (Interoperabilitas): Standar API, Pertukaran Data Real-time (SDI).
-- IK-19 (SLA/Dukungan): SOP SLA, Helpdesk/Call Center, Monitoring SLA.
-- IK-20 (Kepuasan): Laporan Survei SKM, Analisis Sentimen AI, Mystery Guest.
+## 2. STRUKTUR ASPEK & BOBOT
+- **Aspek 7: Kepuasan Pengguna (Bobot Terbesar 25%)** -> IK-19 (10%), IK-20 (15%).
+- Aspek 3, 4, 6: (Bobot 15% masing-masing).
+- Aspek 1, 2, 5: (Bobot 10% masing-masing).
+*Catatan: IK-20 adalah indikator dengan bobot tertinggi (15%).*
 
-## 3. CARA PENGISIAN
-Pilih Level (1-5) -> Isi Deskripsi -> Unggah Dokumen (PDF/Gambar) -> Klik SIMPAN.
+## 3. DETAIL DOKUMEN PER INDIKATOR
+- IK-01 (Tata Kelola-5%): SK Rencana Aksi, Arsitektur Pemdi, Laporan Realisasi.
+- IK-02 (Manajemen-5%): SOP, Register Risiko, BCP/DRP.
+- IK-03 (SDM-5%): Peta Kompetensi, Pelatihan ASN >90%, Bukti Pakai AI.
+- IK-04 (Kolaborasi-5%): SK Forum Koordinasi, MoU.
+- IK-05 (Data-5%): SK Walidata, Metadata SDI, API.
+- IK-10 (Keamanan-4%): ISO 27001, Nilai IKASANDI.
+- IK-13 (Aplikasi-4%): SDLC, API.
+- IK-15 (Probis-4%): Peta BPMN, Arsip SRIKANDI.
+- IK-20 (Kepuasan-15%): Laporan Survei SKM, Analisis Sentimen AI.
 
-## 4. TINGKAT KEMATANGAN
-Level 1: Kurang. Level 2: Cukup. Level 3: Baik. Level 4: Sangat Baik. Level 5: Memuaskan.
+## 4. JADWAL EVALUASI
+- Mandiri: 1 April - 10 Mei 2026.
+- Berkas: 16 Mei - 30 Juni 2026.
+
+## 5. TINGKAT KEMATANGAN
+Lvl 1 (Merintis), Lvl 2 (Membangun), Lvl 3 (Baik), Lvl 4 (Sangat Baik/Reviu), Lvl 5 (Unggul/RTL).
 `;

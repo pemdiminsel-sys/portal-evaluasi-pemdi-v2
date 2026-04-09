@@ -1,0 +1,1849 @@
+﻿MATERI BIMBINGAN TEKNIS (BIMTEK)
+PERSIAPAN EVALUASI KINERJA PEMERINTAH DIGITAL (PEMDI) TAHUN 2026
+BAGI PERANGKAT DAERAH (OPD) KABUPATEN MINAHASA SELATAN
+
+DAFTAR ISI
+No.
+Materi
+Halaman
+
+1
+Pendahuluan dan Kebijakan Pemerintah Digital
+4
+
+2
+Perubahan Paradigma: SPBE Menuju Pemdi
+8
+
+3
+Struktur Penilaian Evaluasi Kinerja Pemdi
+12
+
+4
+Rincian 20 Indikator dan Kriteria Penilaian
+16
+
+5
+Pembagian Indikator per OPD
+32
+
+6
+Persiapan Dokumen dan Bukti Pendukung
+36
+
+7
+Tahapan dan Jadwal Pelaksanaan Evaluasi
+44
+
+8
+Penggunaan Aplikasi Portal Evaluasi
+48
+
+9
+Teknik Pengisian Penilaian Mandiri
+54
+
+10
+Teknik Upload Bukti ke Google Drive
+60
+
+11
+Persiapan Wawancara (Interviu)
+64
+
+12
+Penutup dan Evaluasi Pemahaman
+68
+
+
+BAB 1: PENDAHULUAN DAN KEBIJAKAN PEMERINTAH DIGITAL
+
+1.1 Latar Belakang
+Pemerintah Digital (Pemdi) adalah transformasi pemerintahan yang memanfaatkan data dan teknologi digital untuk meningkatkan kualitas layanan pemerintah guna pencapaian visi, misi, dan arah pembangunan nasional.
+Berdasarkan Rencana Pembangunan Jangka Menengah Nasional (RPJMN) 2025-2029 sebagaimana tertuang dalam Peraturan Presiden Nomor 12 Tahun 2025, Pemerintah Digital ditetapkan sebagai salah satu pilar kunci pembangunan nasional.
+1.2 Visi Pemerintah Digital
+"Terwujudnya Pemerintah Digital untuk Mendukung Visi Indonesia 2045"
+Visi ini diwujudkan melalui 2 misi utama:
+Misi
+Deskripsi
+
+Misi 1
+Mewujudkan transformasi layanan pemerintah berbasis digital yang bermanfaat dan berdampak optimal bagi pengguna serta mendukung pencapaian program pembangunan nasional yang efektif dan tepat sasaran
+
+Misi 2
+Mewujudkan ekosistem Pemerintah Digital sebagai bagian dari transformasi tata kelola yang mendorong transformasi sosial dan transformasi ekonomi
+
+1.3 Tujuan Evaluasi Kinerja Pemdi
+Tujuan
+Deskripsi
+
+Mengukur capaian
+Mengetahui tingkat kematangan penerapan Pemdi di Kabupaten Minahasa Selatan
+
+Meningkatkan kualitas
+Memberikan rekomendasi perbaikan untuk peningkatan kualitas layanan digital
+
+Mengukur dampak
+Menilai dampak kebijakan Pemdi terhadap kemudahan layanan dan kesejahteraan masyarakat
+
+Akuntabilitas
+Menyediakan data capaian kinerja Pemdi untuk pelaporan kepada pusat dan publik
+
+1.4 Landasan Hukum
+No.
+Regulasi
+Keterangan
+
+1
+UU Nomor 59 Tahun 2024
+RPJPN 2025-2045
+
+2
+Perpres Nomor 12 Tahun 2025
+RPJMN 2025-2029
+
+3
+Perpres Nomor 95 Tahun 2018
+SPBE
+
+4
+Perpres Nomor 39 Tahun 2019
+Satu Data Indonesia
+
+5
+PermenPANRB (draft)
+Evaluasi Kinerja Pemerintah Digital
+
+6
+Perbup Minahasa Selatan No. 15/2025
+Penyelenggaraan SPBE
+
+
+BAB 2: PERUBAHAN PARADIGMA: SPBE MENUJU PEMDI
+
+2.1 Perbandingan SPBE vs PEMDI
+Aspek
+SPBE (e-Government)
+PEMDI (Digital Government)
+
+Prinsip
+Digitalisasi prosedur
+Kedaulatan digital, kemanfaatan, inklusi
+
+Fokus
+TIK sebagai enabler layanan
+Layanan digital yang berdampak pada masyarakat
+
+Pendekatan
+Tata kelola dan manajemen SPBE
+Ekosistem Pemdi (keterpaduan tata kelola, arsitektur digital, manajemen layanan)
+
+Evaluasi
+Tingkat kematangan pengelola TIK (Hulu)
+Kepuasan pengguna layanan digital (Hilir)
+
+Indikator
+47 indikator
+20 indikator (lebih fokus dan efisien)
+
+2.2 Prinsip Pemerintah Digital
+text
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                      6 PRINSIP PEMERINTAH DIGITAL                                      │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                         │
+│   1. DATA SEBAGAI NEW OIL                                                              │
+│      Pemerintah harus memiliki kendali atas data, mencegah vendor locked-in            │
+│                                                                                         │
+│   2. BERORIENTASI DAMPAK                                                               │
+│      Belanja TIK harus berdampak signifikan pada kemudahan layanan masyarakat          │
+│                                                                                         │
+│   3. KETERPADUAN LAYANAN                                                               │
+│      Mengatasi fragmentasi dan silo-silo layanan                                       │
+│                                                                                         │
+│   4. DESAIN INKLUSIF                                                                   │
+│      Memperhatikan kelompok rentan dan digital divide                                  │
+│                                                                                         │
+│   5. DIGITAL RESILIENCE                                                               │
+│      Keandalan layanan digital menjadi faktor utama ketahanan pemerintah               │
+│                                                                                         │
+│   6. ADAPTIF TERHADAP DISRUPSI                                                        │
+│      Mampu beradaptasi dengan AI, Big Data Analytics, dan teknologi terkini           │
+│                                                                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+2.3 Mengapa Evaluasi Pemdi Penting bagi OPD?
+Alasan
+Deskripsi
+
+Mengukur Kinerja
+Mengetahui sejauh mana digitalisasi layanan di OPD telah berdampak pada masyarakat
+
+Identifikasi Kesenjangan
+Menemukan area yang perlu ditingkatkan dalam penerapan Pemdi
+
+Perbaikan Berkelanjutan
+Hasil evaluasi menjadi dasar perbaikan layanan digital
+
+Akuntabilitas
+Mempertanggungjawabkan penggunaan anggaran TIK
+
+Komparasi
+Membandingkan capaian antar OPD dan dengan standar nasional
+
+
+BAB 3: STRUKTUR PENILAIAN EVALUASI KINERJA PEMDI
+
+3.1 7 Aspek dan 20 Indikator Penilaian
+No.
+Aspek
+Bobot
+Indikator
+Bobot
+
+1
+Tata Kelola dan Manajemen
+10%
+IK-01 Tata Kelola Pemdi
+5%
+
+
+
+
+IK-02 Manajemen Layanan Digital
+5%
+
+2
+Penyelenggara
+10%
+IK-03 SDM Pemdi
+5%
+
+
+
+
+IK-04 Kolaborasi Pemdi
+5%
+
+3
+Data
+15%
+IK-05 Tata Kelola Data
+5%
+
+
+
+
+IK-06 Informasi Geospasial
+3%
+
+
+
+
+IK-07 Pembangunan Statistik
+3%
+
+4
+Keamanan Pemdi
+15%
+IK-08 Pelindungan Data Pribadi
+4%
+
+
+
+
+IK-09 Audit Keamanan & Teknologi
+4%
+
+
+
+
+IK-10 Keamanan Pemdi
+4%
+
+5
+Teknologi Pemdi
+10%
+IK-11 Kriptografi
+3%
+
+
+
+
+IK-12 Penanganan Insiden
+4%
+
+
+
+
+IK-13 Aplikasi Pemdi
+4%
+
+
+
+
+IK-14 Infrastruktur Pemdi
+5%
+
+6
+Keterpaduan Layanan
+15%
+IK-15 Proses Bisnis Lintas Unit
+4%
+
+
+
+
+IK-16 Integrasi Aplikasi
+4%
+
+
+
+
+IK-17 Portal Layanan Digital
+4%
+
+
+
+
+IK-18 Interoperabilitas Data
+3%
+
+7
+Kepuasan Pengguna
+25%
+IK-19 Fasilitas Dukungan Pengguna
+10%
+
+
+
+
+IK-20 Tingkat Kepuasan Pengguna
+15%
+
+
+TOTAL
+100%
+
+100%
+
+3.2 Tingkat Kematangan (Predikat)
+Rentang Nilai
+Predikat
+Makna bagi OPD
+
+1,00 – 1,50
+Kurang / Merintis (Initiate)
+Masih dalam tahap penyusunan/perencanaan awal
+
+1,51 – 2,50
+Cukup / Membangun (Emerging)
+Sudah terencana, pelaksanaan belum menyeluruh
+
+2,51 – 3,50
+Baik / Berkembang (Developing)
+Dilaksanakan secara sistematis, mulai terintegrasi
+
+3,51 – 4,00
+Sangat Baik / Melembaga (Embedded)
+Menyeluruh, dilakukan reviu berkala
+
+4,01 – 5,00
+Memuaskan / Unggul (Leading)
+Inovatif, proaktif, berdampak pada masyarakat
+
+3.3 Aspek dengan Bobot Tertinggi
+text
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    BOBOT ASPEK PENILAIAN                                                │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                         │
+│   Kepuasan Pengguna  ████████████████████████████████████████  25%                     │
+│   Data               ████████████████████████████████          15%                     │
+│   Keamanan Pemdi     ████████████████████████████████          15%                     │
+│   Keterpaduan Layanan ████████████████████████████████          15%                     │
+│   Tata Kelola        ██████████████████████                  10%                     │
+│   Penyelenggara      ██████████████████████                  10%                     │
+│   Teknologi Pemdi    ██████████████████████                  10%                     │
+│                                                                                         │
+│   ⚠️ PERHATIAN: Aspek KEPUASAN PENGGUNA memiliki bobot TERTINGGI (25%)                 │
+│      OPD wajib menyiapkan data survei kepuasan dan fasilitas dukungan pengguna!        │
+│                                                                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+
+BAB 4: RINCIAN 20 INDIKATOR DAN KRITERIA PENILAIAN
+
+4.1 IK-01: Tingkat Kematangan Tata Kelola Pemerintah Digital (Bobot 5%)
+Deskripsi
+Kerangka kerja yang memastikan terlaksananya perencanaan, pelaksanaan, dan pengendalian dalam penerapan Pemdi secara terpadu.
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Substansi Rencana Aksi Nasional Pemdi untuk perencanaan pada IPPD dalam tahap pemilihan
+Dokumen perencanaan awal
+
+1,51-2,50
+Rencana Aksi telah disusun di tingkat mikro, pelaksanaan pada sebagian Layanan Digital
+Rencana Aksi, bukti pelaksanaan parsial
+
+2,51-3,50
+Langkah nyata dilaksanakan sesuai Rencana Aksi, Arsitektur Pemdi dimanfaatkan pada seluruh layanan prioritas/tematik
+Rencana Aksi, Arsitektur Pemdi, laporan pelaksanaan
+
+3,51-4,00
+Telah dilakukan reviu atas Rencana Aksi dan Arsitektur Pemdi
+Dokumen reviu, notulensi rapat evaluasi
+
+4,01-5,00
+Tindak lanjut hasil reviu dilaksanakan secara menyeluruh
+Rencana tindak lanjut, bukti implementasi
+
+4.2 IK-02: Tingkat Kematangan Manajemen Layanan Digital Pemerintah (Bobot 5%)
+Deskripsi
+Serangkaian proses untuk mendukung penyelenggaraan Layanan Digital Pemerintah yang berkualitas (Manajemen Risiko, Perubahan, Pengetahuan, Keberlangsungan, Relasi Pengguna).
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Dalam tahap penyusunan, pelaksanaan sesuai kebutuhan
+Dokumen perencanaan awal
+
+1,51-2,50
+Rencana Aksi menjadi referensi pada sebagian Layanan Digital
+SOP Manajemen Layanan, bukti implementasi parsial
+
+2,51-3,50
+Rencana Aksi menjadi referensi pada seluruh Layanan Digital
+SOP Manajemen Layanan lengkap, bukti implementasi menyeluruh
+
+3,51-4,00
+Pelaksanaan Manajemen Layanan telah direviu secara menyeluruh
+Dokumen reviu, laporan evaluasi
+
+4,01-5,00
+Tindak lanjut hasil reviu dilaksanakan menyeluruh
+Rencana tindak lanjut, bukti implementasi perbaikan
+
+4.3 IK-03: Tingkat Kematangan Sumber Daya Manusia Pemerintah Digital (Bobot 5%)
+Deskripsi
+Kompetensi Digital ASN yang meliputi Kepemimpinan Digital, Kemahiran Digital, dan Literasi Digital sesuai tugas dan fungsi.
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Dalam persiapan peningkatan kompetensi digital ASN
+Peta kompetensi awal
+
+1,51-2,50
+Peningkatan kompetensi digital kepada >90% ASN pengelola
+Data pelatihan, sertifikat
+
+2,51-3,50
+Peningkatan kompetensi kepada >90% ASN pengelola dan pengguna layanan
+Data pelatihan menyeluruh
+
+3,51-4,00
+ASN memiliki kompetensi untuk memanfaatkan AI dan Analisis Data
+Bukti pemanfaatan AI, laporan analisis data
+
+4,01-5,00
+ASN memanfaatkan AI, Analisis Data, dan teknologi terbaru secara intensif
+Dokumentasi penggunaan teknologi canggih
+
+4.4 IK-04: Tingkat Kematangan Kolaborasi Pemerintah Digital (Bobot 5%)
+Deskripsi
+Forum Koordinasi Pemdi sebagai wadah pertukaran informasi dan peningkatan kapasitas pelaksanaan Pemdi bersama pemangku kepentingan.
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Dalam tahap penyusunan kolaborasi antar unit kerja
+Dokumen perencanaan
+
+1,51-2,50
+Kolaborasi antar IPPD hingga tingkat nasional
+Notulensi rapat, daftar peserta
+
+2,51-3,50
+Kolaborasi dengan akademisi, industri, media, masyarakat (co-creation)
+MoU, laporan kegiatan kolaborasi
+
+3,51-4,00
+Kolaborasi terarah, direviu, dan/atau kontribusi ke Dasbor Presiden
+Dokumen reviu, bukti kontribusi
+
+4,01-5,00
+Tindak lanjut hasil reviu dilaksanakan menyeluruh
+Rencana tindak lanjut, bukti implementasi
+
+4.5 IK-05: Tingkat Kematangan Tata Kelola Data (Bobot 5%)
+Deskripsi
+Kemampuan IPPD dalam menerapkan Tata Kelola Data melalui serangkaian proses Satu Data Indonesia (SDI).
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Dalam tahap penyiapan Penyelenggara SDI, SDI ≤ 12,5
+Dokumen perencanaan
+
+1,51-2,50
+Penyelenggara SDI terbentuk, metadata mulai disusun, SDI 12,5-37,5
+SK Kelembagaan Data, metadata awal
+
+2,51-3,50
+Struktur kelembagaan dan regulasi tersedia, SDI 37,5-62,5
+SK, regulasi, metadata, sistem berbagi pakai
+
+3,51-4,00
+Hampir seluruh prinsip SDI diterapkan, SDI 62,5-75, dan/atau kontribusi Dasbor Presiden
+Dokumentasi lengkap, bukti kontribusi
+
+4,01-5,00
+Seluruh prinsip SDI diterapkan, SDI 75-100, tindak lanjut reviu
+Dokumentasi lengkap, bukti tindak lanjut
+
+4.6 IK-06: Tingkat Kematangan Penyelenggaraan Informasi Geospasial (Bobot 3%)
+Deskripsi
+Kemampuan IPPD dalam berbagi pakai dan memanfaatkan Informasi Geospasial (IG) untuk perencanaan, pelaksanaan, evaluasi, dan pengendalian pembangunan.
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Dalam tahap penyiapan, SJIG 1-1,50
+Dokumen perencanaan awal
+
+1,51-2,50
+Tata kelola dan kelembagaan ditetapkan, SJIG 1,50-2,50
+SK, regulasi, geoportal sederhana
+
+2,51-3,50
+SOP tersedia, perangkat produksi data dimiliki, SJIG 2,50-3,50
+SOP, daftar perangkat, geoportal lengkap
+
+3,51-4,00
+Roadmap, SDM fungsional surveyor, evaluasi pemanfaatan, SJIG 3,50-4,00
+Roadmap, SK jabatan fungsional, laporan evaluasi
+
+4,01-5,00
+Reviu berkala, anggaran rutin, SJIG 4,00-5,00
+Dokumen reviu, bukti anggaran
+
+4.7 IK-07: Tingkat Kematangan Pembangunan Statistik (Bobot 3%)
+Deskripsi
+Kemampuan IPPD dalam memanfaatkan Data Statistik untuk perencanaan, pelaksanaan, evaluasi, dan pengendalian pembangunan.
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Dalam proses penyelenggaraan ad-hoc, IPS < 1,8
+Dokumen perencanaan awal
+
+1,51-2,50
+Proses dilakukan sebagian/seluruh unit kerja, IPS 1,8-2,60
+Data statistik, laporan
+
+2,51-3,50
+Proses di seluruh unit kerja dan diharmonisasi, IPS 2,60-3,50
+Struktur kelembagaan, perencanaan statistik
+
+3,51-4,00
+Proses terpadu, integrasi antarproses, IPS 3,50-4,20
+Dokumentasi integrasi, laporan evaluasi
+
+4,01-5,00
+Proses terpadu, berkontribusi pada kinerja, IPS 4,20-5,00
+Laporan kinerja, bukti pemanfaatan
+
+4.8 IK-08: Tingkat Kematangan Pelindungan Data Pribadi (Bobot 4%)
+Deskripsi
+Kemampuan IPPD dalam menerapkan prinsip pelindungan data pribadi sesuai peraturan perundang-undangan.
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Dalam tahap penyiapan penerapan teknis PDP
+Dokumen perencanaan
+
+1,51-2,50
+Penerapan teknis PDP sesuai perencanaan
+Dokumen kebijakan, sistem pengendalian teknis
+
+2,51-3,50
+Penerapan sesuai perencanaan, pemantauan sistematis
+Dokumentasi sistem, laporan pemantauan
+
+3,51-4,00
+Evaluasi menyeluruh terhadap penerapan teknis PDP
+Laporan evaluasi
+
+4,01-5,00
+Tindak lanjut hasil evaluasi dilaksanakan, terintegrasi dengan arsitektur Pemdi
+Rencana tindak lanjut, bukti integrasi
+
+4.9 IK-09: Tingkat Kematangan Pelaksanaan Audit Keamanan dan Teknologi Pemerintah Digital (Bobot 4%)
+Deskripsi
+Kemampuan IPPD dalam melaksanakan audit keamanan Pemdi dan teknologi Pemdi untuk memastikan keamanan dan ketaatan pada standar.
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Tim Audit dan Perencanaan Audit telah dibentuk
+SK Tim Audit, dokumen perencanaan
+
+1,51-2,50
+Audit Internal Keamanan dan Teknologi Pemdi dilaksanakan pada sebagian Layanan
+Laporan audit internal
+
+2,51-3,50
+Audit Internal dilaksanakan, tindak lanjut dilaksanakan
+Laporan audit, RTL, bukti implementasi
+
+3,51-4,00
+Audit Eksternal untuk layanan prioritas dilaksanakan
+Laporan audit eksternal
+
+4,01-5,00
+Tindak lanjut hasil audit eksternal dilaksanakan
+RTL, bukti implementasi
+
+4.10 IK-10: Tingkat Kematangan Keamanan Pemerintah Digital (Bobot 4%)
+Deskripsi
+Kemampuan IPPD dalam menyelenggarakan keamanan Pemdi meliputi implementasi tata kelola dan manajemen keamanan informasi, serta kontrol teknis keamanan berdasarkan IKASANDI.
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Dalam tahap penyusunan tata kelola, identifikasi IIV
+Dokumen perencanaan
+
+1,51-2,50
+Tata kelola diterapkan sesuai pedoman, identifikasi IIV
+Dokumen kebijakan, daftar IIV
+
+2,51-3,50
+Tata kelola diterapkan, kontrol teknis dilaksanakan
+Konfigurasi keamanan, laporan
+
+3,51-4,00
+Tata kelola terorganisir, terpadu, direviu berkala
+Dokumen reviu, laporan evaluasi
+
+4,01-5,00
+Tindak lanjut hasil reviu melalui proses otomasi
+Bukti otomasi, RTL
+
+4.11 IK-11: Tingkat Kematangan Penerapan Kriptografi untuk Keamanan Data (Bobot 3%)
+Deskripsi
+Kemampuan IPPD dalam melakukan proteksi keamanan kerahasiaan data melalui penerapan fungsi kriptografi untuk data at-rest, in-use, dan in-transit.
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Dalam tahap penyiapan penerapan teknologi kriptografi
+Dokumen perencanaan
+
+1,51-2,50
+Teknologi kriptografi diterapkan pada sebagian Layanan Digital
+Konfigurasi SSL/TLS, dokumentasi
+
+2,51-3,50
+Teknologi kriptografi diterapkan pada sebagian Layanan di 2 siklus data
+Dokumentasi enkripsi database, SSL/TLS
+
+3,51-4,00
+Teknologi kriptografi diterapkan pada seluruh layanan prioritas di 2 siklus data, evaluasi dilaksanakan
+Dokumentasi lengkap, laporan evaluasi
+
+4,01-5,00
+Tindak lanjut hasil evaluasi dilaksanakan
+RTL, bukti implementasi perbaikan
+
+4.12 IK-12: Tingkat Kematangan Kapabilitas Penanganan Insiden (Bobot 4%)
+Deskripsi
+Kemampuan IPPD dalam penanganan insiden siber secara komprehensif, terstruktur, dan terstandar, termasuk pemanfaatan TTIS/CSIRT.
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Dalam tahap penyiapan penanganan insiden
+Dokumen perencanaan
+
+1,51-2,50
+TTIS/CSIRT dibentuk, penanganan insiden pada sebagian Layanan
+SK TTIS, laporan penanganan insiden
+
+2,51-3,50
+Penanganan insiden melalui TTIS pada seluruh layanan prioritas
+Laporan penanganan lengkap
+
+3,51-4,00
+Kapabilitas TTIS direviu, partisipasi dengan TTIS nasional
+Dokumen reviu, bukti partisipasi
+
+4,01-5,00
+Evaluasi penanganan insiden untuk perbaikan berkelanjutan, berdampak pada keamanan nasional
+Laporan evaluasi, bukti dampak
+
+4.13 IK-13: Tingkat Kematangan Aplikasi Pemerintah Digital (Bobot 4%)
+Deskripsi
+Kemampuan IPPD dalam pembangunan/pengembangan aplikasi sesuai siklus SDLC yang selaras dengan Arsitektur Teknologi Pemdi.
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Dalam tahap penyusunan referensi pembangunan aplikasi
+Dokumen perencanaan
+
+1,51-2,50
+Referensi menjadi arah pada sebagian Layanan Digital
+Dokumen Arsitektur Teknologi, daftar aplikasi
+
+2,51-3,50
+Referensi menjadi arah pada seluruh layanan prioritas/tematik
+Dokumentasi SDLC, daftar aplikasi lengkap
+
+3,51-4,00
+Integrasi seluruh aplikasi, reviu berkala
+Dokumentasi API integrasi, laporan reviu
+
+4,01-5,00
+Penerapan seluruh manajemen layanan, tindak lanjut reviu
+Dokumentasi lengkap, RTL
+
+4.14 IK-14: Tingkat Kematangan Infrastruktur Pemerintah Digital (Bobot 5%)
+Deskripsi
+Kemampuan IPPD dalam menyelenggarakan layanan digital dengan mengutamakan teknologi awan melalui pemanfaatan infrastruktur Pemdi.
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Dalam tahap penyusunan referensi pemanfaatan infrastruktur
+Dokumen perencanaan
+
+1,51-2,50
+Referensi menjadi arah, sebagian layanan berbasis teknologi awan
+Dokumen Arsitektur, bukti cloud
+
+2,51-3,50
+Seluruh layanan prioritas/tematik berbasis teknologi awan
+Dokumentasi cloud, bukti implementasi
+
+3,51-4,00
+Infrastruktur terintegrasi dengan Infrastruktur Digital Nasional
+Dokumentasi integrasi JIP, reviu
+
+4,01-5,00
+Pemanfaatan Infrastruktur Digital Nasional, tindak lanjut reviu
+Bukti pemanfaatan PDN, RTL
+
+4.15 IK-15: Keterpaduan Proses Bisnis Pemerintah Digital Lintas Unit dan Instansi (Bobot 4%)
+Deskripsi
+Kemampuan IPPD dalam mewujudkan keterpaduan layanan digital melalui keterpaduan proses bisnis berbasis Arsitektur Pemdi yang berorientasi pada kebutuhan pengguna (human-centric).
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Dalam tahap penyusunan referensi keterpaduan proses bisnis
+Dokumen perencanaan
+
+1,51-2,50
+Referensi menjadi arah pada sebagian Layanan Digital
+Peta proses bisnis, bukti penyederhanaan parsial
+
+2,51-3,50
+Referensi menjadi arah pada seluruh layanan prioritas/tematik
+Peta proses bisnis lengkap, bukti integrasi
+
+3,51-4,00
+Keterpaduan menjadi bagian dari proses bisnis lintas sektor nasional, reviu berkala, arsip digital
+Dokumentasi integrasi, laporan reviu, bukti SRIKANDI
+
+4,01-5,00
+Keterpaduan menjadi bagian dari proses bisnis lintas sektor nasional, tindak lanjut reviu
+Dokumentasi lengkap, RTL
+
+4.16 IK-16: Integrasi Aplikasi (Bobot 4%)
+Deskripsi
+Kemampuan IPPD dalam menghubungkan berbagai aplikasi agar dapat bekerja sama dan berbagi data secara holistik untuk menciptakan ekosistem digital terpadu.
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Dalam tahap penyusunan referensi integrasi aplikasi
+Dokumen perencanaan
+
+1,51-2,50
+Referensi menjadi arah pada sebagian Layanan Digital
+Dokumentasi API awal
+
+2,51-3,50
+Referensi menjadi arah pada seluruh layanan prioritas/tematik, dan/atau integrasi dengan Dasbor Presiden
+Dokumentasi API lengkap, bukti integrasi
+
+3,51-4,00
+Integrasi pada seluruh layanan prioritas/tematik, reviu berkala, dan/atau integrasi Dasbor Presiden
+Dokumentasi lengkap, laporan reviu
+
+4,01-5,00
+Tindak lanjut reviu, optimalisasi untuk Dasbor Presiden
+RTL, bukti optimalisasi
+
+4.17 IK-17: Portal Layanan Digital Pemerintah (Bobot 4%)
+Deskripsi
+Kemampuan IPPD dalam menyelenggarakan portal pelayanan publik yang mengonsolidasikan seluruh layanan masyarakat dan terintegrasi dengan portal nasional.
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Dalam tahap penyusunan referensi penerapan portal
+Dokumen perencanaan
+
+1,51-2,50
+Referensi menjadi arah pada sebagian layanan digital
+URL portal, daftar layanan parsial
+
+2,51-3,50
+Referensi menjadi arah pada seluruh layanan prioritas/tematik, integrasi Dasbor Presiden
+URL portal lengkap, bukti integrasi
+
+3,51-4,00
+Portal terorganisir, reviu berkala, dan/atau integrasi portal nasional
+Laporan reviu, bukti integrasi
+
+4,01-5,00
+Portal menjadi bagian dari Portal Nasional, tindak lanjut reviu
+Dokumentasi integrasi, RTL
+
+4.18 IK-18: Interoperabilitas Data (Bobot 3%)
+Deskripsi
+Kemampuan IPPD dalam pertukaran dan pemanfaatan data antar sistem yang berbeda untuk mendukung keterpaduan layanan dan Satu Data Indonesia.
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Dalam tahap penyusunan referensi penerapan interoperabilitas
+Dokumen perencanaan
+
+1,51-2,50
+Referensi menjadi arah pada sebagian Layanan Digital
+Dokumen standar interoperabilitas awal
+
+2,51-3,50
+Referensi menjadi arah pada seluruh layanan prioritas/tematik, dan/atau mendukung Dasbor Presiden
+Dokumen standar lengkap, bukti pertukaran data
+
+3,51-4,00
+Interoperabilitas diterapkan luas, pertukaran real-time, reviu berkala, dan/atau mendukung Dasbor Presiden
+Dokumentasi API, laporan reviu, bukti real-time
+
+4,01-5,00
+Interoperabilitas komprehensif, peningkatan kualitas untuk Dasbor Presiden
+Dokumentasi lengkap, bukti peningkatan
+
+4.19 IK-19: Fasilitas Dukungan Pengguna Layanan Digital Pemerintah (Bobot 10%)
+Deskripsi
+Dukungan pengguna layanan digital untuk mencapai tingkat pemenuhan kualitas layanan (SLA) melalui pemenuhan standar ketersediaan dan waktu respons.
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Dalam tahap penyusunan fasilitas dukungan
+Dokumen perencanaan
+
+1,51-2,50
+Fasilitas dukungan tersedia, SOP SLA, sistem pemantauan terotomasi
+SOP, helpdesk, dashboard monitoring
+
+2,51-3,50
+Fasilitas terintegrasi dengan tingkat nasional, SLA sama dengan nasional
+Bukti integrasi, dokumen SLA
+
+3,51-4,00
+Reviu dan evaluasi pemenuhan SLA, fasilitas dukungan, dan sistem pemantauan
+Laporan reviu, laporan evaluasi
+
+4,01-5,00
+Tindak lanjut hasil reviu dilaksanakan
+RTL, bukti implementasi
+
+4.20 IK-20: Tingkat Kepuasan Pengguna Layanan Digital Pemerintah (Bobot 15%)
+Deskripsi
+Pencapaian tingkat kepuasan pengguna terhadap layanan digital pemerintah melalui penilaian kepuasan dengan metode tertentu yang terintegrasi dengan layanan digital.
+
+Rentang
+Kriteria
+Bukti yang Diharapkan
+
+1,00-1,50
+Survei disebarkan melalui kanal digital, umpan balik dua arah tersedia, menyasar 1 kelompok rentan
+Hasil survei, bukti kanal umpan balik
+
+1,51-2,50
+Tim teknis pengelola kepuasan, mekanisme umpan balik langsung, survei dipublikasikan, mystery guest dilaksanakan
+SK Tim, dashboard survei, laporan mystery guest
+
+2,51-3,50
+Desain ulang layanan berbasis survei, log perubahan dipublikasikan, forum respons instansi, pemanfaatan AI analisis sentimen
+Log perubahan, notulensi forum, laporan analisis sentimen
+
+3,51-4,00
+Pengukuran tingkat keselamatan layanan, data riwayat perubahan digunakan dalam evaluasi
+Laporan pengukuran, dokumentasi
+
+4,01-5,00
+(Kriteria untuk tingkat Memuaskan/Unggul)
+-
+
+
+BAB 5: PEMBAGIAN INDIKATOR PER OPD
+
+5.1 Daftar OPD dan Indikator yang Menjadi Tanggung Jawab
+No.
+OPD
+Indikator yang Ditangani
+Jumlah
+
+1
+Dinas Komunikasi dan Informatika
+IK-01, IK-02, IK-03, IK-04, IK-05, IK-06, IK-08, IK-09, IK-10, IK-11, IK-12, IK-13, IK-14, IK-16, IK-17, IK-18, IK-19, IK-20
+18
+
+2
+Bappelitbangda
+IK-01, IK-02, IK-05, IK-06, IK-07, IK-15, IK-18
+7
+
+3
+BKPSDM
+IK-03, IK-12
+2
+
+4
+Bagian Organisasi Setda
+IK-01, IK-02, IK-03, IK-04, IK-09, IK-10, IK-12, IK-15, IK-19
+9
+
+5
+Inspektorat
+IK-01, IK-02, IK-04, IK-08, IK-09, IK-10, IK-11, IK-20
+8
+
+6
+BPS
+IK-05, IK-07
+2
+
+7
+Dinas PUTR
+IK-06
+1
+
+8
+Dinas Perpustakaan dan Kearsipan
+IK-05, IK-15
+2
+
+9
+BKAD
+IK-14
+1
+
+10
+Bagian Hukum Setda
+IK-08
+1
+
+11
+Bagian Kerja Sama Setda
+IK-04
+1
+
+12
+Bagian Humas Setda
+IK-20
+1
+
+13
+OPD Pemilik Layanan (Dinkes, Disdik, Disdukcapil, DPM-PTSP, Dinas PMD, Dinsos, Dinas Pertanian, Dinas LH, Dishub, DiskopUKM, Dinas PPKB, Dinas Pariwisata, Disnakertrans, DP3A, BAPENDA, Satpol PP)
+IK-05, IK-07, IK-13, IK-15, IK-16, IK-17, IK-18, IK-19, IK-20
+9
+
+5.2 Kategori OPD Berdasarkan Indikator
+text
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│              KATEGORI OPD BERDASARKAN INDIKATOR                                         │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                         │
+│   KATEGORI A: OPD PENDUKUNG SISTEM (Indikator Teknis)                                   │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ • Dinas Kominfo (18 indikator)                                                  │   │
+│   │ • Bappelitbangda (7 indikator)                                                  │   │
+│   │ • BKPSDM (2 indikator)                                                          │   │
+│   │ • Bagian Organisasi (9 indikator)                                               │   │
+│   │ • Inspektorat (8 indikator)                                                     │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                         │
+│   KATEGORI B: OPD DATA (Indikator Data)                                                │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ • BPS (2 indikator)                                                             │   │
+│   │ • Dinas PUTR (1 indikator)                                                      │   │
+│   │ • Dinas Perpustakaan dan Kearsipan (2 indikator)                                │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                         │
+│   KATEGORI C: OPD PENDUKUNG (Indikator Pendukung)                                      │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ • BKAD (1 indikator)                                                            │   │
+│   │ • Bagian Hukum (1 indikator)                                                    │   │
+│   │ • Bagian Kerja Sama (1 indikator)                                               │   │
+│   │ • Bagian Humas (1 indikator)                                                    │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                         │
+│   KATEGORI D: OPD PEMILIK LAYANAN (Indikator Layanan)                                  │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ • 16 OPD (Dinkes, Disdik, Disdukcapil, DPM-PTSP, Dinas PMD, Dinsos,            │   │
+│   │   Dinas Pertanian, Dinas LH, Dishub, DiskopUKM, Dinas PPKB, Dinas Pariwisata,  │   │
+│   │   Disnakertrans, DP3A, BAPENDA, Satpol PP)                                      │   │
+│   │ • Masing-masing memiliki 9 indikator (IK-05, IK-07, IK-13, IK-15, IK-16,       │   │
+│   │   IK-17, IK-18, IK-19, IK-20)                                                  │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+5.3 Cara Mengetahui Indikator yang Menjadi Tanggung Jawab OPD
+Setiap OPD akan mendapatkan akses login ke Portal Evaluasi yang hanya menampilkan indikator yang menjadi tanggung jawab OPD tersebut. PIC OPD tidak perlu menebak-nebak indikator mana yang harus diisi.
+
+BAB 6: PERSIAPAN DOKUMEN DAN BUKTI PENDUKUNG
+
+6.1 Jenis Dokumen yang Dibutuhkan per Indikator
+Indikator
+Dokumen yang Harus Disiapkan
+
+IK-01
+1. Dokumen Rencana Aksi Pemdi Daerah (SK/Perbup)2. Dokumen Arsitektur Pemdi Daerah3. Laporan pelaksanaan Rencana Aksi4. Notulensi rapat reviu dan evaluasi berkala
+
+IK-02
+1. SOP Manajemen Layanan Digital2. Dokumen profil risiko layanan digital3. Log perubahan aplikasi4. Dokumentasi BCP/DRP
+
+IK-03
+1. Peta kompetensi digital ASN2. Data pelatihan/peningkatan kompetensi digital ASN3. Sertifikat pelatihan digital4. Bukti pemanfaatan AI dan analisis data
+
+IK-04
+1. SK Forum Koordinasi Pemdi2. Notulensi/laporan kegiatan forum3. MoU/MoA kerjasama4. Bukti kontribusi ke Dasbor Presiden
+
+IK-05
+1. SK Pembina Data, Walidata, Produsen Data2. Dokumen metadata data3. Dokumen standar data yang digunakan4. Bukti sistem berbagi pakai data5. Nilai SDI (0-100)
+
+IK-06
+1. SK tata kelola dan kelembagaan IG2. Bukti pembentukan tim/kelompok kerja IG3. URL Geoportal4. Metadata data geospasial5. SOP penyelenggaraan IG6. Nilai SJIG (1-5)
+
+IK-07
+1. SK struktur kelembagaan statistik sektoral2. Dokumen perencanaan statistik sektoral3. Data statistik sektoral yang dihasilkan4. Bukti pemanfaatan data statistik5. Nilai EPSS
+
+IK-08
+1. Dokumen kebijakan PDP2. Bukti sistem pengendalian teknis PDP3. Bukti manajemen respons hak subjek data4. Register aktivitas pemrosesan data pribadi5. Dokumen evaluasi risiko keamanan data pribadi
+
+IK-09
+1. SK pembentukan Tim Audit2. Dokumen perencanaan audit3. Laporan audit internal keamanan4. Laporan audit eksternal keamanan5. Rencana Tindak Lanjut (RTL) hasil audit
+
+IK-10
+1. Dokumen tata kelola manajemen keamanan informasi2. Bukti penerapan kontrol teknis keamanan3. Dokumen identifikasi Infrastruktur Informasi Vital4. Nilai IKASANDI5. Bukti reviu berkala
+
+IK-11
+1. Bukti penerapan teknologi kriptografi (SSL/TLS, enkripsi database)2. Dokumen standar kriptografi yang digunakan3. Bukti evaluasi penerapan kriptografi4. Bukti tindak lanjut hasil evaluasi
+
+IK-12
+1. SK pembentukan TTIS/CSIRT2. Bukti pelaksanaan penanganan insiden3. Laporan penanganan insiden siber4. Bukti reviu kapabilitas TTIS5. Bukti partisipasi dengan TTIS nasional
+
+IK-13
+1. Dokumen perencanaan aplikasi2. Bukti implementasi SDLC3. Dokumen Arsitektur Teknologi Pemdi daerah4. Daftar aplikasi yang dikembangkan5. Bukti integrasi aplikasi6. Bukti reviu dan evaluasi aplikasi
+
+IK-14
+1. Dokumen perencanaan infrastruktur digital2. Data pemanfaatan pusat data nasional3. Data pemanfaatan teknologi awan4. Bukti integrasi dengan infrastruktur digital nasional5. Bukti reviu pemanfaatan infrastruktur
+
+IK-15
+1. Dokumen pemetaan proses bisnis2. Bukti penyederhanaan proses bisnis3. Bukti keterpaduan proses bisnis lintas OPD4. Bukti penerapan arsip digital (SRIKANDI)5. Bukti kontribusi ke Dasbor Presiden
+
+IK-16
+1. Dokumen Arsitektur Teknologi Pemdi2. Daftar aplikasi yang telah terintegrasi3. Bukti integrasi aplikasi lintas OPD4. Bukti integrasi dengan Dasbor Presiden5. Bukti reviu dan optimalisasi integrasi
+
+IK-17
+1. URL portal layanan digital daerah2. Daftar layanan yang tersedia di portal3. Bukti integrasi dengan portal nasional4. Bukti integrasi dengan Dasbor Presiden5. Bukti reviu portal layanan
+
+IK-18
+1. Dokumen standar interoperabilitas data2. Bukti implementasi interoperabilitas data3. Bukti pertukaran data real-time4. Bukti kontribusi ke Satu Data Indonesia5. Bukti kontribusi ke Dasbor Presiden
+
+IK-19
+1. Dokumen SOP Layanan Digital dan SLA2. Bukti ketersediaan fasilitas dukungan pengguna (helpdesk, call center)3. Bukti integrasi dukungan pengguna dengan tingkat nasional4. Bukti sistem pemantauan pemenuhan SLA5. Bukti reviu dan evaluasi pemenuhan SLA
+
+IK-20
+1. Bukti pelaksanaan survei kepuasan pengguna2. Hasil survei kepuasan pengguna3. Bukti ketersediaan kanal umpan balik dua arah4. Bukti pelaksanaan mystery guest/mystery shopper5. Bukti pemanfaatan AI untuk analisis sentimen6. Bukti tindak lanjut hasil survei7. Data keterlibatan kelompok rentan dalam survei
+
+6.2 Tips Menyiapkan Dokumen
+Tips
+Keterangan
+
+Digitalisasi
+Pastikan semua dokumen dalam format digital (PDF, JPG, PNG)
+
+Penamaan File
+Gunakan format: IK-XX_nama_file_tahun.pdfContoh: IK-01_RencanaAksi_2026.pdf
+
+Ukuran File
+Maksimal 10 MB per file. Jika lebih besar, kompres atau bagi menjadi beberapa file
+
+Dokumen Resmi
+Pastikan dokumen ditandatangani oleh pejabat berwenang
+
+Kelengkapan
+Pastikan semua dokumen yang dipersyaratkan tersedia
+
+Backup
+Simpan backup dokumen di komputer atau cloud pribadi
+
+6.3 Template Penamaan File
+text
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    TEMPLATE PENAMAAN FILE                                               │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                         │
+│   Format: [Kode Indikator]_[Nama Dokumen]_[Tahun].[ext]                                 │
+│                                                                                         │
+│   Contoh:                                                                               │
+│   • IK-01_RencanaAksi_2026.pdf                                                          │
+│   • IK-01_ArsitekturPemdi_2026.pdf                                                      │
+│   • IK-01_LaporanPelaksanaan_2025.pdf                                                   │
+│   • IK-01_NotulensiRapatEvaluasi_2026.pdf                                               │
+│                                                                                         │
+│   IK-03_PetaKompetensiDigital_2026.pdf                                                  │
+│   IK-03_DataPelatihan_2026.xlsx                                                         │
+│   IK-03_SertifikatPelatihan_2026.pdf                                                    │
+│                                                                                         │
+│   IK-20_HasilSurveiKepuasan_2026.pdf                                                    │
+│   IK-20_LaporanMysteryGuest_2026.pdf                                                    │
+│                                                                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+
+BAB 7: TAHAPAN DAN JADWAL PELAKSANAAN EVALUASI
+
+7.1 Tahapan Evaluasi Kinerja Pemdi 2026
+text
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    TAHAPAN EVALUASI KINERJA PEMDI 2026                                   │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                         │
+│   TAHAP 1: PENILAIAN MANDIRI (SELF-ASSESSMENT)                                         │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ Periode: 1 April – 15 Mei 2026                                                  │   │
+│   │                                                                                 │   │
+│   │ Kegiatan:                                                                       │   │
+│   │ • OPD login ke portal evaluasi                                                  │   │
+│   │ • Mengisi kuesioner penilaian untuk setiap indikator                            │   │
+│   │ • Mengupload dokumen bukti pendukung                                            │   │
+│   │ • Submit final paling lambat 10 Mei 2026                                        │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                      ↓                                                  │
+│   TAHAP 2: PENILAIAN DOKUMEN OLEH ASESOR EKSTERNAL                                      │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ Periode: 16 Mei – 30 Juni 2026                                                  │   │
+│   │                                                                                 │   │
+│   │ Kegiatan:                                                                       │   │
+│   │ • Asesor Eksternal memverifikasi dokumen yang diupload OPD                      │   │
+│   │ • Memberikan nilai awal berdasarkan bukti yang disediakan                       │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                      ↓                                                  │
+│   TAHAP 3: PENILAIAN INTERVIU (WAWANCARA)                                               │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ Periode: 1 Juli – 15 Agustus 2026                                               │   │
+│   │                                                                                 │   │
+│   │ Kegiatan:                                                                       │   │
+│   │ • OPD dipanggil untuk wawancara dengan Tim Asesor Eksternal                     │   │
+│   │ • Klarifikasi dokumen dan bukti pendukung                                       │   │
+│   │ • Penjelasan lebih detail mengenai implementasi                                  │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                      ↓                                                  │
+│   TAHAP 4: PENILAIAN VISITASI LAPANGAN                                                  │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ Periode: 16 Agustus – 15 September 2026                                         │   │
+│   │                                                                                 │   │
+│   │ Kegiatan:                                                                       │   │
+│   │ • Kunjungan lapangan ke lokus (Mal Pelayanan, Puskesmas, Dinas, dll)           │   │
+│   │ • Verifikasi langsung penggunaan aplikasi dan infrastruktur                    │   │
+│   │ • Wawancara singkat dengan pengguna layanan                                     │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                      ↓                                                  │
+│   TAHAP 5: HARMONISASI DAN PENETAPAN HASIL                                              │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ Periode: 16 September – 31 Desember 2026                                        │   │
+│   │                                                                                 │   │
+│   │ Kegiatan:                                                                       │   │
+│   │ • Harmonisasi data dan rekonsiliasi nilai                                       │   │
+│   │ • Penetapan SK Bupati Hasil Evaluasi                                            │   │
+│   │ • Publikasi hasil evaluasi                                                      │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+7.2 Jadwal Penting untuk OPD
+No.
+Kegiatan
+Tanggal
+Keterangan
+
+1
+Pembukaan akses sistem evaluasi
+1 April 2026
+Akun OPD aktif
+
+2
+Pengisian Penilaian Mandiri
+5 April – 10 Mei 2026
+Batas akhir pengisian
+
+3
+Finalisasi dan submit
+14-15 Mei 2026
+Submit final
+
+4
+Penilaian Dokumen
+16 Mei – 30 Juni 2026
+OPD menunggu verifikasi
+
+5
+Penjadwalan Interviu
+1-3 Juli 2026
+OPD menerima jadwal
+
+6
+Pelaksanaan Interviu
+7-25 Juli 2026
+OPD wajib hadir
+
+7
+Pelaksanaan Visitasi
+25-29 Agustus 2026
+Lokus terpilih
+
+8
+Penetapan Hasil
+30 Oktober 2026
+SK Bupati terbit
+
+7.3 Batas Waktu yang Harus Diperhatikan
+text
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    BATAS WAKTU PENTING                                                  │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                         │
+│   ⏰ BATAS AKHIR PENGISIAN PENILAIAN MANDIRI: 10 MEI 2026                               │
+│                                                                                         │
+│   ⚠️ PERINGATAN:                                                                        │
+│   • Setelah tanggal 10 Mei 2026, sistem akan ditutup untuk pengisian                    │
+│   • OPD yang belum submit final tidak dapat mengikuti tahap selanjutnya                 │
+│   • OPD yang terlambat akan mempengaruhi nilai Indeks Pemdi Kabupaten                   │
+│                                                                                         │
+│   ✅ OPD yang sudah submit final:                                                        │
+│   • Data akan diverifikasi oleh Asesor Eksternal                                        │
+│   • Akan dijadwalkan untuk interviu                                                     │
+│   • Berhak mendapatkan nilai evaluasi                                                   │
+│                                                                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+
+BAB 8: PENGGUNAAN APLIKASI PORTAL EVALUASI
+
+8.1 Alamat Akses dan Persyaratan
+Item
+Keterangan
+
+URL Portal
+https://evaluasi.minselkab.go.id
+
+Browser
+Google Chrome (versi 90+), Mozilla Firefox (versi 88+), Microsoft Edge (versi 90+)
+
+Koneksi Internet
+Minimal 10 Mbps
+
+Perangkat
+Komputer/Laptop dengan resolusi minimal 1366x768
+
+8.2 Halaman Login
+text
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    PORTAL EVALUASI PEMDI                                                │
+│               Kabupaten Minahasa Selatan                                                │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                         │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │                                                                                 │   │
+│   │                 [Logo Pemkab]                                                   │   │
+│   │                                                                                 │   │
+│   │   Username : [____________________]                                             │   │
+│   │   Password  : [____________________]                                             │   │
+│   │                                                                                 │   │
+│   │                 [ LOGIN ]                                                       │   │
+│   │                                                                                 │   │
+│   │   Lupa password? Klik di sini                                                   │   │
+│   │                                                                                 │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                         │
+│   🔒 Pastikan Anda menggunakan kredensial yang telah diberikan oleh Tim Pelaksana       │
+│                                                                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+8.3 Dashboard OPD Setelah Login
+text
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│ PORTAL EVALUASI PEMDI │ Selamat Datang, [Nama OPD] │ [Profil] [Logout]                 │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                         │
+│ ┌─────────────────────────────────────────────────────────────────────────────────────┐ │
+│ │ 📊 STATUS PENGISIAN PENILAIAN MANDIRI                                              │ │
+│ │                                                                                     │ │
+│ │ Total Indikator yang menjadi tanggung jawab OPD Anda: X dari 20 indikator          │ │
+│ │                                                                                     │ │
+│ │ ┌───────────────────────────────────────────────────────────────────────────────┐   │ │
+│ │ │ Indikator Terisi: X/X    ████████████░░░░░░░░░░ XX%                           │   │ │
+│ │ │ Indikator Belum: X/X     Target Submit: 10 Mei 2026                           │   │ │
+│ │ └───────────────────────────────────────────────────────────────────────────────┘   │ │
+│ └─────────────────────────────────────────────────────────────────────────────────────┘ │
+│                                                                                         │
+│ ┌─────────────────────────────────────────────────────────────────────────────────────┐ │
+│ │ 📋 DAFTAR INDIKATOR YANG MENJADI TANGGUNG JAWAB OPD                                 │ │
+│ ├───────┬───────────────────────────────────────────────────────┬───────────┬───────┤ │
+│ │ Kode  │ Indikator                                              │ Status    │ Aksi  │ │
+│ ├───────┼───────────────────────────────────────────────────────┼───────────┼───────┤ │
+│ │ IK-01 │ Tata Kelola Pemerintah Digital                         │ ✓ Terisi  │ [Edit]│ │
+│ │ IK-02 │ Manajemen Layanan Digital Pemerintah                   │ ○ Draft   │ [Edit]│ │
+│ │ IK-03 │ Sumber Daya Manusia Pemerintah Digital                 │ ○ Kosong  │ [Isi] │ │
+│ │ ...   │ ...                                                    │ ...       │ ...   │ │
+│ └───────┴───────────────────────────────────────────────────────┴───────────┴───────┘ │
+│                                                                                         │
+│ [Form Penilaian] [Upload Dokumen] [Riwayat] [Submit Final]                              │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+8.4 Status Indikator
+Status
+Arti
+Tindakan
+
+✓ Terisi
+Indikator sudah diisi lengkap (nilai, penjelasan, dokumen)
+Dapat diedit jika perlu
+
+○ Draft
+Indikator sudah diisi tetapi belum selesai
+Lanjutkan pengisian
+
+○ Kosong
+Indikator belum diisi
+Mulai isi
+
+
+BAB 9: TEKNIK PENGISIAN PENILAIAN MANDIRI
+
+9.1 Langkah-langkah Pengisian
+text
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    LANGKAH PENGISIAN PENILAIAN MANDIRI                                  │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                         │
+│   LANGKAH 1: PERSIAPAN                                                                 │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ • Kumpulkan seluruh dokumen dan bukti pendukung                                 │   │
+│   │ • Pastikan dokumen dalam format digital (PDF, JPG, PNG)                         │   │
+│   │ • Siapkan nama file yang jelas (sesuai template)                                │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                      ↓                                                  │
+│   LANGKAH 2: AKSES SISTEM                                                              │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ • Buka https://evaluasi.minselkab.go.id                                         │   │
+│   │ • Login menggunakan username dan password yang diberikan                        │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                      ↓                                                  │
+│   LANGKAH 3: PILIH INDIKATOR                                                           │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ • Pada dashboard, klik tombol [Isi] atau [Edit] pada indikator yang akan dinilai│   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                      ↓                                                  │
+│   LANGKAH 4: ISI FORM PENILAIAN                                                        │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ • Pilih tingkat kematangan (1-5) sesuai kondisi riil OPD                        │   │
+│   │ • Isi penjelasan singkat yang mendukung pilihan nilai                           │   │
+│   │ • Upload dokumen bukti pendukung                                                │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                      ↓                                                  │
+│   LANGKAH 5: SIMPAN ATAU SUBMIT                                                        │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ • Klik [Simpan Draft] untuk menyimpan sementara                                 │   │
+│   │ • Klik [Submit] jika sudah yakin dan selesai                                    │   │
+│   │ • Klik [Submit Final] pada dashboard setelah semua indikator terisi             │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+9.2 Form Penilaian Mandiri
+text
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│ FORM PENILAIAN MANDIRI - IK-01                                                          │
+│ Tata Kelola Pemerintah Digital (Bobot 5%)                                               │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                         │
+│ 📝 Deskripsi Indikator:                                                                 │
+│ Kerangka kerja yang memastikan terlaksananya perencanaan, pelaksanaan, dan              │
+│ pengendalian dalam penerapan Pemerintah Digital secara terpadu.                         │
+│                                                                                         │
+│ ─────────────────────────────────────────────────────────────────────────────────────── │
+│                                                                                         │
+│ 1️⃣ Pilih Tingkat Kematangan                                                            │
+│                                                                                         │
+│    ○ 1,00 - 1,50 (Kurang / Merintis)                                                   │
+│    ○ 1,51 - 2,50 (Cukup / Membangun)                                                   │
+│    ○ 2,51 - 3,50 (Baik / Berkembang)      ← Pilih                                      │
+│    ○ 3,51 - 4,00 (Sangat Baik / Melembaga)                                             │
+│    ○ 4,01 - 5,00 (Memuaskan / Unggul)                                                  │
+│                                                                                         │
+│ 2️⃣ Penjelasan Singkat                                                                  │
+│    ┌─────────────────────────────────────────────────────────────────────────────────┐ │
+│    │ Rencana Aksi Pemerintah Digital Kab. Minahasa Selatan telah ditetapkan          │ │
+│    │ dengan Perbup No. ... Tahun 2026. Pelaksanaan telah mencapai 75% dari target   │ │
+│    │ dan dilakukan reviu setiap triwulan oleh Tim Koordinasi Pemdi.                 │ │
+│    └─────────────────────────────────────────────────────────────────────────────────┘ │
+│                                                                                         │
+│ 3️⃣ Bukti Pendukung                                                                    │
+│                                                                                         │
+│    File yang sudah diupload:                                                            │
+│    ┌─────────────────────────────────────────────────────────────────────────────────┐ │
+│    │ 📄 IK-01_RencanaAksi_Pemdi_2026.pdf        [Lihat] [Hapus]                      │ │
+│    │ 📄 IK-01_Arsitektur_Pemdi_2026.pdf         [Lihat] [Hapus]                      │ │
+│    └─────────────────────────────────────────────────────────────────────────────────┘ │
+│                                                                                         │
+│    📤 Upload File Baru:                                                                 │
+│    [ Pilih File ]  (Format: PDF, JPG, PNG. Maks 10 MB)                                 │
+│    Keterangan: [_____________________________]                                         │
+│    [Upload ke Google Drive]                                                             │
+│                                                                                         │
+│ ─────────────────────────────────────────────────────────────────────────────────────── │
+│                                                                                         │
+│                    [ 💾 Simpan Draft ]    [ ✅ Submit ]    [ ↩ Kembali ]                │
+│                                                                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+9.3 Tips Memilih Tingkat Kematangan
+Kondisi
+Nilai yang Direkomendasikan
+
+Belum ada dokumen, masih dalam perencanaan awal
+1,00 - 1,50
+
+Dokumen sudah ada, implementasi baru pada 1-2 layanan
+1,51 - 2,50
+
+Dokumen lengkap, implementasi pada sebagian besar layanan, mulai terintegrasi
+2,51 - 3,50
+
+Implementasi menyeluruh, dilakukan reviu dan evaluasi berkala
+3,51 - 4,00
+
+Inovatif, menjadi contoh bagi OPD lain, berdampak nyata pada masyarakat
+4,01 - 5,00
+
+
+BAB 10: TEKNIK UPLOAD BUKTI KE GOOGLE DRIVE
+
+10.1 Mengapa Upload ke Google Drive?
+Keuntungan
+Keterangan
+
+Tidak Memberatkan Hosting
+File disimpan di server Google, bukan di hosting lokal
+
+Storage Besar
+Google Drive gratis 15 GB, dapat ditambah
+
+Akses Cepat
+CDN Google memastikan file terbuka cepat
+
+Keamanan
+Google Drive memiliki sistem keamanan tingkat tinggi
+
+Backup Otomatis
+Google secara otomatis melakukan backup data
+
+10.2 Langkah Upload File
+text
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    LANGKAH UPLOAD FILE KE GOOGLE DRIVE                                  │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                         │
+│   LANGKAH 1: PERSIAPAN FILE                                                             │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ • Pastikan file dalam format yang diizinkan (PDF, JPG, PNG)                     │   │
+│   │ • Pastikan ukuran file ≤ 10 MB                                                  │   │
+│   │ • Beri nama file sesuai template (IK-XX_nama_file_tahun.pdf)                    │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                      ↓                                                  │
+│   LANGKAH 2: BUKA FORM UPLOAD                                                          │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ • Pada form penilaian indikator, cari bagian "Upload File Baru"                 │   │
+│   │ • Klik tombol [Pilih File]                                                      │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                      ↓                                                  │
+│   LANGKAH 3: PILIH FILE                                                                │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ • Pilih file dari komputer Anda                                                 │   │
+│   │ • Isi keterangan (opsional, untuk menjelaskan isi file)                         │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                      ↓                                                  │
+│   LANGKAH 4: UPLOAD                                                                     │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ • Klik tombol [Upload ke Google Drive]                                          │   │
+│   │ • Tunggu hingga muncul notifikasi "Upload berhasil"                             │   │
+│   │ • File akan muncul di daftar "File yang sudah diupload"                         │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+10.3 Format File yang Diizinkan
+Format
+Ekstensi
+Keterangan
+
+PDF
+.pdf
+Untuk dokumen resmi (SK, Perbup, SOP, Laporan)
+
+JPEG
+.jpg, .jpeg
+Untuk foto dokumentasi, screenshot
+
+PNG
+.png
+Untuk screenshot, gambar dengan kualitas tinggi
+
+10.4 Ukuran File Maksimal
+Jenis File
+Maksimal
+
+PDF
+10 MB
+
+JPG/JPEG
+10 MB
+
+PNG
+10 MB
+
+10.5 Jika File Melebihi 10 MB
+Solusi
+Keterangan
+
+Kompres PDF
+Gunakan tools online seperti ilovepdf.com atau smallpdf.com
+
+Bagi File
+Bagi dokumen menjadi beberapa bagian (contoh: Part 1, Part 2)
+
+Konversi Format
+Jika file gambar, konversi ke JPG dengan kualitas lebih rendah
+
+10.6 Notifikasi Upload
+text
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                    NOTIFIKASI UPLOAD                                                    │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                         │
+│   ✅ UPLOAD BERHASIL                                                                   │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ File IK-01_RencanaAksi_Pemdi_2026.pdf berhasil diupload ke Google Drive.        │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                         │
+│   ❌ UPLOAD GAGAL                                                                       │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ Upload gagal. File melebihi batas 10 MB. Silakan kompres file dan coba lagi.    │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                         │
+│   ⚠️ PERINGATAN                                                                        │
+│   ┌─────────────────────────────────────────────────────────────────────────────────┐   │
+│   │ Format file tidak diizinkan. Hanya PDF, JPG, PNG yang dapat diupload.           │   │
+│   └─────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                         │
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+
+BAB 11: PERSIAPAN WAWANCARA (INTERVIU)
+
+11.1 Apa Itu Penilaian Interviu?
+Penilaian Interviu adalah sesi wawancara antara Tim Asesor Eksternal dengan Tim Asesor Internal dan PIC OPD untuk melakukan klarifikasi informasi dan bukti pendukung yang telah disampaikan.
+11.2 Jadwal Interviu
+Item
+Keterangan
+
+Periode
+7 – 25 Juli 2026
+
+Durasi
+60-90 menit per OPD
+
+Lokasi
+Ruang Rapat Dinas Kominfo atau Ruang Rapat OPD terkait
+
+Peserta
+Kepala OPD (jika memungkinkan), PIC OPD, Tim Asesor Internal
+
+11.3 Kemungkinan Pertanyaan Wawancara per Indikator
+Indikator
+Pertanyaan yang Mungkin Diajukan
+
+IK-01
+Bagaimana proses penyusunan Rencana Aksi Pemdi? Apakah sudah dilakukan reviu berkala?
+
+IK-02
+Bagaimana mekanisme manajemen risiko untuk layanan digital? Apakah ada dokumen BCP/DRP?
+
+IK-03
+Berapa persen ASN di OPD ini yang telah mengikuti pelatihan digital? Apakah sudah memanfaatkan AI?
+
+IK-04
+Apakah OPD ini pernah berkolaborasi dengan OPD lain atau pihak eksternal?
+
+IK-05
+Bagaimana mekanisme berbagi pakai data dengan OPD lain? Apakah data sudah terintegrasi?
+
+IK-06
+Apakah OPD ini memanfaatkan data geospasial dalam perencanaan pembangunan?
+
+IK-07
+Bagaimana pemanfaatan data statistik untuk perencanaan dan evaluasi pembangunan?
+
+IK-08
+Bagaimana OPD ini melindungi data pribadi masyarakat yang dikelola?
+
+IK-09
+Kapan terakhir dilakukan audit keamanan? Apa tindak lanjutnya?
+
+IK-10
+Apakah OPD ini telah menerapkan standar keamanan informasi?
+
+IK-11
+Apakah data yang dikelola dienkripsi?
+
+IK-12
+Apakah OPD ini memiliki tim penanganan insiden siber?
+
+IK-13
+Bagaimana proses pengembangan aplikasi? Apakah mengikuti SDLC?
+
+IK-14
+Apakah layanan digital OPD ini sudah menggunakan teknologi awan?
+
+IK-15
+Apakah proses bisnis di OPD ini sudah terintegrasi dengan OPD lain?
+
+IK-16
+Apakah aplikasi di OPD ini sudah terintegrasi dengan aplikasi lain?
+
+IK-17
+Apakah layanan digital OPD ini tersedia di portal layanan daerah?
+
+IK-18
+Apakah data OPD ini dapat dipertukarkan dengan sistem lain secara real-time?
+
+IK-19
+Bagaimana mekanisme pengaduan jika masyarakat mengalami kendala layanan digital?
+
+IK-20
+Berapa indeks kepuasan pengguna layanan digital OPD ini? Apa tindak lanjutnya?
+
+11.4 Tips Persiapan Wawancara
+Tips
+Keterangan
+
+Pelajari Kembali Dokumen
+Pastikan PIC memahami seluruh dokumen dan bukti yang telah diunggah
+
+Siapkan Presentasi Singkat
+Jika diminta, siapkan paparan singkat mengenai capaian Pemdi di OPD
+
+Libatkan Pejabat Terkait
+Hadirkan Kepala OPD atau pejabat yang memahami layanan digital
+
+Siapkan Ruang yang Representatif
+Pastikan ruang wawancara nyaman dan mendukung
+
+Siapkan Koneksi Internet
+Jika wawancara dilakukan secara daring, pastikan koneksi stabil
+
+
+BAB 12: PENUTUP DAN EVALUASI PEMAHAMAN
+
+12.1 Kesimpulan
+Evaluasi Kinerja Pemerintah Digital (Pemdi) Tahun 2026 adalah momentum penting untuk mengukur sejauh mana digitalisasi layanan di Kabupaten Minahasa Selatan telah berdampak pada masyarakat.
+Peran OPD sangat krusial dalam keberhasilan evaluasi ini. OPD harus:
+Memahami 20 indikator yang menjadi tanggung jawab
+Menyiapkan dokumen dan bukti pendukung secara lengkap
+Mengisi Penilaian Mandiri tepat waktu (paling lambat 10 Mei 2026)
+Berpartisipasi aktif dalam sesi wawancara (interviu)
+Menindaklanjuti rekomendasi perbaikan
+12.2 Hal-hal yang Perlu Diperhatikan OPD
+No.
+Hal yang Perlu Diperhatikan
+
+1
+Tepat Waktu: Isi penilaian mandiri sebelum batas waktu (10 Mei 2026)
+
+2
+Kelengkapan Bukti: Pastikan semua indikator yang menjadi tanggung jawab OPD memiliki bukti pendukung
+
+3
+Penamaan File: Gunakan format penamaan yang konsisten
+
+4
+Ukuran File: Pastikan file ≤ 10 MB
+
+5
+Koordinasi: Koordinasikan dengan Dinas Kominfo jika ada kendala teknis
+
+6
+Keterbukaan: Sampaikan kondisi riil, bukan yang diinginkan
+
+12.3 Evaluasi Pemahaman
+No.
+Pertanyaan
+Jawaban
+
+1
+Berapa jumlah indikator dalam Evaluasi Kinerja Pemdi?
+20 indikator
+
+2
+Aspek apa yang memiliki bobot tertinggi?
+Kepuasan Pengguna (25%)
+
+3
+Kapan batas akhir pengisian Penilaian Mandiri?
+10 Mei 2026
+
+4
+Apa yang harus dilakukan jika file bukti lebih dari 10 MB?
+Kompres file atau bagi menjadi beberapa bagian
+
+5
+Siapa yang akan mewawancarai OPD?
+Tim Asesor Eksternal
+
+6
+Berapa lama durasi wawancara per OPD?
+60-90 menit
+
+12.4 Kontak Dukungan
+Kontak
+Keterangan
+
+Helpdesk Teknis
+0812-XXXX-XXXX (WA)
+
+Email
+helpdesk.evaluasi@minselkab.go.id
+
+Tim Pelaksana
+Dinas Komunikasi dan Informatika
+
+Jam Layanan
+Senin - Jumat, 08:00 - 16:00 WITA
+
+
+LAMPIRAN: DAFTAR INDIKATOR PER OPD
+No.
+OPD
+Indikator
+
+1
+Dinas Kominfo
+IK-01, IK-02, IK-03, IK-04, IK-05, IK-06, IK-08, IK-09, IK-10, IK-11, IK-12, IK-13, IK-14, IK-16, IK-17, IK-18, IK-19, IK-20
+
+2
+Bappelitbangda
+IK-01, IK-02, IK-05, IK-06, IK-07, IK-15, IK-18
+
+3
+BKPSDM
+IK-03, IK-12
+
+4
+Bagian Organisasi
+IK-01, IK-02, IK-03, IK-04, IK-09, IK-10, IK-12, IK-15, IK-19
+
+5
+Inspektorat
+IK-01, IK-02, IK-04, IK-08, IK-09, IK-10, IK-11, IK-20
+
+6
+BPS
+IK-05, IK-07
+
+7
+Dinas PUTR
+IK-06
+
+8
+Dinas Perpustakaan dan Kearsipan
+IK-05, IK-15
+
+9
+BKAD
+IK-14
+
+10
+Bagian Hukum
+IK-08
+
+11
+Bagian Kerja Sama
+IK-04
+
+12
+Bagian Humas
+IK-20
+
+13
+OPD Pemilik Layanan (16 OPD)
+IK-05, IK-07, IK-13, IK-15, IK-16, IK-17, IK-18, IK-19, IK-20
+
+
+Demikian Materi Bimbingan Teknis Persiapan Evaluasi Kinerja Pemerintah Digital (Pemdi) Tahun 2026 bagi Perangkat Daerah Kabupaten Minahasa Selatan.
+Semoga bermanfaat dan sukses pelaksanaan evaluasi!
+
+Amurang, Maret 2026Tim Pelaksana Evaluasi Kinerja PemdiKabupaten Minahasa Selatan
+
+
