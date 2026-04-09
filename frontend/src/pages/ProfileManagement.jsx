@@ -21,6 +21,7 @@ const ProfileManagement = () => {
     const { user: authUser } = useAuthStore();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [uploading, setUploading] = useState(false);
     const [saving, setSaving] = useState(false);
     const [fetchError, setFetchError] = useState(null);
     const [formData, setFormData] = useState({
@@ -88,6 +89,56 @@ const ProfileManagement = () => {
             toast.error('Gagal mengambil data profil');
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handlePhotoUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        // Validasi file (max 2MB, image only)
+        if (!file.type.startsWith('image/')) {
+            toast.error('File harus berupa gambar!');
+            return;
+        }
+        if (file.size > 2 * 1024 * 1024) {
+            toast.error('Ukuran gambar maksimal 2MB!');
+            return;
+        }
+
+        setUploading(true);
+        try {
+            const fileExt = file.name.split('.').pop();
+            const fileName = `${authUser.id}-${Math.random()}.${fileExt}`;
+            const filePath = `avatars/${fileName}`;
+
+            // 1. Upload ke Storage
+            const { error: uploadError } = await supabase.storage
+                .from('photos')
+                .upload(filePath, file, { upsert: true });
+
+            if (uploadError) throw uploadError;
+
+            // 2. Dapatkan Public URL
+            const { data: { publicUrl } } = supabase.storage
+                .from('photos')
+                .getPublicUrl(filePath);
+
+            // 3. Update Tabel Users
+            const { error: updateError } = await supabase
+                .from('users')
+                .update({ photo_url: publicUrl })
+                .eq('id', authUser.id);
+
+            if (updateError) throw updateError;
+
+            setUser(prev => ({ ...prev, photo_url: publicUrl }));
+            toast.success('Foto profil berhasil diperbarui!');
+        } catch (err) {
+            console.error('Upload Error:', err);
+            toast.error('Gagal mengunggah foto');
+        } finally {
+            setUploading(false);
         }
     };
 
@@ -183,16 +234,37 @@ const ProfileManagement = () => {
                          <div className="absolute top-0 left-0 w-full h-full bg-red-600/10 group-hover:bg-red-600/20 transition-all duration-700"></div>
                          
                          <div className="relative z-10">
-                            <div className="relative inline-block mb-6">
-                                <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center text-slate-900 font-black text-5xl italic border-4 border-white/20 shadow-inner">
-                                    {String(user?.name || 'User').charAt(0).toUpperCase()}
+                             <div className="relative inline-block mb-6">
+                                <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center text-slate-900 font-black text-5xl italic border-4 border-white/20 shadow-inner overflow-hidden relative">
+                                    {user?.photo_url ? (
+                                        <img src={user.photo_url} alt="Profile" className="w-full h-full object-cover" />
+                                    ) : (
+                                        String(user?.name || 'User').charAt(0).toUpperCase()
+                                    )}
+                                    {uploading && (
+                                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                                            <Loader2 className="animate-spin text-white" size={24} />
+                                        </div>
+                                    )}
                                 </div>
-                                <button className="absolute bottom-0 right-0 p-3 bg-red-600 text-white rounded-2xl shadow-xl hover:scale-110 active:scale-95 transition-all border-4 border-slate-900">
+                                <input 
+                                    type="file" 
+                                    id="photo-upload" 
+                                    className="hidden" 
+                                    accept="image/*" 
+                                    onChange={handlePhotoUpload} 
+                                    disabled={uploading}
+                                />
+                                <button 
+                                    onClick={() => document.getElementById('photo-upload').click()}
+                                    disabled={uploading}
+                                    className="absolute bottom-0 right-0 p-3 bg-red-600 text-white rounded-2xl shadow-xl hover:scale-110 active:scale-95 transition-all border-4 border-slate-900"
+                                >
                                     <Camera size={18}/>
                                 </button>
-                            </div>
-                            <h3 className="text-2xl font-black text-white mb-1 whitespace-nowrap overflow-hidden text-ellipsis">{user?.name || 'User'}</h3>
-                            <p className="text-xs font-bold text-red-500 uppercase tracking-widest mb-6">{user?.jabatan || 'No Position'}</p>
+                             </div>
+                             <h3 className="text-2xl font-black text-white mb-1 whitespace-nowrap overflow-hidden text-ellipsis">{user?.name || 'User'}</h3>
+                             <p className="text-xs font-bold text-red-500 uppercase tracking-widest mb-2">{user?.jabatan || 'No Position'}</p>
                             
                             <div className="bg-white/5 border border-white/10 rounded-2xl p-4 text-left space-y-3">
                                 <div className="flex items-center gap-3 text-slate-400">
