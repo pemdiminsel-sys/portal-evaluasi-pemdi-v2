@@ -29,11 +29,11 @@ const Sidebar = ({ onMobileClose }) => {
     {
       group: 'Master Data',
       items: [
-        { title: 'Manajemen User', icon: Key, path: '/dashboard/users', roles: [1, 4] },
+        { title: 'Manajemen User', icon: Key, path: '/dashboard/users', roles: [1, 2, 4] },
         { title: 'Manajemen OPD', icon: Building2, path: '/dashboard/opd', roles: [1, 2] },
         { title: 'Manajemen Indikator', icon: ListChecks, path: '/dashboard/indikator', roles: [1, 2] },
         { title: 'Manajemen Aspek', icon: Layers, path: '/dashboard/aspek', roles: [1, 2] },
-        { title: 'Manajemen Periode', icon: CalendarDays, path: '/dashboard/periode', roles: [1, 2] }
+        { title: 'Manajemen Periode', icon: CalendarDays, path: '/dashboard/periode', roles: [1] }
       ]
     },
     {
@@ -54,14 +54,15 @@ const Sidebar = ({ onMobileClose }) => {
         { title: 'Monitoring Progres', icon: Activity, path: '/dashboard/monitoring', roles: [1, 2, 5] },
         { title: 'Ranking Klasemen', icon: Trophy, path: '/dashboard/ranking', roles: [1, 2, 5] },
         { title: 'Laporan Indeks', icon: PieChart, path: '/dashboard/rekap-nilai', roles: [1, 2, 5] },
-        { title: 'Ekspor Data', icon: Download, path: '/dashboard/export', roles: [1, 2, 5] }
+        { title: 'Ekspor Data', icon: Download, path: '/dashboard/export', roles: [1, 5] }
       ]
     },
     {
       group: 'Pemeliharaan',
       items: [
-        { title: 'Pengaturan SMTP', icon: Mail, path: '/dashboard/smtp', roles: [1, 2] },
-        { title: 'Backup & Logs', icon: Database, path: '/dashboard/logs', roles: [1, 2] }
+        { title: 'Log Aktivitas', icon: Activity, path: '/dashboard/logs', roles: [1] },
+        { title: 'Pengaturan SMTP', icon: Mail, path: '/dashboard/smtp', roles: [1] },
+        { title: 'Backup Database', icon: Database, path: '/dashboard/backup', roles: [1] }
       ]
     }
   ];

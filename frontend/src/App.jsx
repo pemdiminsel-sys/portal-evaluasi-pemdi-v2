@@ -80,7 +80,8 @@ function App() {
             <Route path="rekap-nilai" element={<RekapNilai />} />
             <Route path="export" element={<ExportData />} />
             <Route path="smtp" element={<SmtpSettings />} />
-            <Route path="logs" element={<BackupDatabase />} />
+            <Route path="backup" element={<BackupDatabase />} />
+            <Route path="logs" element={<LogAktivitas />} />
             
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Route>

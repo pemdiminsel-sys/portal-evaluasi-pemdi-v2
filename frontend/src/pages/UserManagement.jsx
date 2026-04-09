@@ -49,6 +49,9 @@ const UserManagement = () => {
             let query = supabase.from('users').select('*, opds(*)').order('created_at', { ascending: false });
             if (authUser?.role === 4) {
                 query = query.eq('role', 4);
+            } else if (authUser?.role === 2) {
+                // Admin Pemkab cannot see Super Admin (role 1) accounts
+                query = query.neq('role', 1);
             }
             const { data: userData, error: uErr } = await query;
             if (uErr) {
@@ -398,9 +401,20 @@ const UserManagement = () => {
                                     <div className="space-y-2">
                                         <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Security Role</label>
                                         <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:ring-4 focus:ring-red-100 outline-none font-black text-sm disabled:opacity-50"
-                                            value={form.role} onChange={e => setForm({...form, role: parseInt(e.target.value)})}
+                                            value={form.role}
+                                            onChange={e => {
+                                                const newRole = parseInt(e.target.value);
+                                                // Auto-clear opd_id when changing away from Operator OPD (role 3)
+                                                const shouldClearOpd = newRole !== 3 && form.role === 3;
+                                                setForm(prev => ({
+                                                    ...prev,
+                                                    role: newRole,
+                                                    opd_id: shouldClearOpd ? '' : prev.opd_id,
+                                                    aspek_id: newRole !== 4 ? '' : prev.aspek_id
+                                                }));
+                                            }}
                                             disabled={authUser?.role === 4}>
-                                            <option value="1">Kategori: 1 - Administrator Utama</option>
+                                            {authUser?.role !== 2 && <option value="1">Kategori: 1 - Administrator Utama</option>}
                                             <option value="2">Kategori: 2 - Admin SPBE Pemkab</option>
                                             <option value="3">Kategori: 3 - Operator/PIC OPD</option>
                                             <option value="4">Kategori: 4 - Tim Asesor Internal</option>
