@@ -42,27 +42,35 @@ const DashboardOverview = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        // 1. Ambil Semua Periode (Ambil yang aktif di JS)
-        const { data: pDataAll, error: pErr } = await supabase
-            .from('periodes')
-            .select('*')
-            .order('tahun', { ascending: false });
+            // 1. Ambil Semua Periode (Ambil yang aktif di JS)
+            const { data: pDataAll, error: pErr } = await supabase
+                .from('periodes')
+                .select('*')
+                .order('tahun', { ascending: false });
 
-        if (pErr) throw pErr;
+            if (pErr) {
+                console.error("DashboardOverview: Error fetching periodes", pErr);
+                throw pErr;
+            }
 
-        const activeP = (pDataAll || []).find(p => {
-            const s = String(p.status || '').toLowerCase();
-            return s === 'berjalan' || s === 'aktif' || s === 'active';
-        });
+            console.log("DashboardOverview: Periodes total:", pDataAll?.length);
 
-        if (activeP) {
-            setPeriode(activeP);
-            // Lanjut ambil data dashboard berdasarkan periode ini
-            const { data: anData, error: anErr } = await supabase
-                .from('indikators')
-                .select('id');
-            if (!anErr) setData(prev => ({ ...prev, stats: { ...prev.stats, totalIndikator: anData.length } }));
-        }
+            const activeP = (pDataAll || []).find(p => {
+                const s = String(p.status || '').toLowerCase().trim();
+                return s === 'berjalan' || s === 'aktif' || s === 'active';
+            });
+
+            if (activeP) {
+                console.log("DashboardOverview: Active periode matched:", activeP.tahun);
+                setPeriode(activeP);
+                // Lanjut ambil data dashboard berdasarkan periode ini
+                const { data: anData, error: anErr } = await supabase
+                    .from('indikators')
+                    .select('id');
+                if (!anErr) setData(prev => ({ ...prev, stats: { ...prev.stats, totalIndikator: anData.length } }));
+            } else {
+                console.warn("DashboardOverview: No matches for 'berjalan', 'aktif', or 'active' in", pDataAll?.map(p => p.status));
+            }
 
         const res = await api.post('/', { action: 'dashboard-summary' });
         if (res.data && res.data.success) {
