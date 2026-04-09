@@ -62,7 +62,16 @@ const Dashboard = () => {
           <div className="flex items-center gap-4">
             <div className="hidden sm:flex items-center gap-3 px-5 py-2.5 bg-slate-50 rounded-2xl border border-slate-100">
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{user?.role === 1 ? 'Administrator' : 'Operator OPD'}</span>
+                <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">
+                  {{
+                    1: 'Super Admin',
+                    2: 'Admin Pemkab',
+                    3: 'Operator OPD',
+                    4: 'Tim Asesor',
+                    5: 'Pimpinan',
+                    6: 'Viewer'
+                  }[user?.role] || 'Pengguna'}
+                </span>
             </div>
             <button onClick={() => {
                 if (pendingUsers > 0) {

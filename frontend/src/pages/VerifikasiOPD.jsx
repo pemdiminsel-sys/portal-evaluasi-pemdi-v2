@@ -24,7 +24,8 @@ const VerifikasiOPD = () => {
     const fetchInitialData = async () => {
         try {
             setLoading(true);
-            const { data: pData } = await supabase.from('periodes').select('*').eq('status', 'active').single();
+            const { data: pDataAll } = await supabase.from('periodes').select('*').order('tahun', { ascending: false });
+            const pData = pDataAll?.[0] || null;
             setPeriode(pData);
 
             const { data: opdData } = await supabase.from('opds').select('*').order('nama');
@@ -42,9 +43,14 @@ const VerifikasiOPD = () => {
     const handleSelectOpd = async (opd) => {
         try {
             setLoading(true);
+            const periodeId = periode?.id;
             const [penRes, bukRes] = await Promise.all([
-                supabase.from('penilaians').select('*, indikators(*)').eq('opd_id', opd.id).eq('periode_id', periode.id),
-                supabase.from('buktis').select('*').eq('opd_id', opd.id).eq('periode_id', periode.id)
+                periodeId
+                    ? supabase.from('penilaians').select('*, indikators(*)').eq('opd_id', opd.id).eq('periode_id', periodeId)
+                    : supabase.from('penilaians').select('*, indikators(*)').eq('opd_id', opd.id),
+                periodeId
+                    ? supabase.from('buktis').select('*').eq('opd_id', opd.id).eq('periode_id', periodeId)
+                    : supabase.from('buktis').select('*').eq('opd_id', opd.id)
             ]);
             setPenilaians(penRes.data || []);
             setBuktis(bukRes.data || []);
