@@ -5,31 +5,58 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import { Toaster } from 'react-hot-toast';
 
+// Import Dashboard Pages
+import DashboardOverview from './pages/DashboardOverview';
+import DashboardPimpinan from './pages/DashboardPimpinan';
+import EvaluasiMandiri from './pages/EvaluasiMandiri';
+import RiwayatPenilaian from './pages/RiwayatPenilaian';
+import ProfileManagement from './pages/ProfileManagement';
+import UserManagement from './pages/UserManagement';
+import OpdManagement from './pages/OpdManagement';
+import ManajemenIndikator from './pages/ManajemenIndikator';
+import ManajemenAspek from './pages/ManajemenAspek';
+import ManajemenPeriode from './pages/ManajemenPeriode';
+
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useAuthStore();
   return isAuthenticated ? children : <Navigate to="/login" replace />;
 };
 
+const VersionTag = () => (
+    <div className="fixed bottom-2 right-2 text-[8px] font-black text-slate-300 bg-white/50 px-2 py-1 rounded-full z-[9999] pointer-events-none uppercase tracking-widest">
+      Build V.2.1-OUTLET-REFIX
+    </div>
+);
+
 function App() {
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, user } = useAuthStore();
+
+  const getDashboardHome = () => {
+    if (user?.role === 1 || user?.role === 5) return <DashboardPimpinan />;
+    return <DashboardOverview />;
+  };
 
   return (
     <Router>
       <Toaster position="top-right" />
+      <VersionTag />
       <Routes>
-        <Route 
-          path="/login" 
-          element={!isAuthenticated ? <Login /> : <Navigate to="/dashboard" replace />} 
-        />
+        <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/dashboard" replace />} />
         <Route path="/register" element={<Register />} />
-        <Route 
-          path="/dashboard/*" 
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } 
-        />
+        
+        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>}>
+            <Route index element={getDashboardHome()} />
+            <Route path="evaluasi" element={<EvaluasiMandiri />} />
+            <Route path="riwayat" element={<RiwayatPenilaian />} />
+            <Route path="profil" element={<ProfileManagement />} />
+            <Route path="users" element={<UserManagement />} />
+            <Route path="opd" element={<OpdManagement />} />
+            <Route path="indikator" element={<ManajemenIndikator />} />
+            <Route path="aspek" element={<ManajemenAspek />} />
+            <Route path="periode" element={<ManajemenPeriode />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        </Route>
+
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </Router>
