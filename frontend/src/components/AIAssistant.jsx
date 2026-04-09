@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { MessageSquare, X, Send, Bot, User, Loader2, Sparkles } from 'lucide-react';
+import { MessageSquare, X, Send, Bot, User, Loader2, Sparkles, Trash2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { KNOWLEDGE_BASE } from '../constants/knowledgeBase';
 
@@ -54,11 +54,14 @@ const AIAssistant = () => {
             });
 
             const data = await response.json();
+            if (data.error) {
+                throw new Error(data.error.message || 'Gagal terhubung ke AI');
+            }
             const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Maaf, saya sedang mengalami kendala teknis. Mohon coba lagi nanti.';
             
             setMessages(prev => [...prev, { role: 'assistant', content: aiText }]);
         } catch (err) {
-            setMessages(prev => [...prev, { role: 'assistant', content: `Error: ${err.message}` }]);
+            setMessages(prev => [...prev, { role: 'assistant', content: `Kendala: ${err.message}. Pastikan API Key di Vercel sudah benar dan lakukan Redeploy.` }]);
         } finally {
             setLoading(false);
         }
@@ -96,7 +99,16 @@ const AIAssistant = () => {
                                     <p className="text-[10px] text-slate-400 font-bold uppercase">Portal Pemdi Minsel</p>
                                 </div>
                             </div>
-                            <Sparkles size={18} className="text-amber-400 animate-pulse" />
+                            <div className="flex items-center gap-2">
+                                <button 
+                                    onClick={() => setMessages([{ role: 'assistant', content: 'Halo! Saya Asisten AI Portal Pemdi. Ada yang bisa saya bantu terkait sistem evaluasi SPBE?' }])}
+                                    className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                                    title="Bersihkan Chat"
+                                >
+                                    <Trash2 size={16} className="text-slate-400" />
+                                </button>
+                                <Sparkles size={18} className="text-amber-400 animate-pulse" />
+                            </div>
                         </div>
 
                         {/* Messages */}
