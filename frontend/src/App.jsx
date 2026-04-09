@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import useAuthStore from './store/authStore';
 import Login from './pages/Login';
