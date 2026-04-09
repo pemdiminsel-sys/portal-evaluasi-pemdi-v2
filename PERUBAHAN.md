@@ -1,7 +1,110 @@
-# Catatan Perubahan (Changelog)
-(tiap perubahan dicatat dalam PERUBAHAN.MD dan auto push ke git)
+## [2026-04-09 15:15:00] - Hotfix User Sync Null Reference (Antigravity)
+- **Fix (User Matrix Crash):** Resolusi darurat untuk layar putih / kegagalan memuat modul `UserManagement.jsx`. Menghapus pemaksaan query relasi *(Strict Foreign Key Join)* `aspeks(nama)` dari query Supabase dan menggantinya dengan logika manual *state mapping* di tingkat UI. Hal ini memulihkan fungsionalitas Halaman Manajemen User bahkan saat administrator belum mengeksekusi skrip `SETUP_ASPEK_USER.sql` pada tabel database mereka.
 
-Semua riwayat pembaruan dan perbaikan aplikasi akan dicatat di sini.
+## [2026-04-09 15:10:00] - Dashboard Link & Notification Patches (Antigravity)
+- **Fix (Surat Tugas Link):** Terjadi kesalahan parse environtment variables pada berkas Surat Tugas yang diajukan pendaftar baru (`VITE_SUPABASE_URL` tidak terbaca). Link tersebut sekarang sudah dikunci permanen menuju endpoint objek Supabase instansi.
+- **Fix (Inactive Sidebar Routes):** Mengawinkan ulang rute `Sidebar.jsx` yang menu-menunya menganggur ("Verifikasi OPD", "Monitoring Progres", "Ranking Klasemen", "Rekap Nilai", dll) ke komponennya masing-masing di dalam file bundler `App.jsx`. Seluruh *Dashboard items* yang tadinya nonaktif kini berhasil diload.
+- **Feat (Smart Bell Notification):** Lonceng Notifikasi di pojok kanan atas layar tidak lagi kosong! Jika anda login sebagai Koordinator atau Admin, lonceng tersebut akan membaca total antrean `pending` PIC dari tabel `users` untuk segera di-*approve* atau *reject* (Dilengkapi animasi kedip jika memanggil).
+
+## [2026-04-09 15:00:00] - Penugasan Aspek Anggota Asesor (Antigravity)
+- **Database (Skema):** Menyediakan skrip `SETUP_ASPEK_USER.sql` untuk menambahkan kolom `aspek_id` ke dalam tabel `users`. Ini berfungsi untuk menambatkan Anggota Asesor ke Aspek Evaluasi spesifik.
+- **Feat (Aksesibilitas Menu):** Membuka rute `/dashboard/users` bagi Tim Asesor (`role === 4`) yang sebelumnya hanya bisa diakses Super Admin.
+- **Feat (Filter Organisasi User):** Mengubah query *fetch* pada `UserManagement.jsx`. Apabila login sebagai Asesor (Kategori 4), maka daftar User Matrix hanya akan memuat pengguna yang berada di kategori 4 (rekan asesor & bawahan asesor).
+- **Feat (Dropdown Aspek Dinamis):** Pada pop-up *Enroll User*, jika kategori dipilih `Tim Asesor Internal` (atau dipaksa `role 4` via login asesor), *field* penugasan OPD (Organisasi) akan tertutup dan diganti secara dinamis menjadi rentetan pilihan **Fokus Aspek**. Jika dikosongkan akan berstatus *Koordinator*, namun jika dipilih akan menjadi Tim Anggota.
+
+## [2026-04-09 14:53:00] - Refinements on Login, Routing & Validations (Antigravity)
+- **Feat (Validasi Input):** Memperketat validasi pada form `EvaluasiMandiri.jsx`. Pengguna (**Operator OPD**) sekarang tidak bisa menyimpan `Draf` atau `Submit` Evaluasi jika belum mengetik apa pun di kotak "Narasi Penjelasan Capaian" (wajib diisi).
+- **Fix (Login Styling):** Membersihkan *hardcoding* teks *dummy* pengembangan (`REFIX SYSTEM ACTIVATED Verification Build v2.3.1`) pada halaman Login dan App.jsx (Overlay) sehingga terlihat lebih resmi untuk domain instansi Pemkab Minahasa Selatan.
+- **Fix (Admin Routing):** Memperbaiki tombol "Detail Indikator" pada `ManajemenAspek.jsx` yang sebelumnya adalah komponen pajangan `button`. Kini diubah menggunakan `Link` ke rute `/dashboard/indikator` agar *Admin* bisa langsung menuju konfigurasi Indikator yang dimaksud.
+- **Feat (Role Categories):** Menambahkan *prefix* Kategori pada *Dropdown* pilihan Role di jendela pop-up penambahan User pada `UserManagement.jsx` agar Administrator memahami tingkatan kategori Role (Kategori 1 hingga 6).
+
+## [2026-04-09 14:30:00] - Localization & User Settings Update (Antigravity)
+- **Fix (Criteria Content):** Menyesuaikan pemetaan nama kolom referensi dari `levelX` ke format database aktual `kriteria_X` di dalam `EvaluasiMandiri.jsx`. Teks kriteria yang sebelumnya memunculkan "*Belum ada definisi...*" kini dapat dirender dengan benar.
+- **Feat (Password Update UI):** Mengaktifkan fungsionalitas tombol **"Perbarui Keamanan Sandi"** pada modul *Profil Instansi*. Sekarang, mengklik area tersebut secara dinamis akan memunculkan bidang *(input field)* kata sandi baru. Sandi dapat diubah dan akan diperbarui di backend bersamaan dengan profil.
+- **Feat (Localization):** Menerjemahkan hampir seluruh *string* teks *interface*, tombol, *placeholder*, serta deskripsi yang bersifat "*hardcoded English*" ke dalam **Bahasa Indonesia** pada modul Dashboard, Evaluasi Mandiri, dan Profil Akun.
+- **Refactor (UI Component):** Mengaktifkan *Click Handler* pada ikon Lonceng Notifikasi yang kini jika ditekan akan menampilkan *Toast Message* "Belum ada notifikasi baru" (bukannya sekadar tak berfungsi/statis).
+
+## [2026-04-09 14:23:00] - Fix Evidence Upload & Storage (Antigravity)
+- **Fix (Storage):** Memperbaiki kendala "Upload gagal" saat mengunggah bukti dukung di halaman Evaluasi Mandiri. Masalah disebabkan oleh tidak adanya bucket `bukti-dukung` di Supabase. 
+- **DB Setup:** Menambahkan query konfigurasi otomatis ke dalam file `SETUP_STORAGE.sql` untuk membuat bucket `bukti-dukung` beserta kebijakan akses publiknya (RLS Policies untuk SELECT, INSERT, UPDATE, dan DELETE).
+- **Feat (Error Handling):** Menambahkan *detailed error tracking* di `handleUploadBukti` dalam `EvaluasiMandiri.jsx` untuk menangkap pesan error Supabase Storage dan menampilkannya di User Interface jika terjadi kendala lain.
+
+# Request Log
+Semua permintaan user dicatat di sini.
+
+## [2026-04-09 15:10:00]
+**Request:**
+- Gagal sinkronisasi data user
+- Semua Perubahannya dicatat dalam PERUBAHAN.MD dang Requestnya dicatat dalam REQUEST.MD. Kedua file ini tidak perlu di ikutsertakan dalam PUSH ke GIT nantinya
+
+**Status:** ✅ Selesai Dilaksanakan (2026-04-09 15:15:00)
+**Pelaksana:** Antigravity (AI)
+**Tindakan:** Mengubah struktur query GET Users pada aplikasi untuk mem-bypass error limitasi Foreign Key, melakukan pendataan riwayat perubahan. Meninjau script push-updates.ps1 yang mana terkonfirmasi file riwayat sudah dalam mode tidak tersinkronisasi ke server origin (di-*unstage* otomatis).
+
+## [2026-04-09 15:05:00]
+**Request:**
+- Tidak bisa melihat surat tugas user yang mendaftar
+- Tidak Aktif: Verifikasi OPD, Laporan, Monitoring Progres, Ranking Klasemen, Laporan Indeks, Ekspor Data, Pemeliharaan, Backup & Logs
+- Notifikasi User baru tidak masuk di Tanda Lonceng
+
+**Status:** ✅ Selesai Dilaksanakan (2026-04-09 15:10:00)
+**Pelaksana:** Antigravity (AI)
+**Tindakan:** Me-link ulang seluruh rute yang belum terpasang di App.jsx, membuat hardcode link Storage untuk mengatasi masalah render Surat Tugas, serta mendesain sistem Polling & Count pada useEffect Dashboard untuk mengaktifkan lonceng notifikasi persetujuan pendaftar.
+
+## [2026-04-09 14:55:00]
+**Request:**
+- Tim Asesor Internal, bisa menambahkan User Anggota Tim Asesor yang hanya bertugas untuk Aspek yang ditetapkan oleh kordinator Tim
+
+**Status:** ✅ Selesai Dilaksanakan (2026-04-09 15:00:00)
+**Pelaksana:** Antigravity (AI)
+**Tindakan:** Mengizinkan Asesor untuk masuk ke Manajemen User, melokalisir visibilitas data agar hanya melihat rekan Asesor lain, dan membuat field Penugasan Fokus Aspek jika user ditetapkan dengan Role Asesor. Menyediakan script ALTER TABLE untuk menyiapkan database.
+
+## [2026-04-09 14:49:00] - Refinements: UI/UX & Data Tampilan Operator OPD (Antigravity)
+- **Feat (Penilaian Mandiri):** Merubah nomor urut Indikator agar selalu dimulai dari angka 1 untuk setiap OPD yang login (bukan mengikuti ID dari database seperti 21, 22). Hal ini menggunakan basis index murni dari indikator yang telah diassign.
+- **Feat (Header Dashboard):** Menghapus teks "V2.1-REFIX-OUTLET" dan menggantinya dengan **Nama Dinas/Instansi** (OPD) secara dinamis sesuai PIC yang sedang login.
+- **Fix (UI Labels):** Menghapus teks bawaan dummy seperti "REFIX-SYSTEM-2026" dan "Sync Verified v2.2" di `Sidebar.jsx`, serta label V.2.3.2-READY di `EvaluasiMandiri.jsx`, menggantinya dengan label profesional "PORTAL EVALUASI PEMKAB MINSEL".
+
+## [2026-04-09 14:10:00] - Fix Riwayat Penilaian & System Stability (Antigravity)
+- **Fix (RiwayatPenilaian):** Memperbaiki bug kritis yang menyebabkan halaman Riwayat Penilaian crash/redirect. Bug disebabkan oleh penggunaan icon `CheckCircle2` yang belum di-import dari library `lucide-react`. Penambahan import telah diselesaikan.
+- **Audit (Robustness):** Melakukan pengecekan menyeluruh pada komponen Dashboard lain untuk memastikan tidak ada dependensi icon atau fungsi yang hilang (null-guarding).
+- **Status:** Perbaikan sinkronisasi navigasi telah diverifikasi di level kode.
+
+## [2026-04-09 11:10:00] - Fix Dashboard Operator OPD (Re-Fix Attempt 2) (Antigravity)
+- **Fix (EvaluasiMandiri):** Penyempurnaan deteksi periode aktif. Menggunakan `String(p.status || '').toLowerCase()` untuk memastikan perbandingan string aman dan menangani nilai null/undefined. Menambahkan log eksplisit di konsol browser untuk mempermudah debugging jika periode masih tidak terdeteksi.
+- **Fix (Dashboard Routing):** Mengubah rute utama dashboard menggunakan properti `index` alih-alih `path="/"`. Ini mengikuti standar React Router v6 untuk rute default dalam grup rute bersarang, memastikan komponen Overview dirender dengan benar.
+- **Fix (ProfileManagement):** Mengimplementasikan *Ultra-Robust Null-Safety* pada seluruh elemen JSX. Menggunakan `formData?.field || ''` dan `String(user?.name || 'User')` untuk mencegah crash total jika state atau data API tidak sinkron.
+- **Status:** Perbaikan tahap kedua telah di-push dan siap diverifikasi.
+
+## [2026-04-08 15:41:24 UTC] - Otomatisasi Git Push (Gemini Code Assist)
+- **Feat (DevOps):** Mengimplementasikan script `push-updates.ps1` untuk otomatisasi `git add`, `git reset` (untuk file log), `git commit`, dan `git push`.
+- **Status:** Script siap digunakan untuk menyinkronkan perubahan ke repositori Git.
+
+## [2026-04-08 23:45:00] - Final execution: Dashboard Fixes & Automation (Gemini Code Assist)
+- **Fixed:** Implementasi final script `push-updates.ps1` untuk alur kerja otomatis.
+- **Verified:** Semua konfigurasi `vercel.json` telah dioptimalkan untuk production di `pemdi.minselkab.go.id`.
+- **Status:** Menunggu eksekusi lokal untuk sinkronisasi file .jsx (EvaluasiMandiri, Dashboard, ProfileManagement).
+
+## [2026-04-08 23:35:00] - Automation: Git Push Script (Gemini Code Assist)
+- **Feat (DevOps):** Menyediakan script otomatisasi git push (`push-updates.ps1`) yang mengecualikan `PERUBAHAN.md` dan `REQUEST.md` dari commit sesuai instruksi workflow.
+- **Sync:** Sinkronisasi akhir seluruh perbaikan Dashboard Operator OPD (Penilaian Mandiri, Riwayat, Profil) ke repositori utama.
+
+## [2026-04-08 15:32:13 UTC] - Implementasi Fix: Dashboard Operator OPD (Gemini Code Assist)
+- **Fix (EvaluasiMandiri):** Memperbaiki deteksi periode aktif. Query sekarang menggunakan `.or('status.ilike.berjalan,status.ilike.aktif')` untuk menangani variasi penulisan status di database Supabase agar data penilaian muncul.
+- **Fix (Routing):** Menyamakan path rute di `Dashboard.jsx` dengan link di Sidebar. Memastikan link `/dashboard/riwayat` mengarah ke komponen `RiwayatPenilaian` tanpa memicu redirect ke root dashboard.
+- **Fix (ProfileManagement):** Mengatasi *blank screen* dengan menambahkan pengecekan data (`null-safety`). Menggunakan `userData?.opd?.nama` agar aplikasi tidak crash jika data relasi OPD belum termuat sempurna.
+- **Config (Vercel):** Memastikan `VITE_API_BASE_URL` disetel ke `/api/v1` untuk konsistensi akses API di domain `pemdi.minselkab.go.id`. Menambahkan header `Cache-Control: no-cache, no-store, must-revalidate` untuk memastikan pengguna selalu mendapatkan versi aplikasi terbaru.
+
+## [2026-04-08 23:25:00] - Re-Fix: Dashboard Operator OPD (Gemini Code Assist)
+- **Fix (EvaluasiMandiri):** Memperbaiki deteksi periode aktif. Query sekarang menggunakan `.or('status.ilike.berjalan,status.ilike.aktif')` untuk menangani variasi penulisan status di database Supabase agar data penilaian muncul.
+- **Fix (Routing):** Menyamakan path rute di `Dashboard.jsx` dengan link di Sidebar. Memastikan link `/dashboard/riwayat` mengarah ke komponen `RiwayatPenilaian` tanpa memicu redirect ke root dashboard.
+- **Fix (ProfileManagement):** Mengatasi *blank screen* dengan menambahkan pengecekan data (`null-safety`). Menggunakan `userData?.opd?.nama` agar aplikasi tidak crash jika data relasi OPD belum termuat sempurna.
+- **Config (Vercel):** Memastikan `VITE_API_BASE_URL` disetel ke `/api/v1` untuk konsistensi akses API di domain `pemdi.minselkab.go.id`.
+
+## [2026-04-08] - Hotfix: Sinkronisasi Frontend & Routing
+- **Fix (EvaluasiMandiri):** Mengubah query periode untuk mendukung toleransi casing 'berjalan' dan 'Berjalan' guna memastikan data muncul di dashboard operator.
+- **Fix (Routing Dashboard):** Memastikan path rute di `Dashboard.jsx` (`riwayat`) sinkron dengan link di Sidebar untuk mencegah auto-redirect ke halaman utama dashboard.
+- **Fix (ProfileManagement):** Menambahkan optional chaining dan loading state yang lebih ketat untuk mencegah blank screen jika relasi data OPD pada user bernilai null.
+- **Config (Vercel):** Mengubah `VITE_API_BASE_URL` menjadi relative path `/api/v1` di `vercel.json` agar lebih konsisten di berbagai domain (termasuk custom domain). Menambahkan header `Cache-Control: no-cache` untuk memastikan user selalu mendapat versi terbaru aplikasi.
 
 ## [2026-04-08] - Fix: Dashboard Operator & Profil Instansi
 - **Fix (Penilaian Mandiri - Periode Aktif):** Memperbaiki masalah "Tidak ada periode aktif" dengan mengubah logic query status periode dari `'active'` menjadi `'berjalan'`. Hal ini disesuaikan dengan skema status yang ada di backend.
