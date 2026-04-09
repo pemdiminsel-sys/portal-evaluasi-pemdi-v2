@@ -31,6 +31,7 @@ import ExportData from './pages/ExportData';
 import SmtpSettings from './pages/SmtpSettings';
 import BackupDatabase from './pages/BackupDatabase';
 import LogAktivitas from './pages/LogAktivitas';
+import AIAssistant from './components/AIAssistant';
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useAuthStore();
@@ -55,6 +56,7 @@ function App() {
     <Router>
       <Toaster position="top-right" />
       <VersionTag />
+      <AIAssistant />
       <Routes>
         <Route path="/login" element={!isAuthenticated ? <Login /> : <Navigate to="/dashboard" replace />} />
         <Route path="/register" element={<Register />} />
