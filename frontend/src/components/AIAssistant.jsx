@@ -73,21 +73,21 @@ const AIAssistant = () => {
                 try {
                     aiResponse = await tryGemini();
                 } catch (err) {
-                    setMessages(prev => [...prev, { role: 'assistant', content: `⚠️ Admin 1 (Gemini) gagal: ${err.message}. Mencoba Admin 2...` }]);
+                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 sedang sibuk, saya akan arahkan Anda dengan Admin 2...` }]);
                     aiResponse = await tryGroq();
                 }
             } else {
                 try {
                     aiResponse = await tryGroq();
                 } catch (err) {
-                    setMessages(prev => [...prev, { role: 'assistant', content: `⚠️ Admin 2 (Groq) gagal: ${err.message}. Mencoba Admin 1...` }]);
+                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 2 sedang sibuk, saya akan arahkan Anda dengan Admin 1...` }]);
                     aiResponse = await tryGemini();
                 }
             }
 
             setMessages(prev => [...prev, { role: 'assistant', content: aiResponse }]);
         } catch (err) {
-            setMessages(prev => [...prev, { role: 'assistant', content: `❌ Semua mesin gagal merespon. Mohon cek API Key di Vercel.` }]);
+            setMessages(prev => [...prev, { role: 'assistant', content: `Maaf, saat ini semua Admin sedang melayani pengguna lain. Mohon coba lagi beberapa saat lagi.` }]);
         } finally {
             setLoading(false);
             setEngineStatus('Ready');
