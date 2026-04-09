@@ -1,41 +1,46 @@
 -- SETUP_STORAGE.sql
--- Digunakan untuk membuat bucket storage "surat-tugas" dan mengonfigurasi akses publik (RLS)
+-- Digunakan untuk membuat bucket storage dan mengonfigurasi akses publik (RLS)
 
--- 1. Membuat Bucket "surat-tugas" (Public = True)
+-- ==========================================
+-- 1. SETUP BUCKET "surat-tugas"
+-- ==========================================
 INSERT INTO storage.buckets (id, name, public)
 VALUES ('surat-tugas', 'surat-tugas', true)
 ON CONFLICT (id) DO NOTHING;
 
--- 2. Mengizinkan publik untuk melihat file di dalam bucket (Akses Read)
+DROP POLICY IF EXISTS "Public Access Surat Tugas" ON storage.objects;
 CREATE POLICY "Public Access Surat Tugas" 
 ON storage.objects FOR SELECT 
 USING ( bucket_id = 'surat-tugas' );
 
--- 3. Mengizinkan publik/anonymous untuk mengupload (Akses Insert saat registrasi)
+DROP POLICY IF EXISTS "Anon Upload Surat Tugas" ON storage.objects;
 CREATE POLICY "Anon Upload Surat Tugas" 
 ON storage.objects FOR INSERT 
 WITH CHECK ( bucket_id = 'surat-tugas' );
 
--- 4. Membuat Bucket "bukti-dukung" (Public = True)
+-- ==========================================
+-- 2. SETUP BUCKET "bukti-dukung"
+-- ==========================================
 INSERT INTO storage.buckets (id, name, public)
 VALUES ('bukti-dukung', 'bukti-dukung', true)
 ON CONFLICT (id) DO NOTHING;
 
--- 5. Mengizinkan publik untuk melihat file di dalam bucket (Akses Read)
+DROP POLICY IF EXISTS "Public Access Bukti Dukung" ON storage.objects;
 CREATE POLICY "Public Access Bukti Dukung" 
 ON storage.objects FOR SELECT 
 USING ( bucket_id = 'bukti-dukung' );
 
--- 6. Mengizinkan upload bukti dukung
+DROP POLICY IF EXISTS "Upload Bukti Dukung" ON storage.objects;
 CREATE POLICY "Upload Bukti Dukung" 
 ON storage.objects FOR INSERT 
 WITH CHECK ( bucket_id = 'bukti-dukung' );
 
--- 7. Mengizinkan update/delete bukti dukung
+DROP POLICY IF EXISTS "Update Delete Bukti Dukung" ON storage.objects;
 CREATE POLICY "Update Delete Bukti Dukung" 
 ON storage.objects FOR UPDATE 
 USING ( bucket_id = 'bukti-dukung' );
 
+DROP POLICY IF EXISTS "Delete Bukti Dukung" ON storage.objects;
 CREATE POLICY "Delete Bukti Dukung" 
 ON storage.objects FOR DELETE 
 USING ( bucket_id = 'bukti-dukung' );
