@@ -56,7 +56,7 @@ const Login = () => {
         >
           <div className="mb-10 text-center">
             <h2 className="text-4xl font-black text-slate-800 tracking-tighter uppercase italic leading-none mb-3">
-                PORTAL SISTEM <span className="text-red-600">AKTIF</span>
+                PORTAL EVALUASI <span className="text-red-600">PEMDI</span>
             </h2>
             <p className="text-slate-400 font-bold text-xs uppercase tracking-[0.3em] mb-4 text-center">Pemerintah Kabupaten Minahasa Selatan</p>
             <p className="text-slate-500 font-bold mt-2">Masuk untuk mengakses Portal SPBE</p>
