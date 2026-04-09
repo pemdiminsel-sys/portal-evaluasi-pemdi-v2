@@ -180,13 +180,13 @@ const AIAssistant = () => {
                                     onClick={() => setSelectedAdmin(1)}
                                     className={`flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all ${selectedAdmin === 1 ? 'bg-red-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
                                 >
-                                    Admin 1 (Gemini)
+                                    Admin 1
                                 </button>
                                 <button 
                                     onClick={() => setSelectedAdmin(2)}
                                     className={`flex-1 py-2 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all ${selectedAdmin === 2 ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
                                 >
-                                    Admin 2 (Groq)
+                                    Admin 2
                                 </button>
                             </div>
                         </div>
