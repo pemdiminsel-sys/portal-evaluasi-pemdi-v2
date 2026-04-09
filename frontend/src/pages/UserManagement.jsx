@@ -128,7 +128,9 @@ const UserManagement = () => {
         try {
             if (currentUser) {
                 const updatePayload = {
-                    name: form.name, role: form.role, opd_id: form.opd_id || null, aspek_id: form.aspek_id || null,
+                    name: form.name, role: form.role, 
+                    opd_id: form.role === 3 ? (form.opd_id || null) : null, 
+                    aspek_id: form.role === 4 ? (form.aspek_id || null) : null,
                     whatsapp: form.whatsapp, jabatan: form.jabatan
                 };
                 if (form.password && form.password.trim() !== '') {
@@ -299,10 +301,16 @@ const UserManagement = () => {
                                     </td>
                                     <td className="px-8 py-6">
                                         <div className="space-y-2">
-                                            <div className="flex items-center gap-2 text-slate-800 font-extrabold text-sm">
-                                                <Building2 size={16} className="text-slate-300" />
-                                                {user.opds?.nama || <span className="text-slate-200 italic font-black">UNASSIGNED</span>}
-                                            </div>
+                                            {user.role === 3 ? (
+                                                <div className="flex items-center gap-2 text-slate-800 font-extrabold text-sm">
+                                                    <Building2 size={16} className="text-slate-300" />
+                                                    {user.opds?.nama || <span className="text-slate-200 italic font-black">UNASSIGNED</span>}
+                                                </div>
+                                            ) : (
+                                                <div className="flex items-center gap-2 text-slate-300 font-black text-[10px] uppercase tracking-widest italic bg-slate-50 px-3 py-1.5 rounded-lg w-fit">
+                                                    Non-OPD Account
+                                                </div>
+                                            )}
                                             {isOpdTaken && (
                                                 <div className="flex items-center gap-1.5 text-amber-600 bg-amber-50 px-2 py-1 rounded-md w-fit border border-amber-100">
                                                     <AlertCircle size={10}/>
