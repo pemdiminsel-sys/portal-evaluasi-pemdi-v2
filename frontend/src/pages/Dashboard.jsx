@@ -37,10 +37,33 @@ const DashboardOverview = () => {
       recent: []
   });
   const [loading, setLoading] = useState(true);
+  const [periode, setPeriode] = useState(null);
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
+        // 1. Ambil Semua Periode (Ambil yang aktif di JS)
+        const { data: pDataAll, error: pErr } = await supabase
+            .from('periodes')
+            .select('*')
+            .order('tahun', { ascending: false });
+
+        if (pErr) throw pErr;
+
+        const activeP = (pDataAll || []).find(p => {
+            const s = String(p.status || '').toLowerCase();
+            return s === 'berjalan' || s === 'aktif' || s === 'active';
+        });
+
+        if (activeP) {
+            setPeriode(activeP);
+            // Lanjut ambil data dashboard berdasarkan periode ini
+            const { data: anData, error: anErr } = await supabase
+                .from('indikators')
+                .select('id');
+            if (!anErr) setData(prev => ({ ...prev, stats: { ...prev.stats, totalIndikator: anData.length } }));
+        }
+
         const res = await api.post('/', { action: 'dashboard-summary' });
         if (res.data && res.data.success) {
             setData(res.data.data);
@@ -60,7 +83,7 @@ const DashboardOverview = () => {
 
   const stats = [
     { title: 'Total OPD terdaftar', value: data?.stats?.total_opd || 0, icon: Users, color: 'indigo' },
-    { title: 'Indikator SPBE', value: '20', icon: Target, color: 'blue' },
+    { title: 'Indikator SPBE', value: data?.stats?.totalIndikator || '20', icon: Target, color: 'blue' },
     { title: 'Dokumen Bukti', value: data?.stats?.total_evidence || 0, icon: FileText, color: 'violet' },
     { title: 'Indeks Rata-rata', value: (data?.stats?.avg_score || 0).toFixed(2), icon: TrendingUp, color: 'emerald' },
   ];
