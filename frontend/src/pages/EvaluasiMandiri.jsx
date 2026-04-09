@@ -26,67 +26,71 @@ const EvaluasiMandiri = () => {
     });
 
     useEffect(() => {
-        fetchInitialData();
-    }, []);
+        if (user?.id) {
+            fetchInitialData();
+        }
+    }, [user?.id]);
 
     const fetchInitialData = async () => {
         try {
             setLoading(true);
+            console.log('EvaluasiMandiri: Current User:', user);
             
-            // 1. Ambil Semua Periode (Cek yang aktif di JS agar case-insensitive)
+            // 1. Ambil Semua Periode
             const { data: pDataAll, error: pError } = await supabase
                 .from('periodes')
                 .select('*')
                 .order('tahun', { ascending: false });
             
-            if (pError) {
-                 console.error('EvaluasiMandiri: Error fetching periodes:', pError);
-                 toast.error('❌ Error memuat periode: ' + pError.message);
-                 setPeriode(null);
-                 setLoading(false);
-                 return;
-            }
+            if (pError) throw pError;
             
-            // Cari yang statusnya berjalan/aktif/active secara case-insensitive
             const allP = pDataAll || [];
-            console.log('EvaluasiMandiri: Checking periodes:', allP.map(p => `${p.tahun}: ${p.status}`));
-
             const activeP = allP.find(p => {
                 const s = String(p.status || '').toLowerCase().trim();
                 return s === 'berjalan' || s === 'aktif' || s === 'active';
-            });
+            }) || allP[0]; // Fallback ke terbaru
 
             if (!activeP) {
-                 console.warn('EvaluasiMandiri: No active period found in', allP);
                  setPeriode(null);
                  setLoading(false);
                  return;
-            }
+             }
 
-            console.log('EvaluasiMandiri: Successfully matched active period:', activeP.tahun);
             setPeriode(activeP);
 
             // 2. Ambil Mapping Indikator untuk OPD ini
-            const { data: mappingData, error: mError } = await supabase
-                .from('opd_indikators')
-                .select('indikator_id')
-                .eq('opd_id', user?.opd_id);
+            // Pastikan kita menggunakan Number untuk perbandingan role
+            const userRole = Number(user?.role);
+            const userOpdId = user?.opd_id;
+
+            console.log('EvaluasiMandiri: Role:', userRole, 'OPD ID:', userOpdId);
+
+            let assignedIds = [];
+            if (userRole !== 1 && userOpdId) {
+                const { data: mappingData, error: mError } = await supabase
+                    .from('opd_indikators')
+                    .select('indikator_id')
+                    .eq('opd_id', userOpdId);
+                
+                if (mError) {
+                    console.error('Error fetching indicator mapping:', mError);
+                } else {
+                    assignedIds = (mappingData || []).map(m => m.indikator_id);
+                }
+            }
             
-            if (mError) console.error('Error fetching indicator mapping:', mError);
+            console.log('EvaluasiMandiri: Assigned indicators:', assignedIds);
 
-            const assignedIds = (mappingData || []).map(m => m.indikator_id);
-            console.log('EvaluasiMandiri: Assigned indicators for OPD:', assignedIds);
-
-            // 3. Ambil Aspek & Indikator (Filter jika bukan admin)
+            // 3. Bangun Query Indikator
             let indicatorQuery = supabase.from('indikators').select('*').order('id');
             
-            // Jika bukan super-admin (role 1)
-            if (user?.role !== 1) {
+            // Filter ketat: Jika bukan Super Admin (1), WAJIB ada di mapping
+            if (userRole !== 1) {
                 if (assignedIds.length > 0) {
                     indicatorQuery = indicatorQuery.in('id', assignedIds);
                 } else {
-                    // Jika OPD belum memiliki indikator yang ditugaskan, tampilkan kosong
-                    indicatorQuery = indicatorQuery.eq('id', -1); // ID yang tidak mungkin ada
+                    // Jika OPD belum ditugaskan apa-apa, jangan tampilkan semuanya
+                    indicatorQuery = indicatorQuery.eq('id', -1);
                 }
             }
 
@@ -95,18 +99,15 @@ const EvaluasiMandiri = () => {
                 indicatorQuery,
                 supabase.from('penilaians')
                     .select('*')
-                    .eq('opd_id', user?.opd_id)
+                    .eq('opd_id', userOpdId)
                     .eq('periode_id', activeP.id)
-                    .eq('jenis', 1), // 1 = Mandiri
+                    .eq('jenis', 1),
                 supabase.from('buktis')
                     .select('*')
-                    .eq('opd_id', user?.opd_id)
+                    .eq('opd_id', userOpdId)
                     .eq('periode_id', activeP.id)
             ]);
 
-            setAspeks(asRes.data || []);
-            
-            // Filter aspek agar hanya aspek yang memiliki indikator aktif yang muncul
             const filteredIndikators = inRes.data || [];
             const activeAspekIds = [...new Set(filteredIndikators.map(i => i.aspek_id))];
             
@@ -238,7 +239,10 @@ const EvaluasiMandiri = () => {
         <div className="flex h-full bg-slate-50 overflow-hidden relative">
             {/* Sidebar Indikator */}
             <div className={`flex flex-col border-r border-slate-200 bg-white transition-all duration-500 overflow-hidden ${selectedIndikator ? 'w-0' : 'w-[400px]'}`}>
-                <div className="p-8 border-b border-slate-50">
+                <div className="p-8 border-b border-slate-50 relative">
+                    <div className="absolute top-2 right-2 px-2 py-0.5 bg-red-600 text-[8px] font-black text-white rounded-full animate-pulse">
+                        V.2.3.2-READY
+                    </div>
                     <h2 className="text-2xl font-black text-slate-800 tracking-tighter uppercase italic">Indikator SPBE</h2>
                     <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Periode Evaluasi {periode?.tahun || 'N/A'}</p>
                 </div>
@@ -260,7 +264,7 @@ const EvaluasiMandiri = () => {
                                             className={`w-full p-4 rounded-2xl flex items-center justify-between text-left transition-all ${pen?.status === 1 ? 'bg-emerald-50 border-emerald-100 hover:bg-emerald-100' : 'bg-white hover:bg-slate-50 border border-slate-100'}`}
                                         >
                                             <div className="flex-1 min-w-0 pr-4">
-                                                <p className={`text-[11px] font-black leading-tight truncate ${pen?.status === 1 ? 'text-emerald-700' : 'text-slate-700'}`}>{ind.id}. {ind.nama}</p>
+                                                <p className={`text-[11px] font-black leading-tight truncate ${pen?.status === 1 ? 'text-emerald-700' : 'text-slate-700'}`}>{ind.kode || ind.id}. {ind.nama}</p>
                                                 <div className="flex items-center gap-3 mt-1.5">
                                                     <span className={`text-[9px] font-black uppercase tracking-tighter ${pen?.nilai ? 'text-indigo-500' : 'text-slate-300'}`}>Level {pen?.nilai || '-'}</span>
                                                     {hasBukti && <div className="w-1 h-1 bg-slate-300 rounded-full"></div>}
