@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { useState, useEffect } from 'react';
-import { History, FileText, ChevronRight, CheckCircle2, AlertCircle, Loader2, Clock, Award } from 'lucide-react';
+import { History, FileText, ChevronRight, CheckCircle, AlertCircle, Loader2, Clock, Award } from 'lucide-react';
 import { supabase } from '../services/supabase';
 import useAuthStore from '../store/authStore';
 
@@ -149,7 +149,7 @@ const RiwayatPenilaian = () => {
                                                 <FileText size={14} /> {item.total_indikator_diisi} indikator diisi
                                             </span>
                                             <span className="flex items-center gap-1">
-                                                <CheckCircle2 size={14} /> {item.total_submitted} submitted
+                                                <CheckCircle size={14} /> {item.total_submitted} submitted
                                             </span>
                                             <span className={`flex items-center gap-1 text-${status.color}-500`}>
                                                 <StatusIcon size={14} /> {status.label}
