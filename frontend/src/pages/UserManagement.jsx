@@ -45,12 +45,15 @@ const UserManagement = () => {
     const fetchData = async () => {
         try {
             setLoading(true);
-            let query = supabase.from('users').select('*, opds(*), aspeks(nama)').order('created_at', { ascending: false });
+            let query = supabase.from('users').select('*, opds(*)').order('created_at', { ascending: false });
             if (authUser?.role === 4) {
                 query = query.eq('role', 4);
             }
             const { data: userData, error: uErr } = await query;
-            if (uErr) throw uErr;
+            if (uErr) {
+                console.error("User Sync Error:", uErr);
+                throw uErr;
+            }
             setUsers(userData || []);
 
             const { data: opdData, error: oErr } = await supabase.from('opds').select('id, nama, singkatan').order('nama', { ascending: true });
@@ -297,10 +300,10 @@ const UserManagement = () => {
                                                     <span className="text-[9px] font-black uppercase italic">OPD has another active PIC</span>
                                                 </div>
                                             )}
-                                            {user.aspeks?.nama && (
+                                            {user.aspek_id && aspeks.find(a => a.id === user.aspek_id) && (
                                                 <div className="flex items-center gap-1.5 text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-lg w-fit border border-indigo-100 mt-2">
                                                     <Layers size={12}/>
-                                                    <span className="text-[10px] font-black uppercase tracking-widest italic">{user.aspeks.nama}</span>
+                                                    <span className="text-[10px] font-black uppercase tracking-widest italic">{aspeks.find(a => a.id === user.aspek_id).nama}</span>
                                                 </div>
                                             )}
                                         </div>
