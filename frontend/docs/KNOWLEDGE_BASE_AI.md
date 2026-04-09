@@ -1,46 +1,65 @@
-# PANDUAN PENGETAHUAN (GROUND TRUTH) - PORTAL PEMDI V2
-*Versi Dokumen: 5.3 (Update Glosarium SRIKANDI & Probis)*
+# PANDUAN PENGETAHUAN MASTER (GROUND TRUTH) - PORTAL PEMDI V2
+*Versi Dokumen: 6.0 (Ultimate Integration - April 2026)*
 
-## 1. DAFTAR LENGKAP 20 INDIKATOR (IK-01 - IK-20)
-| Kode | Nama Indikator | Dokumen Wajib / Bukti Pendukung |
-|---|---|---|
-| **IK-01** | Tata Kelola Pemdi | SK Rencana Aksi, Arsitektur Pemdi, Laporan Realisasi. |
-| **IK-02** | Manajemen Layanan | SOP Manajemen Layanan, Register Risiko, BCP/DRP. |
-| **IK-03** | SDM Pemdi | Peta Kompetensi, Pelatihan ASN (>90%), **Pemanfaatan AI**. |
-| **IK-04** | Kolaborasi | SK Forum Koordinasi, MoU Terpadu. |
-| **IK-05** | Tata Kelola Data | SK Walidata, Metadata SDI, Portal API Berbagi Pakai. |
-| **IK-06** | Info Geospasial | URL Geoportal, Metadata IG, Nilai SJIG, Foto Drone/GPS. |
-| **IK-07** | Pembangunan Statistik | SK Statistik Sektoral, Rencana Kerja Statistik, Nilai EPSS. |
-| **IK-08** | Pelindungan Data Pribadi | Perbup Kebijakan PDP, Dokumentasi Enkripsi Database. |
-| **IK-09** | Audit Keamanan & Tekno | SK Tim Audit, Laporan Audit Internal/Eksternal, RTL. |
-| **IK-10** | Keamanan Pemdi | Dokumen ISO 27001, Daftar IIV, Nilai IKASANDI. |
-| **IK-11** | Kriptografi | Sertifikat SSL/TLS, Bukti Enkripsi Database. |
-| **IK-12** | Penanganan Insiden | SK CSIRT/TTIS, Laporan Penanganan Insiden Siber. |
-| **IK-13** | Aplikasi Pemdi | Dokumentasi SDLC (UAT/Desain), Dokumentasi API. |
-| **IK-14** | Infrastruktur Pemdi | Bukti Hosting Pusat Data Nasional (PDN), JIP. |
-| **IK-15** | Proses Bisnis Lintas Unit | **Peta Probis**, **Layanan Arsip SRIKANDI**. |
-| **IK-16** | Integrasi Aplikasi | Arsitektur Integrasi, Sinkronisasi Dasbor Presiden. |
-| **IK-17** | Portal Layanan Digital | URL minselkab.go.id, Katalog Layanan Terpadu. |
-| **IK-18** | Interoperabilitas Data | Standar API, Pertukaran Data Real-time SDI. |
-| **IK-19** | Dukungan Pengguna | SOP SLA, Chatbot/Helpdesk, Dashboard Monitoring SLA. |
-| **IK-20** | Tingkat Kepuasan | Laporan Survei SKM, **Analisis Sentimen AI**. |
+Dokumen ini adalah referensi tunggal (Single Source of Truth) untuk seluruh operasional, kebijakan, dan kriteria penilaian Sistem Pemerintahan Berbasis Elektronik (SPBE) / Pemerintah Digital di Kabupaten Minahasa Selatan.
+
+## 1. LANDASAN HUKUM FORMAL (PERBUP 15/2025)
+Berdasarkan **Peraturan Bupati Minahasa Selatan Nomor 15 Tahun 2025**:
+- **Mandat Utama**: Penyelenggaraan SPBE yang terpadu untuk pelayanan publik yang berkualitas.
+- **Hierarki**: Sekretaris Daerah sebagai Koordinator, Diskominfo sebagai Instansi Teknis.
+- **PD Mandiri TIK**: Status khusus bagi OPD yang mampu mengelola infrastruktur/aplikasi sendiri secara mandiri (Pasal 41).
+- **Service Desk**: 
+  - **Tier 1 (OPD)**: Wajib ada minimal 1 staf IT sebagai penangan pertama keluhan.
+  - **Tier 2 (Diskominfo)**: Pusdalops/Helpdesk pusat untuk eskalasi teknis berat.
+- **Infrastruktur Wajib**: Penggunaan Jaringan Intra (Fiber Optic Diskominfo) dan Email CSRT `@minselkab.go.id`.
+
+## 2. JADWAL & TAHAPAN EVALUASI 2026
+Proses penilaian tidak hanya berdasarkan dokumen, melainkan gabungan dari 3 metode:
+
+| Tahap | Nama Kegiatan | Periode | Bobot Nilai |
+|---|---|---|---|
+| 1 | **Penilaian Mandiri (OPD)** | 1 April - 15 Mei | - |
+| 2 | **Evaluasi Dokumen (Asesor)** | 16 Mei - 30 Juni | **40%** |
+| 3 | **Interviu / Wawancara** | Juli - Agustus | **40%** |
+| 4 | **Visitasi Lapangan** | Agustus - September | **20%** |
 
 ---
 
-## 2. GLOSARIUM & ISTILAH PENTING
-Untuk membantu menjawab pertanyaan detail, berikut adalah definisi istilah teknis dalam evaluasi:
+## 3. RINCIAN 20 INDIKATOR PEMDI (IK-01 Sampai IK-20)
 
-- **Peta Probis (Proses Bisnis)**: Diagram alur kerja terstruktur yang menggambarkan hubungan kerja antar unit organisasi untuk menghasilkan layanan yang efektif. Peta ini wajib disusun untuk memastikan tidak ada duplikasi fungsi (silo) antar OPD.
-- **SRIkandi**: Aplikasi Umum Nasional (Sistem Informasi Kearsipan Dinamis Terintegrasi) yang wajib digunakan oleh seluruh instansi pemerintah untuk pengelolaan arsip secara digital, efisien, dan terpusat.
-- **PDN (Pusat Data Nasional)**: Fasilitas penyimpanan data terpusat yang dikelola pemerintah pusat. Seluruh aplikasi OPD wajib di-host di PDN untuk keamanan dan efisiensi.
-- **SDLC (Software Development Life Cycle)**: Siklus hidup pengembangan aplikasi yang mencakup tahap Perencanaan, Desain, Coding, Testing (UAT), hingga Implementasi.
-- **SDI (Satu Data Indonesia)**: Kebijakan tata kelola data pemerintah untuk menghasilkan data yang akurat, mutakhir, terpadu, dan dapat dibagipakaikan.
+| Kode | Indikator | Dokumen Kritis / Bukti Wajib | Tanggung Jawab |
+|---|---|---|---|
+| **IK-01** | Tata Kelola | SK Rencana Aksi, Dokumen Arsitektur Pemdi. | Bappelitbangda/Kominfo |
+| **IK-02** | Manajemen Layanan | SOP Manajemen, Risiko TIK, & BCP/DRP. | Diskominfo |
+| **IK-03** | SDM | Sertifikat Diklat ASN, **Bukti Pakai AI**. | BKPSDM/Kominfo |
+| **IK-04** | Kolaborasi | SK Forum Koordinasi, PKS lintas unit. | Sekretariat Daerah |
+| **IK-05** | Tata Kelola Data | Metadata SDI, Walidata, Portal API. | Diskominfo/BPS |
+| **IK-06** | Geospasial | URL Geoportal, Nilai SJIG, Foto Drone. | Bappelitbangda/PUPR |
+| **IK-07** | Statistik | SK Statistik Sektoral, Nilai EPSS. | BPS/Kominfo |
+| **IK-08** | Kebijakan PDP | Perbup Pelindungan Data Pribadi (PDP). | Bagian Hukum/Kominfo |
+| **IK-09** | Audit TIK | Laporan Audit Aplikasi & Infrastruktur. | Inspektorat/Kominfo |
+| **IK-10** | Keamanan | ISO 27001, Nilai IKASANDI. | Diskominfo/BSSN |
+| **IK-11** | Kriptografi | Sertifikat SSL/TLS, Enkripsi Database. | Diskominfo |
+| **IK-12** | Insiden Siber | SK CSIRT, Laporan Penanganan Insiden. | Diskominfo |
+| **IK-13** | Aplikasi (SDLC) | Dokumentasi UAT, Manual Book, SDLC. | Semua OPD |
+| **IK-14** | Infrastruktur | Bukti Hosting Pusat Data Nasional (PDN). | Diskominfo |
+| **IK-15** | Proses Bisnis | **Peta Probis**, **Arsip Digital SRIKANDI**. | Semua OPD |
+| **IK-16** | Integrasi | API Interkoneksi, Dasbor Presiden. | Diskominfo |
+| **IK-17** | Portal Layanan | URL minselkab.go.id, Katalog Layanan. | Semua OPD |
+| **IK-18** | Interoperabilitas | Sharing Data Real-time SDI. | Diskominfo |
+| **IK-19** | Layanan (SLA) | SOP SLA, Dashboard Response Time. | Semua OPD |
+| **IK-20** | Kepuasan | **Survei SKM**, **Analisis Sentimen AI**. | Semua OPD |
 
 ---
 
-## 3. STRUKTUR PENILAIAN & RUMUS
-- **Bobot Tahapan**: Dokumen (40%), Wawancara (40%), Visitasi (20%).
-- **Indeks Pemdi** = `Σ (Bobot Aspek × Nilai Aspek)`
+## 4. FORMULA PERHITUNGAN
+Indeks Pemdi dihitung dengan menjumlahkan hasil perkalian Bobot Aspek dengan Nilai Aspek. 
+Aspek 7 (Kepuasan Pengguna) memiliki bobot **25%**, tertinggi di antara aspek lainnya, menunjukkan orientasi pada masyarakat.
+
+## 5. GLOSARIUM & DEFINISI
+- **Peta Probis**: Visualisasi alur kerja organisasi untuk menghindari tumpang tindih fungsi.
+- **SRIkandi**: Aplikasi nasional terpadu untuk persuratan dan kearsipan elektronik.
+- **PDN (Pusat Data Nasional)**: Infrastruktur cloud aman milik pemerintah untuk hosting aplikasi daerah.
 
 ---
-*Ref: Rincian Indikator, Materi Bimtek Assesor & OPD, SIPD-RI, Perbup 15/2025*
+*Referensi: Konsolidasi Material Dokumen Folder PEMDI (Perbup, Bimtek, Rincian Indikator).*
