@@ -21,12 +21,12 @@ const UserManagement = () => {
     });
 
     const rolesMap = {
-        1: { name: 'Super Admin', color: 'bg-red-600 text-white', icon: ShieldAlert, perm: 'Full Access' },
-        2: { name: 'Admin Pemkab', color: 'bg-indigo-600 text-white', icon: ShieldCheck, perm: 'Manage Master Data' },
-        3: { name: 'Operator OPD', color: 'bg-blue-500 text-white', icon: Building2, perm: 'Input Evidence & Self Eval' },
-        4: { name: 'Tim Asesor', color: 'bg-emerald-500 text-white', icon: CheckCircle, perm: 'Verify & Audit' },
-        5: { name: 'Pimpinan', color: 'bg-rose-500 text-white', icon: Eye, perm: 'View Reports' },
-        6: { name: 'Viewer', color: 'bg-slate-400 text-white', icon: Lock, perm: 'Read Only' },
+        1: { name: 'Super Admin', color: 'bg-red-600 text-white', icon: ShieldAlert, perm: 'Akses Penuh' },
+        2: { name: 'Admin Pemkab', color: 'bg-indigo-600 text-white', icon: ShieldCheck, perm: 'Master Data' },
+        3: { name: 'Operator OPD', color: 'bg-blue-500 text-white', icon: Building2, perm: 'Evaluasi Mandiri' },
+        4: { name: 'Tim Asesor', color: 'bg-emerald-500 text-white', icon: CheckCircle, perm: 'Verifikasi' },
+        5: { name: 'Pimpinan', color: 'bg-rose-500 text-white', icon: Eye, perm: 'Laporan Dashboard' },
+        6: { name: 'Viewer', color: 'bg-slate-400 text-white', icon: Lock, perm: 'Hanya Baca' },
     };
 
     const statusMap = {
@@ -373,12 +373,12 @@ const UserManagement = () => {
                                         <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Security Role</label>
                                         <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:ring-4 focus:ring-red-100 outline-none font-black text-sm"
                                             value={form.role} onChange={e => setForm({...form, role: parseInt(e.target.value)})}>
-                                            <option value="1">Super Admin</option>
-                                            <option value="2">Admin Pemkab</option>
-                                            <option value="3">Operator OPD</option>
-                                            <option value="4">Tim Asesor</option>
-                                            <option value="5">Pimpinan</option>
-                                            <option value="6">Viewer</option>
+                                            <option value="1">Kategori: 1 - Administrator Utama</option>
+                                            <option value="2">Kategori: 2 - Admin SPBE Pemkab</option>
+                                            <option value="3">Kategori: 3 - Operator/PIC OPD</option>
+                                            <option value="4">Kategori: 4 - Tim Asesor Internal</option>
+                                            <option value="5">Kategori: 5 - Pimpinan Instansi</option>
+                                            <option value="6">Kategori: 6 - Pengamat Sistem</option>
                                         </select>
                                     </div>
                                     <div className="space-y-2">

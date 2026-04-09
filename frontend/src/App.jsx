@@ -25,7 +25,7 @@ const ProtectedRoute = ({ children }) => {
 
 const VersionTag = () => (
     <div className="fixed bottom-2 right-2 text-[8px] font-black text-slate-300 bg-white/50 px-2 py-1 rounded-full z-[9999] pointer-events-none uppercase tracking-widest">
-      Build V.2.1.2-REFIX-OUTLET ({new Date().toISOString()})
+      Build Portal SPBE Pemkab Minsel ({new Date().toISOString()})
     </div>
 );
 

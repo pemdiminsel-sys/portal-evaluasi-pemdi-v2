@@ -138,6 +138,12 @@ const EvaluasiMandiri = () => {
 
     const handleSave = async (isSubmit = false) => {
         if (!selectedIndikator || !periode) return;
+
+        if (!evalForm.penjelasan || evalForm.penjelasan.trim() === '') {
+            toast.error('Narasi Penjelasan Capaian wajib diisi!');
+            return;
+        }
+
         setSaving(true);
         try {
             const payload = {

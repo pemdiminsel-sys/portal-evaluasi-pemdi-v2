@@ -36,7 +36,7 @@ const Login = () => {
           <h1 className="text-4xl font-black text-white leading-tight">Portal Evaluasi<br />Pemerintah Digital</h1>
           <div className="mt-10 flex items-center gap-3 bg-white/10 rounded-2xl px-6 py-4">
             <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-            <span className="text-white/90 font-bold text-sm tracking-wide">Build v2.3.1-DEPLOY-REFIX</span>
+            <span className="text-white/90 font-bold text-sm tracking-wide">Portal Evaluasi Pemdi v2.0</span>
           </div>
         </motion.div>
       </div>
@@ -50,9 +50,9 @@ const Login = () => {
         >
           <div className="mb-10 text-center">
             <h2 className="text-4xl font-black text-slate-800 tracking-tighter uppercase italic leading-none mb-3">
-                REFIX SYSTEM <span className="text-red-600">ACTIVATED</span>
+                PORTAL SISTEM <span className="text-red-600">AKTIF</span>
             </h2>
-            <p className="text-slate-400 font-bold text-xs uppercase tracking-[0.3em] mb-4 text-center">Verification Build v2.3.1</p>
+            <p className="text-slate-400 font-bold text-xs uppercase tracking-[0.3em] mb-4 text-center">Pemerintah Kabupaten Minahasa Selatan</p>
             <p className="text-slate-500 font-bold mt-2">Masuk untuk mengakses Portal SPBE</p>
           </div>
 

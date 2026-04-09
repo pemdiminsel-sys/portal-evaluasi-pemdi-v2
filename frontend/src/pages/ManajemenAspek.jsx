@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Layers, Plus, Edit2, Trash2, Loader2, Target, Percent, ChevronRight } from 'lucide-react';
 import { supabase } from '../services/supabase';
 import { toast } from 'react-hot-toast';
@@ -110,9 +111,9 @@ const ManajemenAspek = () => {
                         </div>
 
                         <div className="relative z-10 flex items-center justify-between mt-10 pt-6 border-t border-slate-50">
-                            <button className="text-xs font-black text-emerald-600 hover:text-emerald-700 flex items-center gap-1 uppercase tracking-widest transition-all">
+                            <Link to="/dashboard/indikator" className="text-xs font-black text-emerald-600 hover:text-emerald-700 flex items-center gap-1 uppercase tracking-widest transition-all">
                                 Detail Indikator <ChevronRight size={14} />
-                            </button>
+                            </Link>
                             <div className="flex items-center gap-2">
                                 <button onClick={() => {
                                     setEditForm(aspek);
