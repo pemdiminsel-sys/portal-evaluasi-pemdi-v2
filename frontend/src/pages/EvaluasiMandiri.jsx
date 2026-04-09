@@ -66,10 +66,33 @@ const EvaluasiMandiri = () => {
             console.log('EvaluasiMandiri: Successfully matched active period:', activeP.tahun);
             setPeriode(activeP);
 
-            // 2. Ambil Aspek & Indikator
+            // 2. Ambil Mapping Indikator untuk OPD ini
+            const { data: mappingData, error: mError } = await supabase
+                .from('opd_indikators')
+                .select('indikator_id')
+                .eq('opd_id', user?.opd_id);
+            
+            if (mError) console.error('Error fetching indicator mapping:', mError);
+
+            const assignedIds = (mappingData || []).map(m => m.indikator_id);
+            console.log('EvaluasiMandiri: Assigned indicators for OPD:', assignedIds);
+
+            // 3. Ambil Aspek & Indikator (Filter jika bukan admin)
+            let indicatorQuery = supabase.from('indikators').select('*').order('id');
+            
+            // Jika bukan super-admin (role 1)
+            if (user?.role !== 1) {
+                if (assignedIds.length > 0) {
+                    indicatorQuery = indicatorQuery.in('id', assignedIds);
+                } else {
+                    // Jika OPD belum memiliki indikator yang ditugaskan, tampilkan kosong
+                    indicatorQuery = indicatorQuery.eq('id', -1); // ID yang tidak mungkin ada
+                }
+            }
+
             const [asRes, inRes, penRes, bukRes] = await Promise.all([
                 supabase.from('aspeks').select('*').order('urutan'),
-                supabase.from('indikators').select('*').order('id'),
+                indicatorQuery,
                 supabase.from('penilaians')
                     .select('*')
                     .eq('opd_id', user?.opd_id)
@@ -82,7 +105,13 @@ const EvaluasiMandiri = () => {
             ]);
 
             setAspeks(asRes.data || []);
-            setIndikators(inRes.data || []);
+            
+            // Filter aspek agar hanya aspek yang memiliki indikator aktif yang muncul
+            const filteredIndikators = inRes.data || [];
+            const activeAspekIds = [...new Set(filteredIndikators.map(i => i.aspek_id))];
+            
+            setAspeks((asRes.data || []).filter(a => activeAspekIds.includes(a.id)));
+            setIndikators(filteredIndikators);
             setPenilaians(penRes.data || []);
             setBuktis(bukRes.data || []);
 
