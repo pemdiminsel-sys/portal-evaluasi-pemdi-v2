@@ -422,31 +422,31 @@ const UserManagement = () => {
                                             <option value="6">Kategori: 6 - Pengamat Sistem</option>
                                         </select>
                                     </div>
+                                <div className="grid grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        {form.role === 4 ? (
+                                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Assigned Organization (Unit)</label>
+                                        <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:ring-4 focus:ring-red-100 outline-none font-black text-xs italic"
+                                            value={form.opd_id} onChange={e => setForm({...form, opd_id: e.target.value})}>
+                                            <option value="">None / External (Kosongkan)</option>
+                                            {opds.map(opd => <option key={opd.id} value={opd.id}>{opd.singkatan || opd.nama}</option>)}
+                                        </select>
+                                        {checkOpdOwnership(form.opd_id, currentUser?.id) && (
+                                            <p className="text-[9px] font-black text-amber-500 uppercase mt-2 animate-pulse">⚠️ Warning: OPD already has an active PIC</p>
+                                        )}
+                                    </div>
+                                    <div className="space-y-2">
+                                        {form.role === 4 && (
                                             <>
-                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Fokus Aspek (Asesor Anggota)</label>
+                                                <label className="text-[10px] font-black text-indigo-400 uppercase tracking-widest ml-1">Fokus Aspek Asesor</label>
                                                 <select className="w-full bg-indigo-50 border border-indigo-100 rounded-2xl px-5 py-4 focus:ring-4 focus:ring-indigo-200 outline-none font-black text-xs text-indigo-700"
                                                     value={form.aspek_id} onChange={e => setForm({...form, aspek_id: e.target.value})}>
                                                     <option value="">Koordinator (Semua Aspek)</option>
                                                     {aspeks.map(a => <option key={a.id} value={a.id}>{a.urutan} - {a.nama}</option>)}
                                                 </select>
-                                                <p className="text-[9px] font-black text-indigo-400 uppercase mt-2">Dikosongkan jika ini adalah akun Koordinator</p>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Assigned Organization</label>
-                                                <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:ring-4 focus:ring-red-100 outline-none font-black text-xs italic"
-                                                    value={form.opd_id} onChange={e => setForm({...form, opd_id: e.target.value})}>
-                                                    <option value="">None / External</option>
-                                                    {opds.map(opd => <option key={opd.id} value={opd.id}>{opd.singkatan || opd.nama}</option>)}
-                                                </select>
-                                                {checkOpdOwnership(form.opd_id, currentUser?.id) && (
-                                                    <p className="text-[9px] font-black text-amber-500 uppercase mt-2 animate-pulse">⚠️ Warning: OPD already has an active PIC</p>
-                                                )}
                                             </>
                                         )}
                                     </div>
+                                </div>
                                 </div>
 
                                 {/* Password Field */}
