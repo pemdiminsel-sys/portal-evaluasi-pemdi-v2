@@ -151,7 +151,7 @@ const Dashboard = () => {
 
         <div className="flex-1 overflow-y-auto relative h-full scrollbar-hide">
           <Routes>
-            <Route path="/" element={user?.role === 5 || user?.role === 1 ? <DashboardPimpinan /> : <DashboardOverview />} />
+            <Route index element={user?.role === 5 || user?.role === 1 ? <DashboardPimpinan /> : <DashboardOverview />} />
             <Route path="evaluasi" element={<EvaluasiMandiri />} />
             <Route path="riwayat" element={<RiwayatPenilaian />} />
             <Route path="verifikasi" element={<VerifikasiOPD />} />

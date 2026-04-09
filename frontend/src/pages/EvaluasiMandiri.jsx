@@ -39,25 +39,28 @@ const EvaluasiMandiri = () => {
                 .order('tahun', { ascending: false });
             
             if (pError) {
-                 console.error('Error fetching periocdes:', pError);
+                 console.error('Error fetching periodes:', pError);
                  toast.error('❌ Error memuat periode: ' + pError.message);
                  setPeriode(null);
                  setLoading(false);
                  return;
             }
             
-            // Cari yang statusnya berjalan/aktif (case insensitive)
-            const activeP = (pDataAll || []).find(p => 
-                ['berjalan', 'aktif', 'active'].includes(p.status?.toLowerCase())
-            );
+            // Cari yang statusnya berjalan/aktif/active secara case-insensitive
+            const allP = pDataAll || [];
+            const activeP = allP.find(p => {
+                const s = String(p.status || '').toLowerCase();
+                return s === 'berjalan' || s === 'aktif' || s === 'active';
+            });
 
             if (!activeP) {
-                 console.warn('No active periode found among:', pDataAll);
+                 console.warn('EvaluasiMandiri: No active period found in', allP);
                  setPeriode(null);
                  setLoading(false);
                  return;
             }
 
+            console.log('EvaluasiMandiri: Active period found:', activeP);
             setPeriode(activeP);
 
             // 2. Ambil Aspek & Indikator
