@@ -50,20 +50,19 @@ const AIAssistant = () => {
             .join('\n');
 
         const tryGemini = async () => {
-            if (!API_KEYS.gemini || API_KEYS.gemini.includes('kunci')) throw new Error('Key Gemini Kosong');
             setEngineStatus('Admin 1...');
-            const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEYS.gemini}`, {
+            const resp = await fetch('/api/v1/ai-proxy', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    contents: [{
-                        parts: [{ text: `Kamu adalah Pakar Evaluasi Pemdi Minahasa Selatan. Jawab HANYA berdasarkan data ini:\n\n${optimizedKnowledge}\n\nPertanyaan User: ${userMessage}` }]
-                    }]
+                    engine: 'gemini',
+                    knowledge: optimizedKnowledge,
+                    messages: [{ role: 'user', content: userMessage }]
                 })
             });
             const data = await resp.json();
-            if (data.error) throw new Error(data.error.message);
-            return data.candidates?.[0]?.content?.parts?.[0]?.text || 'Maaf, Admin 1 gagal memproses jawaban.';
+            if (data.error) throw new Error(data.error);
+            return data.content;
         };
 
         const tryGroq = async () => {
@@ -160,7 +159,8 @@ const AIAssistant = () => {
 
             setMessages(prev => [...prev, { role: 'assistant', content: aiResponse }]);
         } catch (err) {
-            setMessages(prev => [...prev, { role: 'assistant', content: `Maaf, saat ini semua Admin sedang melayani pengguna lain. Mohon coba lagi beberapa saat lagi.` }]);
+            console.error("Final AI Error:", err);
+            setMessages(prev => [...prev, { role: 'assistant', content: `DEBUG ERROR: ${err.message || 'Error tidak diketahui'}. Mohon pastikan API Key di Vercel sudah benar dan tekan Redeploy.` }]);
         } finally {
             setLoading(false);
             setEngineStatus('Ready');

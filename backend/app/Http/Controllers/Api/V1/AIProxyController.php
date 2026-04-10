@@ -15,12 +15,12 @@ class AIProxyController extends Controller
         $optimizedKnowledge = $request->input('knowledge');
 
         if ($engine === 'gemini') {
-            $key = env('VITE_GEMINI_KEY');
+            $key = getenv('VITE_GEMINI_KEY') ?: getenv('GEMINI_KEY');
             if (!$key || $key === 'YOUR_GEMINI_KEY_HERE') {
-                return response()->json(['error' => 'API Key Admin 1 (Gemini) belum diatur di server.'], 500);
+                return response()->json(['error' => 'API Key Admin 1 (Gemini) tidak ditemukan di Environment Variables Vercel.'], 500);
             }
             
-            $response = Http::post("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={$key}", [
+            $response = Http::timeout(30)->post("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={$key}", [
                 'contents' => [
                     [
                         'role' => 'user',
@@ -31,16 +31,17 @@ class AIProxyController extends Controller
                 ]
             ]);
             
-            $data = $response->json();
-            if (isset($data['error'])) {
-                return response()->json(['error' => 'Gemini Error: ' . ($data['error']['message'] ?? 'Unknown')], 500);
+            if ($response->failed()) {
+                return response()->json(['error' => 'Gemini API Error: ' . $response->body()], $response->status());
             }
-            
+
+            $data = $response->json();
             return response()->json(['content' => $data['candidates'][0]['content']['parts'][0]['text'] ?? 'Maaf, Admin 1 tidak memberikan respon.']);
         }
 
         if ($engine === 'deepseek') {
-            $key = env('VITE_DEEPSEEK_KEY') ?: 'sk-a7e1876707284a99bf8518dc46877d88';
+            $key = getenv('VITE_DEEPSEEK_KEY') ?: getenv('DEEPSEEK_KEY');
+            if (!$key) $key = 'sk-a7e1876707284a99bf8518dc46877d88'; // fallback
             
             $response = Http::withHeaders([
                 'Authorization' => "Bearer {$key}",
@@ -54,11 +55,11 @@ class AIProxyController extends Controller
                 'stream' => false
             ]);
             
-            $data = $response->json();
-            if (isset($data['error'])) {
-                return response()->json(['error' => 'DeepSeek Error: ' . ($data['error']['message'] ?? 'Unknown')], 500);
+            if ($response->failed()) {
+                return response()->json(['error' => 'DeepSeek API Error: ' . $response->body()], $response->status());
             }
-            
+
+            $data = $response->json();
             return response()->json(['content' => $data['choices'][0]['message']['content'] ?? 'Maaf, Admin 3 tidak memberikan respon.']);
         }
 
