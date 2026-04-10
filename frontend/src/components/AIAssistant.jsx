@@ -50,19 +50,26 @@ const AIAssistant = () => {
             .join('\n');
 
         const tryGemini = async () => {
+            if (!API_KEYS.gemini || API_KEYS.gemini.includes('kunci')) throw new Error('Key Admin 1 (Gemini) belum diisi di Vercel Dashboard');
             setEngineStatus('Admin 1...');
-            const resp = await fetch('/api/v1/ai-proxy', {
+            
+            const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEYS.gemini}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    engine: 'gemini',
-                    knowledge: optimizedKnowledge,
-                    messages: [{ role: 'user', content: userMessage }]
+                    contents: [{
+                        parts: [{ text: `Kamu adalah Pakar Evaluasi Pemdi Minahasa Selatan. Gunakan data berikut sebagai referensi:\n\n${optimizedKnowledge}\n\nPertanyaan User: ${userMessage}` }]
+                    }]
                 })
             });
+
+            if (!resp.ok) {
+                const errorData = await resp.text();
+                throw new Error(`Gemini API Error (${resp.status}): ${errorData.substring(0, 100)}...`);
+            }
+
             const data = await resp.json();
-            if (data.error) throw new Error(data.error);
-            return data.content;
+            return data.candidates?.[0]?.content?.parts?.[0]?.text || 'Maaf, Admin 1 tidak memberikan respon.';
         };
 
         const tryGroq = async () => {
@@ -99,6 +106,13 @@ const AIAssistant = () => {
                     messages: [{ role: 'user', content: userMessage }]
                 })
             });
+
+            if (!resp.ok) {
+                const errorText = await resp.text();
+                if (resp.status === 504) throw new Error('Vercel Timeout (Admin 3 butuh waktu >10 detik). Silakan gunakan Admin 2 yang lebih cepat.');
+                throw new Error(`Admin 3 Proxy Error (${resp.status}): ${errorText.substring(0, 50)}`);
+            }
+
             const data = await resp.json();
             if (data.error) throw new Error(data.error);
             return data.content;
