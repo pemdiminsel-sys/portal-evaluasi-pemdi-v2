@@ -16,37 +16,52 @@ class AIProxyController extends Controller
 
         if ($engine === 'gemini') {
             $key = env('VITE_GEMINI_KEY');
+            if (!$key || $key === 'YOUR_GEMINI_KEY_HERE') {
+                return response()->json(['error' => 'API Key Admin 1 (Gemini) belum diatur di server.'], 500);
+            }
+            
             $response = Http::post("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={$key}", [
                 'contents' => [
                     [
                         'role' => 'user',
                         'parts' => [
-                            ['text' => "DATA:\n{$optimizedKnowledge}\n\nUSER: " . $messages[count($messages)-1]['content']]
+                            ['text' => "Kamu adalah Pakar Evaluasi Pemdi Minahasa Selatan. Jawab HANYA berdasarkan data ini:\n\n{$optimizedKnowledge}\n\nPertanyaan: " . $messages[count($messages)-1]['content']]
                         ]
                     ]
                 ]
             ]);
+            
             $data = $response->json();
-            return response()->json(['content' => $data['candidates'][0]['content']['parts'][0]['text'] ?? 'Gemini Error']);
+            if (isset($data['error'])) {
+                return response()->json(['error' => 'Gemini Error: ' . ($data['error']['message'] ?? 'Unknown')], 500);
+            }
+            
+            return response()->json(['content' => $data['candidates'][0]['content']['parts'][0]['text'] ?? 'Maaf, Admin 1 tidak memberikan respon.']);
         }
 
         if ($engine === 'deepseek') {
-            $key = 'sk-a7e1876707284a99bf8518dc46877d88'; // Hardcoded as per user request
+            $key = env('VITE_DEEPSEEK_KEY') ?: 'sk-a7e1876707284a99bf8518dc46877d88';
+            
             $response = Http::withHeaders([
                 'Authorization' => "Bearer {$key}",
                 'Content-Type' => 'application/json',
-            ])->post("https://api.deepseek.com/chat/completions", [
+            ])->timeout(30)->post("https://api.deepseek.com/chat/completions", [
                 'model' => 'deepseek-chat',
                 'messages' => [
-                    ['role' => 'system', 'content' => "Pakar SPBE Pemdi. Data:\n{$optimizedKnowledge}"],
+                    ['role' => 'system', 'content' => "Kamu adalah Pakar Evaluasi Pemdi Minahasa Selatan. Gunakan data berikut sebagai referensi:\n\n{$optimizedKnowledge}"],
                     ['role' => 'user', 'content' => $messages[count($messages)-1]['content']]
                 ],
                 'stream' => false
             ]);
+            
             $data = $response->json();
-            return response()->json(['content' => $data['choices'][0]['message']['content'] ?? 'DeepSeek Error']);
+            if (isset($data['error'])) {
+                return response()->json(['error' => 'DeepSeek Error: ' . ($data['error']['message'] ?? 'Unknown')], 500);
+            }
+            
+            return response()->json(['content' => $data['choices'][0]['message']['content'] ?? 'Maaf, Admin 3 tidak memberikan respon.']);
         }
 
-        return response()->json(['error' => 'Invalid Engine'], 400);
+        return response()->json(['error' => 'Mesin AI tidak valid'], 400);
     }
 }

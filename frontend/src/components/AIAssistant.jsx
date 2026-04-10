@@ -50,23 +50,24 @@ const AIAssistant = () => {
             .join('\n');
 
         const tryGemini = async () => {
+            if (!API_KEYS.gemini || API_KEYS.gemini.includes('kunci')) throw new Error('Key Gemini Kosong');
             setEngineStatus('Admin 1...');
-            const resp = await fetch('/api/v1/ai-proxy', {
+            const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEYS.gemini}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    engine: 'gemini',
-                    knowledge: optimizedKnowledge,
-                    messages: [{ role: 'user', content: userMessage }]
+                    contents: [{
+                        parts: [{ text: `Kamu adalah Pakar Evaluasi Pemdi Minahasa Selatan. Jawab HANYA berdasarkan data ini:\n\n${optimizedKnowledge}\n\nPertanyaan User: ${userMessage}` }]
+                    }]
                 })
             });
             const data = await resp.json();
-            if (data.error) throw new Error(data.error);
-            return data.content;
+            if (data.error) throw new Error(data.error.message);
+            return data.candidates?.[0]?.content?.parts?.[0]?.text || 'Maaf, Admin 1 gagal memproses jawaban.';
         };
 
         const tryGroq = async () => {
-            if (!API_KEYS.groq) throw new Error('Key Groq Kosong');
+            if (!API_KEYS.groq || API_KEYS.groq.includes('kunci')) throw new Error('Key Groq Kosong');
             setEngineStatus('Admin 2...');
             const resp = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
                 method: 'POST',
@@ -89,6 +90,7 @@ const AIAssistant = () => {
 
         const tryDeepSeek = async () => {
             setEngineStatus('Admin 3...');
+            // DeepSeek tetap lewat proxy karena masalah CORS di browser
             const resp = await fetch('/api/v1/ai-proxy', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -110,13 +112,15 @@ const AIAssistant = () => {
                 try {
                     aiResponse = await tryGroq();
                 } catch (err) {
+                    console.error("Groq Error:", err);
                     setSelectedAdmin(1);
-                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 2 sedang sibuk, beralih ke Admin 1...` }]);
+                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 2 sedang sibuk, saya coba hubungkan ke Admin 1...` }]);
                     try {
                         aiResponse = await tryGemini();
                     } catch (err2) {
+                        console.error("Gemini Error:", err2);
                         setSelectedAdmin(3);
-                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 juga sibuk, beralih ke Admin 3...` }]);
+                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 juga sibuk, saya coba hubungkan ke Admin 3...` }]);
                         aiResponse = await tryDeepSeek();
                     }
                 }
@@ -124,13 +128,15 @@ const AIAssistant = () => {
                 try {
                     aiResponse = await tryGemini();
                 } catch (err) {
+                    console.error("Gemini Error:", err);
                     setSelectedAdmin(2);
-                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 sedang sibuk, beralih ke Admin 2...` }]);
+                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 1 sedang sibuk, saya coba hubungkan ke Admin 2...` }]);
                     try {
                         aiResponse = await tryGroq();
                     } catch (err2) {
+                        console.error("Groq Error:", err2);
                         setSelectedAdmin(3);
-                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 2 juga sibuk, beralih ke Admin 3...` }]);
+                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 2 juga sibuk, saya coba hubungkan ke Admin 3...` }]);
                         aiResponse = await tryDeepSeek();
                     }
                 }
@@ -138,13 +144,15 @@ const AIAssistant = () => {
                 try {
                     aiResponse = await tryDeepSeek();
                 } catch (err) {
+                    console.error("DeepSeek Error:", err);
                     setSelectedAdmin(2);
-                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 sedang sibuk, beralih ke Admin 2...` }]);
+                    setMessages(prev => [...prev, { role: 'assistant', content: `Admin 3 sedang sibuk, saya coba hubungkan ke Admin 2...` }]);
                     try {
                         aiResponse = await tryGroq();
                     } catch (err2) {
+                        console.error("Groq Error:", err2);
                         setSelectedAdmin(1);
-                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 2 juga sibuk, beralih ke Admin 1...` }]);
+                        setMessages(prev => [...prev, { role: 'assistant', content: `Admin 2 juga sibuk, saya coba hubungkan ke Admin 1...` }]);
                         aiResponse = await tryGemini();
                     }
                 }
