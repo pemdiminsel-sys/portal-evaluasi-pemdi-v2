@@ -58,7 +58,7 @@ const AIAssistant = () => {
             if (!API_KEYS.gemini || API_KEYS.gemini.includes('kunci')) throw new Error('Key Admin 1 (Gemini) belum diisi di Vercel Dashboard');
             setEngineStatus('Admin 1...');
             
-            const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEYS.gemini}`, {
+            const resp = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${API_KEYS.gemini}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
