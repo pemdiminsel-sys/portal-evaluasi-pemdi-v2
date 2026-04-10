@@ -58,16 +58,26 @@ const AIAssistant = () => {
             if (!API_KEYS.gemini || API_KEYS.gemini.includes('kunci')) throw new Error('Key Admin 1 (Gemini) belum diisi di Vercel Dashboard');
             setEngineStatus('Admin 1...');
             
-            // Menggunakan gemini-1.5-flash-latest dan v1beta yang biasanya lebih stabil untuk 404 issue
-            const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEYS.gemini}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    contents: [{
-                        parts: [{ text: `Kamu adalah Pakar Evaluasi Pemdi Minahasa Selatan. Gunakan data berikut sebagai referensi:\n\n${optimizedKnowledge}\n\nPertanyaan User: ${userMessage}` }]
-                    }]
-                })
-            });
+            const callGemini = async (modelName) => {
+                const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${API_KEYS.gemini}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{ text: `Kamu adalah Pakar Evaluasi Pemdi Minahasa Selatan. Gunakan data berikut sebagai referensi:\n\n${optimizedKnowledge}\n\nPertanyaan User: ${userMessage}` }]
+                        }]
+                    })
+                });
+                return resp;
+            };
+
+            let resp = await callGemini('gemini-1.5-flash');
+            
+            // Jika 404 (Model Not Found), coba gunakan model gemini-pro yang lebih universal
+            if (resp.status === 404) {
+                console.warn("Gemini 1.5 Flash not found, falling back to gemini-pro...");
+                resp = await callGemini('gemini-pro');
+            }
 
             if (!resp.ok) {
                 const errorData = await resp.text();
