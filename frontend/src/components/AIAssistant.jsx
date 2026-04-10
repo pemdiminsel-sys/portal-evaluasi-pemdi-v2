@@ -42,12 +42,17 @@ const AIAssistant = () => {
         setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
         setLoading(true);
 
-        // Optimasi Knowledge Base untuk API
-        const optimizedKnowledge = KNOWLEDGE_BASE
+        // Optimasi Knowledge Base untuk API (Batasi agar tidak terlalu besar)
+        let optimizedKnowledge = KNOWLEDGE_BASE
             .split('\n')
             .map(line => line.trim())
             .filter(line => line.length > 0)
             .join('\n');
+            
+        // Jika terlalu panjang (lebih dari 15rb karakter), potong agar API tidak Reject 413
+        if (optimizedKnowledge.length > 15000) {
+            optimizedKnowledge = optimizedKnowledge.substring(0, 15000) + "... (data dipotong)";
+        }
 
         const tryGemini = async () => {
             if (!API_KEYS.gemini || API_KEYS.gemini.includes('kunci')) throw new Error('Key Admin 1 (Gemini) belum diisi di Vercel Dashboard');
@@ -82,7 +87,7 @@ const AIAssistant = () => {
                     'Authorization': `Bearer ${API_KEYS.groq}`
                 },
                 body: JSON.stringify({
-                    model: "llama-3.3-70b-versatile",
+                    model: "llama-3.1-8b-instant",
                     messages: [
                         { role: "system", content: `Kamu adalah Pakar Evaluasi Pemdi Minahasa Selatan. Jawab HANYA berdasarkan data ini:\n\n${optimizedKnowledge}` },
                         { role: "user", content: userMessage }
@@ -96,10 +101,15 @@ const AIAssistant = () => {
 
         const tryDeepSeek = async () => {
             setEngineStatus('Admin 3...');
-            // DeepSeek tetap lewat proxy karena masalah CORS di browser
-            const resp = await fetch('/api/v1/ai-proxy', {
+            
+            // Gunakan full path untuk menghindari 405 Method Not Allowed pada redirect
+            const baseUrl = window.location.origin;
+            const resp = await fetch(`${baseUrl}/api/v1/ai-proxy`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
                 body: JSON.stringify({
                     engine: 'deepseek',
                     knowledge: optimizedKnowledge,
