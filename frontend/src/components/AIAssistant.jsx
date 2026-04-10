@@ -5,7 +5,7 @@ import { KNOWLEDGE_BASE } from '../constants/knowledgeBase';
 
 const AIAssistant = () => {
     const [isOpen, setIsOpen] = useState(false);
-    
+
     const getGreeting = () => {
         const hour = new Date().getHours();
         if (hour >= 2 && hour < 11) return 'Selamat Pagi';
@@ -16,9 +16,9 @@ const AIAssistant = () => {
 
     const [selectedAdmin, setSelectedAdmin] = useState(2); // Default ke Admin 2 (Groq) karena paling stabil
     const [messages, setMessages] = useState([
-        { 
-            role: 'assistant', 
-            content: `${getGreeting()}! Saya Admin AI (${selectedAdmin}) Portal Pemdi Kabupaten Minahasa Selatan. Saya akan membantu terkait Evaluasi Pemdi Kabupaten Minahasa Selatan.` 
+        {
+            role: 'assistant',
+            content: `${getGreeting()}! Saya Admin AI (${selectedAdmin}) Portal Pemdi Kabupaten Minahasa Selatan. Saya akan membantu terkait Evaluasi Pemdi Kabupaten Minahasa Selatan.`
         }
     ]);
     const [input, setInput] = useState('');
@@ -70,7 +70,7 @@ const AIAssistant = () => {
             setEngineStatus('Admin 2...');
             const resp = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
                 method: 'POST',
-                headers: { 
+                headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${API_KEYS.groq}`
                 },
@@ -105,7 +105,7 @@ const AIAssistant = () => {
 
         try {
             let aiResponse = '';
-            
+
             if (selectedAdmin === 2) {
                 try {
                     aiResponse = await tryGroq();
@@ -161,9 +161,9 @@ const AIAssistant = () => {
 
     useEffect(() => {
         if (messages.length === 1 && messages[0].role === 'assistant') {
-            setMessages([{ 
-                role: 'assistant', 
-                content: `${getGreeting()}! Saya Admin AI (${selectedAdmin}) Portal Pemdi Kabupaten Minahasa Selatan. Saya akan membantu terkait Evaluasi Pemdi Kabupaten Minahasa Selatan.` 
+            setMessages([{
+                role: 'assistant',
+                content: `${getGreeting()}! Saya Admin AI (${selectedAdmin}) Portal Pemdi Kabupaten Minahasa Selatan. Saya akan membantu terkait Evaluasi Pemdi Kabupaten Minahasa Selatan.`
             }]);
         }
     }, [selectedAdmin]);
@@ -213,10 +213,10 @@ const AIAssistant = () => {
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <button 
-                                        onClick={() => setMessages([{ 
-                                            role: 'assistant', 
-                                            content: `${getGreeting()}! Saya Admin AI (${selectedAdmin}) Portal Pemdi Kabupaten Minahasa Selatan. Saya akan membantu terkait Evaluasi Pemdi Kabupaten Minahasa Selatan.` 
+                                    <button
+                                        onClick={() => setMessages([{
+                                            role: 'assistant',
+                                            content: `${getGreeting()}! Saya Admin AI (${selectedAdmin}) Portal Pemdi Kabupaten Minahasa Selatan. Saya akan membantu terkait Evaluasi Pemdi Kabupaten Minahasa Selatan.`
                                         }])}
                                         className="p-2 hover:bg-white/10 rounded-lg transition-colors"
                                         title="Bersihkan Chat"
@@ -229,19 +229,19 @@ const AIAssistant = () => {
 
                             {/* Admin Selector */}
                             <div className="grid grid-cols-3 bg-white/5 rounded-xl p-1 border border-white/10">
-                                <button 
+                                <button
                                     onClick={() => setSelectedAdmin(1)}
                                     className={`py-2 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all ${selectedAdmin === 1 ? 'bg-red-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
                                 >
                                     Admin 1
                                 </button>
-                                <button 
+                                <button
                                     onClick={() => setSelectedAdmin(2)}
                                     className={`py-2 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all ${selectedAdmin === 2 ? 'bg-indigo-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
                                 >
                                     Admin 2
                                 </button>
-                                <button 
+                                <button
                                     onClick={() => setSelectedAdmin(3)}
                                     className={`py-2 text-[9px] font-black uppercase tracking-widest rounded-lg transition-all ${selectedAdmin === 3 ? 'bg-emerald-600 text-white shadow-lg' : 'text-slate-400 hover:text-white'}`}
                                 >
@@ -254,11 +254,10 @@ const AIAssistant = () => {
                         <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50">
                             {messages.map((msg, i) => (
                                 <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                    <div className={`max-w-[85%] p-4 rounded-3xl text-xs font-medium leading-relaxed shadow-sm whitespace-pre-wrap ${
-                                        msg.role === 'user' 
-                                            ? 'bg-slate-900 text-white rounded-tr-none' 
-                                            : 'bg-white text-slate-700 border border-slate-100 rounded-tl-none'
-                                    }`}>
+                                    <div className={`max-w-[85%] p-4 rounded-3xl text-xs font-medium leading-relaxed shadow-sm whitespace-pre-wrap ${msg.role === 'user'
+                                        ? 'bg-slate-900 text-white rounded-tr-none'
+                                        : 'bg-white text-slate-700 border border-slate-100 rounded-tl-none'
+                                        }`}>
                                         {msg.content}
                                     </div>
                                 </div>
