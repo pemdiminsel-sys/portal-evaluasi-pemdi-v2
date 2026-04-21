@@ -12,10 +12,21 @@ const getSafeUser = () => {
   }
 };
 
+const getSafeToken = () => {
+  const token = localStorage.getItem('token');
+  // Hapus token yang tidak valid (undefined, null, string kosong)
+  if (!token || token === 'undefined' || token === 'null' || token.trim() === '') {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    return null;
+  }
+  return token;
+};
+
 const useAuthStore = create((set) => ({
   user: getSafeUser(),
-  token: localStorage.getItem('token') || null,
-  isAuthenticated: !!localStorage.getItem('token'),
+  token: getSafeToken(),
+  isAuthenticated: !!getSafeToken(),
   isLoading: false,
 
   login: async (email, password) => {
@@ -31,7 +42,9 @@ const useAuthStore = create((set) => ({
       
       if (error) throw error;
 
-      const { user, token } = data;
+      const { user } = data;
+      // Edge function tidak mengembalikan token — generate pseudo-token dari user id
+      const token = `auth_${user.id}_${Date.now()}`;
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       
