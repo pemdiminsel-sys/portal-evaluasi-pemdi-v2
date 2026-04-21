@@ -42,7 +42,17 @@ const useAuthStore = create((set) => ({
       
       if (error) throw error;
 
+      // Edge function mengembalikan { success: false, message } saat login gagal
+      // ini bukan HTTP error, jadi perlu dicek manual
+      if (!data?.success) {
+        throw new Error(data?.message || 'Login gagal. Periksa email dan password Anda.');
+      }
+
       const { user } = data;
+      if (!user?.id) {
+        throw new Error('Data akun tidak valid. Hubungi Administrator.');
+      }
+
       // Edge function tidak mengembalikan token — generate pseudo-token dari user id
       const token = `auth_${user.id}_${Date.now()}`;
       localStorage.setItem('token', token);
@@ -54,10 +64,8 @@ const useAuthStore = create((set) => ({
       set({ isLoading: false });
       console.error('Full login error:', error);
       
-      let errorMsg = 'Terjadi kesalahan sistem.';
-      if (error.message) {
-        errorMsg = `Supabase Error: ${error.message}`;
-      } else if (!error.response) {
+      let errorMsg = error.message || 'Terjadi kesalahan sistem.';
+      if (!error.message && !error.response) {
         errorMsg = 'Gagal terhubung ke Server Supabase. Cek koneksi internet atau firewall.';
       }
 
