@@ -85,8 +85,8 @@ const EvaluasiMandiri = () => {
             // 3. Bangun Query Indikator
             let indicatorQuery = supabase.from('indikators').select('*').order('id');
             
-            // Filter ketat: Jika bukan Super Admin (1), WAJIB ada di mapping
-            if (userRole !== 1) {
+            // Viewer (role 6) dan Super Admin (role 1) bisa melihat semua indikator
+            if (userRole !== 1 && userRole !== 6) {
                 if (assignedIds.length > 0) {
                     indicatorQuery = indicatorQuery.in('id', assignedIds);
                 } else {
@@ -95,18 +95,17 @@ const EvaluasiMandiri = () => {
                 }
             }
 
+            const isViewer = userRole === 6;
+
             const [asRes, inRes, penRes, bukRes] = await Promise.all([
                 supabase.from('aspeks').select('*').order('urutan'),
                 indicatorQuery,
-                supabase.from('penilaians')
-                    .select('*')
-                    .eq('opd_id', userOpdId)
-                    .eq('periode_id', activeP.id)
-                    .eq('jenis', 1),
-                supabase.from('buktis')
-                    .select('*')
-                    .eq('opd_id', userOpdId)
-                    .eq('periode_id', activeP.id)
+                isViewer || !userOpdId
+                    ? supabase.from('penilaians').select('*').eq('periode_id', activeP.id).eq('jenis', 1)
+                    : supabase.from('penilaians').select('*').eq('opd_id', userOpdId).eq('periode_id', activeP.id).eq('jenis', 1),
+                isViewer || !userOpdId
+                    ? supabase.from('buktis').select('*').eq('periode_id', activeP.id)
+                    : supabase.from('buktis').select('*').eq('opd_id', userOpdId).eq('periode_id', activeP.id)
             ]);
 
             const filteredIndikators = (inRes.data || []).map((ind, idx) => ({ ...ind, globalIndex: idx + 1 }));
