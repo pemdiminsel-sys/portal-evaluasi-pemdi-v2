@@ -411,8 +411,6 @@ const EvaluasiMandiri = () => {
                             </div>
                         </div>
 
-                        </div>
-
                         {/* Action Buttons */}
                         {user?.role !== 6 && (
                             <div className="pt-10 border-t border-slate-100 flex items-center gap-4">
