@@ -335,8 +335,9 @@ const EvaluasiMandiri = () => {
                                 {[1,2,3,4,5].map(lvl => (
                                     <button 
                                         key={lvl}
+                                        disabled={user?.role === 6}
                                         onClick={() => setEvalForm({...evalForm, nilai: lvl})}
-                                        className={`p-6 rounded-[2.5rem] border-2 transition-all group flex flex-col items-center gap-3 ${evalForm.nilai === lvl ? 'bg-slate-900 border-slate-900 text-white shadow-2xl scale-105' : 'bg-white border-slate-100 text-slate-400 hover:border-slate-300'}`}
+                                        className={`p-6 rounded-[2.5rem] border-2 transition-all group flex flex-col items-center gap-3 ${evalForm.nilai === lvl ? 'bg-slate-900 border-slate-900 text-white shadow-2xl scale-105' : 'bg-white border-slate-100 text-slate-400 hover:border-slate-300'} ${user?.role === 6 ? 'cursor-not-allowed opacity-80' : ''}`}
                                     >
                                         <span className={`text-4xl font-black italic tracking-tighter transition-all ${evalForm.nilai === lvl ? 'scale-110' : 'group-hover:text-slate-800'}`}>{lvl}</span>
                                         <span className="text-[10px] font-black uppercase tracking-widest">Level</span>
@@ -362,8 +363,9 @@ const EvaluasiMandiri = () => {
                             <textarea 
                                 value={evalForm.penjelasan}
                                 onChange={e => setEvalForm({...evalForm, penjelasan: e.target.value})}
+                                disabled={user?.role === 6}
                                 placeholder="Jelaskan bagaimana OPD Anda mencapai level kematangan tersebut..."
-                                className="w-full h-48 bg-white border border-slate-100 rounded-[3rem] p-10 focus:ring-8 focus:ring-red-50 outline-none font-bold text-slate-800 leading-relaxed shadow-sm transition-all"
+                                className="w-full h-48 bg-white border border-slate-100 rounded-[3rem] p-10 focus:ring-8 focus:ring-red-50 outline-none font-bold text-slate-800 leading-relaxed shadow-sm transition-all disabled:opacity-75 disabled:bg-slate-50"
                             />
                         </div>
 
@@ -373,10 +375,12 @@ const EvaluasiMandiri = () => {
                                 <h4 className="text-xs font-black text-slate-400 uppercase tracking-[0.3em] flex items-center gap-3">
                                     <Layers size={14} className="text-emerald-500" /> Bukti Dukung (Evidence)
                                 </h4>
-                                <label className="bg-emerald-50 text-emerald-600 px-6 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-pointer hover:bg-emerald-600 hover:text-white transition-all shadow-sm">
-                                    <input type="file" className="hidden" onChange={handleUploadBukti} />
-                                    + Tambah Berkas Baru
-                                </label>
+                                {user?.role !== 6 && (
+                                    <label className="bg-emerald-50 text-emerald-600 px-6 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-pointer hover:bg-emerald-600 hover:text-white transition-all shadow-sm">
+                                        <input type="file" className="hidden" onChange={handleUploadBukti} />
+                                        + Tambah Berkas Baru
+                                    </label>
+                                )}
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {evalForm.files?.map(file => (
@@ -392,7 +396,9 @@ const EvaluasiMandiri = () => {
                                         </div>
                                         <div className="flex gap-2 opacity-10 group-hover:opacity-100 transition-opacity">
                                             <a href={file.link} target="_blank" rel="noreferrer" className="p-3 bg-slate-50 text-slate-400 hover:text-indigo-600 rounded-xl transition-all"><ExternalLink size={16}/></a>
-                                            <button className="p-3 bg-red-50 text-red-400 hover:text-red-700 rounded-xl transition-all"><Trash2 size={16}/></button>
+                                            {user?.role !== 6 && (
+                                                <button className="p-3 bg-red-50 text-red-400 hover:text-red-700 rounded-xl transition-all"><Trash2 size={16}/></button>
+                                            )}
                                         </div>
                                     </div>
                                 ))}
@@ -405,25 +411,29 @@ const EvaluasiMandiri = () => {
                             </div>
                         </div>
 
-                        {/* Action Buttons */}
-                        <div className="pt-10 border-t border-slate-100 flex items-center gap-4">
-                            <button 
-                                onClick={() => handleSave(false)}
-                                disabled={saving}
-                                className="flex-1 bg-white border border-slate-200 text-slate-400 font-black py-5 rounded-[2.5rem] shadow-xl shadow-slate-100 flex items-center justify-center gap-3 hover:text-slate-800 hover:shadow-2xl transition-all disabled:opacity-50"
-                            >
-                                {saving ? <Loader2 className="animate-spin" /> : <Save size={20} />}
-                                SIMPAN SEBAGAI DRAF
-                            </button>
-                            <button 
-                                onClick={() => handleSave(true)}
-                                disabled={saving}
-                                className="flex-[2] bg-slate-900 text-white font-black py-5 rounded-[2.5rem] shadow-2xl shadow-slate-200 flex items-center justify-center gap-3 hover:bg-emerald-600 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 group"
-                            >
-                                {saving ? <Loader2 className="animate-spin" /> : <Send size={20} className="group-hover:translate-x-2 transition-transform" />}
-                                KIRIM EVALUASI FINAL
-                            </button>
                         </div>
+
+                        {/* Action Buttons */}
+                        {user?.role !== 6 && (
+                            <div className="pt-10 border-t border-slate-100 flex items-center gap-4">
+                                <button 
+                                    onClick={() => handleSave(false)}
+                                    disabled={saving}
+                                    className="flex-1 bg-white border border-slate-200 text-slate-400 font-black py-5 rounded-[2.5rem] shadow-xl shadow-slate-100 flex items-center justify-center gap-3 hover:text-slate-800 hover:shadow-2xl transition-all disabled:opacity-50"
+                                >
+                                    {saving ? <Loader2 className="animate-spin" /> : <Save size={20} />}
+                                    SIMPAN SEBAGAI DRAF
+                                </button>
+                                <button 
+                                    onClick={() => handleSave(true)}
+                                    disabled={saving}
+                                    className="flex-[2] bg-slate-900 text-white font-black py-5 rounded-[2.5rem] shadow-2xl shadow-slate-200 flex items-center justify-center gap-3 hover:bg-emerald-600 hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 group"
+                                >
+                                    {saving ? <Loader2 className="animate-spin" /> : <Send size={20} className="group-hover:translate-x-2 transition-transform" />}
+                                    KIRIM EVALUASI FINAL
+                                </button>
+                            </div>
+                        )}
                     </div>
                 )}
             </div>

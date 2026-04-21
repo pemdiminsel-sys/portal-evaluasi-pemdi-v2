@@ -3,8 +3,10 @@ import { Target, Plus, Edit2, Trash2, Loader2, ListChecks, ChevronRight, X, Save
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../services/supabase';
 import { toast } from 'react-hot-toast';
+import useAuthStore from '../store/authStore';
 
 const ManajemenIndikator = () => {
+    const { user: authUser } = useAuthStore();
     const [indikators, setIndikators] = useState([]);
     const [aspeks, setAspeks] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -91,10 +93,12 @@ const ManajemenIndikator = () => {
                     </h1>
                     <p className="text-slate-400 font-bold mt-1">Standar Evaluasi Kinerja Pemerintah Digital (Pemdi) 2026</p>
                 </div>
-                <button onClick={() => handleOpenModal()}
-                    className="bg-slate-900 text-white font-black px-8 py-4 rounded-2xl shadow-xl flex items-center gap-2 hover:scale-105 active:scale-95 transition-all">
-                    <Plus size={20} /> Tambah Indikator
-                </button>
+                {authUser?.role !== 6 && (
+                    <button onClick={() => handleOpenModal()}
+                        className="bg-slate-900 text-white font-black px-8 py-4 rounded-2xl shadow-xl flex items-center gap-2 hover:scale-105 active:scale-95 transition-all">
+                        <Plus size={20} /> Tambah Indikator
+                    </button>
+                )}
             </div>
 
             {/* List by Aspect */}
@@ -135,8 +139,12 @@ const ManajemenIndikator = () => {
                                             Lihat Kriteria <ChevronRight size={14} />
                                         </button>
                                         <div className="flex items-center gap-2">
-                                            <button onClick={() => handleOpenModal(ind)} className="p-3 text-slate-300 hover:text-slate-600 hover:bg-slate-50 rounded-xl transition-all"><Edit2 size={18} /></button>
-                                            <button className="p-3 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all"><Trash2 size={18} /></button>
+                                            {authUser?.role !== 6 && (
+                                                <>
+                                                    <button onClick={() => handleOpenModal(ind)} className="p-3 text-slate-300 hover:text-slate-600 hover:bg-slate-50 rounded-xl transition-all"><Edit2 size={18} /></button>
+                                                    <button className="p-3 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all"><Trash2 size={18} /></button>
+                                                </>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

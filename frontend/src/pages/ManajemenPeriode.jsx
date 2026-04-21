@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import api from '../services/api';
 import { supabase } from '../services/supabase';
 import { toast } from 'react-hot-toast';
+import useAuthStore from '../store/authStore';
 
 const statusConfig = {
   berjalan: { label: 'Sedang Berjalan', color: 'bg-emerald-50 text-emerald-700', icon: CheckCircle2 },
@@ -12,6 +13,7 @@ const statusConfig = {
 };
 
 const ManajemenPeriode = () => {
+  const { user: authUser } = useAuthStore();
   const [periodes, setPeriodes] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [current, setCurrent] = useState(null);
@@ -119,10 +121,12 @@ const ManajemenPeriode = () => {
           </h1>
           <p className="text-slate-500 font-bold mt-1">Atur tahun ajaran dan rentang waktu pelaksanaan evaluasi SPBE.</p>
         </div>
-        <button onClick={() => handleOpen()}
-          className="bg-red-600 text-white font-black px-6 py-4 rounded-2xl shadow-xl shadow-red-100 flex items-center gap-2 hover:scale-105 active:scale-95 transition-all">
-          <Plus size={20} /> Buka Periode Baru
-        </button>
+        {authUser?.role !== 6 && (
+          <button onClick={() => handleOpen()}
+            className="bg-red-600 text-white font-black px-6 py-4 rounded-2xl shadow-xl shadow-red-100 flex items-center gap-2 hover:scale-105 active:scale-95 transition-all">
+            <Plus size={20} /> Buka Periode Baru
+          </button>
+        )}
       </div>
 
       {loading ? (
@@ -150,12 +154,16 @@ const ManajemenPeriode = () => {
                   <div className="flex justify-between"><span>Selesai</span><span className="text-slate-800">{periode.selesai}</span></div>
                 </div>
                 <div className="flex gap-2 pt-4 border-t border-slate-100">
-                  <button onClick={() => handleOpen(periode)} className="flex-1 flex items-center justify-center gap-1 py-3 bg-slate-100 text-slate-600 hover:bg-red-600 hover:text-white font-black rounded-xl transition-all text-sm">
-                    <Edit2 size={14} /> Edit
-                  </button>
-                  <button onClick={() => handleDelete(periode.id)} className="p-3 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all">
-                    <Trash2 size={16} />
-                  </button>
+                  {authUser?.role !== 6 && (
+                    <>
+                      <button onClick={() => handleOpen(periode)} className="flex-1 flex items-center justify-center gap-1 py-3 bg-slate-100 text-slate-600 hover:bg-red-600 hover:text-white font-black rounded-xl transition-all text-sm">
+                        <Edit2 size={14} /> Edit
+                      </button>
+                      <button onClick={() => handleDelete(periode.id)} className="p-3 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all">
+                        <Trash2 size={16} />
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             );

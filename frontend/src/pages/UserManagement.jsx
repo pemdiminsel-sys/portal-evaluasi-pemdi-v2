@@ -250,10 +250,12 @@ const UserManagement = () => {
                     </h1>
                     <p className="text-slate-400 font-bold mt-1 uppercase text-[10px] tracking-widest">Manajemen Persetujuan PIC & Hak Akses SPBE</p>
                 </div>
-                <button onClick={() => handleOpenModal()}
-                    className="bg-red-600 text-white font-black px-8 py-4 rounded-2xl shadow-xl shadow-red-100 flex items-center gap-3 hover:scale-105 active:scale-95 transition-all">
-                    <UserPlus size={20} /> Force Enroll User
-                </button>
+                {authUser?.role !== 6 && (
+                    <button onClick={() => handleOpenModal()}
+                        className="bg-red-600 text-white font-black px-8 py-4 rounded-2xl shadow-xl shadow-red-100 flex items-center gap-3 hover:scale-105 active:scale-95 transition-all">
+                        <UserPlus size={20} /> Force Enroll User
+                    </button>
+                )}
             </div>
 
             {/* Matrix Table */}
@@ -264,7 +266,7 @@ const UserManagement = () => {
                             <th className="px-8 py-6">Identity & Verification</th>
                             <th className="px-8 py-6">Role & Status</th>
                             <th className="px-8 py-6">Organization Unit</th>
-                            <th className="px-8 py-6 text-right">Action Bar</th>
+                            {authUser?.role !== 6 && <th className="px-8 py-6 text-right">Action Bar</th>}
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-50 italic font-medium">
@@ -347,39 +349,41 @@ const UserManagement = () => {
                                             )}
                                         </div>
                                     </td>
-                                    <td className="px-8 py-6 text-right">
-                                        <div className="flex items-center justify-end gap-3 scale-90 group-hover:scale-100 transition-transform">
-                                            {user.status_approval === 0 ? (
-                                                <div className="flex items-center bg-slate-900 border border-slate-800 p-1.5 rounded-2xl shadow-xl">
-                                                    <button onClick={() => handleApproval(user.id, 1)} className="p-2.5 text-emerald-400 hover:bg-emerald-500 hover:text-white rounded-xl transition-all" title="Approve Access"><ThumbsUp size={18} /></button>
-                                                    <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleResendActivation(user); }} disabled={resending === user.id} className="p-2.5 text-blue-400 hover:bg-blue-500 hover:text-white rounded-xl transition-all disabled:opacity-50" title="Resend Activation Email">
-                                                        {resending === user.id ? <Loader2 size={18} className="animate-spin" /> : <Mail size={18} />}
+                                    {authUser?.role !== 6 && (
+                                        <td className="px-8 py-6 text-right">
+                                            <div className="flex items-center justify-end gap-3 scale-90 group-hover:scale-100 transition-transform">
+                                                {user.status_approval === 0 ? (
+                                                    <div className="flex items-center bg-slate-900 border border-slate-800 p-1.5 rounded-2xl shadow-xl">
+                                                        <button onClick={() => handleApproval(user.id, 1)} className="p-2.5 text-emerald-400 hover:bg-emerald-500 hover:text-white rounded-xl transition-all" title="Approve Access"><ThumbsUp size={18} /></button>
+                                                        <button onClick={(e) => { e.preventDefault(); e.stopPropagation(); handleResendActivation(user); }} disabled={resending === user.id} className="p-2.5 text-blue-400 hover:bg-blue-500 hover:text-white rounded-xl transition-all disabled:opacity-50" title="Resend Activation Email">
+                                                            {resending === user.id ? <Loader2 size={18} className="animate-spin" /> : <Mail size={18} />}
+                                                        </button>
+                                                        <button onClick={() => handleApproval(user.id, 2)} className="p-2.5 text-red-400 hover:bg-red-500 hover:text-white rounded-xl transition-all" title="Reject Request"><ThumbsDown size={18} /></button>
+                                                    </div>
+                                                ) : (
+                                                    <button 
+                                                        onClick={() => handleStatusToggle(user.id, user.status_approval)}
+                                                        className={`p-2.5 rounded-xl transition-all font-black text-[9px] uppercase tracking-widest border ${
+                                                            user.status_approval === 1 
+                                                            ? 'bg-rose-50 text-rose-600 border-rose-100 hover:bg-rose-600 hover:text-white' 
+                                                            : 'bg-emerald-50 text-emerald-600 border-emerald-100 hover:bg-emerald-600 hover:text-white'
+                                                        }`}
+                                                    >
+                                                        {user.status_approval === 1 ? 'Disable' : 'Enable'}
                                                     </button>
-                                                    <button onClick={() => handleApproval(user.id, 2)} className="p-2.5 text-red-400 hover:bg-red-500 hover:text-white rounded-xl transition-all" title="Reject Request"><ThumbsDown size={18} /></button>
-                                                </div>
-                                            ) : (
-                                                <button 
-                                                    onClick={() => handleStatusToggle(user.id, user.status_approval)}
-                                                    className={`p-2.5 rounded-xl transition-all font-black text-[9px] uppercase tracking-widest border ${
-                                                        user.status_approval === 1 
-                                                        ? 'bg-rose-50 text-rose-600 border-rose-100 hover:bg-rose-600 hover:text-white' 
-                                                        : 'bg-emerald-50 text-emerald-600 border-emerald-100 hover:bg-emerald-600 hover:text-white'
-                                                    }`}
-                                                >
-                                                    {user.status_approval === 1 ? 'Disable' : 'Enable'}
+                                                )}
+                                                <button onClick={() => handleOpenModal(user)} 
+                                                    className="p-3 text-slate-400 hover:text-indigo-600 hover:bg-white rounded-2xl transition-all shadow-sm border border-transparent hover:border-slate-100 bg-slate-50">
+                                                    <Edit2 size={18} />
                                                 </button>
-                                            )}
-                                            <button onClick={() => handleOpenModal(user)} 
-                                                className="p-3 text-slate-400 hover:text-indigo-600 hover:bg-white rounded-2xl transition-all shadow-sm border border-transparent hover:border-slate-100 bg-slate-50">
-                                                <Edit2 size={18} />
-                                            </button>
-                                            <button 
-                                                onClick={() => handleDelete(user.id, user.name)}
-                                                className="p-3 text-slate-300 hover:text-red-500 hover:bg-red-50 transition-all rounded-2xl">
-                                                <Trash2 size={18}/>
-                                            </button>
-                                        </div>
-                                    </td>
+                                                <button 
+                                                    onClick={() => handleDelete(user.id, user.name)}
+                                                    className="p-3 text-slate-300 hover:text-red-500 hover:bg-red-50 transition-all rounded-2xl">
+                                                    <Trash2 size={18}/>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    )}
                                 </tr>
                             );
                         })}

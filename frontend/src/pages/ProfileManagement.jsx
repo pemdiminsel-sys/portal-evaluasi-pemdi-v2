@@ -253,12 +253,12 @@ const ProfileManagement = () => {
                                     className="hidden" 
                                     accept="image/*" 
                                     onChange={handlePhotoUpload} 
-                                    disabled={uploading}
+                                    disabled={uploading || authUser?.role === 6}
                                 />
                                 <button 
                                     onClick={() => document.getElementById('photo-upload').click()}
-                                    disabled={uploading}
-                                    className="absolute bottom-0 right-0 p-3 bg-red-600 text-white rounded-2xl shadow-xl hover:scale-110 active:scale-95 transition-all border-4 border-slate-900"
+                                    disabled={uploading || authUser?.role === 6}
+                                    className={`absolute bottom-0 right-0 p-3 bg-red-600 text-white rounded-2xl shadow-xl hover:scale-110 active:scale-95 transition-all border-4 border-slate-900 ${authUser?.role === 6 ? 'hidden' : ''}`}
                                 >
                                     <Camera size={18}/>
                                 </button>
@@ -299,15 +299,15 @@ const ProfileManagement = () => {
                                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 flex items-center gap-2">
                                         <User size={12}/> Nama Pemilik Akun
                                     </label>
-                                    <input required value={formData?.name || ''} onChange={e => setFormData({...formData, name: e.target.value})}
-                                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-red-100 outline-none font-extrabold text-slate-800" />
+                                    <input required disabled={authUser?.role === 6} value={formData?.name || ''} onChange={e => setFormData({...formData, name: e.target.value})}
+                                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-red-100 outline-none font-extrabold text-slate-800 disabled:opacity-60" />
                                 </div>
                                 <div className="space-y-3">
                                     <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 flex items-center gap-2">
                                         <Phone size={12}/> Nomor WhatsApp
                                     </label>
-                                    <input required value={formData?.whatsapp || ''} onChange={e => setFormData({...formData, whatsapp: e.target.value})}
-                                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-emerald-100 outline-none font-extrabold text-slate-800" />
+                                    <input required disabled={authUser?.role === 6} value={formData?.whatsapp || ''} onChange={e => setFormData({...formData, whatsapp: e.target.value})}
+                                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-emerald-100 outline-none font-extrabold text-slate-800 disabled:opacity-60" />
                                 </div>
                              </div>
 
@@ -315,8 +315,8 @@ const ProfileManagement = () => {
                                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1 flex items-center gap-2">
                                     <Briefcase size={12}/> Jabatan Resmi
                                 </label>
-                                <input required value={formData?.jabatan || ''} onChange={e => setFormData({...formData, jabatan: e.target.value})}
-                                    className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-indigo-100 outline-none font-extrabold text-slate-800" />
+                                <input required disabled={authUser?.role === 6} value={formData?.jabatan || ''} onChange={e => setFormData({...formData, jabatan: e.target.value})}
+                                    className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 focus:ring-4 focus:ring-indigo-100 outline-none font-extrabold text-slate-800 disabled:opacity-60" />
                              </div>
 
                              {showPasswordUI && (
@@ -334,28 +334,32 @@ const ProfileManagement = () => {
                                     <Lock size={18} />
                                     <p className="text-[10px] font-black uppercase tracking-widest">Autentikasi Terverifikasi</p>
                                 </div>
-                                <button type="submit" disabled={saving}
-                                    className="bg-slate-900 text-white font-black px-10 py-5 rounded-3xl shadow-xl flex items-center gap-3 hover:bg-red-600 hover:scale-[1.05] active:scale-95 transition-all disabled:opacity-50 group">
-                                    {saving ? <Loader2 size={18} className="animate-spin" /> : <Save size={18} />}
-                                    SIMPAN PERUBAHAN
-                                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                                </button>
+                                {authUser?.role !== 6 && (
+                                    <button type="submit" disabled={saving}
+                                        className="bg-slate-900 text-white font-black px-10 py-5 rounded-3xl shadow-xl flex items-center gap-3 hover:bg-red-600 hover:scale-[1.05] active:scale-95 transition-all disabled:opacity-50 group">
+                                        {saving ? <Loader2 size={18} className="animate-spin" /> : <Save size={18} />}
+                                        SIMPAN PERUBAHAN
+                                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                                    </button>
+                                )}
                              </div>
                         </form>
                     </div>
 
-                    <div onClick={() => setShowPasswordUI(!showPasswordUI)} className={`mt-8 ${showPasswordUI ? 'bg-red-50 border-red-100' : 'bg-slate-50 border-slate-100'} rounded-[2.5rem] border p-8 flex items-center justify-between group cursor-pointer hover:bg-slate-100 transition-all`}>
-                        <div className="flex items-center gap-6">
-                            <div className={`p-4 bg-white rounded-2xl ${showPasswordUI ? 'text-red-500 shadow-md shadow-red-100' : 'text-slate-400 shadow-sm'} group-hover:text-red-600 transition-colors`}>
-                                <Lock size={24} />
+                    {authUser?.role !== 6 && (
+                        <div onClick={() => setShowPasswordUI(!showPasswordUI)} className={`mt-8 ${showPasswordUI ? 'bg-red-50 border-red-100' : 'bg-slate-50 border-slate-100'} rounded-[2.5rem] border p-8 flex items-center justify-between group cursor-pointer hover:bg-slate-100 transition-all`}>
+                            <div className="flex items-center gap-6">
+                                <div className={`p-4 bg-white rounded-2xl ${showPasswordUI ? 'text-red-500 shadow-md shadow-red-100' : 'text-slate-400 shadow-sm'} group-hover:text-red-600 transition-colors`}>
+                                    <Lock size={24} />
+                                </div>
+                                <div>
+                                    <h4 className="font-black text-slate-800 uppercase tracking-tighter italic">Perbarui Keamanan Sandi</h4>
+                                    <p className="text-xs font-bold text-slate-400">Protokol Keamanan: atur ulang kunci autentikasi sandi</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 className="font-black text-slate-800 uppercase tracking-tighter italic">Perbarui Keamanan Sandi</h4>
-                                <p className="text-xs font-bold text-slate-400">Protokol Keamanan: atur ulang kunci autentikasi sandi</p>
-                            </div>
+                            <ChevronRight className="text-slate-200 group-hover:text-red-500 transition-all" size={24} />
                         </div>
-                        <ChevronRight className="text-slate-200 group-hover:text-red-500 transition-all" size={24} />
-                    </div>
+                    )}
                 </div>
             </div>
         </div>

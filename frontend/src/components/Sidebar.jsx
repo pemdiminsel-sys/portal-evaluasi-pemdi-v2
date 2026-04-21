@@ -17,7 +17,6 @@ const Sidebar = ({ onMobileClose }) => {
     navigate('/login');
   };
 
-  // PEMETAAN ROLE BARU
   const navigationGroups = [
     {
       group: 'Utama',
@@ -29,32 +28,32 @@ const Sidebar = ({ onMobileClose }) => {
     {
       group: 'Master Data',
       items: [
-        { title: 'Manajemen User', icon: Key, path: '/dashboard/users', roles: [1, 2, 4] },
-        { title: 'Manajemen OPD', icon: Building2, path: '/dashboard/opd', roles: [1, 2] },
-        { title: 'Manajemen Indikator', icon: ListChecks, path: '/dashboard/indikator', roles: [1, 2] },
-        { title: 'Manajemen Aspek', icon: Layers, path: '/dashboard/aspek', roles: [1, 2] },
-        { title: 'Manajemen Periode', icon: CalendarDays, path: '/dashboard/periode', roles: [1] }
+        { title: 'Manajemen User', icon: Key, path: '/dashboard/users', roles: [1, 2, 4, 6] },
+        { title: 'Manajemen OPD', icon: Building2, path: '/dashboard/opd', roles: [1, 2, 6] },
+        { title: 'Manajemen Indikator', icon: ListChecks, path: '/dashboard/indikator', roles: [1, 2, 6] },
+        { title: 'Manajemen Aspek', icon: Layers, path: '/dashboard/aspek', roles: [1, 2, 6] },
+        { title: 'Manajemen Periode', icon: CalendarDays, path: '/dashboard/periode', roles: [1, 6] }
       ]
     },
     {
       group: 'Evaluasi SPBE',
       items: [
-        { title: 'Penilaian Mandiri', icon: FileText, path: '/dashboard/evaluasi', roles: [1, 3] },
-        { title: 'Riwayat Penilaian', icon: History, path: '/dashboard/riwayat', roles: [3] },
-        { title: 'Profil Instansi OPD', icon: Building2, path: '/dashboard/profil-opd', roles: [3] },
-        { title: 'Verifikasi OPD', icon: CheckCircle, path: '/dashboard/verifikasi', roles: [1, 4] },
-        { title: 'Catatan Perbaikan', icon: Edit2, path: '/dashboard/catatan', roles: [4] },
-        { title: 'Penilaian Interviu', icon: Users, path: '/dashboard/penilaian-interviu', roles: [4] },
-        { title: 'Berita Acara', icon: FileSignature, path: '/dashboard/berita-acara', roles: [4] }
+        { title: 'Penilaian Mandiri', icon: FileText, path: '/dashboard/evaluasi', roles: [1, 3, 6] },
+        { title: 'Riwayat Penilaian', icon: History, path: '/dashboard/riwayat', roles: [3, 6] },
+        { title: 'Profil Instansi OPD', icon: Building2, path: '/dashboard/profil-opd', roles: [3, 6] },
+        { title: 'Verifikasi OPD', icon: CheckCircle, path: '/dashboard/verifikasi', roles: [1, 4, 6] },
+        { title: 'Catatan Perbaikan', icon: Edit2, path: '/dashboard/catatan', roles: [4, 6] },
+        { title: 'Penilaian Interviu', icon: Users, path: '/dashboard/penilaian-interviu', roles: [4, 6] },
+        { title: 'Berita Acara', icon: FileSignature, path: '/dashboard/berita-acara', roles: [4, 6] }
       ]
     },
     {
       group: 'Laporan',
       items: [
-        { title: 'Monitoring Progres', icon: Activity, path: '/dashboard/monitoring', roles: [1, 2, 5] },
-        { title: 'Ranking Klasemen', icon: Trophy, path: '/dashboard/ranking', roles: [1, 2, 5] },
-        { title: 'Laporan Indeks', icon: PieChart, path: '/dashboard/rekap-nilai', roles: [1, 2, 5] },
-        { title: 'Ekspor Data', icon: Download, path: '/dashboard/export', roles: [1, 5] }
+        { title: 'Monitoring Progres', icon: Activity, path: '/dashboard/monitoring', roles: [1, 2, 5, 6] },
+        { title: 'Ranking Klasemen', icon: Trophy, path: '/dashboard/ranking', roles: [1, 2, 5, 6] },
+        { title: 'Laporan Indeks', icon: PieChart, path: '/dashboard/rekap-nilai', roles: [1, 2, 5, 6] },
+        { title: 'Ekspor Data', icon: Download, path: '/dashboard/export', roles: [1, 5, 6] }
       ]
     },
     {

@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { Users, Search, Plus, Edit2, Trash2, Loader2, Building2, MapPin, Phone, User as UserIcon, Tag } from 'lucide-react';
 import { supabase } from '../services/supabase';
 import { toast } from 'react-hot-toast';
+import useAuthStore from '../store/authStore';
 
 const OpdManagement = () => {
+    const { user: authUser } = useAuthStore();
     const [opds, setOpds] = useState([]);
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
@@ -187,9 +189,11 @@ const OpdManagement = () => {
                             className="bg-white border border-slate-200 pl-11 pr-4 py-3 rounded-2xl w-64 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-sm font-bold shadow-sm" 
                         />
                     </div>
-                    <button className="bg-indigo-600 text-white font-black px-6 py-4 rounded-2xl shadow-xl shadow-indigo-100 flex items-center gap-2 hover:scale-105 active:scale-95 transition-all">
-                        <Plus size={20} /> Tambah OPD
-                    </button>
+                    {authUser?.role !== 6 && (
+                        <button className="bg-indigo-600 text-white font-black px-6 py-4 rounded-2xl shadow-xl shadow-indigo-100 flex items-center gap-2 hover:scale-105 active:scale-95 transition-all">
+                            <Plus size={20} /> Tambah OPD
+                        </button>
+                    )}
                 </div>
             </div>
 
@@ -226,16 +230,20 @@ const OpdManagement = () => {
                                     </div>
 
                                     <div className="flex gap-2 mt-8 relative z-10">
-                                        <button onClick={() => {
-                                            setEditForm(opd);
-                                            fetchSelectedIndicators(opd.id);
-                                            setIsEditModalOpen(true);
-                                        }} className="flex-1 py-3 bg-slate-50 text-slate-400 hover:bg-indigo-600 hover:text-white font-black rounded-xl transition-all text-[10px] uppercase tracking-widest flex items-center justify-center gap-2">
-                                            <Edit2 size={12} /> Edit
-                                        </button>
-                                        <button onClick={() => handleDelete(opd.id, opd.nama)} className="p-3 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all">
-                                            <Trash2 size={14} />
-                                        </button>
+                                        {authUser?.role !== 6 && (
+                                            <>
+                                                <button onClick={() => {
+                                                    setEditForm(opd);
+                                                    fetchSelectedIndicators(opd.id);
+                                                    setIsEditModalOpen(true);
+                                                }} className="flex-1 py-3 bg-slate-50 text-slate-400 hover:bg-indigo-600 hover:text-white font-black rounded-xl transition-all text-[10px] uppercase tracking-widest flex items-center justify-center gap-2">
+                                                    <Edit2 size={12} /> Edit
+                                                </button>
+                                                <button onClick={() => handleDelete(opd.id, opd.nama)} className="p-3 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all">
+                                                    <Trash2 size={14} />
+                                                </button>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                             ))}

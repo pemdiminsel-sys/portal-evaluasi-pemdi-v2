@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { Layers, Plus, Edit2, Trash2, Loader2, Target, Percent, ChevronRight } from 'lucide-react';
 import { supabase } from '../services/supabase';
 import { toast } from 'react-hot-toast';
+import useAuthStore from '../store/authStore';
 
 const ManajemenAspek = () => {
+    const { user: authUser } = useAuthStore();
     const [aspeks, setAspeks] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -115,11 +117,15 @@ const ManajemenAspek = () => {
                                 Detail Indikator <ChevronRight size={14} />
                             </Link>
                             <div className="flex items-center gap-2">
-                                <button onClick={() => {
-                                    setEditForm(aspek);
-                                    setIsEditModalOpen(true);
-                                }} className="p-3 text-slate-300 hover:text-indigo-500 hover:bg-indigo-50 rounded-xl transition-all"><Edit2 size={18} /></button>
-                                <button onClick={() => handleDelete(aspek.id, aspek.nama)} className="p-3 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all"><Trash2 size={18} /></button>
+                                {authUser?.role !== 6 && (
+                                    <>
+                                        <button onClick={() => {
+                                            setEditForm(aspek);
+                                            setIsEditModalOpen(true);
+                                        }} className="p-3 text-slate-300 hover:text-indigo-500 hover:bg-indigo-50 rounded-xl transition-all"><Edit2 size={18} /></button>
+                                        <button onClick={() => handleDelete(aspek.id, aspek.nama)} className="p-3 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all"><Trash2 size={18} /></button>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>
